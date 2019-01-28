@@ -1,0 +1,109 @@
+{% if installments_info %}
+{% set gateways = installments_info | length %}
+{% set store_fit_for_payments = store.country == 'AR' or store.country == 'BR'  %}
+
+    {% embed "snipplets/modal.tpl" with{modal_id: 'installments-modal', modal_position: 'bottom', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered'  } %}
+        {% block modal_head %}
+            {{'Medios de pago ' | translate }}
+        {% endblock %}
+        {% block modal_body %}
+
+            {# Modal header and gateways tab links #}
+
+            <div class="js-tab-container">
+                <ul class="js-tab-group tab-group">
+                    {% for method, installments in installments_info %}
+                        <li id="method_{{ method }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab {% if loop.first %} active {% endif %}" data-code="{{ method }}">
+                            <a href="#installment_{{ method }}_{{ installment }}" class="js-tab-link tab-link">{{ method == 'paypal_multiple' ? 'PAYPAL' : (method == 'itaushopline'? 'ITAU SHOPLINE' : method == 'boleto_paghiper'? 'BOLETO PAGHIPER' : method | upper) }}</a>
+                        </li>
+
+                        {# Custom payment method #}
+
+                        {% if loop.last and custom_payment is not null %}
+                            <li id="method_{{ custom_payment.code }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab" data-code="{{ custom_payment.code }}">
+                                <a href="#installment_{{ custom_payment.code }}" class="js-tab-link tab-link">{{ custom_payment.name | upper }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+                {# Gateways tab content #}
+
+                <div class="js-tabs-content tab-content">
+                    {% for method, installments in installments_info %}
+                        {% set discount = product.get_gateway_discount(method) %}
+                        <div id="installment_{{ method }}_" class="js-tab-panel tab-panel {% if loop.first %} active {% endif %} js-gw-tab-pane">
+                            <div>
+
+                                {% if store_fit_for_payments %}
+
+                                    {# Payments info with readonly #}
+
+                                    {% if method == 'mercadopago' and store.country == 'AR' %}
+
+                                        {# Payments Gateways with banks: at the moment only MP AR #}
+
+                                        {% include 'snipplets/payments/payments-info-banks.tpl' %}
+                                    {% else %}
+
+                                        {# Payments Gateways with cards only #}
+
+                                        {% include 'snipplets/payments/payments-info.tpl' %}
+                                    {% endif %}    
+
+                                {% else %}
+
+                                    {# Installments list for ROLA stores #}
+
+                                    {% for installment, data_installment in installments %}
+                                        <div id="installment_{{ method }}_{{ installment }}">
+                                            {% set rounded_installment_value = data_installment.installment_value | round(2) %}
+                                            {% set total_value = (data_installment.without_interests ? data_installment.total_value : installment * data_installment.installment_value) %}
+                                            {% set total_value_in_cents = total_value  | round(2) * 100 %}
+                                            <strong class="js-installment-amount">{{ installment }}</strong> {% if store.country != 'BR' %}cuota{% if installment > 1 %}s{% endif %} de{% else %}x{% endif %} <strong class="js-installment-price">{{ (rounded_installment_value * 100) | money }}</strong>
+                                            {% if data_installment.without_interests %} {{ 'sin interés' | t }}{% endif %}
+                                        </div>
+                                    {% endfor %}
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        {# Custom payment method #}
+
+                        {% if loop.last and custom_payment is not null %}
+                            <div class="js-tab-panel tab-panel js-gw-tab-pane" id="installment_{{ custom_payment.code }}">
+                                <div class="box">
+
+                                    {# Custom method instructions #}
+
+                                    <h6 class="mb-1">{{ 'Cuando termines la compra vas a ver la información de pago en relación a esta opción.' | translate }}</h6>
+
+                                    {# Price total #}
+
+                                    <h4 class="mb-1 font-weight-normal">
+                                        <span>{{ 'Total:' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
+                                    </h4>
+
+                                    {% if custom_payment.discount > 0 %}
+                                        <div> {{ custom_payment.name }}: {{ 'tiene un' | translate }} <strong>{{ custom_payment.discount }}% {{'de descuento' | translate }}</strong> {{'que será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
+                                    {% endif %}
+                                
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            
+        {% endblock %}
+        {% block modal_foot %}
+            <div class="text-right">
+                <span class="js-modal-close btn-link pull-right">{{ 'Volver al producto' | translate }}</span>
+            </div>
+        {% endblock %}
+    {% endembed %}
+
+{% endif %}
+
+
