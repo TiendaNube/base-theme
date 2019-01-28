@@ -1,0 +1,3 @@
+primary
+	name = Página Principal
+	description = Pon aquí los productos que más quieras destacar

@@ -1,0 +1,21 @@
+Fashion
+	base = true
+	vertical = clothing
+	primary_color = #000000
+	background_color = #FFFFFF
+	text_color = #000000
+Glam
+	vertical = clothing_accesories
+	primary_color = #F29466
+	background_color = #F9F9F9
+	text_color = #CC8563
+Pacific
+	vertical = health_beauty 
+	primary_color = #86C2B4
+	background_color = #FFF9EE
+	text_color = #0F5672
+Refined
+	vertical = gifts
+	primary_color = #C9DFF1
+	background_color = #FFFFFF
+	text_color = #9E998A
