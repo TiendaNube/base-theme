@@ -1815,3 +1815,35 @@ en "Button text"
 es "Link"
 pt "Link"
 en "Link"
+
+es "Orden de secciones"
+pt "Ordem das seções"
+en "Order of sections"
+
+es "Posición 1"
+pt "Posição 1"
+en "Position 1"
+
+es "Posición 2"
+pt "Posição 2"
+en "Position 2"
+
+es "Posición 3"
+pt "Posição 3"
+en "Position 3"
+
+es "Posición 4"
+pt "Posição 4"
+en "Position 4"
+
+es "Posición 5"
+pt "Posição 5"
+en "Position 5"
+
+es "Posición 6"
+pt "Posição 6"
+en "Position 6"
+
+es "Posición 7"
+pt "Posição 7"
+en "Position 7"

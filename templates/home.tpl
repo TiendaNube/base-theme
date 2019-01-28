@@ -5,7 +5,7 @@
 {#  **** Features Order ****  #}
 {% set newArray = [] %}
 
-{% for section in ['home_order_position_1', 'home_order_position_2', 'home_order_position_3', 'home_order_position_4', 'home_order_position_5', 'home_order_position_6'] %}
+{% for section in ['home_order_position_1', 'home_order_position_2', 'home_order_position_3', 'home_order_position_4', 'home_order_position_5', 'home_order_position_6', 'home_order_position_7'] %}
     {% set section_select = attribute(settings,"#{section}") %}
 
     {% if section_select not in newArray %}

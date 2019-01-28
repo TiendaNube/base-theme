@@ -98,7 +98,7 @@ Página de inicio
 		icon = home
 		advanced = true
 	collapse
-		title = Orden Features
+		title = Orden de secciones
 	dropdown
 		name = home_order_position_1
 		description = Posición 1
@@ -162,6 +162,18 @@ Página de inicio
 	dropdown
 		name = home_order_position_6
 		description = Posición 6
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_7
+		description = Posición 7
 		values
 			welcome = Mensaje de Bienvenida
 			products = Productos Destacados
