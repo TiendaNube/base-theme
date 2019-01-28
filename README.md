@@ -73,3 +73,5 @@ In terms of speed and performance, involves changes that benefit the weight and 
   - templates
   ```
 
+**Demo**
+[Base Theme Demo - Gnix](https://basetheme.mitiendanube.com/)
