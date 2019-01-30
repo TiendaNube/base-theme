@@ -1,4 +1,4 @@
-<form action="{{ store.cart_url }}" method="post" id="ajax-cart-details" class="js-ajax-cart-panel cart-body">
+<form action="{{ store.cart_url }}" method="post" class="js-ajax-cart-panel cart-body">
 	<div class="cart-body">
       	<div class="js-ajax-cart-list cart-row">
 	        {# Cart panel items #}

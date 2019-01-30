@@ -1,6 +1,6 @@
 {% if product.images_count > 0 %}
 	<div class="js-swiper-product nube-slider-product swiper-container" style="visibility:hidden; height:0;">
-		{% include 'snipplets/labels.tpl' %}
+		{% include 'snipplets/labels.tpl' with {'product_detail': true} %}
 	    <div class="swiper-wrapper">
 	    	{% for image in product.images %}
 	         <div class="swiper-slide js-product-slide slider-slide" data-image="{{image.id}}" data-image-position="{{loop.index0}}">
@@ -12,8 +12,10 @@
 	        {% endfor %}
 	    </div>
 	    <div class="js-swiper-product-pagination swiper-pagination swiper-pagination-white"></div>
-	    <div class="js-swiper-product-prev swiper-button-prev d-none d-sm-block">{% include "snipplets/svg/chevron-left.tpl" with {'big': true} %}</div>
-        <div class="js-swiper-product-next swiper-button-next d-none d-sm-block">{% include "snipplets/svg/chevron-right.tpl" with {'big': true} %}</div>
+	    {% if product.images_count > 1 %}
+		    <div class="js-swiper-product-prev swiper-button-prev d-none d-sm-block">{% include "snipplets/svg/chevron-left.tpl" with {'big': true} %}</div>
+	        <div class="js-swiper-product-next swiper-button-next d-none d-sm-block">{% include "snipplets/svg/chevron-right.tpl" with {'big': true} %}</div>
+        {% endif %}
 	</div>
 	{% snipplet 'placeholders/product-detail-image-placeholder.tpl' %}
 {% endif %}

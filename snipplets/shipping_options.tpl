@@ -35,9 +35,9 @@
         {% endif %}
     </ul>
 
-    <div class="js-product-shipping-label font-small m-top pull-left" style="display: none;">
+    <div class="js-product-shipping-label font-small mt-3 pull-left" style="display: none;">
         <span class="js-shipping-filled-cart js-visible-on-cart-filled" {% if cart.items_count == 0 %}style="display:none;"{% endif%}>
-            <i class="far fa-info-circle m-quarter-right"></i><span>{{ 'El precio de envío incluye este producto y todos los que agregaste al carrito.' | translate }}</span>
+            <i class="far fa-info-circle mr-1"></i><span>{{ 'El precio de envío incluye este producto y todos los que agregaste al carrito.' | translate }}</span>
         </span>
     </div>
 {% else %}

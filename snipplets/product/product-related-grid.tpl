@@ -44,8 +44,8 @@
     {% if related_slider %}
                 </div>
                 <div class="js-swiper-related-pagination swiper-pagination"></div>
-                <div class="js-swiper-related-prev swiper-button-prev">{% include "snipplets/svg/chevron-left.tpl" with {'invert': true} %}</div>
-                <div class="js-swiper-related-next swiper-button-next">{% include "snipplets/svg/chevron-right.tpl" with {'invert': true} %}</div>
+                <div class="js-swiper-related-prev swiper-button-prev">{% include "snipplets/svg/chevron-left.tpl" with {'big': true} %}</div>
+                <div class="js-swiper-related-next swiper-button-next">{% include "snipplets/svg/chevron-right.tpl" with {'big': true} %}</div>
             </div>
         </div>
     {% endif %}

@@ -362,7 +362,8 @@ p{
 }
 .list .list-item{
   position: relative;
-  padding: 0 0 0 10px;
+  margin-bottom: 20px;
+  cursor: default;
 }
 
 .list-unstyled{

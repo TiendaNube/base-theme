@@ -880,7 +880,7 @@ $(document).ready(function(){
 	        
 	    {% endif %}
 	    LS.calculateShippingAjax(
-	        $(this).closest(".js-shipping-calculator-form").find(".js-shipping-input").val(),
+	        $(this).closest(".js-shipping-calculator-container").find(".js-shipping-input").val(),
 	        '{{ store.shipping_calculator_url | escape('js') }}',
 	        $(this).closest(".js-shipping-calculator-container")
 	    );
