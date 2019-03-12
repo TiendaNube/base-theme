@@ -293,6 +293,9 @@ h6,.h6{
   	color: $main-background;
     letter-spacing: 4px;
     @extend %body-font;
+    &:hover{
+      color: $main-background;
+    }
   }
   &-block{
     float: left;
@@ -342,7 +345,7 @@ a {
   }
 }
 
-.link-secondary {
+.link-contrast {
   color: $main-background;
   &:hover,
   &:focus{
@@ -631,7 +634,7 @@ textarea {
 {# /* // Form and info */ #}
     
 .social-share {
-  @extend %section-margin;
+  @extend %element-margin;
   .social-share-button {
     color: $main-foreground;
   }

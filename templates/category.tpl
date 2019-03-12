@@ -46,7 +46,7 @@
 	        <div class="js-product-table row">
 	        	{% include 'snipplets/product_grid.tpl' %}
 	        </div>
-	        {% if settings.infinite_scrolling and not pages.is_last and products %}
+	        {% if pages.current == 1 and not pages.is_last %}
              	<div class="text-center mt-5 mb-5">
 	                <a class="js-load-more btn btn-primary">
 	                	<i class="js-load-more-spinner far fa-sync-alt fa-spin" style="display:none;"></i>{{ 'Mostrar más productos' | t }}
@@ -55,11 +55,6 @@
 	             <div id="js-infinite-scroll-spinner" class="mt-5 mb-5 text-center w-100" style="display:none">
                     <i class="far fa-sync-alt fa-spin fa-3x"></i>
                 </div>
-	        {% endif %}
-	        {% if not settings.infinite_scrolling %}
-		        <div class="js-pagination-container pagination-container text-center">
-		            {% include 'snipplets/grid/pagination.tpl' %}
-		        </div>
 	        {% endif %}
 	    {% else %}
 	        <p class="text-center">

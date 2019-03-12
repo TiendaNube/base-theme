@@ -64,6 +64,9 @@ style.css
 %element-margin {
   margin-bottom: 35px;
 }
+%element-margin-small {
+  margin-bottom: 20px;
+}
 
 
 /*============================================================================
@@ -113,7 +116,7 @@ style.css
   clear: both;
   text-align: left;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  @extend %element-margin;
+  @extend %element-margin-small;
   cursor: pointer;
   &.disabled{
     opacity: 0.6;
@@ -603,7 +606,7 @@ footer {
 
 .footer-logo {
   img {
-    max-width: 52px;
+    max-width: 100px;
     margin: 2px;
     padding: 5px;
   }

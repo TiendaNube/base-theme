@@ -56,14 +56,6 @@
 			</div>
 		{% endif %}
 
-
-		{# Whatsapp chat button #}
-		    {% if store.whatsapp %}
-		        <a href="{{ store.whatsapp }}" target="_blank" class="js-statsd-wa-event-click btn-whatsapp">
-		            <i class="fab fa-whatsapp"></i>
-		        </a>
-		    {% endif %}
-
 		<div class="row element-footer">
 			<div class="col-md-6 text-center text-sm-left">
                 {#
@@ -87,20 +79,22 @@
 
         {# AFIP - EBIT - Custom Seal #}
 		{% if store.afip or ebit or settings.custom_seal_code or ("seal_img.jpg" | has_custom_image) %}
-			<div class="row element-footer">
- 				<div class="col text-center">
- 					{% if store.afip %}
-                        <div class="footer-logo afip seal-afip">
-                            {{ store.afip | raw }}
-                        </div>
-                    {% endif %}
-                    {% if ebit %}
-                        <div class="footer-logo ebit seal-ebit">
-                            {{ ebit }}
-                        </div>
-                    {% endif %}
- 				</div>
- 			</div>
+			{% if store.afip or ebit %}
+				<div class="row element-footer">
+	 				<div class="col text-center">
+	 					{% if store.afip %}
+	                        <div class="footer-logo afip seal-afip">
+	                            {{ store.afip | raw }}
+	                        </div>
+	                    {% endif %}
+	                    {% if ebit %}
+	                        <div class="footer-logo ebit seal-ebit">
+	                            {{ ebit }}
+	                        </div>
+	                    {% endif %}
+	 				</div>
+	 			</div>
+ 			{% endif %}
  			{% if "seal_img.jpg" | has_custom_image or settings.custom_seal_code %}
                 <div class="row element-footer">
  					<div class="col text-center">

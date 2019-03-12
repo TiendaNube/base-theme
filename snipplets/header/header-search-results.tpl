@@ -2,7 +2,7 @@
     {% set search_suggestions = products | take(6) %}
     {% for product in search_suggestions %}
         <li class="search-suggest-item container-fluid">
-            <a href="{{ product.url }}" class="search-suggest-link row justify-content-md-center align-items-center">
+            <a href="{{ product.url }}" class="search-suggest-link row justify-content-md-center">
                 <div class="search-suggest-image-container col-xs-auto">
                     {{ product.featured_image | product_image_url("tiny") | img_tag(product.featured_image.alt, {class: 'search-suggest-image'}) }}
                 </div>

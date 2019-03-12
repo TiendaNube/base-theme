@@ -1,5 +1,8 @@
 {# IMPORTANT Do not remove this hidden subtotal, it is used by JS to calculate cart total #}
 <div class="subtotal-price hidden" data-priceraw="{{ cart.subtotal }}"></div>
+
+{# Used to assign currency to total #}
+<div id="store-curr" class="hidden">{{ cart.currency }}</div>
     
 {# Cart panel subtotal #}
 <h5 class="js-visible-on-cart-filled {% if not cart_page %}row{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
@@ -14,7 +17,7 @@
 </h5>
 
 {# Cart panel promos #}
-<div class="js-total-promotions row">
+<div class="js-total-promotions">
   <span class="js-promo-title" style="display:none;">{{ "Promo" | translate }}</span>
   <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
   <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>
@@ -26,8 +29,8 @@
     {% else %}
       {% set id = 'all' %}
     {% endif %}
-      <span class="js-total-promotions-detail-row" id="{{ id }}">
-        <span>
+      <span class="js-total-promotions-detail-row row" id="{{ id }}">
+        <span class="col">
           {% if promotion.discount_script_type == "NAtX%off" %}
             {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
           {% else %}
@@ -41,13 +44,13 @@
           {% endif %}
           :
         </span>
-        <span>-{{ promotion.total_discount_amount_short }}</span>
+        <span class="col text-right">-{{ promotion.total_discount_amount_short }}</span>
       </span>
   {% endfor %}
 </div>
 
 {% if settings.shipping_calculator_cart_page %}
-  <div class="divider"></div>
+  <div class="js-visible-on-cart-filled divider" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
 
   <div class="js-visible-on-cart-filled js-has-new-shipping js-shipping-calculator-container container-fluid">
 
@@ -87,7 +90,7 @@
     </div>
   </div>
 
-  <div class="divider {% if not store.branches or store.country == 'BR' %} mt-0{% endif %}"></div>
+  <div class="js-visible-on-cart-filled divider {% if not store.branches or store.country == 'BR' %} mt-0{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
 
 {% endif %}
 
@@ -139,7 +142,7 @@
 
     {# Cart minium alert #}
 
-    <div class="js-ajax-cart-minimum alert alert-warning" {{ cart.total >= cart_total ? 'style="display:none"' }} id="ajax-cart-minumum-div">
+    <div class="js-ajax-cart-minimum alert alert-warning mt-4" {{ cart.total >= cart_total ? 'style="display:none"' }} id="ajax-cart-minumum-div">
       {{ "El monto mínimo de compra (subtotal) es de" | translate }} {{ cart_total | money }}
     </div>
     <input type="hidden" id="ajax-cart-minimum-value" value="{{ cart_total }}"/>

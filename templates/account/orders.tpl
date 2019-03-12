@@ -51,7 +51,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h4 class="m-0">
-                                                <strong>{{'Orden' | translate}}:  <a class="link-secondary" href="{{ store.customer_order_url(order) }}">#{{order.number}} </a></strong>
+                                                <strong>{{'Orden' | translate}}:  <a class="btn-link" href="{{ store.customer_order_url(order) }}">#{{order.number}} </a></strong>
                                             </h4>
                                         </div>
                                         <div class="col text-right">

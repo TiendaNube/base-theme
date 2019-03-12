@@ -98,94 +98,6 @@ Página de inicio
 		icon = home
 		advanced = true
 	collapse
-		title = Orden de secciones
-	dropdown
-		name = home_order_position_1
-		description = Posición 1
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_2
-		description = Posición 2
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_3
-		description = Posición 3
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_4
-		description = Posición 4
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_5
-		description = Posición 5
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_6
-		description = Posición 6
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_7
-		description = Posición 7
-		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
-			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-
-
-	collapse
 		title = Carrusel de imágenes
 	gallery
 		name = slider
@@ -196,7 +108,7 @@ Página de inicio
 		title = Banners informativos
 	checkbox
 		name = banner_services
-		description = Mostrar los banners en la página principal (se verá arriba del footer)
+		description = Mostrar los banners en la página principal
 	subtitle
 		subtitle = BANNER 1
 	dropdown
@@ -422,6 +334,93 @@ Página de inicio
 	description
 		description = Ej: https://www.youtube.com/watch?v=dptrWehSI8c
 
+	collapse
+		title = Orden de secciones
+	dropdown
+		name = home_order_position_1
+		description = Posición 1
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_2
+		description = Posición 2
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_3
+		description = Posición 3
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_4
+		description = Posición 4
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_5
+		description = Posición 5
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_6
+		description = Posición 6
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+	dropdown
+		name = home_order_position_7
+		description = Posición 7
+		values
+			welcome = Mensaje de Bienvenida
+			products = Productos Destacados
+			informatives = Banners Informativos
+			categories = Banners de Categorías
+			modules = Módulos de Imagen y Texto
+			video = Video
+			instafeed = Publicaciones de Instagram
+			empty = Ninguno
+
 Listado de productos
 	meta
 		icon = list-ul
@@ -449,11 +448,6 @@ Listado de productos
 	i18n_input
 		description = Título
 		name = products_related_title
-	title
-		title = Botón de seguir cargando productos
-	checkbox
-		name = infinite_scrolling
-		description = ¿Permitir que en el listado de productos tus clientes carguen nuevos productos cuando llegan al final de la página?
 
 Detalle de producto
 	meta

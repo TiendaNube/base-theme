@@ -4,7 +4,7 @@
 	        <div class="col text-center">
 	           	{% if settings.ad_bar and settings.ad_text %}
 	           	    {% if settings.ad_url %}
-				        <a class="link-secondary" href="{{ settings.ad_url }}">
+				        <a class="link-contrast" href="{{ settings.ad_url }}">
 					{% endif %}  
 			        	{% if settings.ad_text %}
 			        		{{ settings.ad_text }}

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
-                <p>{{ 'Vamos a enviarte un email para que puedas cambiar tu contraseña..' | translate }}</p>
+                <p>{{ 'Vamos a enviarte un email para que puedas cambiar tu contraseña.' | translate }}</p>
 
                 {% if success %}
                     <div class="alert alert-success">{{ '¡Listo! Te enviamos un email a {1}' | translate(email) }}</div>

@@ -14,7 +14,7 @@
         </div>
         <div id="error-ajax-stock" style="display: none;">
         	<div class="alert alert-warning">
-             	{{ "¡Uy! No tenemos más stock de este producto para agregar este producto al carrito. Si querés podés" | translate }}<a href="{{ store.products_url }}" class="btn-link">{{ "ver otros acá" | translate }}</a>
+             	{{ "¡Uy! No tenemos más stock de este producto para agregarlo al carrito. Si querés podés" | translate }}<a href="{{ store.products_url }}" class="btn-link ml-1">{{ "ver otros acá" | translate }}</a>
 	        </div>
         </div>
         <div class="cart-row">

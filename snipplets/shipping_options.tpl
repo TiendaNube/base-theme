@@ -1,6 +1,6 @@
 {% if options %}
     {% if store.has_smart_dates and show_time %}
-        <div class="radio-group-label mb-2">{{"El tiempo de entrega no considera feriados." | translate}}</div>
+        <div class="radio-group-label mb-3">{{"El tiempo de entrega no considera feriados." | translate}}</div>
     {% endif %}
     <ul class="list-unstyled">
 
