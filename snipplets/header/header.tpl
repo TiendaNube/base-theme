@@ -13,9 +13,9 @@
 
 	<div class="container">
 		<div class="row no-gutters align-items-center">
-			<div class="col-2">{% snipplet "navigation/navigation.tpl" %}</div>
+			<div class="col">{% snipplet "navigation/navigation.tpl" %}</div>
 			<div class="col text-center">{% snipplet "header/header-logo.tpl" %}</div>
-			<div class="col-3 text-right">{% snipplet "header/header-utilities.tpl" %}</div>
+			<div class="col text-right">{% snipplet "header/header-utilities.tpl" %}</div>
 		</div>
 	</div>    
     {% snipplet "notifications.tpl" %}
