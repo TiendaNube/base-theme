@@ -153,20 +153,19 @@ body{
   }
 }
 .blur-up {
-  -webkit-filter: blur(60px);
-  filter: blur(60px);
-  -moz-filter: blur(60px);
-  -ms-filter: blur(60px);
-  -o-filter: blur(60px);
-  -moz-transform:translateZ(0) scale(2);
-  -ms-transform:translateZ(0) scale(2);
-  -o-transform:translateZ(0) scale(2);
-  transform:translateZ(0) scale(2);
-  transition: filter .2s, -webkit-filter .5s;
-  /* Avoid strange image behaviour on filters in IOS */
-  -webkit-transform: translateZ(0) scale(2);
-  -webkit-perspective: 1000;
-  -webkit-backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  -webkit-filter: blur(18px);
+  filter: blur(18px);
+  -moz-filter: blur(18px);
+  -ms-filter: blur(18px);
+  -o-filter: blur(18px);
+  -webkit-transform:scale(2);
+  -moz-transform:scale(2);
+  -ms-transform:scale(2);
+  -o-transform:scale(2);
+  transform:scale(2);
+  transition: opacity .5s, -webkit-filter .5s;
 }
 .blur-up.lazyloaded {
   -webkit-transform:scale(1);
@@ -179,13 +178,6 @@ body{
   -moz-filter: blur(0);
   -ms-filter: blur(0);
   -o-filter: blur(0);
-}
-.fade-in {
-  opacity: 0;
-  transition: opacity .5s;
-}
-.fade-in.lazyloaded {
-  opacity: 1;
 }
 .preloader-bg-img,
 .product-slider-image.blur-up{
@@ -227,6 +219,11 @@ body{
   -o-filter: blur(0);
 }
 
+.lazyloaded + .blur-up {
+  opacity: 0;
+  pointer-events: none;
+}
+
 {# /* // Buttons */ #}
 
 .btn-whatsapp {
@@ -241,8 +238,8 @@ body{
 }
 
 .btn-whatsapp svg{
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   padding: 10px;
   fill: white;
   vertical-align:middle;
@@ -574,7 +571,7 @@ p{
 }
 .textbanner-text {  
   position: relative;
-  padding: 30px 5% 45px 5%;
+  padding: 0 5% 45px 5%;
   text-align: center;
 }
 .textbanner-text.over-image {

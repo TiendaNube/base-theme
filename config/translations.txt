@@ -314,6 +314,10 @@ es "Oferta"
 pt "Oferta"
 en "Sale"
 
+es "Envío gratis"
+pt "Frete grátis"
+en "Free shipping"
+
 es "Descripción del producto"
 pt "Descrição do produto"
 en "Product description"
@@ -835,7 +839,7 @@ pt "Enviamos um email para {1}"
 en "We sent you an email to {1}"
 
 es "Enviar email"
-pt "Enviar email"
+pt "Enviar e-mail"
 en "Send email"
 
 es "Cancelar"
@@ -1241,6 +1245,56 @@ es "A convenir"
 pt "A combinar"
 en "To be defined"
 
+es "Promo"
+pt "Promoção"
+en "Promo"
+
+es "¡Llevá {1} y pagá {2}!"
+pt "Leve {1} e pague {2}!"
+en "Buy {1} and only pay for {2}"
+
+pt "Leve {1} Pague {2}"
+
+es "Válido para"
+pt "Válido para"
+en "Available for"
+
+es "este producto y todos los de la categoría"
+pt "este produto e todos da categoria"
+en "this product and all of the products of category: "
+
+es "todos los productos"
+pt "todos os produtos"
+en "all products"
+
+es "en"
+pt "em"
+en "on"
+
+es "Vas a poder aprovechar esta promoción en cualquier producto de la tienda."
+pt "Você pode aproveitar esta promoção em qualquer produto da loja."
+en "You will be able to use this promotion on any product of the shop"
+
+es "Podés combinar esta promoción con otros productos de la misma categoría."
+pt "Nesta promoção você pode combinar este produto com outros da mesma categoria."
+en "You can combine this offer with other products of the same category"
+
+es "Comprando {1} o más."
+pt "Comprando {1} ou mais."
+en "Buying {1} or more."
+
+es "¡{1}% OFF comprando {2} o más!"
+pt "{1}% OFF comprando {2} ou mais!"
+en "{1}% OFF buying {2} or more!"
+
+es "comprando"
+pt "comprando"
+en "buying"
+
+es "o más."
+pt "ou mais."
+en "or more."
+
 es "Gratis"
 pt "Grátis"
 en "Free"
@@ -1523,9 +1577,9 @@ es "Banners informativos"
 pt "Banners informativos"
 en "Services banner"
 
-es "Mostrar los banners en la página principal (se verá arriba del footer)"
-pt "Mostrar os banners na home (aparecerá acima do rodapé)"
-en "Enable services in the home page (it will appear over the footer)"
+es "Mostrar los banners en la página principal"
+pt "Mostrar os banners na home"
+en "Enable services in the home page"
 
 es "Ícono"
 pt "Ícone"
@@ -1585,6 +1639,10 @@ en "Banners will be displayed from left to right on desktop and from top to bott
 es "Módulos de imagen y texto"
 pt "Módulos de imagem e texto"
 en "Modules with image and text"
+
+es "Mostrar módulos a todo el ancho de la pantalla en computadoras"
+pt "Mostrar módulos em toda a largura da tela em computadores"
+en "Show modules with full width on desktop computers"
 
 es "MÓDULO 1"
 pt "MÓDULO 1"

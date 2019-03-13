@@ -105,7 +105,7 @@
 {# Product description #}
 
 {% if product.description is not empty %}
-    <div class="product-description text-center">
+    <div class="product-description user-content">
         <h5 class="my-3">{{ "Descripción" | translate }}</h5>
         {{ product.description }}
     </div>

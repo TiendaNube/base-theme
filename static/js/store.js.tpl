@@ -33,7 +33,7 @@
 	  	// Custom mobile variants change
 	  	// Submit to contact
 	  	// Product slider
-	  	// Product thumbnails
+	  	// Pinterest sharing
 	  	// Add to cart
         // Product quantity
   	#Cart
@@ -180,12 +180,19 @@ $(document).ready(function(){
         $top_nav.addClass("move-down").removeClass("move-up");
 
 
-            {# Nav subitems #}
+        {# Nav subitems #}
 
-            $(".js-toggle-page-accordion").click(function (e) {
-                e.preventDefault();
-                $(this).toggleClass("selected").closest(".js-nav-list-toggle-accordion").next(".js-pages-accordion").slideToggle(300);
-            });
+        $(".js-toggle-page-accordion").click(function (e) {
+            e.preventDefault();
+            $(this).toggleClass("selected").closest(".js-nav-list-toggle-accordion").next(".js-pages-accordion").slideToggle(300);
+        });
+
+        {# Focus search #}
+
+        $(".js-toggle-search").click(function (e) {
+            e.preventDefault;
+            $(".js-search-input").focus();
+        });
 
 
     {# /* // Search suggestions */ #}
@@ -203,11 +210,6 @@ $(document).ready(function(){
         }, {
             snipplet: 'header/header-search-results.tpl'
         });
-        if ($(window).width() > 768) {
-            $("body").click(function () {
-                $(".js-search-suggest").hide();
-            })
-        }
 
         $(".js-search-suggest").on("click", ".js-search-suggest-all-link", function (e) {
             e.preventDefault();
@@ -761,7 +763,12 @@ $(document).ready(function(){
 	        });
 	    {% endif %}
 
-	    {# /* // Product thumbnails */ #}
+        {# /* // Pinterest sharing */ #}
+
+        $('.js-pinterest-share').click(function(e){
+            e.preventDefault();
+            $(".pinterest-hidden a")[0].click();
+        });
 
 	{% endif %}
 

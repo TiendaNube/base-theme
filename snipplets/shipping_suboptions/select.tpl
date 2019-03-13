@@ -1,8 +1,8 @@
 {% set selected_option = loop.first or cart.shipping_option == option.name %}
-<div class="js-shipping-suboption {{suboptions.name}}" {% if not selected_option %}style="display:none;"{% endif %}>
+<div class="js-shipping-suboption {{suboptions.name}}">
     {% if suboptions.options %}
 
-        <p class="js-shipping-suboption-product m-top-quarter m-bottom-half" style="display: none;">{{ 'Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:' | translate }}</p>
+        <p class="js-shipping-suboption-product mb-1" style="display: none;">{{ 'Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:' | translate }}</p>
 
         {# Read only suboptions #}
         <ul class="js-shipping-suboption-list" name="{{suboptions.name}}" style="display: none;">

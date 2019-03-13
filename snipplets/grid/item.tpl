@@ -16,7 +16,10 @@
     <div class="item-image mb-2">
         <div style="padding-bottom: {{ product.featured_image.dimensions['height'] / product.featured_image.dimensions['width'] * 100}}%;" class="p-relative">
             <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}">
-                <img alt="{{ product.featured_image.alt }}" data-sizes="auto" src="{{ product.featured_image | product_image_url('tiny')}}" data-srcset="{{ product.featured_image | product_image_url('small')}} 240w, {{ product.featured_image | product_image_url('medium')}} 320w, {{ product.featured_image | product_image_url('large')}} 480w" class="lazyautosizes lazyload img-absolute img-absolute-centered blur-up" /> 
+                <img alt="{{ product.featured_image.alt }}" data-sizes="auto" src="{{ 'images/empty-placeholder.png' | static_url }}" data-srcset="{{ product.featured_image | product_image_url('small')}} 240w, {{ product.featured_image | product_image_url('medium')}} 320w, {{ product.featured_image | product_image_url('large')}} 480w" class="lazyautosizes lazyload img-absolute img-absolute-centered" /> 
+
+                {# Low quality img until final img is lazyloaded #}
+                <img alt="{{ product.featured_image.alt }}" src="{{ product.featured_image | product_image_url('tiny')}}" class="img-absolute blur-up">
             </a>
             {% include 'snipplets/labels.tpl' %}
         </div>
