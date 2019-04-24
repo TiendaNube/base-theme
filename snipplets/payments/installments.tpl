@@ -8,10 +8,8 @@
 
     {# If product detail installments, include container with "see installments" link #}
 
-    {% if product_detail %}
-      {% if installments_info %}
-      <div href="#installments-modal" class="js-product-payments-container link-module" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
-      {% endif %}
+    {% if product_detail and installments_info %}
+      <div href="#installments-modal" class="js-product-payments-container mb-2" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
     {% endif %}
 
     {# If NOT product detail, just include installments alone without link or container #}

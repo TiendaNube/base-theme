@@ -24,6 +24,8 @@
     // input_placeholder for placeholder
     // input_custom_class for custom CSS classes 
     // input_rows for textarea rows
+    // input_data_attr for data attributes
+    // input_data_val for input_data_attr value
 #Append
     // input_append_content to add content after input
 #Alerts 
@@ -37,7 +39,7 @@
     {% endif %}
     {% block input_prepend_content %}
     {% endblock input_prepend_content %}
-    {% if input_append_content or input_append_content %}
+    {% if input_append_content or input_prepend_content %}
     <div class="form-control-container {{ form_control_container_custom_class }}">
     {% endif %}
     {% if text_area %}
@@ -49,9 +51,8 @@
             {% if input_name %}name="{{ input_name }}"{% endif %}
             {% if input_value %}value="{{ input_value }}"{% endif %}
             {% if input_rows %}rows="{{ input_rows }}"{% endif %}
-            {% if input_placeholder %}placeholder="{{ input_placeholder }}"{% endif %}>
-            
-        </textarea>
+            {% if input_placeholder %}placeholder="{{ input_placeholder }}"{% endif %}
+            {% if input_data_attr %}data-{{ input_data_attr }}="{{ input_data_val }}"{% endif %}></textarea>
     {% else %}
         <input 
             type="{% if type_text %}text{% elseif type_number %}number{% elseif type_tel %}tel{% elseif type_password %}password{% elseif type_hidden %}hidden{% endif %}"
@@ -64,15 +65,15 @@
             {% if input_value %}value="{{ input_value }}"{% endif %}
             {% if input_min %}min="{{ input_min }}"{% endif %}
             {% if input_placeholder %}placeholder="{{ input_placeholder }}"{% endif %}
-        />
+            {% if input_data_attr %}data-{{ input_data_attr }}="{{ input_data_val }}"{% endif %}/>
     {% endif %}
-    {% if input_append_content or input_append_content %}
+    {% if input_append_content or input_prepend_content %}
     </div>
     {% endif %}
     {% block input_append_content %}
     {% endblock input_append_content %}
     {% if input_help %}
-    <div class="mt-2">
+    <div class="mt-4 text-center">
         <a href="{{ input_help_link }}" class="btn-link {{ input_link_class }}">{% block input_help_text %}{% endblock input_help_text %}</a>
     </div>
     {% endif %}

@@ -805,9 +805,7 @@ $(document).ready(function(){
                         $(".js-alert-added-to-cart").toggleClass("notification-visible notification-hidden");
                     },7000);
                 }
-                {% if store.has_new_shipping %}
-                    $(".js-shipping-filled-cart").show();
-                {% endif %}
+                $(".js-shipping-filled-cart").show();
             }
             $prod_form = $(this).closest("form");
             LS.addToCartEnhanced(
@@ -877,15 +875,12 @@ $(document).ready(function(){
 	$(".js-calculate-shipping").click(function (e) {
 	    e.preventDefault();
 
-	    {% if store.has_new_shipping %}
-
 	        {# Take the Zip code to all shipping calculators on screen #}
 	        let shipping_input_val = $(this).closest(".js-shipping-calculator-form").find(".js-shipping-input").val();
 	        if (shipping_input_val.length != 0){
 	            $(".js-shipping-input").val(shipping_input_val);
 	        }
 	        
-	    {% endif %}
 	    LS.calculateShippingAjax(
 	        $(this).closest(".js-shipping-calculator-container").find(".js-shipping-input").val(),
 	        '{{ store.shipping_calculator_url | escape('js') }}',
