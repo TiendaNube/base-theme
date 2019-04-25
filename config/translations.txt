@@ -2602,6 +2602,11 @@ pt "Posição 7"
 en "Position 7"
 es_MX "Posición 7"
 
+es "Ninguno"
+pt "Nenhum"
+en "None"
+es_MX "Ninguno"
+
 es "Variante"
 pt "Variação"
 en "Variant"

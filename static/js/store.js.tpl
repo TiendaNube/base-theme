@@ -366,26 +366,6 @@ $(document).ready(function(){
             });
         }
 
-	    // var $banner_services_slider = $('.js-mobile-services');
-	    // var has_more_than_one_banner_service = $banner_services_slider.find('.js-service-item').length / $banner_services_slider.length > 1;
-	    // $banner_services_slider.bxSlider({
-	    //     // When only one element, don't spin. It's 3 because there is always two more elements to achieve the sliding effect.
-	    //     auto: false,
-	    //     touchEnabled: has_more_than_one_banner_service,
-	    //     controls: false,
-	    //     adaptiveHeight: false,
-	    //     onSliderLoad: function () {
-	    //         $banner_services_slider.css("visibility", "visible");
-	    //         $(".js-mobile-services-container .bx-has-pager").css("visibility", "visible");
-	    //         $(".js-services-placeholder").hide();
-	    //         $(".js-mobile-services").addClass("p-top-half-xs").css({"visibility" : "visible", "height" : "auto"});
-	    //     }
-	    // });
-
-     //    if (!has_more_than_one_banner_service) {
-     //        $(".js-mobile-services-container .bx-has-pager").hide();
-     //    }
-
     {% endif %}
 
 	{#/*============================================================================
@@ -748,10 +728,15 @@ $(document).ready(function(){
                 },
             });
 
-            $('[data-fancybox="product-gallery"]').fancybox({
+            $().fancybox({
+                selector : '[data-fancybox="product-gallery"]',
                 toolbar  : false,
                 smallBtn : true,
-
+                beforeClose : function(instance) {                    
+                    // Update position of the slider
+                    productSwiper.slideTo( instance.currIndex, 0 );
+                    
+                  }
             });
 
 	    {% if product.images_count > 1 %}

@@ -43,7 +43,3 @@
     </form>
     {% endif %}
 </div>
-
-{% if modal_overlay %}
-    <div class="js-modal-overlay js-modal-overlay-{{ modal_id }} modal-overlay" style="display: none;"></div>
-{% endif %}

@@ -31,7 +31,6 @@
         {% endif %}
         <div id="reviewsapp"></div>
     </div>  
-
-    {% include 'snipplets/product/product-related.tpl' %}
 </div>
+{% include 'snipplets/product/product-related.tpl' %}
 
