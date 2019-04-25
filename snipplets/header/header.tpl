@@ -3,7 +3,10 @@
 
 
 {# Header #}
-<header class="js-head-main head-main {% if template == 'home' and settings.head_transparent %}head-transparent{% endif %} head-{{ settings.head_background }} {% if settings.head_fix %}head-fix{% endif %}">
+
+{% set show_transparent_head = template == 'home' and settings.head_transparent and settings.slider and not settings.slider is empty %}
+
+<header class="js-head-main head-main {% if show_transparent_head %}head-transparent{% endif %} head-{{ settings.head_background }} {% if settings.head_fix %}head-fix{% endif %}">
 
     {# Advertising #}
     
