@@ -105,13 +105,11 @@ $(document).ready(function(){
     $modal_open.click(function (e) {
         e.preventDefault(); 
         var $modal_id = $(this).data('toggle');
-        var $modal_overlay = $($modal_id).next(".js-modal-overlay");
+        $(".js-modal-overlay").fadeToggle();
         if ($($modal_id).hasClass("modal-show")) {
             $($modal_id).removeClass("modal-show").delay(200).hide(0);
-            $($modal_overlay).fadeToggle(300);
         } else {
-            $($modal_id).show(0).addClass("modal-show");
-            $($modal_overlay).fadeToggle(300);
+            $($modal_id).detach().insertAfter(".js-modal-overlay").show(0).addClass("modal-show");
         }             
     });
 
@@ -365,26 +363,6 @@ $(document).ready(function(){
                 },
             });
         }
-
-	    // var $banner_services_slider = $('.js-mobile-services');
-	    // var has_more_than_one_banner_service = $banner_services_slider.find('.js-service-item').length / $banner_services_slider.length > 1;
-	    // $banner_services_slider.bxSlider({
-	    //     // When only one element, don't spin. It's 3 because there is always two more elements to achieve the sliding effect.
-	    //     auto: false,
-	    //     touchEnabled: has_more_than_one_banner_service,
-	    //     controls: false,
-	    //     adaptiveHeight: false,
-	    //     onSliderLoad: function () {
-	    //         $banner_services_slider.css("visibility", "visible");
-	    //         $(".js-mobile-services-container .bx-has-pager").css("visibility", "visible");
-	    //         $(".js-services-placeholder").hide();
-	    //         $(".js-mobile-services").addClass("p-top-half-xs").css({"visibility" : "visible", "height" : "auto"});
-	    //     }
-	    // });
-
-     //    if (!has_more_than_one_banner_service) {
-     //        $(".js-mobile-services-container .bx-has-pager").hide();
-     //    }
 
     {% endif %}
 
@@ -748,10 +726,15 @@ $(document).ready(function(){
                 },
             });
 
-            $('[data-fancybox="product-gallery"]').fancybox({
+            $().fancybox({
+                selector : '[data-fancybox="product-gallery"]',
                 toolbar  : false,
                 smallBtn : true,
-
+                beforeClose : function(instance) {                    
+                    // Update position of the slider
+                    productSwiper.slideTo( instance.currIndex, 0 );
+                    
+                  }
             });
 
 	    {% if product.images_count > 1 %}
@@ -805,9 +788,7 @@ $(document).ready(function(){
                         $(".js-alert-added-to-cart").toggleClass("notification-visible notification-hidden");
                     },7000);
                 }
-                {% if store.has_new_shipping %}
-                    $(".js-shipping-filled-cart").show();
-                {% endif %}
+                $(".js-shipping-filled-cart").show();
             }
             $prod_form = $(this).closest("form");
             LS.addToCartEnhanced(
@@ -877,15 +858,12 @@ $(document).ready(function(){
 	$(".js-calculate-shipping").click(function (e) {
 	    e.preventDefault();
 
-	    {% if store.has_new_shipping %}
-
 	        {# Take the Zip code to all shipping calculators on screen #}
 	        let shipping_input_val = $(this).closest(".js-shipping-calculator-form").find(".js-shipping-input").val();
 	        if (shipping_input_val.length != 0){
 	            $(".js-shipping-input").val(shipping_input_val);
 	        }
 	        
-	    {% endif %}
 	    LS.calculateShippingAjax(
 	        $(this).closest(".js-shipping-calculator-container").find(".js-shipping-input").val(),
 	        '{{ store.shipping_calculator_url | escape('js') }}',

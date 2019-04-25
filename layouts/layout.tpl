@@ -151,6 +151,10 @@
 
         {% template_content %}
 
+        {# Modals overlay #}
+
+        <div class="js-modal-overlay modal-overlay" style="display: none;"></div>
+
         {# WhatsApp chat button #}
 
         {% snipplet "whatsapp-chat.tpl" %}

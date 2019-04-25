@@ -8,8 +8,6 @@
 
 {# Product price #}
 
-{% set product_can_show_installments = product.show_installments and product.display_price %}
-
 <div class="price-container text-center text-sm-left" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
     <span class="d-inline-block">
 	   <h4 id="compare_price_display" class="js-compare-price-display price-compare {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
@@ -47,11 +45,6 @@
 {% endif %}
 
 {# Product installments #}
-
-{% if product.show_installments and product.display_price %}
-    {% set installments_info_base_variant = product.installments_info %}
-    {% set installments_info = product.installments_info_from_any_variant %}
-{% endif %}
 
 {% include "snipplets/payments/installments.tpl" with {'product_detail' : true} %}
 

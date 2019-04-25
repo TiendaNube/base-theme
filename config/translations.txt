@@ -1,1907 +1,3481 @@
-es "Anterior"
-pt "Anterior"
-en "Previous"
-
-es "Siguiente"
-pt "Seguinte"
-en "Next"
-
-es "Navegación"
-pt "Navegação"
-en "Navigation"
-
-es "1 producto"
-pt "1 produto"
-en "1 product"
-
-es "{1} productos"
-pt "{1} produtos"
-en "{1} products"
-
-es "Medios de pago"
-pt "Formas de pagamento"
-en "Payment methods"
-
-es "Formas de envío"
-pt "Formas de envio"
-en "Shipping methods"
-
-es "Información Legal"
-pt "Informação Legal"
-en "Legal Information"
-
-es "<strong class='installment-amount'>{1}</strong> cuotas de <strong class='installment-price'>{2}</strong>"
-pt "<strong class='installment-amount'>{1}</strong>x de <strong class='installment-price'>{2}</strong>"
-en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong>"
-
-es "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>"
-pt "<strong class='installment-amount'>{1}</strong>x de <strong class='installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
-
-es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>"
-pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong>"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong>"
-
-es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>"
-pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
-
-es "En hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas"
-pt "Em até <strong class='js-installment-amount installment-amount'>{1}</strong>x"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments"
-
-es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>"
-pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
-
-es "{1} cuotas en tarjeta de crédito"
-pt "{1}x no cartão"
-en "In up to {1} installments"
-
-es "¡{1} cuotas sin interés!"
-pt "{1} x sem juros!"
-en "{1} installments without interest!"
-
-es "Ver el detalle de las cuotas"
-pt "Ver detalhes das parcelas"
-en "See installments details"
-
-es "sin interés"
-pt "sem juros"
-en "without interests"
-
-es "Productos"
-pt "Produtos"
-en "Products"
-
-es "Iniciar sesión"
-pt "Login"
-en "Log in"
-
-es "Crear cuenta"
-pt "Cadastre-se"
-en "Register"
-
-es "Cerrar sesión"
-pt "Sair"
-en "Log out"
-
-es "Mi cuenta"
-pt "Minha conta"
-en "My account"
-
-es "Mis direcciones"
-pt "Meus endereços"
-en "My addresses"
-
-es "Carrito"
-pt "Carrinho"
-en "Cart"
-
-es "Carrito vacío"
-pt "Carrinho vazio"
-en "Empty cart"
-
-es "No hay suficiente stock para agregar este producto al carrito."
-pt "Desculpe, mas não há estoque suficiente para incluir este produto ao carrinho."
-en "There&#39;s not enough stock left to add this product to the shopping cart."
-
-es "No podemos ofrecerte {1} unidades de {2}. Solamente tenemos {3} unidades."
-pt "Não podemos te oferecer {1} unidades do produto {2}. No momento, somente possuímos {3} unidades"
-en "We cannot offer you {1} units of {2}. We only have {3} left in stock."
-
-es "La página que estás buscando no existe"
-pt "A página que você está procurando não existe"
-en "The page you are looking for does not exist"
-
-es "Enviando suscripción..."
-pt "Confirmando inscrição..."
-en "Sending..."
-
-es "Seguir comprando"
-pt "Continuar comprando"
-en "Continue shopping"
-
-es "Agregando..."
-pt "Incluindo..."
-en "Adding..."
-
-es "pág."
-pt "pág."
-en "page"
-
-es "Buscar"
-pt "Buscar"
-en "Search"
-
-es "Próximamente"
-pt "Em breve"
-en "Coming Soon"
-
-es "Inicio"
-pt "Home"
-en "Home"
-
-es "Carrito de Compras"
-pt "Carrinho de Compras"
-en "Shopping Cart"
-
-es "Carrito de compras"
-pt "Carrinho de compras"
-en "Shopping cart"
-
-es "Producto"
-pt "Produto"
-en "Product"
-
-es "Cantidad"
-pt "Quantidade"
-en "Quantity"
-
-es "Precio"
-pt "Preço"
-en "Price"
-
-es "Talle"
-pt "Tamanho"
-en "Size"
-
-es "Sabor"
-pt "Sabor"
-en "flavor"
-
-es "Stock"
-pt "Estoque"
-en "Stock"
-
-es "Subtotal"
-pt "Subtotal"
-en "Subtotal"
-
-es "eliminar"
-pt "remover"
-en "remove"
-
-es "Total"
-pt "Total"
-en "Total"
-
-es "Cambiar Cantidades"
-pt "Alterar Quantidades"
-en "Update quantities"
-
-es "Iniciar Compra"
-pt "Finalizar Compra"
-en "Go to Checkout"
-
-es "El carrito de compras está vacío."
-pt "O carrinho de compras está vazio."
-en "The shopping cart is empty."
-
-es "Contacto"
-pt "Contato"
-en "Contact"
-
-es "MEDIOS DE PAGO"
-pt "MEIOS DE PAGAMENTO"
-en "MEANS OF PAYMENT"
-
-es "FORMAS DE ENVÍO"
-pt "FORMAS DE ENVIO"
-en "SHIPPING METHODS"
-
-es "INFORMACIÓN LEGAL"
-pt "INFORMAÇÃO LEGAL"
-en "LEGAL INFORMATION"
-
-es "Dirección"
-pt "Endereço"
-en "Address"
-
-es "Email"
-pt "E-mail"
-en "Email"
-
-es "Teléfono"
-pt "Telefone"
-en "Phone"
-
-es "Blog"
-pt "Blog"
-en "Blog"
-
-es "¿Quieres recibir nuestras ofertas? ¡Regístrate ya mismo y comienza a disfrutarlas!"
-pt "Gostaria de receber nossas ofertas? Cadastre-se e começar a desfrutar!"
-en "Would you like to receive our offers? Register now and start to enjoy!"
-
-es "Siguenos en {1}"
-pt "Siga-nos no {1}"
-en "Follow us on {1}"
-
-es "Síguenos en Facebook"
-pt "Siga-nos no Facebook"
-en "Follow us on Facebook"
-
-es "Síguenos en Twitter"
-pt "Siga-nos no Twitter"
-en "Follow us on Twitter"
-
-es "SÍGUENOS EN:"
-pt "SIGA-NOS NO:"
-en "FOLLOW US ON:"
-
-es "Visita nuestro Blog!"
-pt "Visite o nosso Blog!"
-en "Visit our Blog!"
-
-es "El mensaje ha sido enviado con éxito, muchas gracias."
-pt "A mensagem foi enviada com sucesso, muito obrigado."
-en "The message has been sent, thank you."
-
-es "Debes completar los datos de contacto."
-pt "Verifique os dados digitados para que possamos entrar em contato."
-en "You must fill in your contact details."
-
-es "Nombre"
-pt "Nome completo"
-en "Name"
-
-es "Mensaje"
-pt "Mensagem"
-en "Message"
-
-es "No completar este campo"
-pt "Não preencher este campo"
-en "Do not fill this field"
-
-es "Opcional"
-pt "Opcional"
-en "Optional"
-
-es "Enviar"
-pt "Enviar"
-en "Send"
-
-es "Comparte este producto"
-pt "Compartilhar este produto"
-en "Share this product"
-
-es "Agregar al carrito"
-pt "Comprar"
-en "Add to cart"
-
-es "Ver <strong>{1}</strong> en detalle"
-pt "Ver <strong>{1}</strong> em detalhes"
-en "See <strong>{1}</strong> in detail"
-
-es "Productos Destacados"
-en "Highlighted Products"
-pt "Produtos em Destaque"
-
-es "Consultar precio"
-en "Contact for price"
-pt "Preço sob consulta"
-
-es "Consulta por:"
-pt "Consulta por:"
-en "Consult for:"
-
-es "Sin stock"
-pt "Esgotado"
-en "Out of stock"
-
-es "Oferta"
-pt "Oferta"
-en "Sale"
-
-es "Envío gratis"
-pt "Frete grátis"
-en "Free shipping"
-
-es "Descripción del producto"
-pt "Descrição do produto"
-en "Product description"
-
-es "¿Qué te parecio el producto?"
-pt "O que você acha do produto?"
-en "What do you think of the product?"
-
-es "Productos Relacionados"
-pt "Produtos Relacionados"
-en "Related Products"
-
-es "Medios de pago"
-pt "Formas de pagamento"
-en "Payment methods"
-
-es "Formas de envío"
-pt "Formas de envio"
-en "Shipping methods"
-
-es "Código postal"
-pt "CEP"
-en "Zipcode"
-
-es "Calcular envío"
-pt "Calcular frete"
-en "Calculate shipping"
-
-es "Ingresa aquí tu código postal para calcular tu costo de envío"
-pt "Digite aqui o seu CEP para calcular o frete"
-en "Enter your zipcode to calculate your shipping cost"
-
-es "Calcular costo de envío"
-pt "Calcular Frete"
-en "Calculate shipping"
-
-es "El código postal es inválido."
-pt "O CEP está inválido."
-en "The zipcode is not valid."
-
-es "El código postal es inválido. Por favor intentá de nuevo usando otro."
-pt "CEP inválido. Por favor, digite novamente ou informe outro."
-en "The zipcode is not valid. Please try again using another."
-
-es "Ocurrió un error al calcular el envío. Por favor intentá de nuevo en unos segundos."
-pt "Erro no cálculo. Por favor, tente novamente em alguns segundos."
-en "An error ocurred while calculating the shipping. Please try again in a few seconds."
-
-es "El calculo falló por un problema con el medio de envío. Por favor intentá de nuevo en unos segundos."
-pt "Erro no meio de envio. Por favor, tente novamente em alguns segundos."
-en "The calculation failed due to a problem with the shipping method. Please try again in a few seconds."
-
-es "Vea las opciones de envío para su código postal abajo"
-pt "Veja os valores para o seu CEP abaixo"
-en "Your shipping options are the following"
-
-es "No hay costos de envío para el código postal dado."
-pt "Não há frete disponível para o CEP informado"
-en "Shipping is not available for your zipcode."
-
-es "La página no existe"
-pt "A página solicitada não existe"
-en "The page does not exist"
-
-es "La página que estás buscando no existe."
-pt "Desculpe, mas a página que você está procurando não existe."
-en "The page you&#39;re looking for doesn&#39;t exist."
-
-es "Quizás te interesen los siguientes productos."
-pt "Talvez você se interesse pelos seguintes produtos."
-en "Maybe you&#39;ll be interested in the following products."
-
-es "Bienvenidos!"
-pt "Bem-vindo!"
-en "Welcome!"
-
-es "Resultados de búsqueda"
-pt "Resultados da pesquisa"
-en "Search results"
-
-es "No hubo resultados para tu búsqueda"
-pt "Não há resultados para a sua pesquisa"
-en "There were no results for your search"
-
-es "Mueve el mouse sobre la foto para hacer zoom"
-pt "Passe o mouse e veja mais detalhes"
-en "Move your mouse over the image to zoom"
-
-es "Cargando..."
-pt "Carregando..."
-en "Loading..."
-
-es "No hay resultados para ""{1}""."
-pt "Nenhum resultado para ""{1}""."
-en "There are no results for ""{1}""."
-
-es "$0.00"
-pt "R$0.00"
-en "$0.00"
-
-es "¡Bienvenido a tu tienda!"
-pt "Seja bem vindo a sua loja!"
-en "Welcome to your store!"
-
-es "Todavía no tienes ningún producto, ¿deseas"
-pt "Você ainda não tem nenhum produto, deseja"
-en "It looks like you don&#39;t have any products yet, would you like to"
-
-es "Todavía no destacaste productos, ¿deseas"
-pt "Você ainda não destacou nenhum produto, deseja"
-en "It looks like you haven&#39;t highlighted any products yet, would you like to"
-
-es "crear uno ahora"
-pt "cadastrá-lo agora"
-en "create some now"
-
-es "destacar uno ahora"
-pt "destacar um produto agora"
-en "highlight some now"
-
-es "Redes Sociales"
-pt "Redes Sociais"
-en "Social Networks"
-
-es "También puedes encontrarnos en:"
-pt "Você também pode encontrar-nos em:"
-en "You can also find us on:"
-
-es "Facebook"
-pt "Facebook"
-en "Facebook"
-
-es "Twitter"
-pt "Twitter"
-en "Twitter"
-
-es "Google plus"
-pt "Google plus"
-en "Google plus"
-
-es "Pinterest"
-pt "Pinterest"
-en "Pinterest"
-
-es "Instagram"
-pt "Instagram"
-en "Instagram"
-
-es "Newsletter"
-pt "Newsletter"
-en "Newsletter"
-
-es "Recibí todas las ofertas"
-pt "Receba todas as ofertas"
-en "Receive every offer"
-
-es "¿Quieres recibir nuestras ofertas? ¡Regístrate ya mismo y comienza a disfrutarlas!"
-pt "Gostaria de receber nossas ofertas? Cadastre-se agora e comece a desfrutá-las!"
-en "Do you wish to receive our offers? Sign up now and start to enjoy them!"
-
-es "Suscribir"
-pt "Subscrever"
-en "Subscribe"
-
-es "Pedido de inscripción a newsletter"
-pt "Pedido de inscrição na newsletter"
-en "Newsletter subscription request"
-
-es "Te has inscripto al newsletter correctamente"
-pt "Sua inscrição na newsletter foi realizada com sucesso"
-en "Subscription successful"
-
-es "Ingresa tu email"
-pt "Digite seu email"
-en "Input your email"
-
-es "Sin nombre"
-pt "Sem nome"
-en "No name"
-
-es "Medios de pago"
-pt "Formas de pagamento"
-en "Payment methods"
-
-es "Formas de envío"
-pt "Formas de envio"
-en "Shipping methods"
-
-es "Contactanos"
-pt "Contato"
-en "Contact us"
-
-es "Seguridad y Certificaciones"
-pt "Segurança e Certificações"
-en "Security and Certifications"
-
-es "[Opcional] Página web externa a la que llevará la imagen del sello al hacer clic"
-pt "[Opcional] Página da web externa a que levará a imagem do selo quando clicado"
-en "[Optional] External website linked to the image when is clicked"
-
-es "Copyright {1} - {2}. Todos los derechos reservados."
-pt "Copyright {1} - {2}. Todos os direitos reservados."
-en "Copyright {1} - {2}. All rights reserved."
+--- General
+--- Home
+--- Catalog
+--- --- Empty
+--- --- Sort By
+--- --- Filtros
+--- --- Search
+--- Sections
+--- Product
+--- --- Stock
+--- --- CTA
+--- --- Variables
+--- --- Subtitles
+--- --- Notifications
+--- Cart
+--- --- Headers
+--- --- Empty
+--- --- CTA
+--- Contact
+--- --- Form
+--- --- Notifications
+--- --- Newsletter
+--- Pages
+--- Accounts
+--- --- Login
+--- --- Register
+--- --- My Account
+--- --- Orders
+--- --- Addresses
+--- --- Notifications
+--- Payments
+--- Shipping
+--- Installments
+
+--- Instatheme
+--- --- Colors
+--- --- Tipography
+--- --- Header
+--- --- Sections
+--- --- Home
+--- --- Banners
+--- --- List
+--- --- Details
+--- --- Contact
+--- --- Cart
+--- --- Footer
+--- --- Shipping and Payments
+--- --- Social
+
+
+
+--- General ---
 
 es "Si"
 pt "Sim"
 en "Yes"
+es_MX "Sí"
 
 es "No"
 pt "Não"
 en "No"
+es_MX "No"
 
-es "Consultar"
-pt "Sob Consulta"
-en "Contact"
+es "Anterior"
+pt "Anterior"
+en "Previous"
+es_MX "Anterior"
 
-es "Tu E-mail"
-pt "Seu E-mail"
-en "Your E-mail"
-
-es "Detalles"
-pt "Detalhes do Pedido"
-en "Details"
-
-es "Estado actual del envío"
-pt "Estado atual do frete"
-en "Current state of shipping"
-
-es "Productos"
-pt "Produtos"
-en "Products"
-
-es "Medio de pago"
-pt "Meio de pagamento"
-en "Payment method"
-
-es "Estado"
-pt "Estado"
-en "State"
-
-es "Abierta"
-pt "Aberto"
-en "Open"
-
-es "Cerrada"
-pt "Finalizado"
-en "Close"
-
-es "Cancelada"
-pt "Cancelado"
-en "Cancelled"
-
-es "Pendiente"
-pt "Pendente"
-en "Pending"
-
-es "Autorizado"
-pt "Autorizado"
-en "Authorized"
-
-es "Pagado"
-pt "Confirmado"
-en "Paid"
-
-es "Cancelado"
-pt "Cancelado"
-en "Voided"
-
-es "Reintegrado"
-pt "Estornado"
-en "Refunded"
-
-es "Abandonado"
-pt "Abandonado"
-en "Abandoned"
-
-es "Envío"
-pt "Frete"
-en "Shipping"
-
-es "No enviado"
-pt "Não Enviado"
-en "Not shipped"
-
-es "Enviado"
-pt "Enviado"
-en "Shipped"
-
-es "Dirección de envío"
-pt "Endereço de Envio"
-en "Shipping address"
-
-es "Costo de envío ({1})"
-pt "Frete ({1})"
-en "Shipping cost ({1})"
-
-es "Descuento ({1})"
-pt "Desconto ({1})"
-en "Discount ({1})"
-
-es "Realizar el pago >"
-pt "Realizar o pagamento >"
-en "Purchase >"
-
-es "Seguí tu orden"
-pt "Acompanhar o pedido"
-en "Track order"
-
-es "Seguí la entrega"
-pt "Acompanhar a entrega"
-en "Track shipping"
-
-es "CPF / CNPJ"
-pt "CPF / CNPJ"
-en "CPF / CNPJ"
-
-es "Datos Personales"
-pt "Dados Pessoais"
-en "Personal Info"
-
-es "Editar mis datos"
-pt "Editar meu cadastro"
-en "Edit"
-
-es "Editar mis direcciones"
-pt "Editar meus endereços"
-en "Edit my addresses"
-
-es "Mis Órdenes"
-pt "Meus Pedidos"
-en "My Orders"
-
-es "Orden"
-pt "Pedido"
-en "Order"
-
-es "Orden {1}"
-pt "Pedido {1}"
-en "Order {1}"
-
-es "Fecha"
-pt "Data"
-en "Date"
-
-es "Pago"
-pt "Pagamento"
-en "Payment"
-
-es "Guardar Cambios"
-pt "Atualizar Cadastro"
-en "Save Changes"
-
-es "Mis direcciones"
-pt "Meus Endereços"
-en "My addresses"
+es "Siguiente"
+pt "Seguinte"
+en "Next"
+es_MX "Siguiente"
 
 es "Editar"
 pt "Editar"
 en "Edit"
-
-es "Agregar una nueva dirección"
-pt "Adicionar um novo endereço"
-en "Add a new address"
-
-es "Dirección"
-pt "Endereço"
-en "Address"
-
-es "Número"
-pt "Número"
-en "Number"
-
-es "Piso"
-pt "Complemento"
-en "Floor"
-
-es "Localidad"
-pt "Bairro"
-en "Locality"
-
-es "Código Postal"
-pt "CEP"
-en "Zip Code"
-
-es "Ciudad"
-pt "Cidade"
-en "City"
-
-es "Provincia"
-pt "Estado"
-en "Province"
-
-es "Teléfono"
-pt "Telefone"
-en "Phone"
-
-es "País"
-pt "País"
-en "Country"
-
-es "Guardar cambios"
-pt "Atualizar cadastro"
-en "Save changes"
-
-es "Ya existe una cuenta para este email!"
-pt "Já existe uma conta para este e-mail!"
-en "The email account already exists!"
-
-es "Debes ingresar un email válido!"
-pt "Você precisa cadastrar um e-mail válido!"
-en "You must enter a valid email!"
-
-es "Debes ingresar tu nombre!"
-pt "Você precisa cadastrar um Nome!"
-en "You must enter your name!"
-
-es "Debes ingresar tu dirección!"
-pt "É necessário preencher o seu endereço!"
-en "You must enter your address!"
-
-es "Debes ingresar tu número!"
-pt "É necessário preencher o número do endereço!"
-en "You must enter your number!"
-
-es "Debes ingresar tu piso!"
-pt "É necessário preencher o seu andar!"
-en "You must enter your floor number!"
-
-es "Debes ingresar tu localidad!"
-pt "É necessário preencher o seu bairro!"
-en "You must enter your locality!"
-
-es "Debes ingresar tu código postal!"
-pt "É necessário preencher o seu CEP!"
-en "You must enter your zip code!"
-
-es "Debes ingresar tu ciudad!"
-pt "É necessário preencher a sua Cidade!"
-en "You must enter your city!"
-
-es "Debes ingresar tu provincia!"
-pt "É necessário preencher o seu Estado!"
-en "You must enter your province!"
-
-es "Debes ingresar tu país!"
-pt "É necessário preencher o seu País!"
-en "You must enter your country!"
-
-es "Debes ingresar tu teléfono!"
-pt "É necessário preencher o seu Telefone!"
-en "You must enter your phone!"
-
-es "Debes ingresar tu contraseña!"
-pt "Você precisa cadastrar uma senha!"
-en "You must enter your password!"
-
-es "¿Olvidaste tu contraseña?"
-pt "Esqueceu sua Senha?"
-en "Forgot your password?"
-
-es "Cambiar Contraseña"
-pt "Mudar Minha Senha"
-en "Change Password"
-
-es "Cambiar contraseña"
-pt "Mudar minha senha"
-en "Change password"
-
-es "Confirmar Contraseña"
-pt "Confirmar Senha"
-en "Confirm Password"
-
-es "Contraseña"
-pt "Senha"
-en "Password"
-
-es "Iniciar sesión"
-pt "Login"
-en "Log in"
-
-es "Activar Cuenta"
-pt "Ativar Conta"
-en "Activate Account"
-
-es "Contraseña de acceso"
-pt "Senha de acesso"
-en "Access password"
-
-es "Desbloquear"
-pt "Destravar"
-en "Unlock"
-
-es "La contraseña es incorrecta."
-pt "A senha esta errada. Por favor verifique."
-en "The password is incorrect."
-
-es "Acceso"
-pt "Acesso"
-en "Access"
-
-es "Las contraseñas no coinciden."
-pt "As senhas não coincidem. Digite novamente."
-en "Passwords don&#39;t match."
-
-es "El email o la contraseña son incorrectos."
-pt "O email ou a senha estão errados. Por favor verifique."
-en "The Email or password are incorrect."
-
-es "Te enviaremos un email para que puedas cambiar tu contraseña."
-pt "Será enviado um email para que você possa alterar a sua senha."
-en "We&#39;ll send you an email so you can change your password."
-
-es "No existe ningún cliente con el email ingresado."
-pt "Não existe nenhum cliente cadastrado com o email informado."
-en "There&#39;s no client with that email."
-
-es "Te enviamos un email a {1}"
-pt "Enviamos um email para {1}"
-en "We sent you an email to {1}"
-
-es "Enviar email"
-pt "Enviar e-mail"
-en "Send email"
-
-es "Cancelar"
-pt "Cancelar"
-en "Cancel"
-
-es "Destacado"
-pt "Destaque"
-en "Featured"
-
-es "Precio: Menor a Mayor"
-pt "Preço: Menor ao Maior"
-en "Price: Low to High"
-
-es "Precio: Mayor a Menor"
-pt "Preço: Maior ao Menor"
-en "Price: High to Low"
-
-es "A - Z"
-pt "A - Z"
-en "A - Z"
-
-es "Z - A"
-pt "Z - A"
-en "Z - A"
-
-es "Más Viejo al más Nuevo"
-pt "Mais Antigo ao mais Novo"
-en "Oldest to Newest"
-
-es "Más Nuevo al más Viejo"
-pt "Mais Novo ao mais Antigo"
-en "Newest to Oldest"
-
-es "Más Vendidos"
-pt "Mais Vendidos"
-en "Best Selling"
-
---- Sections ---
-es "Página Principal"
-pt "Página Principal"
-
-es "Pon aquí los productos que más quieras destacar"
-pt "Coloque aqui os produtos que você mais queira destacar"
-
-es "Secundario"
-pt "Secundário"
-
-es "Pon aquí productos destacados de menor importancia"
-pt "Coloque aqui os produtos em destaque de menor importância"
-
---- Variants ---
-
-es "Variante Verde"
-pt "Variante Verde"
-
-es "Variante Naranja"
-pt "Variante Laranja"
-
-es "Variante Violeta"
-pt "Variante Violeta"
-
-es "El monto mínimo de compra (subtotal) es de"
-pt "O valor mínimo de compra (subtotal) é de"
-en "The minimum subtotal value is"
-
-es "Elige un monto mínimo de compra"
-pt "Escolha um valor mínimo de compra"
-en "Set a minimum purchase value"
-
-es "Mostrar el botón de 'Seguir comprando' en el carrito de compras"
-pt "Mostrar o botão de 'Continuar comprando' no carrinho de compras"
-
-es "Regístrate con Facebook"
-pt "Criar conta com o Facebook"
-en "Sign up with Facebook"
-
-es "o"
-pt "ou"
-en "or"
-
-es "Tienes que compartir tu e-mail."
-pt "Você deve compartilhar seu e-mail."
-en "You need to share your e-mail."
-
-es "Debes completar el login."
-pt "Você deve completar o login."
-en "You must complete the login."
-
-es "Hubo un problema con el login de Facebook."
-pt "Ocorreu um problema fazendo login com Facebook."
-en "There was a problem when login with Facebook."
-
-es "Ordenar por:"
-pt "Ordenar por:"
-en "Sort by:"
-
-es "Filtrar por:"
-pt "Filtrar por:"
-en "Filter by:"
-
-es "Filtro aplicado:"
-pt "Filtro aplicado:"
-en "Applied filter:"
-
-es "Mostrar más productos"
-pt "Mostrar mais produtos"
-en "Show more products"
-
-es "Ver todos los productos"
-pt "Ver todos os produtos"
-en "See all products"
-
-es "Elegir"
-pt "Escolher"
-en "Choose"
-
-es "Descripción"
-pt "Descrição"
-en "Description"
-
-es "¿Seguro que quieres borrar este artículo?"
-pt "Tem certeza de que deseja excluir este item?"
-en "Are you sure you want to delete this item?"
-
-es "No tenemos productos en esas variantes. Por favor, intentá con otros filtros."
-pt "Não temos produtos com estas variações. Por favor, tente com outros filtros"
-en "We don't have any product with those variants. Please, try with other filters"
-
-es "Más colores"
-pt "Mais cores"
-en "More colors"
-
-es "Mostrar más categorías"
-pt "Mostrar mais categorias"
-en "Show more categories"
-
-es "Talle"
-pt "Tamanho"
-en "Size"
-
-es "Categorías"
-pt "Categorias"
-en "Categories"
-
-es "Color"
-pt "Cor"
-en "Color"
-
-es "Error"
-pt "Erro"
-en "Error"
-
-es "Hasta <strong class='installment-amount'>{1}</strong> cuotas"
-pt "Até <strong class='installment-amount'>{1}</strong>x"
-en "Up to <strong class='installment-amount'>{1}</strong> installments"
-
-es "Tarjeta de crédito"
-pt "Cartão de crédito"
-en "Credit card"
-
-es "Tarjeta de débito / Efectivo / Depósito o transferencia"
-pt "Cartão de débito / Dinheiro / Depósito ou transferência"
-en "Debit card / Cash / Deposit or wire transfer"
-
-es "Efectivo / Débito online"
-pt "À vista / Débito online"
-en "Cash / Online debit"
-
-es "Efectivo"
-pt "À vista"
-en "Cash"
-
-es "Débito online"
-pt "Débito online"
-en "Online debit"
-
-es "Bancos con"
-pt "Bancos com"
-en "Banks with"
-
-es "Otros bancos"
-pt "Outros bancos"
-en "Other banks"
-
-es "Pagás"
-pt "Você paga"
-en "You pay"
-
-es "CFT:"
-pt "CFT:"
-en "CFT:"
-
-es "Precio en 1 pago:"
-pt "Preço em 1 parcela:"
-en "1 payment price:"
-
-es "O en 1 pago de:"
-pt "Ou em 1 parcela de:"
-en "Or in 1 payment of:"
-
-es "PTF:"
-pt "PTF:"
-en "PTF:"
-
-es "TEA:"
-pt "TEA:"
-en "TEA:"
-
-es "Total:"
-pt "Total:"
-en "Total:"
-
-es "Sin interés"
-pt "Sem juros"
-en "Without interest"
-
-es "sin interés"
-pt "sem juros"
-en "without interest"
-
-es "cuotas sin interés"
-pt "x sem juros"
-en "installments without interest"
-
-es "Conocé las opciones de pago"
-pt "Conheça as opções de pagamento"
-en "See the payment options"
-
-es "Conocé la cantidad de cuotas"
-pt "Conheça a quantidade de parcelas"
-en "See our installments amount"
-
-es "Boleto Paghiper tiene un"
-pt "Boleto PagHiper oferece"
-en "Boleto Paghiper offers a"
-
-es "de descuento"
-pt "de desconto"
-en "discount"
-
-es "que será aplicado sobre el costo total de la compra al finalizar la misma."
-pt "a ser aplicado sobre o custo total da compra ao finalizá-la."
-en "that will be applied over the total cost of the order when the checkout process is finished."
-
-es "Cantidad de cuotas"
-pt "Quantidade de parcelas"
-en "Installments amount"
-
-es "Ver medios de pago y financiación"
-pt "Ver meios de pagamento e parcelamento"
-en "See payment options and installments"
-
-es "Ver medios de pago"
-pt "Ver meios de pagamento"
-en "See payment options"
-
-es "Ver más medios de pago y financiación"
-pt "Ver mais meios de pagamento e parcelamento"
-en "See more payment options and installments"
-
-es "Medios de pago y financiación"
-pt "Meios de pagamento e parcelamento"
-en "Payment options and installments"
-
-es "Detalles de las cuotas"
-pt "Detalhes das parcelas"
-en "Installments details"
-
-es "Opciones de pago y financiación que vas a poder elegir a la hora de pagar por tu compra"
-pt "Estas são as opções de pagamento e parcelamento que poderá escolher na hora de pagar por sua compra"
-en "Payment options and installments that you will choose when you finish your purchase"
-
-es "Aceptar"
-pt "Aceitar"
-en "Accept"
-
-es "Medio de pago elegido:"
-pt "Meio de pagamento escolhido:"
-en "Payment method chosen:"
-
-es "de"
-pt "x"
-en "of"
-
-es "x de"
-pt "x de"
-en "x of"
-
-es "cuotas"
-pt "parcelas"
-en "installments"
-
-es "cuota"
-pt "parcela"
-en "installment"
-
-es "Elegí un banco para poder elegir las cuotas"
-pt "Escolha um banco para definir suas parcelas"
-en "Choose a bank so you can choose the installments"
-
-es "Cerrar"
-pt "Fechar"
-en "Close"
-
-es "No tenemos productos para mostrarte :("
-pt "Não temos produtos para exibir :("
-en "We have no products to show you :("
-
-es "Quizás encuentres lo que buscabas en los productos debajo."
-pt "Talvez encontre o que buscava nos produtos abaixo."
-en "Maybe you can find what you are looking for on the products below"
-
-es "Conocé las opciones de pago con"
-pt "Conheça as opções de pagamento com"
-en "See the payment options with"
-
-es "Conocé la cantidad de cuotas"
-pt "Conheça a quantidade de parcelas"
-en "See our installments amount"
-
-es "12 cuotas con otras tarjetas"
-pt "12x com outros cartões"
-en "12 installments with other cards"
-
-es "Cuotas"
-pt "x"
-en "Installments"
-
-es "sin interés de"
-pt "sem juros de"
-en "without interest of"
-
-es "Precio:"
-pt "Preço:"
-en "Price:"
-
-es "Volver al producto"
-pt "Voltar ao produto"
-en "Return to product"
-
-es "Hasta"
-pt "Até"
-en "Up to"
-
-es "Tarjetas de crédito"
-pt "Cartões de crédito"
-en "Credit cards"
-
-es "Tarjetas de débito y efectivo"
-pt "Cartões de débito e à vista"
-en "Debit cards and cash"
-
-es "Transferencia o depósito"
-pt "Transferência bancária ou depósito"
-en "Wire transfer o deposit"
-
-es "En 1 pago:"
-pt "Em 1 parcela:"
-en "1 payment price:"
-
-es "tiene un"
-pt "oferece"
-en "offers a"
-
-es "Cuando termines la compra vas a ver la información de pago en relación a esta opción."
-pt "Efetuada a compra, você verá as informações de pagamento em relação a esta opção."
-en "When you finish the purchase you will se the payment information related to this option."
-
-es "de "
-pt "de "
-en "of "
-
-es "O hasta"
-pt "Ou até"
-en "Or up to"
-
-es "cuotas de"
-pt "x de"
-en "x of"
-
-es "sin interés"
-pt "sem juros"
-en "without interest"
-
-es "cuotas"
-pt "x"
-en "installments"
-
-es "Cuotas"
-pt "x"
-en "Installments"
-
-es "cuota"
-pt "x"
-en "installment"
-
-es "Cuotas "
-pt "Parcelas"
-en "Installments"
-
-es "A convenir"
-pt "A combinar"
-en "To be defined"
-
-es "Promo"
-pt "Promoção"
-en "Promo"
-
-es "¡Llevá {1} y pagá {2}!"
-pt "Leve {1} e pague {2}!"
-en "Buy {1} and only pay for {2}"
-
-pt "Leve {1} Pague {2}"
-
-es "Válido para"
-pt "Válido para"
-en "Available for"
-
-es "este producto y todos los de la categoría"
-pt "este produto e todos da categoria"
-en "this product and all of the products of category: "
-
-es "todos los productos"
-pt "todos os produtos"
-en "all products"
-
-es "en"
-pt "em"
-en "on"
-
-es "Vas a poder aprovechar esta promoción en cualquier producto de la tienda."
-pt "Você pode aproveitar esta promoção em qualquer produto da loja."
-en "You will be able to use this promotion on any product of the shop"
-
-es "Podés combinar esta promoción con otros productos de la misma categoría."
-pt "Nesta promoção você pode combinar este produto com outros da mesma categoria."
-en "You can combine this offer with other products of the same category"
-
-es "Comprando {1} o más."
-pt "Comprando {1} ou mais."
-en "Buying {1} or more."
-
-es "¡{1}% OFF comprando {2} o más!"
-pt "{1}% OFF comprando {2} ou mais!"
-en "{1}% OFF buying {2} or more!"
-
-es "comprando"
-pt "comprando"
-en "buying"
-
-es "o más."
-pt "ou mais."
-en "or more."
-
-es "Gratis"
-pt "Grátis"
-en "Free"
-
-es "Ver más opciones"
-pt "Ver mais opções"
-en "See more options"
-
-es "Ver menos opciones"
-pt "Ver menos opções"
-en "See less options"
-
-es "Retirá gratis en nuestros locales"
-pt "Retire grátis em nossas lojas físicas"
-en "Free pickup on our stores"
-
-es "Retirá gratis en nuestro local"
-pt "Retire grátis em nossa loja física"
-en "Free pickup on our store"
-
-es "Ver locales"
-pt "Ver lojas físicas"
-en "See our stores"
-
-es "Ver local"
-pt "Ver loja física"
-en "See our store"
-
-es "Elegir local"
-pt "Escolher loja física"
-en "Select store"
-
-es "Conocé nuestras opciones de envío"
-pt "Conheça nossas opções de frete"
-en "See our shipping options"
-
-es "Elegí nuestras opciones de envío"
-pt "Escolha a opção de frete"
-en "Choose our shipping options"
-
-es "Calculando"
-pt "Calculando"
-en "Calculating"
-
-es "El medio de envío que habías elegido ya no se encuentra disponible "
-pt "O frete escolhido não está mais disponível "
-en "The shipping method selected is no longer available "
-
-es "porque el total de los items del carrito superan el peso máximo."
-pt "porque o total de itens no carrinho excede o peso máximo."
-en "because the total of the items in the cart surpass the maximum weight."
-
-es "¡No te preocupes! Podés elegir otro medio de envío."
-pt "Mas não se preocupe! Você pode escolher outro meio de envio."
-en "Do not worry! You can select another method."
-
-es "Editar"
-pt "Editar"
-en "Edit"
+es_MX "Editar"
 
 es "Guardar"
 pt "Salvar"
 en "Save"
 
-es "Ocultar locales"
-pt "Esconder lojas físicas"
-en "Hide our stores"
-
-es "Ocultar local"
-pt "Esconder loja física"
-en "Hide our store"
-
-es "El precio de envío incluye este producto y todos los que agregaste al carrito."
-pt "O custo de frete inclui este produto e outros adicionados ao carrinho."
-en "The shipping cost includes this product and all the products added to the cart."
-
-es "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
-pt "Você pode escolher uma das seguintes opções antes de finalizar a compra"
-en "You will be able to choose some of the following options before ending the purchase"
-
-es "Seguí acá"
-pt "Acompanhe aqui"
-en "Track here"
-
-es "tu última compra"
-pt "seu último pedido"
-en "your last order"
-
-es "No encontramos este código postal. ¿Está bien escrito?"
-pt "Não conseguimos encontrar esse CEP. Está bem escrito?"
-en "We couldn&#39;t find this zipcode. Is it written right?"
-
-es "¡Uy! No tenemos más stock de este producto para agregarlo al carrito. Si querés podés"
-pt "Oops! Não temos mais estoque para incluir este produto ao carrinho. Se você quiser, pode"
-en "Oops! We don&#39;t have enough stock left to add this product to the shopping cart. If you wish, you can"
-
-es "¡Uy! No tenemos más stock de este producto para agregarlo al carrito."
-pt "Oops! Não temos mais estoque para incluir este produto ao carrinho."
-en "Oops! We don&#39;t have enough stock left to add this product to the shopping cart."
-
-es "ver otros acá"
-pt "ver outros aquí"
-en "see others here"
-
-es "¡Excelente! Ya agregamos tu producto al carrito."
-pt "Excelente! Já adicionamos o produto ao carrinho."
-en "Excellent! your product was added to the cart."
-
-es "Necesitamos tu nombre y un email para poder responderte."
-pt "Precisamos do seu nome e um e-mail para poder te responder."
-en "We need your name or an e-mail so we can answer you."
-
-es "¡Gracias por contactarnos! Vamos a responderte apenas veamos tu mensaje."
-pt "Obrigado por nos contatar! Te responderemos assim que virmos sua mensagem."
-en "Thank you for your contact! We will answer as soon as we see your message"
-
-es "El email o la contraseña no coinciden. Chequeá que estén bien escritos."
-pt "O e-mail ou a senha não correspondem. Verifique que estejam bem escritos."
-en "The e-mail or password do not match. Please check they are written right."
-
-es "Necesitamos tu email para enviarte nuestras novedades."
-pt "Precisamos do seu email para te enviar nossas novidades."
-en "We need your e-mail so we can send you our news."
-
-es "¡Gracias por suscribirte! A partir de ahora vas a recibir nuestras novedades en tu email"
-pt "Obrigado por se inscrever! A partir de agora você receberá nossas novidades no seu e-mail."
-en "Thanks for susbcribing! From now on you will recieve our news to your e-mail."
-
-es "Necesitamos tu nombre para registrarte."
-pt "Precisamos do seu nome para te cadastrar."
-en "We need your name to confirm the registration."
-
-es "Necesitamos tu email para registrarte. Lo vamos a usar para enviarte el estado de tus compras."
-pt "Precisamos do seu e-mail para te cadastrar. Vamos usá-lo para te enviar o status de suas compras."
-en "We need your e-mail to confirm the registration. We will use it to send your orders status."
-
-es "Necesitamos una contraseña para registrarte."
-pt "Precisamos de uma senha para te cadastrar."
-en "We need a password to confirm the registration."
-
-es "Las contraseñas que escribiste no coinciden. Chequeá que sean iguales entre sí."
-pt "As senhas que você escreveu não correspondem. Verifique se eles são iguais entre si."
-en "The passwords do not match. Check that they are the same."
-
-es "Necesitamos saber tu nombre para actualizar tu información."
-pt "Precisamos saber seu nome para atualizar suas informações."
-en "We need your name so we can update your info."
-
-es "Necesitamos saber una contraseña para actualizar tu información."
-pt "Precisamos saber de uma senha para atualizar suas informações."
-en "We need a password so we can update your info."
-
-es "Necesitamos saber tu dirección para actualizar tu información."
-pt "Precisamos saber seu endereço para atualizar suas informações."
-en "We need your address so we can update your info."
-
-es "Necesitamos saber tu país para actualizar tu información."
-pt "Precisamos saber seu país para atualizar suas informações."
-en "We need your country so we can update your info."
-
-es "Necesitamos saber tu ciudad para actualizar tu información."
-pt "Precisamos saber seu cidade para atualizar suas informações."
-en "We need your city so we can update your info."
-
-es "Necesitamos saber tu provincia para actualizar tu información."
-pt "Precisamos saber seu estado para atualizar suas informações."
-en "We need your province so we can update your info."
-
-es "Necesitamos saber tu código postal para actualizar tu información."
-pt "Precisamos saber seu CEP para atualizar suas informações."
-en "We need your zipcode so we can update your info."
-
-es "Necesitamos saber tu localidad para actualizar tu información."
-pt "Precisamos saber seu bairro para atualizar suas informações."
-en "We need your locality so we can update your info."
-
-es "Necesitamos saber tu teléfono para actualizar tu información."
-pt "Precisamos saber seu telefone para atualizar suas informações."
-en "We need your phone so we can update your info."
-
-es "Necesitamos saber tu piso para actualizar tu información."
-pt "Precisamos saber seu andar para atualizar suas informações."
-en "We need your floor number so we can update your info."
-
-es "Necesitamos saber tu número para actualizar tu información."
-pt "Precisamos saber seu número do endereço para atualizar suas informações."
-en "We need your number so we can update your info."
-
-es "Necesitamos saber tu email para actualizar tu información."
-pt "Precisamos saber seu e-mail para atualizar suas informações."
-en "We need your e-mail so we can update your info."
-
-es "Encontramos otra cuenta que ya usa este email. Intentá usando otro."
-pt "Encontramos outra conta que já usa este e-mail. Tente usar outro."
-en "We found another account using this e-mail. Try with another one."
-
-es "Vamos a enviarte un email para que puedas cambiar tu contraseña."
-pt "Vamos te enviar um e-mail para poder alterar a sua senha."
-en "We will send you an e-mail so you can change your password."
-
-es "No encontramos ninguna cuenta registrada con este email. Intentalo nuevamente chequeando que esté bien escrito."
-pt "Não achamos nenhuma conta cadastrada com esse e-mail. Tente verificar novamente se está bem escrito."
-en "We couldn&#39;t find any account registered with this e-mail. Try again checking is written right."
-
-es "¡Listo! Te enviamos un email a {1}"
-pt "Pronto! Enviamos um e-mail para {1}"
-en "Done! We send you an e-mail to {1}"
-
-es "El tiempo de entrega no considera feriados."
-pt "O prazo de entrega não contabiliza feriados."
-en "The delivery time does not consider holidays."
-
-
-es " (sin envío)"
-pt " (sem frete)"
-en " (without shipping cost)"
-
---- Settings ---
-
-es "Colores de tu marca"
-pt "Cores da sua marca"
-en "Colors"
-
-es "Probá nuestras combinaciones"
-pt "Experimente nossas combinações"
-
-es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>"
-pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/layout/personalizacao-basica-do-layout/como-alterar-as-cores-do-meu-layout/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como alterar as cores do meu layout?</a>"
-
-es "Configuración avanzada"
-pt "Configuração avançada"
-
-es "Color principal de tu marca"
-pt "Cor principal de sua marca"
-
-es "Color de fondo"
-pt "Cor de fundo"
-
-es "Color de los textos"
-pt "Cor dos textos"
-
-es "Tipo de letra"
-pt "Tipo de letra"
-
-es "Títulos de páginas y banners"
-pt "Títulos das páginas e banners"
-
-es "Texto en el resto del sitio"
-pt "Outros textos do site"
-
-es "Encabezado"
-pt "Cabeçalho"
-
-es "Color de fondo del encabezado"
-pt "Cor de fundo do cabeçalho"
-
-es "Encabezado transparente sobre el carrusel de imágenes"
-pt "Cabeçalho transparente no banners rotativos"
-
-es "Encabezado siempre visible al navegar la tienda"
-pt "Cabeçalho sempre visível ao navegar pela loja"
-
-es "Barra de anuncio"
-pt "Barra de anúncio"
-
-es "Mostrar barra de anuncio"
-pt "Mostrar barra de anúncio"
-
-es "Link (opcional)"
-pt "Link (opcional)"
-
-es "Página de inicio"
-pt "Página inicial"
-en "Home page"
-
-es "Carrusel de imágenes"
-pt "Banners rotativos"
-
-es "Banners informativos"
-pt "Banners informativos"
-en "Services banner"
-
-es "Mostrar los banners en la página principal"
-pt "Mostrar os banners na home"
-en "Enable services in the home page"
-
-es "Ícono"
-pt "Ícone"
-en "Icon"
-
-es "Envíos"
-pt "Frete"
-en "Shipping"
-
-es "Seguridad"
-pt "Segurança"
-en "Security"
-
-es "Cambios y devoluciones"
-pt "Trocas e devoluções"
-en "Returns & Exchanges"
-
-es "Promociones"
-pt "Promoções"
-en "Promotions"
-
-es "Pago en efectivo"
-pt "Boleto Bancário"
-en "Cash"
-
-es "Mensaje de bienvenida"
-pt "Mensagem de boas vindas"
-
-es "Título"
-pt "Título"
-en "Title"
-
-es "Banners de categorías"
-pt "Banners de categorias"
-en "Categories banners"
-
-es "CATEGORÍA 1"
-pt "CATEGORIA 1"
-en "CATEGORY 1"
-
-es "CATEGORÍA 2"
-pt "CATEGORIA 2"
-en "CATEGORY 2"
-
-es "CATEGORÍA 3"
-pt "CATEGORIA 3"
-en "CATEGORY 3"
-
-es "Mostrar banner"
-pt "Mostrar banner"
-en "Show banner"
-
-es "Los banners se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares"
-pt "Os banners serão exibidos da esquerda para a direita em computadores, e de cima para baixo em celulares."
-en "Banners will be displayed from left to right on desktop and from top to bottom on mobile"
-
-es "Módulos de imagen y texto"
-pt "Módulos de imagem e texto"
-en "Modules with image and text"
-
-es "Mostrar módulos a todo el ancho de la pantalla en computadoras"
-pt "Mostrar módulos em toda a largura da tela em computadores"
-en "Show modules with full width on desktop computers"
-
-es "MÓDULO 1"
-pt "MÓDULO 1"
-en "MODULE 1"
-
-es "MÓDULO 2"
-pt "MÓDULO 2"
-en "MODULE 2"
-
-es "Los módulos se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares"
-pt "Os módulos serão exibidos da esquerda para a direita em computadores, e de cima para baixo em celulares."
-en "Modules will be displayed from left to right on desktop and from top to bottom on mobile"
-
-es "Mostrar módulo"
-pt "Exibir módulo"
-en "Show module"
-
-es "Video"
-pt "Video"
-en "Video"
-
-es "Link (Youtube o Vimeo)"
-pt "Link (Youtube/Vimeo)"
-en "Link (Youtube or Vimeo)"
-
-es "Ej: https://www.youtube.com/watch?v=dptrWehSI8c"
-pt "Ex: https://www.youtube.com/watch?v=dptrWehSI8c"
-en "Eg: https://www.youtube.com/watch?v=dptrWehSI8c"
-
-es "Listado de productos"
-pt "Lista de produtos"
-en "Products list"
+es "Cancelar"
+pt "Cancelar"
+en "Cancel"
+es_MX "Cancelar"
+
+es "Aceptar"
+pt "Aceitar"
+en "Accept"
+es_MX "Aceptar"
+
+es "Elegir"
+pt "Escolher"
+en "Choose"
+es_MX "Elegir"
+
+es "Compartir"
+pt "Compartilhar"
+en "Share "
+es_MX "Compartir"
+
+es "Error"
+pt "Erro"
+en "Error"
+es_MX "Error"
+
+es "© Copyright {1} - {2}"
+pt "© Copyright {1} - {2}"
+en "© Copyright {1} - {2}"
+es_MX "© Copyright {1} - {2}"
+
+es "Todos los derechos reservados."
+pt "Todos os direitos reservados."
+en "All rights reserved."
+es_MX "Todos los derechos reservados."
+
+es "Si"
+pt "Sim"
+en "Yes"
+es_MX "Si"
+
+es "No"
+pt "Não"
+en "No"
+es_MX "No"
+
+--- --- Placeholders
+
+es "¡Bienvenido a tu tienda!"
+pt "Seja bem vindo a sua loja!"
+en "Welcome to your store!"
+es_MX "¡Bienvenido a tu tienda en línea!"
+
+es "Todavía no tienes ningún producto, ¿deseas"
+pt "Você ainda não tem nenhum produto, deseja"
+en "It looks like you don&#39;t have any products yet, would you like to"
+es_MX "Todavía no tienes productos, ¿quieres"
+
+es "Todavía no destacaste productos, ¿deseas"
+pt "Você ainda não destacou nenhum produto, deseja"
+en "It looks like you haven&#39;t highlighted any products yet, would you like to"
+es_MX "Todavía no has destacado productos, ¿quieres"
+
+es "crear uno ahora"
+pt "cadastrá-lo agora"
+en "create some now"
+es_MX "crear uno ahora"
+
+es "destacar uno ahora"
+pt "destacar um produto agora"
+en "highlight some now"
+es_MX "destacar uno ahora"
+
+es "Productos de ejemplo"
+pt "Produtos de exemplo"
+en "Example products"
+es_MX "Productos de ejemplo"
+
+es "Producto de ejemplo"
+pt "Produto de exemplo"
+en "Product example"
+es_MX "Producto de ejemplo"
+
+es "CATEGORÍA DE EJEMPLO"
+pt "CATEGORIA DE EXEMPLO"
+en "CATEGORY EXAMPLE"
+es_MX "CATEGORÍA DE EJEMPLO"
+
+es "En hasta 12 cuotas con tarjeta de crédito"
+pt "Em até 12x sem juros"
+en "Upto 12x without interests"
+es_MX "En hasta 12 meses con tarjeta de crédito"
+
+es "Hasta 12 cuotas"
+pt "Até 12x sem juros"
+en "Upto 12x without interests"
+es_MX "Hasta 12 cuotas"
+
+es "¡Este es un producto de ejemplo! Para poder probar el proceso de compra, debes"
+pt "Esse é um produto de exemplo! Para poder experimentar o processo de compra, você deve"
+en "This is an example product! To check the checkout process you have to"
+es_MX "¡Este es un producto de ejemplo! Para poder probar el proceso de compra, debes"
+
+es "Talle"
+pt "Tamanho"
+en "Size"
+es_MX "Talla"
+
+es "S"
+pt "P"
+en "S"
+es_MX "S"
+
+es "M"
+pt "M"
+en "M"
+es_MX "M"
+
+es "L"
+pt "G"
+en "L"
+es_MX "L"
+
+es "XL"
+pt "GG"
+en "XL"
+es_MX "XL"
+
+es "Color"
+pt "Cor"
+en "Color"
+es_MX "Color"
+
+
+es "Azul"
+pt "Azul"
+en "Blue"
+es_MX "Azul"
+
+es "Blanco"
+pt "Branco"
+en "White"
+es_MX "Blanco"
+
+es "Rojo"
+pt "Vermelha"
+en "Red"
+es_MX "Rojo"
+
+es "Material"
+pt "Material"
+en "Material"
+es_MX "Material"
+
+es "Algodón"
+pt "Algodão"
+en "Cotton"
+es_MX "Algodón"
+
+es "Denim"
+pt "Denim"
+en "Denim"
+es_MX "Denim"
+
+--- Home ----
+
+es "Inicio"
+pt "Início"
+en "Home"
+es_MX "Inicio"
+
+es "Bienvenidos!"
+pt "Bem-vindo!"
+en "Welcome!"
+es_MX "¡Bienvenidos!"
+
+es "Productos destacados"
+pt "Produtos em destaque"
+en "Featured products"
+es_MX "Productos destacados"
+
+es "Productos Destacados"
+pt "Produtos em Destaque"
+en "Featured Products"
+es_MX "Productos Destacados"
+
+es "Elegí los productos del carrusel <a target='_blank' href='/admin/products/feature/'>desde acá</a>"
+pt "Escolha os produtos do banner <a target='_blank' href='/admin/products/feature/'>por aqui</a>"
+en "Choose the products <a target='_blank' href='/admin/products/feature/'>here</a>"
+es_MX "Elegí los productos del carrusel <a target='_blank' href='/admin/products/feature/'>desde acá</a>"
+
+es "Elegí los productos destacados <a target='_blank' href='/admin/products/feature/'>desde acá</a>"
+pt "Escolha os produtos em destaques <a target='_blank' href='/admin/products/feature/'>por aqui</a>"
+en "Choose your featured products <a target='_blank' href='/admin/products/feature/'>here</a>"
+es_MX "Elegí los productos destacados <a target='_blank' href='/admin/products/feature/'>desde acá</a>"
+
+es "Elegí acá los productos que quieras destacar en la página de inicio"
+pt "Escolha aqui os produtos que deseja destacar na página inicial"
+en "Select here your featured products"
+es_MX "Elegí acá los productos que quieras destacar en la página de inicio"
+
+--- Catalog ---
+
+es "Productos"
+pt "Produtos"
+en "Products"
+es_MX "Productos"
+
+es "1 producto"
+pt "1 produto"
+en "1 product"
+es_MX "1 producto"
+
+es "{1} productos"
+pt "{1} produtos"
+en "{1} products"
+es_MX "{1} productos"
+
+es "pág."
+pt "pág."
+en "page"
+es_MX "pág."
+
+es "Mostrar más productos"
+pt "Mostrar mais produtos"
+en "Show more products"
+es_MX "Mostrar más productos"
+
+es "Ver todos los productos"
+pt "Ver todos os produtos"
+en "See all products"
+es_MX "Ver todos los productos"
+
+es "Ver toda esta categoría"
+pt "Ver tudo desta categoria"
+en "See all this category"
+es_MX "Ver toda esta categoría"
+
+es "Todos los productos"
+pt "Todos os produtos"
+en "All products"
+es_MX "Todos los productos"
+
+es "de"
+pt "de"
+en "of"
+es_MX "de"
+
+es "Página"
+pt "Página"
+en "Page"
+es_MX "Página"
+
+--- --- Empty
+
+es "Próximamente"
+pt "Em breve"
+en "Coming Soon"
+es_MX "Próximamente"
+
+es "Quizás te interesen los siguientes productos."
+pt "Talvez você se interesse pelos seguintes produtos."
+en "Maybe you&#39;ll be interested in the following products."
+es_MX "Quizás te interesen estos productos."
+
+es "No tenemos productos para mostrarte :("
+pt "Não temos produtos para exibir :("
+en "We have no products to show you :("
+es_MX "No tenemos productos para mostrarte :("
+
+es "Quizás encuentres lo que buscabas en los productos debajo."
+pt "Talvez encontre o que buscava nos produtos abaixo."
+en "Maybe you can find what you are looking for on the products below"
+es_MX "Quizás encuentres lo que buscas en estos productos."
+
+es "$0.00"
+pt "R$0.00"
+en "$0.00"
+es_MX "$0.00"
+
+--- --- Sort By
+
+es "Ordenar por:"
+pt "Ordenar por:"
+en "Sort by:"
+es_MX "Ordenar por:"
+
+es "Destacado"
+pt "Destaque"
+en "Featured"
+es_MX "Destacado"
+
+es "Precio: Menor a Mayor"
+pt "Preço: Menor ao Maior"
+en "Price: Low to High"
+es_MX "Precio: Menor a Mayor"
+
+es "Precio: Mayor a Menor"
+pt "Preço: Maior ao Menor"
+en "Price: High to Low"
+es_MX "Precio: Mayor a Menor"
+
+es "A - Z"
+pt "A - Z"
+en "A - Z"
+es_MX "A - Z"
+
+es "Z - A"
+pt "Z - A"
+en "Z - A"
+es_MX "Z - A"
+
+es "Más Viejo al más Nuevo"
+pt "Mais Antigo ao mais Novo"
+en "Oldest to Newest"
+es_MX "Más Viejo al más Nuevo"
+
+es "Más Nuevo al más Viejo"
+pt "Mais Novo ao mais Antigo"
+en "Newest to Oldest"
+es_MX "Más Nuevo al más Viejo"
+
+es "Más Vendidos"
+pt "Mais Vendidos"
+en "Best Selling"
+es_MX "Más Vendidos"
+
+--- --- Filtros
+
+es "Filtrar por:"
+pt "Filtrar por:"
+en "Filter by:"
+es_MX "Filtrar por:"
 
 es "Filtros"
 pt "Filtros"
 en "Filters"
+es_MX "Filtros"
 
-es "Mostrar filtros en listado de productos"
-pt "Mostrar filtros na lista de produtos"
+es "Filtro aplicado:"
+pt "Filtro aplicado:"
+en "Applied filter:"
+es_MX "Filtro aplicado:"
 
-es "Productos en el listado"
-pt "Produtos na lista"
-en "List of products"
+es "Filtrar"
+pt "Filtrar"
+en "Filter"
+es_MX "Filtrar"
 
-es "Cantidad de productos por fila"
-pt "Quantidade de produtos por linha"
+es "No tenemos productos en esas variantes. Por favor, intentá con otros filtros."
+pt "Não temos produtos com estas variações. Por favor, tente com outros filtros"
+en "We don&#39;t have any product with those variants. Please, try with other filters"
+es_MX "No tenemos productos con esas variables. Intenta con otros filtros."
 
-es "1 en celular y 3 en computadora"
-pt "1 no celular e 3 no computador"
+es "Más colores"
+pt "Mais cores"
+en "More colors"
+es_MX "Más colores"
 
-es "2 en celular y 4 en computadora"
-pt "2 no celular e 4 no computador"
+es "Categorías"
+pt "Categorias"
+en "Categories"
+es_MX "Categorías"
 
-es "Título para productos destacados"
-pt "Título para produtos em destaque"
+es "Categorías principales"
+pt "Categorias principais"
+en "Main categories"
+es_MX "Categorías principales"
 
-es "Título para productos relacionados"
-pt "Título para produtos relacionados"
+es "Mostrar más categorías"
+pt "Mostrar mais categorias"
+en "Show more categories"
+es_MX "Mostrar más categorías"
 
-es "Botón de seguir cargando productos"
-pt "Botão de seguir carregando produtos"
+es "Talle"
+pt "Tamanho"
+en "Size"
+es_MX "Talla"
 
-es "¿Permitir que en el listado de productos tus clientes carguen nuevos productos cuando llegan al final de la página?"
-pt "Permitir que na apresentação dos produtos, os seus clientes carreguem novos produtos quando chegarem ao final da página?"
+es "Color"
+pt "Cor"
+en "Color"
+es_MX "Color"
 
-es "Detalle de producto"
-pt "Detalhe do produto"
-en "Product Details"
+--- --- Search
 
-es "Medios de envío"
-pt "Opções de frete"
-en "Shipping Methods"
+es "Buscar"
+pt "Buscar"
+en "Search"
+es_MX "Buscar"
 
-es "Mostrar calculador de costos de envío en la página de producto"
-pt "Mostrar o Cálculo de Frete na página de produto"
-en "Show shipping cost calculator on product page"
- 
+es "Resultados de búsqueda"
+pt "Resultados da pesquisa"
+en "Search results"
+es_MX "Resultados de tu búsqueda"
+
+es "No hubo resultados para tu búsqueda"
+pt "Não há resultados para a sua pesquisa"
+en "There were no results for your search"
+es_MX "No tenemos productos que coincidan con tu búsqueda."
+
+es "No hay resultados para ""{1}""."
+pt "Nenhum resultado para ""{1}""."
+en "There are no results for ""{1}""."
+es_MX "No encontramos productos que coincidan con ""{1}""."
+
+es "Ver todos los resultados"
+pt "Ver todos os resultados"
+en "See all results"
+es_MX "Ver todos los resultados"
+
+es "La página que estás buscando no existe"
+pt "A página que você está procurando não existe"
+en "The page you are looking for does not exist"
+
+--- Sections ---
+
+es "Página Principal"
+pt "Página Principal"
+en "Main"
+es_MX "Página principal"
+
+es "Poné acá los productos que más quieras destacar"
+pt "Coloque aqui os produtos que você mais queira destacar"
+es_MX "Coloca aquí los productos que más quieras destacar"
+
+es "Nuevo"
+pt "Novo"
+en "New"
+es_MX "Nuevo"
+
+es "Novedades"
+pt "Lançamentos"
+en "News"
+es_MX "Novedades"
+
+es "Se mostrará una etiqueta de 'Nuevo' en el producto"
+pt "A etiqueta 'Novo' será exibida no produto"
+en "A 'New' label will be displayed on the product"
+es_MX "Se mostrará la etiqueta 'Nuevo' en el producto"
+
+es "Secundario"
+pt "Secundário"
+es_MX "Secundario"
+
+es "Pon aquí productos destacados de menor importancia"
+pt "Coloque aqui os produtos em destaque de menor importância"
+es_MX "Coloca aquí los productos destacados de menor importancia"
+
+--- Product ---
+
+es "Mueve el mouse sobre la foto para hacer zoom"
+pt "Passe o mouse e veja mais detalhes"
+en "Move your mouse over the image to zoom"
+es_MX "Mueve el mouse sobre la foto para ampliarla"
+
+es "Cargando..."
+pt "Carregando..."
+en "Loading..."
+es_MX "Cargando..."
+
+es "Descripción del producto"
+pt "Descrição do produto"
+en "Product description"
+es_MX "Descripción del producto"
+
+es "¿Qué te parecio el producto?"
+pt "O que você acha do produto?"
+en "What do you think of the product?"
+es_MX "¿Qué te parecio el producto?"
+
+--- --- Labels
+
+es "Sin stock"
+pt "Esgotado"
+en "Out of stock"
+es_MX "Agotado"
+
+es "Envío gratis"
+pt "Frete grátis"
+en "Free shipping"
+es_MX "Envío gratis"
+
+es "Gratis"
+pt "Grátis"
+en "Free"
+es_MX "Gratis"
+
+es "Oferta"
+pt "Oferta"
+en "Sale"
+es_MX "Rebaja"
+
+es "Nuevo"
+pt "Novo"
+en "New"
+es_MX "Nuevo"
+
+es "Promo"
+pt "Promoção"
+en "Promo"
+es_MX "Promo"
+
+es "¡Llevá {1} y pagá {2}!"
+pt "Leve {1} e pague {2}!"
+en "Buy {1} and only pay for {2}"
+es_MX "¡Lleva {1} y paga {2}!"
+
+pt "Leve {1} Pague {2}"
+es_MX "Lleva {1} y paga {2}"
+
+es "Válido para"
+pt "Válido para"
+en "Available for"
+es_MX "Válido para"
+
+es "este producto y todos los de la categoría"
+pt "este produto e todos da categoria"
+en "this product and all of the products of category: "
+es_MX "este producto y todos los de la categoría"
+
+es "todos los productos"
+pt "todos os produtos"
+en "all products"
+es_MX "todos los productos"
+
+es "en"
+pt "em"
+en "on"
+es_MX "en"
+
+es "Vas a poder aprovechar esta promoción en cualquier producto de la tienda."
+pt "Você pode aproveitar esta promoção em qualquer produto da loja."
+en "You will be able to use this promotion on any product of the shop"
+es_MX "Aprovecha esta promoción en cualquier producto del sitio."
+
+es "Podés combinar esta promoción con otros productos de la misma categoría."
+pt "Nesta promoção você pode combinar este produto com outros da mesma categoria."
+en "You can combine this offer with other products of the same category"
+es_MX "Combina esta promoción con otros productos de la misma categoría."
+
+es "Comprando {1} o más."
+pt "Comprando {1} ou mais un."
+en "Buying :amount un. or more"
+es_MX "Comprando {1} o más."
+
+es "¡{1}% OFF comprando {2} o más!"
+pt "{1}% OFF comprando {2} ou mais un.!"
+en "Buying :amount un. or more"
+es_MX "¡{1}% OFF comprando {2} o más!"
+
+es "comprando"
+pt "comprando"
+en "buying"
+es_MX "comprando"
+
+es "o más."
+pt "ou mais un."
+en "or more un."
+es_MX "o más."
+
+--- --- CTA
+
+es "Agregar al carrito"
+pt "Comprar"
+en "Add to cart"
+es_MX "Agregar al carrito"
+
+es "Agregando..."
+pt "Incluindo..."
+en "Adding..."
+es_MX "Agregando..."
+
+es "Consultar precio"
+en "Contact for price"
+pt "Preço sob Consulta"
+es_MX "Consultar precio"
+
+es "Ver más detalles"
+pt "Ver mais detalhes"
+en "See more details"
+es_MX "Ver más detalles"
+
+es "Comprar"
+pt "Comprar"
+en "Buy"
+es_MX "Comprar"
+
+--- --- Variables
+
+es "Variante Blanca"
+pt "Variação Branca"
+es_MX "Variable Blanca"
+
+es "Variante Verde"
+pt "Variante Verde"
+es_MX "Variante Verde"
+
+es "Variante Naranja"
+pt "Variante Laranja"
+es_MX "Variante Naranja"
+
+es "Variante Violeta"
+pt "Variante Violeta"
+es_MX "Variante Violeta"
+
+--- --- Subtitles
+
+es "Comparte este producto"
+pt "Compartilhar este produto"
+en "Share this product"
+es_MX "Comparte este producto"
+
+es "Descripción"
+pt "Descrição"
+en "Description"
+es_MX "Descripción"
+
+es "Consulta por:"
+pt "Consulta por:"
+en "Consult for:"
+es_MX Consulta por:"
+
+es "Productos Relacionados"
+pt "Produtos Relacionados"
+en "Related Products"
+es_MX "Productos relacionados"
+
+es "Detalles"
+pt "Detalhes do Pedido"
+en "Details"
+es_MX "Detalles"
+
+--- Cart ---
+
+es "Carrito"
+pt "Carrinho"
+en "Cart"
+es_MX "Carrito"
+
+es "Carrito de Compras"
+pt "Carrinho de Compras"
+en "Shopping Cart"
+es_MX "Carrito de compras"
+
 es "Carrito de compras"
 pt "Carrinho de compras"
+en "Shopping Cart"
+es_MX "Carrito de compras"
 
-es "Monto mínimo de compra"
-pt "Valor mínimo de compra"
+es "Editar carrito"
+pt "Editar carrinho"
+en "Edit my cart"
+es_MX "Editar carrito"
 
-es "¿Cuánto es lo mínimo que pueden gastar tus clientes?"
-pt "Qual o valor mínimo que seus clientes podem gastar?"
+es "No podemos ofrecerte {1} unidades de {2}. Solamente tenemos {3} unidades."
+pt "Não podemos te oferecer {1} unidades do produto {2}. No momento, somente possuímos {3} unidades"
+en "We cannot offer you {1} units of {2}. We only have {3} left in stock."
+es_MX "Sólo tenemos {3} unidades de {2}."
 
-es "Botón seguir comprando en el carrito de compras"
-pt "Botão de seguir comprando no carrinho de compras"
+es "El monto mínimo de compra (subtotal) es de"
+pt "O valor mínimo de compra (subtotal) é de"
+en "The minimum subtotal value is"
+es_MX "El monto mínimo de compra (subtotal) es de"
 
-es "Mostrar el botón de 'Seguir comprando' en el carrito de compras"
-pt "Mostrar o botão de 'Continuar comprando' no carrinho de compras"
+es "El monto mínimo de compra es de"
+pt "O valor mínimo de compra é de"
+en "The minimum purchase value is"
+es_MX "El monto mínimo de compra es de"
 
-es "Mostrar calculador de costos de envío en el carrito"
-pt "Mostrar o Cálculo de Frete no carrinho"
-en "Show shipping cost calculator to cart"
+es "¿Seguro que quieres borrar este artículo?"
+pt "Tem certeza de que deseja excluir este item?"
+en "Are you sure you want to delete this item?"
+es_MX "¿Realmente quieres borrar este producto?"
 
-es "Pie de página"
-pt "Rodapé da página"
-en "Footer"
+es "Elige un monto mínimo de compra"
+pt "Escolha um valor mínimo de compra"
+en "Set a minimum purchase value"
+es_MX "Elige un monto mínimo de compra"
 
-es "Menúes"
-pt "Menus"
+es "Resumen del carrito de compras"
+pt "Resumo do carrinho de compras"
+en "Shopping cart summary"
+es_MX "Resumen del carrito de compras"
 
-es "Menú"
-pt "Menu"
-en "Menu"
+es "Edición del carrito de compras"
+pt "Edição do carrinho de compras"
+en "Shopping cart editing"
+es_MX "Edición del carrito de compras"
 
-es "Elegí el menú para el final de la página (footer). Si aún no configuraste ninguno, podés hacerlo <a target='_blank' href='/admin/navigation/?ref=submenu'>desde acá</a>"
-pt "Escolher menu para o final da página (rodapé). Caso não tenha nenhum configurado, pode fazê-lo <a target='_blank' href='/admin/navigation/?ref=submenu'>aqui</a>"
+es "El producto fue agregado exitosamente al carrito"
+pt "O produto foi adicionado ao carrinho com sucesso"
+en "The product has been added succesfully to the cart"
+es_MX "Hemos agregado tu producto al carrito"
 
-es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-el-menu-inferior-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio el menú inferior de mi tienda?</a>"
-pt "<a target='_blank' href='http://atendimento.nuvemshop.com.br/layout/como-adicionar-um-menu-no-rodape-da-home/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como inserir um novo menu na minha loja?</a>"
+es "¡Uy! No tenemos más stock de este producto para agregarlo al carrito. Si querés podés"
+pt "Oops! Não temos mais estoque para incluir este produto ao carrinho. Se você quiser, pode"
+en "Oops! We don&#39;t have enough stock left to add this product to the shopping cart. If you wish, you can"
+es_MX "¡Ups! No tenemos más stock de este producto para agregarlo al carrito. Si quieres"
 
-es "¿Qué menú vas a mostrar al final de la página?"
-pt "Escolher menu para o final da página (rodapé)"
+es "¡Uy! No tenemos más stock de este producto para agregarlo al carrito."
+pt "Oops! Não temos mais estoque para incluir este produto ao carrinho."
+en "Oops! We don&#39;t have enough stock left to add this product to the shopping cart."
+es_MX "¡Ups! No tenemos más stock de este producto para agregarlo al carrito."
 
-es "Mostrar medios de envío en tu tienda"
-pt "Mostrar as opções de frete na sua loja"
-en "Show Shipping Methods in your store"
- 
-es "Mostrar medios de pago en tu tienda"
-pt "Mostrar as opções de pagamento na sua loja"
-en "Show payment methods in your store"
+es "ver otros acá"
+pt "ver outros aquí"
+en "see others here"
+es_MX "ver otros aquí"
 
-es "Suscripción al newsletter desde el footer"
-pt "Inscrição para newsletter (rodapé)"
+es "¡Excelente! Ya agregamos tu producto al carrito."
+pt "Excelente! Já adicionamos o produto ao carrinho."
+en "Excellent! your product was added to the cart."
+es_MX "¡Excelente! Hemos agregado el producto al carrito."
 
-es "Permitir que tus clientes se registren para recibir novedades desde el Pié de Página"
-pt "Permitir que seus clientes se inscrevam para receber novidades no rodapé"
+--- --- Headers
 
-es "Elegí el título para la sección 'Newsletter' en el footer"
-pt "Escolha o título da seção 'Newsletter' no rodapé"
+es "Producto"
+pt "Produto"
+en "Product"
+es_MX "Producto"
 
-es "¡Escribí algo para que tus clientes se suscriban a tu newsletter!"
-pt "Escreva algo para que seus clientes se inscrevam em sua newsletter!"
- 
-es "Sellos personalizados en el footer"
-pt "Selos personalizados no rodapé"
-en "Custom seals in the footer"
+es "Cantidad"
+pt "Quantidade"
+en "Quantity"
+es_MX "Cantidad"
 
-es "Podés agregar sellos de dos formas: subiendo una imagen o pegando el código Javascript o HTML"
-pt "Você pode adicionar selos de duas formas: incluindo uma imagem ou adicionando um código HTML/Javascript"
-en "You can add seals through two ways: uploading an image or pasting the Javascript or HTML code"
+es "Precio"
+pt "Preço"
+en "Price"
+es_MX "Precio"
 
-es "Imagen del sello"
-pt "Imagem do selo"
-en "Seal image"
+es "Stock"
+pt "Estoque"
+en "Stock"
+es_MX "Stock"
 
-es "Código Javascript o HTML del sello"
-pt "Código HTML ou Javascript do selo"
-en "HTML or Javascript seal´s code"
+es "Subtotal"
+pt "Subtotal"
+en "Subtotal"
+es_MX "Subtotal"
+
+es "eliminar"
+pt "remover"
+en "remove"
+es_MX "quitar"
+
+es "Total"
+pt "Total"
+en "Total"
+es_MX "Total"
+
+es "(opcional)"
+pt "(opcional)"
+en "(optional)"
+es_MX "(opcional)"
+
+--- --- Empty
+
+es "Carrito vacío"
+pt "Carrinho vazio"
+en "Empty cart"
+es_MX "Carrito vacío"
+
+es "No hay suficiente stock para agregar este producto al carrito."
+pt "Desculpe, mas não há estoque suficiente para incluir este produto ao carrinho."
+en "There&#39;s not enough stock left to add this product to the shopping cart."
+es_MX "No tenemos suficiente stock para agregar este producto al carrito."
+
+es "El carrito de compras está vacío."
+pt "O carrinho de compras está vazio."
+en "The shopping cart is empty."
+es_MX "El carrito de compras está vacío."
+
+--- --- CTA
+
+es "Cambiar Cantidades"
+pt "Alterar Quantidades"
+en "Update quantities"
+es_MX "Cambiar cantidades"
+
+es "Iniciar Compra"
+pt "Finalizar Compra"
+en "Go to Checkout"
+es_MX "Comprar"
+
+es "Seguir comprando"
+pt "Continuar comprando"
+en "Continue shopping"
+es_MX "Seguir comprando"
+
+--- Contact ---
+
+es "Contactanos"
+pt "Contato"
+en "Contact us"
+es_MX "Contáctanos"
+
+es "Contacto"
+pt "Contato"
+en "Contact"
+es_MX  "Contacto"
+
+es "Consultar"
+pt "Sob Consulta"
+en "Contact"
+es_MX "Consultar"
+
+es "Información Legal"
+pt "Informação Legal"
+en "Legal Information"
+es_MX "Información Legal"
+
+es "INFORMACIÓN LEGAL"
+pt "INFORMAÇÃO LEGAL"
+en "LEGAL INFORMATION"
+es_MX "INFORMACIÓN LEGAL"
+
+es "Mostrar datos de contacto en tu tienda"
+pt "Mostrar os dados de contato na sua loja"
+en "Show contact data in your store"
+es_MX "Mostrar datos de contacto en tu tienda"
+
+es "Estás consultando por el producto:"
+pt "Está consultando o produto:"
+en "You are consulting by the following product:"
+es_MX "Esta consultando por el siguiente producto:
+
+--- --- Form
+
+es "Dirección"
+pt "Endereço"
+en "Address"
+es_MX "Dirección"
+
+es "Email"
+pt "E-mail"
+en "Email"
+es_MX "Correo electrónico"
+
+es "Ingresa tu dirección de email"
+pt "Cadastre seu e-maill"
+en "Type your E-mail"
+es_MX "Ingresa tu correo electrónico"
+
+es "Teléfono"
+pt "Telefone"
+en "Phone"
+es_MX "Teléfono"
+
+es "Mensaje"
+pt "Mensagem"
+en "Message"
+es_MX "Mensaje"
+
+es "No completar este campo"
+pt "Não preencher este campo"
+en "Do not fill this field"
+es_MX "No completar este campo"
+
+es "Opcional"
+pt "Opcional"
+en "Optional"
+es_MX "Opcional"
+
+es "Enviar"
+pt "Enviar"
+en "Send"
+es_MX "Enviar"
+
+es "Enviando..."
+pt "Enviando..."
+en "Sending..."
+es_MX "Enviando..."
+
+--- --- Notifications
+
+es "El mensaje ha sido enviado con éxito, muchas gracias."
+pt "A mensagem foi enviada com sucesso, muito obrigado."
+en "The message has been sent, thank you."
+es_MX "Hemos enviado tu mensaje. ¡Muchas gracias!"
+
+es "Debes completar los datos de contacto."
+pt "Verifique os dados digitados para que possamos entrar em contato."
+en "You must fill in your contact details."
+es_MX "Debes completar los datos de contacto."
+
+es "Ya existe una cuenta para este email!"
+pt "Já existe uma conta para este e-mail!"
+en "The email account already exists!"
+es_MX "Ya existe una cuenta asociada a este correo."
+
+es "Debes ingresar un email válido!"
+pt "Você precisa cadastrar um e-mail válido!"
+en "You must enter a valid email!"
+es_MX "Debes ingresar un correo electrónico válido."
+
+es "Debes ingresar tu nombre!"
+pt "Você precisa cadastrar um Nome!"
+en "You must enter your name!"
+es_MX "Debes ingresar tu nombre."
+
+es "Debes ingresar tu dirección!"
+pt "É necessário preencher o seu endereço!"
+en "You must enter your address!"
+es_MX "Debes ingresar tu dirección."
+
+es "Debes ingresar tu número!"
+pt "É necessário preencher o número do endereço!"
+en "You must enter your number!"
+es_MX "Debes ingresar tu número exterior."
+
+es "Debes ingresar tu piso!"
+pt "É necessário preencher o seu andar!"
+en "You must enter your floor number!"
+es_MX "Debes ingresar tu número interior.""
+
+es "Debes ingresar tu localidad!"
+pt "É necessário preencher o seu bairro!"
+en "You must enter your locality!"
+es_MX "Debes ingresar tu colonia."
+
+es "Debes ingresar tu código postal!"
+pt "É necessário preencher o seu CEP!"
+en "You must enter your zip code!"
+es_MX "Debes ingresar tu código postal."
+
+es "Debes ingresar tu ciudad!"
+pt "É necessário preencher a sua Cidade!"
+en "You must enter your city!"
+es_MX "Debes ingresar tu ciudad."
+
+es "Debes ingresar tu provincia!"
+pt "É necessário preencher o seu Estado!"
+en "You must enter your province!"
+es_MX "Debes ingresar tu estado."
+
+es "Debes ingresar tu país!"
+pt "É necessário preencher o seu País!"
+en "You must enter your country!"
+es_MX "Debes ingresar tu país."
+
+es "Debes ingresar tu teléfono!"
+pt "É necessário preencher o seu Telefone!"
+en "You must enter your phone!"
+es_MX "Debes ingresar tu teléfono."
+
+es "Debes ingresar tu contraseña!"
+pt "Você precisa cadastrar uma senha!"
+en "You must enter your password!"
+es_MX "Debes ingresar tu contraseña."
+
+es "Necesitamos tu nombre y un email para poder responderte."
+pt "Precisamos do seu nome e um e-mail para poder te responder."
+en "We need your name or an e-mail so we can answer you."
+es_MX "Necesitamos tu nombre y un correo electrónico para poder responderte."
+
+es "¡Gracias por contactarnos! Vamos a responderte apenas veamos tu mensaje."
+pt "Obrigado por nos contatar! Te responderemos assim que virmos sua mensagem."
+en "Thank you for your contact! We will answer as soon as we see your message"
+es_MX "¡Gracias por contactarnos! Te responderemos en cuanto veamos tu mensaje."
+
+--- --- Social
+
+es "Redes Sociales"
+pt "Redes Sociais"
+en "Social Networks"
+es_MX "Redes sociales"
 
 es "Redes sociales"
 pt "Redes sociais"
 en "Social networks"
+es_MX "Redes sociales"
 
-es "Publicaciones de Instagram"
-pt "Postagens do Instagram"
+es "Siguenos en {1}"
+pt "Siga-nos no {1}"
+en "Follow us on {1}"
+es_MX "Siguenos en {1}"
 
-es "El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda"
-pt "O feed do Instagram exibe automaticamente suas últimas postagens na página inicial da sua loja."
+es "Síguenos en Facebook"
+pt "Siga-nos no Facebook"
+en "Follow us on Facebook"
+es_MX "Estamos en Facebook"
 
-es "Configurar cuenta de Instagram"
-pt "Configurar conta do Instagram"
+es "Síguenos en Twitter"
+pt "Siga-nos no Twitter"
+en "Follow us on Twitter"
+es_MX "Síguenos en Twitter"
 
-es "Access Token (Necesario para validar tu cuenta)"
-pt "Access Token (Necessário para validar sua conta)"
+es "Blog"
+pt "Blog"
+en "Blog"
+es_MX "Blog"
 
-es "<a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>"
-pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/como-adicionar-o-feed-do-instagram'>Como obter o Access Token?</a>"
+es "Visita nuestro Blog!"
+pt "Visite o nosso Blog!"
+en "Visit our Blog!"
+es_MX "¡Visita nuestro blog!"
 
-es "Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda"
-pt "Exibir suas postagens do Instagram na página inicial da sua loja."
+es "SÍGUENOS EN:"
+pt "SIGA-NOS NO:"
+en "FOLLOW US ON:"
+es_MX "SÍGUENOS EN:"
 
-es "Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación"
-pt "Exibir quantidade de <em>“Likes”</em> de cada post"
+es "También puedes encontrarnos en:"
+pt "Você também pode encontrar-nos em:"
+en "You can also find us on:"
+es_MX "También puedes encontrarnos en:"
 
-es "Comentarios en el producto"
-pt "Comentário no produto"
+--- --- Newsletter
 
-es "Permitir que tus clientes te dejen comentarios con su usuario de Facebook en la página de producto"
-pt "Permitir que seus clientes deixem comentários com seus respectivos usuários do Facebook na página de produto"
+es "Pedido de inscripción a newsletter"
+pt "Pedido de inscrição na newsletter"
+en "Newsletter subscription request"
+es_MX "Pedido de inscripción al newsletter"
 
-es "Moderar comentarios de facebook"
-pt "Moderar comentários do Facebook"
+es "Escribe un título para tu newsletter"
+pt "Escreva um título para a sua newsletter"
+es_MX "Escribe un título para tu newsletter"
 
-es "Para moderar los comentarios de Facebook necesitamos tu ID de tu perfil de Facebook (puedes obtenerlo <a target='_blank' href='http://findmyfbid.com/'>aquí</a>)"
-pt "Para moderar os comentários do Facebook necessitamos do seu ID do seu perfil do Facebook (você pode obtê-lo <a target='_blank' href='http://findmyfbid.com/'>aqui</a>)"
+es "Se inscribió al newsletter correctamente."
+pt "Sua inscrição na newsletter foi realizada com sucesso."
+en "Subscription successful."
+es_MX "¡Gracias por suscribirte!"
 
-es "Imágenes"
-pt "Imagens"
+es "Ingresa tu email"
+pt "Cadastre seu e-mail"
+en "Email missing"
+es_MX "Ingresa tu correo electrónico"
 
-es "Edición avanzada de CSS"
-pt "Edição de CSS avançada"
+es "Tu e-mail"
+pt "Seu e-mail"
+en "Your email"
+es_MX "Tu correo electrónico"
 
-es "Para diseñadores web"
-pt "Para webdesigners"
+es "Sin nombre"
+pt "Sem nome"
+en "No name"
+es_MX "Sin nombre"
 
-es "Esta sección es recomendada solo para quienes tengan conocimiento de CSS"
-pt "Esta área é recomendada apenas para aqueles que tenham conhecimento de CSS"
+es "¿Te gusta lo que ves? ¡Suscribite y recibí todas nuestras novedades!"
+pt "Inscreva-se para receber novidades!"
+en "Susbscribe and get all the news!"
+es_MX "¿Te gusta lo que ves? ¡Suscríbite y recibe todas nuestras novedades!
 
-es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el-codigo-css-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo edito el código CSS de mi tienda?</a>"
-pt ""
+es "Recibí todas las ofertas"
+pt "Receba todas as ofertas"
+en "Receive every offer"
+es_MX "Recibí todas las ofertas"
 
-es "Acá podés escribir código CSS para que se muestre en tu sitio web"
-pt "Aqui, você poderá colocar código css para que se mostre em sua página"
+es "Suscribir"
+pt "Subscrever"
+en "Subscribe"
+es_MX "Suscribir"
 
-es "Imagen"
-pt "Imagem"
-en "Image"
+es "Te has inscripto al newsletter correctamente"
+pt "Sua inscrição na newsletter foi realizada com sucesso"
+en "Subscription successful"
+es_MX "Te has inscripto al newsletter correctamente"
 
-es "Imagen de fondo"
-pt "Imagem de fundo"
-en "Background image"
+es "Permitir que tus clientes se registren para recibir novedades"
+pt "Permitir que seus clientes se inscrevam para receber novidades"
+es_MX "Permitir que tus clientes se registren para recibir novedades"
 
-es "Cargar imagen (JPG, GIF, PNG)"
-pt "Carregar imagem (JPG, GIF, PNG)"
-en "Upload image (JPG, GIF, PNG)"
+es "Enviando suscripción..."
+pt "Confirmando inscrição..."
+en "Sending..."
+es_MX "Enviando suscripción..."
 
-es "Título"
-pt "Título"
-en "Title"
 
-es "Texto del botón"
-pt "Texto do botão"
-en "Button text"
+es "¿Quieres recibir nuestras ofertas? ¡Regístrate ya mismo y comienza a disfrutarlas!"
+pt "Gostaria de receber nossas ofertas? Cadastre-se e começar a desfrutar!"
+en "Would you like to receive our offers? Register now and start to enjoy!"
+es_MX "¿Quieres recibir nuestras ofertas? ¡Regístrate ya mismo y comienza a disfrutarlas!"
 
-es "Link"
-pt "Link"
-en "Link"
+--- Pages ---
+
+es "La página no existe"
+pt "A página solicitada não existe"
+en "The page does not exist"
+es_MX "La página no existe"
+
+es "La página que estás buscando no existe."
+pt "Desculpe, mas a página que você está procurando não existe."
+en "The page you&#39;re looking for doesn&#39;t exist."
+es_MX "La página que buscas no existe."
+
+--- Accounts ---
+
+--- --- Login
+
+es "Iniciar sesión"
+pt "Login"
+en "Log in"
+es_MX "Iniciar sesión"
+
+es "Contraseña de acceso"
+pt "Senha de acesso"
+en "Access password"
+es_MX "Contraseña de acceso"
+
+es "¿Olvidaste tu contraseña?"
+pt "Esqueceu sua Senha?"
+en "Forgot your password?"
+es_MX "¿Olvidaste tu contraseña?"
+
+es "Contraseña"
+pt "Senha"
+en "Password"
+es_MX "Contraseña"
+
+--- --- Register
+
+es "Crear cuenta"
+pt "Cadastre-se"
+en "Register"
+es_MX "Crear una cuenta"
+
+es "Cambiar Contraseña"
+pt "Mudar Minha Senha"
+en "Change Password"
+es_MX "Cambiar contraseña"
+
+es "Cambiar contraseña"
+pt "Mudar minha senha"
+en "Change password"
+es_MX "Cambiar contraseña"
+
+es "Confirmar Contraseña"
+pt "Confirmar Senha"
+en "Confirm Password"
+es_MX "Confirmar contraseña"
+
+es "Regístrate con Facebook"
+pt "Criar conta com o Facebook"
+en "Sign up with Facebook"
+es_MX "Regístrate con Facebook"
+
+es "o"
+pt "ou"
+en "or"
+es_MX "o"
+
+es "Tienes que compartir tu e-mail."
+pt "Você deve compartilhar seu e-mail."
+en "You need to share your e-mail."
+es_MX "Tienes que compartir tu correo electrónico."
+
+es "Debes completar el login."
+pt "Você deve completar o login."
+en "You must complete the login."
+es_MX "Debes completar el login."
+
+es "Hubo un problema con el login de Facebook."
+pt "Ocorreu um problema fazendo login com Facebook."
+en "There was a problem when login with Facebook."
+es_MX "Hubo un problema con el login de Facebook. Intenta de nuevo en unos segundos."
+
+--- --- My Account
+
+es "Mi cuenta"
+pt "Minha conta"
+en "My account"
+es_MX "Mi cuenta"
+
+es "Activar cuenta"
+pt "Ativar Conta"
+en "Activate account"
+es_MX "Activar cuenta"
+
+es "Cerrar sesión"
+pt "Sair"
+en "Log out"
+es_MX "Cerrar sesión"
+
+es "Desbloquear"
+pt "Destravar"
+en "Unlock"
+es_MX "Desbloquear"
+
+es "Enviar email"
+pt "Enviar email"
+en "Send email"
+es_MX "Enviar correo"
+
+es "Regresa a la tienda"
+pt "Voltar para a loja"
+en "Go back to store"
+es_MX "Regresar a la tienda online"
+
+es "CPF / CNPJ"
+pt "CPF / CNPJ"
+en "CPF / CNPJ"
+es_MX "CPF / CNPJ"
+
+es "Datos Personales"
+pt "Dados Pessoais"
+en "Personal Info"
+es_MX "Datos personales"
+
+es "Editar mis datos"
+pt "Editar meu cadastro"
+en "Edit"
+es_MX "Editar mis datos"
+
+--- --- Orders
+
+es "Mis Órdenes"
+pt "Meus Pedidos"
+en "My Orders"
+es_MX "Mis pedidos"
+
+es "Orden"
+pt "Pedido"
+en "Order"
+es_MX "Pedido"
+
+es "Orden {1}"
+pt "Pedido {1}"
+en "Order {1}"
+es_MX "Pedido {1}"
+
+es "Fecha"
+pt "Data"
+en "Date"
+es_MX "Fecha"
+
+es "Pago"
+pt "Pagamento"
+en "Payment"
+es_MX "Pago"
+
+es "Guardar cambios"
+pt "Salvar alterações"
+en "Save changes"
+es_MX "Guardar cambios"
+
+es "Estado actual del envío"
+pt "Estado atual do frete"
+en "Current state of shipping"
+es_MX "Estado del envío"
+
+es "Estado"
+pt "Estado"
+en "State"
+es_MX "Estado"
+
+es "Abierta"
+pt "Aberto"
+en "Open"
+es_MX "Abierto"
+
+es "Cerrada"
+pt "Finalizado"
+en "Close"
+es_MX "Cerrado"
+
+es "Cancelada"
+pt "Cancelado"
+en "Cancelled"
+es_MX "Cancelado"
+
+es "Pendiente"
+pt "Pendente"
+en "Pending"
+es_MX "Pendiente"
+
+es "Autorizado"
+pt "Autorizado"
+en "Authorized"
+es_MX "Autorizado"
+
+es "Pagado"
+pt "Confirmado"
+en "Paid"
+es_MX "Pagado"
+
+es "Cancelado"
+pt "Cancelado"
+en "Voided"
+es_MX "Cancelado"
+
+es "Reintegrado"
+pt "Estornado"
+en "Refunded"
+es_MX "Reembolsado"
+
+es "Abandonado"
+pt "Abandonado"
+en "Abandoned"
+es_MX "Abandonado"
+
+es "Envío"
+pt "Frete"
+en "Shipping"
+es_MX "Envío"
+
+es "No enviado"
+pt "Não Enviado"
+en "Not shipped"
+es_MX "No enviado"
+
+es "Enviado"
+pt "Enviado"
+en "Shipped"
+es_MX "Enviado"
+
+es "Dirección de envío"
+pt "Endereço de Envio"
+en "Shipping address"
+es_MX "Dirección de envío"
+
+es "Costo de envío ({1})"
+pt "Frete ({1})"
+en "Shipping cost ({1})"
+es_MX "Costo de envío ({1})"
+
+es "Descuento ({1})"
+pt "Desconto ({1})"
+en "Discount ({1})"
+es_MX "Descuento ({1})"
+
+es "Realizar el pago >"
+pt "Realizar o pagamento >"
+en "Purchase >"
+es_MX "Pagar >"
+
+es "Seguí tu orden"
+pt "Acompanhar o pedido"
+en "Track order"
+es_MX "Sigue tu pedido"
+
+es "Seguí la entrega"
+pt "Acompanhar a entrega"
+en "Track shipping"
+es_MX "Sigue la entrega"
+
+es "Acceso"
+pt "Acesso"
+en "Access"
+es_MX "Acceso"
+
+--- --- Addresses
+
+es "Mis direcciones"
+pt "Meus Endereços"
+en "My addresses"
+es_MX "Mis direcciones"
+
+es "Editar mis direcciones"
+pt "Editar meus endereços"
+en "Edit my addresses"
+es_MX "Editar mis direcciones"
+
+es "Agregar una nueva dirección"
+pt "Adicionar um novo endereço"
+en "Add a new address"
+es_MX "Agregar una nueva dirección"
+
+es "Nombre"
+pt "Nome completo"
+en "Name"
+es_MX "Nombre"
+
+es "Número"
+pt "Número"
+en "Number"
+es_MX "Número exterior"
+
+es "Piso"
+pt "Complemento"
+en "Floor"
+es_MX "Número interior"
+
+es "Localidad"
+pt "Bairro"
+en "Locality"
+es_MX "Colonia"
+
+es "Código Postal"
+pt "CEP"
+en "Zip Code"
+es_MX "Código postal"
+
+es "Ciudad"
+pt "Cidade"
+en "City"
+es_MX "Ciudad"
+
+es "Provincia"
+pt "Estado"
+en "Province"
+es_MX "Estado"
+
+es "Teléfono"
+pt "Telefone"
+en "Phone"
+es_MX "Teléfono"
+
+es "País"
+pt "País"
+en "Country"
+es_MX "País"
+
+es "Volver >"
+pt "Voltar para a Loja >"
+en "Go Back >"
+es_MX "Regresar >"
+
+es "Volver"
+pt "Voltar"
+en "Back"
+es_MX "Regresar"
+
+es "o"
+pt "ou"
+en "or"
+es_MX "o"
+
+
+--- --- Notifications
+
+es "Las contraseñas no coinciden."
+pt "As senhas não coincidem. Digite novamente."
+en "Passwords don&#39;t match."
+es_MX "Las contraseñas no coinciden."
+
+es "La contraseña es incorrecta."
+pt "A senha esta errada."
+en "The password is incorrect."
+es_MX "La contraseña es incorrecta."
+
+es "El email o la contraseña son incorrectos."
+pt "O email ou a senha estão errados. Por favor verifique."
+en "The Email or password are incorrect."
+es_MX El correo electrónico o la contraseña son incorrectos."
+
+es "Te enviaremos un email para que puedas cambiar tu contraseña."
+pt "Será enviado um email para que você possa alterar a sua senha."
+en "We&#39;ll send you an email so you can change your password."
+es_MX "Te enviaremos un correo para que modifiques tu contraseña."
+
+es "No existe ningún cliente con el email ingresado."
+pt "Não existe nenhum cliente cadastrado com o email informado."
+en "There&#39;s no client with that email."
+es_MX "No encontramos ningún cliente con ese correo electrónico."
+
+es "Te enviamos un email a {1}"
+pt "Enviamos um email para {1}"
+en "We sent you an email to {1}"
+es_MX "Te enviamos un correo a {1}"
+
+es "El email o la contraseña no coinciden. Chequeá que estén bien escritos."
+pt "O e-mail ou a senha não correspondem. Verifique que estejam bem escritos."
+en "The e-mail or password do not match. Please check they are written right."
+es_MX "El correo electrónico o la contraseña no coinciden. Comprueba que estén bien escritos."
+
+es "Necesitamos tu email para enviarte nuestras novedades."
+pt "Precisamos do seu email para te enviar nossas novidades."
+en "We need your e-mail so we can send you our news."
+es_MX "Necesitamos tu correo electónico para enviarte nuestras novedades."
+
+es "¡Gracias por suscribirte! A partir de ahora vas a recibir nuestras novedades en tu email"
+pt "Obrigado por se inscrever! A partir de agora você receberá nossas novidades no seu e-mail."
+en "Thanks for susbcribing! From now on you will recieve our news to your e-mail."
+es_MX "¡Gracias por suscribirte! A partir de ahora recibirás nuestras novedades en tu correo"
+
+es "Necesitamos tu nombre para registrarte."
+pt "Precisamos do seu nome para te cadastrar."
+en "We need your name to confirm the registration."
+es_MX "Necesitamos tu nombre para registrarte."
+
+es "Necesitamos tu email para registrarte. Lo vamos a usar para enviarte el estado de tus compras."
+pt "Precisamos do seu e-mail para te cadastrar. Vamos usá-lo para te enviar o status de suas compras."
+en "We need your e-mail to confirm the registration. We will use it to send your orders status."
+es_MX "Necesitamos tu correo electrónico para registrarte y enviarte el estado de tus compras."
+
+es "Necesitamos una contraseña para registrarte."
+pt "Precisamos de uma senha para te cadastrar."
+en "We need a password to confirm the registration."
+es_MX "Necesitamos una contraseña para registrarte."
+
+es "Las contraseñas que escribiste no coinciden. Chequeá que sean iguales entre sí."
+pt "As senhas que você escreveu não correspondem. Verifique se eles são iguais entre si."
+en "The passwords do not match. Check that they are the same."
+es_MX "Las contraseñas no coinciden. Por favor, comprueba que sean iguales."
+
+es "Necesitamos saber tu nombre para actualizar tu información."
+pt "Precisamos saber seu nome para atualizar suas informações."
+en "We need your name so we can update your info."
+es_MX "Necesitamos tu nombre para actualizar tu información."
+
+es "Necesitamos saber una contraseña para actualizar tu información."
+pt "Precisamos saber de uma senha para atualizar suas informações."
+en "We need a password so we can update your info."
+es_MX "Necesitamos una contraseña para actualizar tu información."
+
+es "Necesitamos saber tu dirección para actualizar tu información."
+pt "Precisamos saber seu endereço para atualizar suas informações."
+en "We need your address so we can update your info."
+es_MX "Necesitamos tu dirección para actualizar tu información."
+
+es "Necesitamos saber tu país para actualizar tu información."
+pt "Precisamos saber seu país para atualizar suas informações."
+en "We need your country so we can update your info."
+es_MX "Necesitamos tu país para actualizar tu información."
+
+es "Necesitamos saber tu ciudad para actualizar tu información."
+pt "Precisamos saber seu cidade para atualizar suas informações."
+en "We need your city so we can update your info."
+es_MX "Necesitamos tu ciudad para actualizar tu información."
+
+es "Necesitamos saber tu provincia para actualizar tu información."
+pt "Precisamos saber seu estado para atualizar suas informações."
+en "We need your province so we can update your info."
+es_MX "Necesitamos tu estado para actualizar tu información."
+
+es "Necesitamos saber tu código postal para actualizar tu información."
+pt "Precisamos saber seu CEP para atualizar suas informações."
+en "We need your zipcode so we can update your info."
+es_MX "Necesitamos tu código postal para actualizar tu información."
+
+es "Necesitamos saber tu localidad para actualizar tu información."
+pt "Precisamos saber seu bairro para atualizar suas informações."
+en "We need your locality so we can update your info."
+es_MX "Necesitamos tu colonia para actualizar tu información."
+
+es "Necesitamos saber tu teléfono para actualizar tu información."
+pt "Precisamos saber seu telefone para atualizar suas informações."
+en "We need your phone so we can update your info."
+es_MX "Necesitamos tu teléfono para actualizar tu información."
+
+es "Necesitamos saber tu piso para actualizar tu información."
+pt "Precisamos saber seu andar para atualizar suas informações."
+en "We need your floor number so we can update your info."
+es_MX "Necesitamos tu número interior para actualizar tu información."
+
+es "Necesitamos saber tu número para actualizar tu información."
+pt "Precisamos saber seu número do endereço para atualizar suas informações."
+en "We need your number so we can update your info."
+es_MX "Necesitamos tu número exterior para actualizar tu información."
+
+es "Necesitamos saber tu email para actualizar tu información."
+pt "Precisamos saber seu e-mail para atualizar suas informações."
+en "We need your e-mail so we can update your info."
+es_MX "Necesitamos tu correo electrónico para actualizar tu información."
+
+es "Encontramos otra cuenta que ya usa este email. Intentá usando otro."
+pt "Encontramos outra conta que já usa este e-mail. Tente usar outro."
+en "We found another account using this e-mail. Try with another one."
+es_MX "Encontramos otra cuenta asociada a este correo. Intenta utilizando otro."
+
+es "Vamos a enviarte un email para que puedas cambiar tu contraseña."
+pt "Vamos te enviar um e-mail para poder alterar a sua senha."
+en "We will send you an e-mail so you can change your password."
+es_MX "Vamos a enviarte un correo para que modifiques tu contraseña."
+
+es "No encontramos ninguna cuenta registrada con este email. Intentalo nuevamente chequeando que esté bien escrito."
+pt "Não achamos nenhuma conta cadastrada com esse e-mail. Tente verificar novamente se está bem escrito."
+en "We couldn&#39;t find any account registered with this e-mail. Try again checking is written right."
+es_MX "No encontramos ninguna cuenta registrada con este correo. Inténtalo nuevamente comprobando que esté bien escrito."
+
+es "¡Listo! Te enviamos un email a {1}"
+pt "Pronto! Enviamos um e-mail para {1}"
+en "Done! We send you an e-mail to {1}"
+es_MX "¡Listo! Te enviamos un correo a {1}"
+
+--- Payments ---
+
+es "Medios de pago"
+pt "Formas de pagamento"
+en "Payment methods"
+es_MX "Métodos de pago"
+
+es "MEDIOS DE PAGO"
+pt "MEIOS DE PAGAMENTO"
+en "MEANS OF PAYMENT"
+es_MX "MÉTODOS DE PAGO"
+
+es "Ejemplos de medios de pago"
+pt "Exemplos de formas de pagamento"
+en "Payment methods examples"
+es_MX "Ejemplos de métodos de pago"
+
+es "Medio de pago"
+pt "Meio de pagamento"
+en "Payment method"
+es_MX "Método de pago"
+
+es "Tarjeta de crédito"
+pt "Cartão de crédito"
+en "Credit card"
+es_MX "Tarjeta de crédito"
+
+es "Tarjeta de débito y efectivo"
+pt "Cartão de débito e à vista"
+en "Debit card and cash"
+es_MX "Tarjeta de débito y efectivo"
+
+es "Efectivo / Débito online"
+pt "À vista / Débito online"
+en "Cash / Online debit"
+es_MX "Efectivo / Débito en línea"
+
+es "Efectivo"
+pt "À vista"
+en "Cash"
+es_MX "Efectivo"
+
+es "Débito online"
+pt "Débito online"
+en "Online debit"
+es_MX "Débito en línea"
+
+es "Bancos con"
+pt "Bancos com"
+en "Banks with"
+es_MX "Bancos con"
+
+es "Otros bancos"
+pt "Outros bancos"
+en "Other banks"
+es_MX "Otros bancos"
+
+es "Pagás"
+pt "Você paga"
+en "You pay"
+es_MX "Pagas"
+
+
+--- Shipping ---
+
+es "Formas de envío"
+pt "Formas de envio"
+en "Shipping methods"
+es_MX "Opciones de envío"
+
+es "FORMAS DE ENVÍO"
+pt "FORMAS DE ENVIO"
+en "SHIPPING METHODS"
+es_MX "OPCIONES DE ENVÍO"
+
+es "Ejemplos de formas de envío"
+pt "Exemplos de formas de envio"
+en "Shipping methods examples"
+es_MX "Ejemplos de opciones de envío"
+
+es "Ingrese aquí su código postal para calcular su costo de envío"
+pt "Digite aqui o seu CEP para calcular o frete"
+en "Enter your zipcode to calculate your shipping cost"
+es_MX "Ingresa tu código postal para calcular el costo de envío"
+
+es "Calculá el costo de tu envío"
+pt "Cálculo de frete"
+en "Enter your zipcode to calculate your shipping cost"
+es_MX "Calcula el costo de tu envío"
+
+es "Calcular envío"
+pt "Calcular frete"
+en "Calculate shipping"
+es_MX "Calcular envío"
+
+es "Código postal"
+pt "CEP"
+en "Zipcode"
+es_MX "Código postal"
+
+es "Calcular costo de envío"
+pt "Calcular Frete"
+en "Calculate shipping"
+es_MX "Calcular costo de envío"
+
+es "El código postal es inválido."
+pt "O CEP está inválido."
+en "The zipcode is not valid."
+es_MX "El código postal es inválido."
+
+es " (sin envío)"
+pt " (sem frete)"
+en " (without shipping cost)"
+es_MX " (sin envío)"
+
+es "El código postal es inválido. Por favor intentá de nuevo usando otro."
+pt "CEP inválido. Por favor, digite novamente ou informe outro."
+en "The zipcode is not valid. Please try again using another."
+es_MX "El código postal es inválido. Intenta de nuevo ingresando otro."
+
+es "Ocurrió un error al calcular el envío. Por favor intentá de nuevo en unos segundos."
+pt "Erro no cálculo. Por favor, tente novamente em alguns segundos."
+en "An error ocurred while calculating the shipping. Please try again in a few seconds."
+es_MX "Hubo un error al calcular el envío. Intenta de nuevo en unos segundos."
+
+es "El calculo falló por un problema con el medio de envío. Por favor intentá de nuevo en unos segundos."
+pt "Erro no meio de envio. Por favor, tente novamente em alguns segundos."
+en "The calculation failed due to a problem with the shipping method. Please try again in a few seconds."
+es_MX "El cálculo falló por un problema con el forma de envío. Intenta de nuevo en unos segundos."
+
+es "Vea las opciones de envío para su código postal abajo"
+pt "Veja os valores para o seu CEP abaixo"
+en "Your shipping options are the following"
+es_MX "Conoce las opciones de entrega para tu código postal"
+
+es "No hay costos de envío para el código postal dado."
+pt "Não há frete disponível para o CEP informado"
+en "Shipping is not available for your zipcode."
+es_MX "No hay costos de envío para ese código postal."
+
+es "Retirá gratis en nuestros locales"
+pt "Retire grátis em nossas lojas físicas"
+en "Free pickup on our stores"
+es_MX "Recoge gratis en nuestras tiendas"
+
+es "Retirá gratis en nuestro local"
+pt "Retire grátis em nossa loja física"
+en "Free pickup on our store"
+es_MX "Recoge gratis en nuestra tienda"
+
+es "Ver locales"
+pt "Ver lojas físicas"
+en "See our stores"
+es_MX "Ver tiendas"
+
+es "Ver local"
+pt "Ver loja física"
+en "See our store"
+es_MX "Ver tienda"
+
+es "Elegir local"
+pt "Escolher loja física"
+en "Select store"
+es_MX "Elegir una tienda"
+
+es "Conocé nuestras opciones de envío"
+pt "Conheça nossas opções de frete"
+en "See our shipping options"
+es_MX "Conoce nuestras opciones de entrega"
+
+es "Elegí nuestras opciones de envío"
+pt "Escolha a opção de frete"
+en "Choose our shipping options"
+es_MX "Conoce las opciones de entrega"
+
+es "Calculando"
+pt "Calculando"
+en "Calculating"
+es_MX "Calculando"
+
+es "El medio de envío que habías elegido ya no se encuentra disponible "
+pt "O frete escolhido não está mais disponível "
+en "The shipping method selected is no longer available "
+es_MX "La forma de envío que elegiste ya no está disponible "
+
+es "porque el total de los items del carrito superan el peso máximo."
+pt "porque o total de itens no carrinho excede o peso máximo."
+en "because the total of the items in the cart surpass the maximum weight."
+es_MX "porque el peso total del carrito supera el peso máximo."
+
+es "¡No te preocupes! Podés elegir otro medio de envío."
+pt "Mas não se preocupe! Você pode escolher outro meio de envio."
+en "Do not worry! You can select another method."
+es_MX "¡No te preocupes! Puedes elegir otra forma de envío."
+
+es "Ocultar locales"
+pt "Esconder lojas físicas"
+en "Hide our stores"
+es_MX "Ocultar tiendas"
+
+es "Ocultar local"
+pt "Esconder loja física"
+en "Hide our store"
+es_MX "Ocultar tienda"
+
+es "Seguí acá"
+pt "Acompanhe aqui"
+en "Track here"
+es_MX "Sigue aquí"
+
+es "tu última compra"
+pt "seu último pedido"
+en "your last order"
+es_MX "tu última compra"
+
+es "El precio de envío incluye este producto y todos los que agregaste al carrito."
+pt "O custo de frete inclui este produto e outros adicionados ao carrinho."
+en "The shipping cost includes this product and all the products added to the cart."
+es_MX "El precio de envío incluye este producto y todos los que has agregado al carrito."
+
+es "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
+pt "Você pode escolher uma das seguintes opções antes de finalizar a compra"
+en "You will be able to choose some of the following options before ending the purchase"
+es_MX "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
+
+es "No encontramos este código postal. ¿Está bien escrito?"
+pt "Não conseguimos encontrar esse CEP. Está bem escrito?"
+en "We couldn&#39;t find this zipcode. Is it written right?"
+es_MX "No encontramos este código postal. ¿Está bien escrito?"
+
+es "El tiempo de entrega no considera feriados."
+pt "O prazo de entrega não contabiliza feriados."
+en "The delivery time does not consider holidays."
+es_MX "El tiempo de entrega no considera feriados."
+
+es "Ingresa aquí tu código postal para calcular tu costo de envío"
+pt "Digite aqui o seu CEP para calcular o frete"
+en "Enter your zipcode to calculate your shipping cost"
+es_MX "Ingresa aquí tu código postal para calcular tu costo de envío"
+
+es "Costos de envío"
+pt "Custos de frete"
+en "Shipping costs"
+es_MX "Costos de envío"
+
+es "Calcular"
+pt "Calcular"
+en "Calculate"
+es_MX "Calcular"
+
+es "Envío:"
+pt "Frete:"
+en "Shipping:"
+es_MX "Envío:"
+
+es "Calcular para ver"
+pt "Calcule para visualizar"
+en "Calculate to view"
+es_MX "Calcular para ver"
+
+es "El costo del envío se calculará después."
+pt "O frete será calculado depois."
+en "Shipping cost will be calculated at checkout"
+es_MX "El costo del envío se calculará después."
+
+--- Installments ---
+
+es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>"
+pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong>"
+en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong>"
+es_MX "<strong class='js-installment-amount installment-amount'>{1}</strong> meses de <strong class='js-installment-price installment-price'>{2}</strong>"
+
+es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>"
+pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
+en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
+es_MX "<strong class='js-installment-amount installment-amount'>{1}</strong> meses sin intereses de <strong class='js-installment-price installment-price'>{2}</strong>"
+
+es "En hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas"
+pt "Em até <strong class='js-installment-amount installment-amount'>{1}</strong>x"
+en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments"
+es_MX "En hasta <strong class='js-installment-amount installment-amount'>{1}</strong> meses"
+
+es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>"
+pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
+en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
+es_MX "<strong class='js-installment-amount installment-amount'>{1}</strong> meses sin intereses de <strong class='js-installment-price installment-price'>{2}</strong>"
+
+es "<strong class='installment-amount'>{1}</strong> cuotas de <strong class='installment-price'>{2}</strong>"
+pt "<strong class='installment-amount'>{1}</strong>x de <strong class='installment-price'>{2}</strong>"
+en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong>"
+es_MX "<strong class='installment-amount'>{1}</strong> meses de <strong class='installment-price'>{2}</strong>"
+
+es "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>"
+pt "<strong class='installment-amount'>{1}</strong>x de <strong class='installment-price'>{2}</strong> sem juros"
+en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
+es_MX "<strong class='installment-amount'>{1}</strong> meses sin intereses de <strong class='installment-price'>{2}</strong>"
+
+es "En hasta <strong class='installment-amount'>{1}</strong> cuotas"
+pt "Em até <strong class='installment-amount'>{1}</strong>x"
+en "In up to <strong class='installment-amount'>{1}</strong> installments"
+es_MX "En hasta <strong class='installment-amount'>{1}</strong> meses"
+
+es "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>"
+pt "<strong class='installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
+en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
+es_MX "<strong class='installment-amount'>{1}</strong> meses sin intereses de <strong class='installment-price'>{2}</strong>"
+
+es "{1} cuotas en tarjeta de crédito"
+pt "{1}x no cartão"
+en "In up to {1} installments"
+es_MX "{1} meses con tarjeta de crédito"
+
+es "¡{1} cuotas sin interés!"
+pt "{1} x sem juros!"
+en "{1} installments without interest!"
+es_MX "¡{1} meses sin intereses!"
+
+es "Ver el detalle de las cuotas"
+pt "Ver detalhes das parcelas"
+en "See installments details"
+es_MX "Ver el detalle de las mensualidades"
+
+es "Ver financiación y medios de pago"
+pt "Ver financiación y medios de pago"
+en "Ver financiación y medios de pago"
+es_MX "Ver financiamiento y formas de pago"
+
+es "Financiación y medios de pago"
+pt "Financiación y medios de pago"
+en "Financiación y medios de pago"
+es_MX "financiamiento y formas de pago"
+
+es "Detalles de las cuotas"
+pt "Detalhes das parcelas"
+en "Installments details"
+es_MX "Detalle de las mensualidades"
+
+es "sin interés"
+pt "sem juros"
+en "without interests"
+es_MX "sin intereses"
+
+es "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas"
+pt "Até <strong class='js-installment-amount installment-amount'>{1}</strong>x"
+en "Up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments"
+es_MX "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> meses"
+
+es "CFT:"
+pt "CFT:"
+en "CFT:"
+es_MX "CFT:"
+
+es "Precio en 1 pago:"
+pt "Preço em 1 parcela:"
+en "1 payment price:"
+es_MX "Precio en 1 mensualidad:"
+
+es "PTF:"
+pt "PTF:"
+en "PTF:"
+es_MX "PTF:"
+
+es "TEA:"
+pt "TEA:"
+en "TEA:"
+es_MX "TEA:"
+
+es "Total:"
+pt "Total:"
+en "Total:"
+es_MX "Total:"
+
+es "Sin interés"
+pt "Sem juros"
+en "Without interest"
+es_MX "Sin intereses"
+
+es "sin interés"
+pt "sem juros"
+en "without interest"
+es_MX "sin intereses"
+
+es "cuotas sin interés"
+pt "x sem juros"
+en "installments without interest"
+es_MX "meses sin intereses"
+
+es "Conocé las opciones de pago con"
+pt "Conheça as opções de pagamento com"
+en "See the payment options with"
+es_MX "Conoce las opciones de pago con"
+
+es "Conocé la cantidad de cuotas"
+pt "Conheça a quantidade de parcelas"
+en "See our installments amount"
+es_MX "Conoce el número de mensualidades"
+
+es "Boleto Paghiper tiene un"
+pt "Boleto PagHiper oferece"
+en "Boleto Paghiper offers a"
+es_MX "Boleto Paghiper tiene un"
+
+es "de descuento"
+pt "de desconto"
+en "discount"
+es_MX "de descuento"
+
+es "que será aplicado sobre el costo total de la compra al finalizar la misma."
+pt "a ser aplicado sobre o custo total da compra ao finalizá-la."
+en "that will be applied over the total cost of the order when the checkout process is finished."
+es_MX "que será aplicado sobre el costo total de la compra al finalizar la misma."
+
+es "Cantidad de cuotas"
+pt "Quantidade de parcelas"
+en "Installments amount"
+es_MX "Número de meses"
+
+es "Ver medios de pago y financiación"
+pt "Ver meios de pagamento e parcelamento"
+en "See payment options and installments"
+es_MX "Ver formas de pago y financiamiento"
+
+es "Ver medios de pago"
+pt "Ver meios de pagamento"
+en "See payment options"
+es_MX "Ver métodos de pago"
+
+es "Ver más medios de pago y financiación"
+pt "Ver mais meios de pagamento e parcelamento"
+en "See more payment options and installments"
+es_MX "Ver más métodos de pago y financiamiento"
+
+es "Ver más medios de pago"
+pt "Ver mais meios de pagamento"
+en "See payment options"
+es_MX "Ver más métodos de pago"
+
+es "Medios de pago y financiación"
+pt "Meios de pagamento e parcelamento"
+en "Payment options and installments"
+es_MX "Formas de pago y financiamiento"
+
+es "Detalles de las cuotas"
+pt "Detalhes das parcelas"
+en "Installments details"
+es_MX "Detalle de las mensualidades"
+
+es "Opciones de pago y financiación que vas a poder elegir a la hora de pagar por tu compra"
+pt "Estas são as opções de pagamento e parcelamento que poderá escolher na hora de pagar por sua compra"
+en "Payment options and installments that you will choose when you finish your purchase"
+es_MX "Opciones de pago y financiamiento que podrás elegir al pagar tu compra"
+
+es "Medio de pago elegido:"
+pt "Meio de pagamento escolhido:"
+en "Payment method chosen:"
+es_MX "Método de pago elegido:"
+
+es "de"
+pt "x"
+en "of"
+es_MX "de"
+
+es "x de"
+pt "x de"
+en "x of"
+es_MX "x de"
+
+es "cuotas"
+pt "x"
+en "installments"
+es_MX "meses"
+
+es "cuota"
+pt "x"
+en "installment"
+es_MX "mensualidad"
+
+es "Elegí un banco para poder elegir las cuotas"
+pt "Escolha um banco para definir suas parcelas"
+en "Choose a bank so you can choose the installments"
+es_MX "Selecciona un banco para las mensualidades"
+
+es "de "
+pt "de "
+en "of "
+es_MX "de "
+
+es "Cerrar"
+pt "Fechar"
+en "Close"
+es_MX "Cerrar"
+
+es "12 cuotas con otras tarjetas"
+pt "12x com outros cartões"
+en "12 installments with other cards"
+es_MX "12 meses con otras tarjetas"
+
+es "Cuotas"
+pt "x"
+en "Installments"
+es_MX "Meses"
+
+es "sin interés de"
+pt "sem juros de"
+en "without interest of"
+es_MX "sin intereses de"
+
+es "Precio:"
+pt "Preço:"
+en "Price:"
+es_MX "Precio:"
+
+es "Volver al producto"
+pt "Voltar ao produto"
+en "Back to product"
+es_MX "Regresar al producto"
+
+es "Volver al carrito"
+pt "Voltar ao carrinho"
+en "Back to cart"
+es_MX "Regresar al carrito"
+
+es "Hasta"
+pt "Até"
+en "Up to"
+es_MX "Hasta"
+
+es "Tarjetas de crédito"
+pt "Cartões de crédito"
+en "Credit cards"
+es_MX "Tarjetas de crédito"
+
+es "Tarjetas de débito y efectivo"
+pt "Cartões de débito e à vista"
+en "Debit cards and cash"
+es_MX "Tarjetas de débito y efectivo"
+
+es "Transferencia o depósito"
+pt "Transferência bancária ou depósito"
+en "Wire transfer o deposit"
+es_MX "Transferencia o depósito"
+
+es "En 1 pago:"
+pt "Em 1 parcela:"
+en "1 payment price:"
+es_MX "En 1 mensualidad:"
+
+es "O en 1 pago de:"
+pt "Ou em 1 parcela de:"
+en "Or in 1 payment of:"
+es_MX "O en 1 mensualidad de:"
+
+es "tiene un"
+pt "oferece"
+en "offers a"
+es_MX "tiene un"
+
+es "Cuando termines la compra vas a ver la información de pago en relación a esta opción."
+pt "Efetuada a compra, você verá as informações de pagamento em relação a esta opção."
+en "When you finish the purchase you will se the payment information related to this option."
+es_MX "Verás la información de pago de esta opción al finalizar la compra."
+
+es "de "
+pt "de "
+en "of "
+es_MX "de "
+
+es "O hasta"
+pt "Ou até"
+en "Or up to"
+es_MX "O hasta"
+
+es "cuotas de"
+pt "x de"
+en "x of"
+es_MX "meses de"
+
+es "sin interés"
+pt "sem juros"
+en "without interest"
+es_MX "sin intereses"
+
+es "Cuotas "
+pt "Parcelas"
+en "Installments"
+es_MX "Meses "
+
+es "A convenir"
+pt "A combinar"
+en "To be defined"
+es_MX "A convenir"
+
+es "Ver más opciones"
+pt "Ver mais opções"
+en "See more options"
+es_MX "Ver más opciones"
+
+es "Ver menos opciones"
+pt "Ver menos opções"
+en "See less options"
+es_MX "Ver menos opciones"
+
+es "Hasta <strong class='installment-amount'>{1}</strong> cuotas"
+pt "Até <strong class='installment-amount'>{1}</strong>x"
+en "Up to <strong class='installment-amount'>{1}</strong> installments"
+es_MX "Hasta <strong class='installment-amount'>{1}</strong> cuotas"
+
+es "Tarjeta de débito / Efectivo / Depósito o transferencia"
+pt "Cartão de débito / Dinheiro / Depósito ou transferência"
+en "Debit card / Cash / Deposit or wire transfer"
+es_MX "Tarjeta de débito / Efectivo / Depósito o transferencia"
+
+
+es "Conocé las opciones de pago"
+pt "Conheça as opções de pagamento"
+en "See the payment options"
+es_MX "Conocé las opciones de pago"
+
+--- Instatheme ---
+
+--- --- Colors
+
+es "Color principal"
+pt "Cor principal"
+en "Primary color"
+es_MX "Color principal"
+
+es "Color secundario"
+pt "Cor secundário"
+en "Secondary color"
+es_MX "Color secundario"
+
+es "Color de los textos"
+pt "Cor de textos"
+en "Text color"
+es_MX "Color de los textos"
+
+es "Colores de tu marca"
+pt "Cores da sua marca"
+es_MX "Colores de tu marca"
+
+es "Color principal de tu marca"
+pt "Cor principal de sua marca"
+es_MX "Colores de tu marca"
+
+es "Probá nuestras combinaciones"
+pt "Experimente nossas combinações"
+es_MX "Prueba nuestras combinaciones"
+
+es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>"
+pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/layout/personalizacao-basica-do-layout/como-alterar-as-cores-do-meu-layout/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como alterar as cores do meu layout?</a>"
+es_MX "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>"
+
+es "Configuración avanzada"
+pt "Configuração avançada"
+es_MX "Configuración avanzada"
+
+es "Color de fondo"
+pt "Cor de fundo"
+es_MX "Color de fondo"
+
+es "Texto de contacto"
+pt "Texto de contato"
+es_MX "Texto de contacto"
+
+es "Texto en la barra de navegación"
+pt "Texto na barra de navegação"
+es_MX "Texto en la barra de navegación"
+
+es "Texto en la barra de navegación (posando el mouse)"
+pt "Texto na barra de navegação (passando o mouse)"
+es_MX "Texto en la barra de navegación (posando el mouse)"
+
+es "Fondo de la barra de navegación"
+pt "Fundo da barra de navegação"
+es_MX "Fondo de la barra de navegación"
+
+es "Bordes en la barra de navegación"
+pt "Bordas da barra de navegação"
+es_MX "Bordes de la barra de navegación"
+
+es "Fondo del resumen del carrito en la barra de navegación y botones"
+pt "Fundo do detalhe do carrinho na barra de navegação e botões"
+es_MX "Fondo del resumen del carrito en la barra de navegación y botones"
+
+es "Fondo de los botones (posando el mouse)"
+pt "Fundo dos botões (passando o mouse)"
+es_MX "Fondo de los botones (posando el mouse)"
+
+es "Texto del título de las páginas"
+pt "Texto do título das páginas"
+es_MX "Texto del título de las páginas"
+
+es "Fondo del título de las páginas"
+pt "Fundo do título das páginas"
+es_MX "Fondo del título de las páginas"
+
+es "Fondo del botón de compra"
+pt "Fundo do botão de compra"
+es_MX "Fondo del botón de compra"
+
+es "Fondo de los botones secundarios y del resumen del carrito"
+pt "Fundo dos botões secundários e do resumo do carrinho"
+es_MX "Fondo de los botones secundarios y del resumen del carrito"
+
+es "Bordes del contenido de las páginas"
+pt "Bordas do conteúdo das páginas"
+es_MX "Bordes del contenido de las páginas"
+
+es "Fondo del footer"
+pt "Fundo do rodapé"
+es_MX "Fondo del footer"
+
+es "Texto del footer"
+pt "Texto do rodapé"
+es_MX "Texto del footer"
+
+es "Resto de los textos"
+pt "Resto dos textos"
+es_MX "Resto de los textos"
+
+es "Texto en el resto del sitio"
+pt "Outros textos do site"
+es_MX "Texto en el resto del sitio"
+
+--- --- Tipography
+
+es "Tipo de letra"
+pt "Tipo de Letra"
+es_MX "Tipo de letra"
+
+es "Títulos"
+pt "Títulos"
+es_MX "Títulos"
+
+es "Títulos de páginas y banners"
+pt "Títulos das páginas e banners"
+es_MX "Títulos de páginas y banners"
+
+es "Títulos de productos"
+pt "Títulos de produtos"
+es_MX "Títulos de productos"
+
+es "Títulos de los productos en la grilla"
+pt "Títulos de produtos na listagem"
+es_MX "Títulos de los productos en el listado"
+
+es "Texto de los menúes"
+pt "Texto de menus"
+es_MX "Texto de los menús"
+
+es "Texto de los botones"
+pt "Texto dos botões"
+es_MX "Texto de los botones"
+
+es "Botones"
+pt "Botões"
+es_MX "Botones"
+
+es "Texto del logo y el resto del sitio"
+pt "Texto do logotipo e resto do site"
+es_MX "Texto del logo y del resto del sitio"
+
+
+--- --- Header
+
+es "Menú"
+pt "Menu"
+en "Menu"
+es_MX "Menú"
+
+es "Menúes"
+pt "Menus"
+es_MX "Menús"
+
+es "Navegación"
+pt "Navegação"
+en "Navigation"
+es_MX "Navegación"
+
+es "Encabezado"
+pt "Cabeçalho"
+es_MX "Encabezado"
+
+es "Ancho de columna"
+pt "Largura da coluna"
+es_MX "Ancho de columna"
+
+es "Seleccionar el ancho de columna"
+pt "Selecione a largura da coluna"
+es_MX "Selecciona el ancho de la columna"
+
+es "Chico"
+pt "Pequena"
+es_MX "Chico"
+
+es "Mediano"
+pt "Média"
+es_MX "Mediano"
+
+es "Completo"
+pt "Completa"
+es_MX "Completo"
+
+es "Si seleccionaste las opciones 'Mediano' o 'Completo', disponés de las siguientes configuraciones"
+pt "Se você selecionou as opções Média ou Completa, terá as seguintes configurações"
+es_MX "Si has seleccionado 'Mediano' o 'Completo' dispones de estas configuraciones:"
+
+es "Ubicación del logo"
+pt "Posição do logo"
+es_MX "Ubicación del logo"
+
+
+
+es "Color de fondo del encabezado"
+pt "Cor de fundo do cabeçalho"
+es_MX "Color de fondo del encabezado"
+
+es "Claro"
+pt "Claro"
+es_MX "Claro"
+
+es "Oscuro"
+pt "Escuro"
+es_MX "Oscuro"
+
+es "Color de textos"
+pt "Cor dos textos"
+en "Text color"
+es_MX "Color de textos"
+
+es "Transparente"
+pt "Transparente"
+en "Transparent"
+es_MX "Transparente"
+
+es "El fondo transparente solo está habilitado para el ancho de columna completo y ubicación del logo a la izquierda"
+pt "O fundo transparente é ativado apenas para a largura completa da coluna"	 pt "O fundo transparente é ativado apenas para a largura completa da coluna e a posição do logo à esquerda"
+en "The transparent background is only enabled for the full column width and logo location on the left"
+es_MX "El fondo transparente sólo está habilitado para el ancho de columna completo y ubicación del logo a la izquierda"
+
+es "Encabezado siempre visible al navegar la tienda"
+pt "Cabeçalho sempre visível ao navegar pela loja"
+es_MX "Encabezado siempre visible al navegar el sitio"
+
+es "Menú de solapas visible en celulares"
+pt "Aba de menu visível em celulares"
+es_MX "Menú de solapas visible en celulares"
+
+es "Buscador siempre visible en celulares"
+pt "Barra de pesquisa sempre visível no celular"
+es_MX "Buscador siempre visible en celulares"
+
+es "Barra de anuncio"
+pt "Barra de anúncio"
+es_MX "Barra de anuncio"
+
+es "Mostrar barra de anuncio"
+pt "Mostrar barra de anúncio"
+es_MX "Mostrar barra de anuncio"
+
+es "Link (opcional)"
+pt "Link (opcional)"
+es_MX "Link (opcional)"
+
+es "Subir una imagen de fondo"
+pt "Subir uma imagem para utilizar de fundo"
+es_MX "Subir una imagen de fondo"
+
+es "Fondo del sitio"
+pt "Fundo para seu site"
+es_MX "Fondo del sitio"
+
+es "Imagen de fondo del sitio"
+pt "Imagem de fundo para seu site"
+es_MX "Imagen de fondo del sitio"
+
+es "Mostrar el menú reducido (header)"
+pt "Mostrar o menu reduzido (header)"
+es_MX "Mostrar el menú reducido (header)"
+
+es "Menú principal"
+pt "Menu principal"
+es_MX "Menú principal"
+
+
+es "Buscador siempre visible en computadoras"
+pt "Barra de pesquisa sempre visível no computador"
+en "Search field always visible on desktop"
+es_MX "Buscador siempre visible en computadoras"
+
+es "Encabezado transparente sobre el carrusel de imágenes"
+pt "Cabeçalho transparente no banners rotativos"
+es_MX "Encabezado transparente sobre el carrusel de imágenes"
+
+--- --- Sections
+
+es "Opciones generales"
+pt "Opções gerais"
+es_MX "Opciones generales"
+
+es "Página de inicio"
+pt "Página inicial"
+en "Home page"
+es_MX "Página de inicio"
+
+es "Listado de productos"
+pt "Lista de produtos"
+en "Products list"
+es_MX "Listado de productos"
+
+es "Detalle de producto"
+pt "Detalhe do produto"
+en "Product Details"
+es_MX "Detalle del producto"
+
+es "Pie de página"
+pt "Rodapé da página"
+en "Footer"
+es_MX "Pie de página"
 
 es "Orden de secciones"
 pt "Ordem das seções"
 en "Order of sections"
+es_MX "Orden de secciones"
 
 es "Posición 1"
 pt "Posição 1"
 en "Position 1"
+es_MX "Posición 1"
 
 es "Posición 2"
 pt "Posição 2"
 en "Position 2"
+es_MX "Posición 2"
 
 es "Posición 3"
 pt "Posição 3"
 en "Position 3"
+es_MX "Posición 3"
 
 es "Posición 4"
 pt "Posição 4"
 en "Position 4"
+es_MX "Posición 4"
 
 es "Posición 5"
 pt "Posição 5"
 en "Position 5"
+es_MX "Posición 5"
 
 es "Posición 6"
 pt "Posição 6"
 en "Position 6"
+es_MX "Posición 6"
 
 es "Posición 7"
 pt "Posição 7"
 en "Position 7"
+es_MX "Posición 7"
+
+es "Ninguno"
+pt "Nenhum"
+en "None"
+es_MX "Ninguno"
+
+es "Variante"
+pt "Variação"
+en "Variant"
+es_MX "Variante"
+
+es "Una variante define la parte visual de tu diseño (botones, campos de formularios y espacios entre elementos) sin afectar lo que ya tengas configurado."
+pt "Uma variante define a parte visual do seu design (botões, campos de formulário e espaços entre os elementos) sem afetar o que você já configurou."
+en "A variant defines the visual part of your design (buttons, inputs and elements spacing) without affecting what you already configured"
+es_MX "Una variante define la parte visual de tu diseño (botones, campos de formularios y espacios entre elementos) sin afectar lo que ya tengas configurado."
+
+es "Variaciones"
+pt "Variações"
+en "Variants"
+es_MX "Variaciones"
+
+es "Diseño sin espacios y con bordes rectos"
+pt "Design sem espaços e com bordas retas"
+en "No spaces and straight lines design"
+es_MX "Diseño sin espacios y con bordes rectos"
+
+es "Diseño con espacios y bordes curvos"
+pt "Design com espaços e bordas curvas"
+en "Spaced and curved lines design"
+es_MX "Diseño con espacios y bordes curvos"
+
+--- --- Home
+
+es "Mensaje de bienvenida en la página de inicio"
+pt "Mensagem de boas vindas na página inicial"
+es_MX "Mensaje de bienvenida de la página de inicio"
+
+es "Mensaje de bienvenida"
+pt "Mensagem de boas vidas"
+es_MX "Mensaje de bienvenida"
+
+es "Dale la bienvenida a tus clientes"
+pt "Dê as boas-vindas a seus clientes"
+en "Welcome your customers"
+es_MX "Dale la bienvenida a tus clientes"
+
+es "En este campo de texto podés escribir de qué se trata tu negocio, cómo trabajan y parte de tu historia. Contale a tus futuros clientes los motivos para comprar en tu tienda."
+pt "Neste campo de texto você pode escrever sobre seu negócio, como trabalha e parte da sua história. Conte a seus futuros clientes os motivos para comprar em sua loja."
+en "In this text you can tell what they do in your business, how they work and part of your history. Tell your future customers why they have to buy your products."
+es_MX "En este campo de texto podés escribir de qué se trata tu negocio, cómo trabajan y parte de tu historia. Contale a tus futuros clientes los motivos para comprar en tu tienda."
+
+es "Textos de bienvenida en el home"
+pt "Edições de textos de boas vindas para a home"
+es_MX "Textos de bienvenida de la página de inicio"
+
+es "Categorías principales"
+pt "Categorias principais"
+en "Main categories"
+es_MX "Categorías principales"
+
+es "Mostrar categorías"
+pt "Exibir categorias"
+en "Show categories"
+es_MX "Mostrar categorías"
+
+es "Carrusel de productos"
+pt "Banners dos produtos"
+en "Products carrousel"
+es_MX "Carrusel de productos"
+
+es "Los productos del carrusel rotarán en la página principal de tu tienda"
+pt "Os produtos do banner rotativo aparecem em destaque na Home da sua loja"
+en "The products of the carrousel slide on your store home page"
+es_MX "Los productos del carrusel rotarán en la página principal de tu tienda"
+
+es "Podes elegir una imagen para mostrar junto con el 'Carrusel de productos'"
+pt "Você pode escolher uma imagem para mostrar junto com os 'Banners dos produtos'"
+es_MX "Podes elegir una imagen para mostrar junto con el 'Carrusel de productos'"
+
+es "Pon aquí los productos que más quieras destacar"
+pt "Coloque aqui os produtos que você mais queira destacar"
+es_MX "Pon aquí los productos que más quieras destacar"
+
+
+es "Elegí el título para la sección"
+pt "Escolha o título da seção"
+es_MX "Elegí el título para la sección"
+
+
+es "agregar tus propios productos."
+pt "adicionar seus próprios produtos."
+en "add your own products."
+es_MX "agregar tus propios productos."
+
+
+--- --- Banners
+
+es "Carrusel de imágenes"
+pt "Banners rotativos"
+es_MX "Carrusel de imágenes"
+
+es "Slider principal de tu sitio"
+pt "Slider principal de seu site"
+es_MX "Carrusel principal de tu sitio"
+
+es "Imágenes"
+pt "Imagens"
+es_MX "Imágenes"
+
+es "Elegí las imágenes que pasarán en el tope de la página de inicio, debajo del menú principal"
+pt "Selecione as imagens que serão mostradas na página principal, abaixo do menu"
+es_MX "Elige las imágenes que se mostrarán debajo del menú principal en la página de inicio"
+
+es "Agregar imagen"
+pt "Adicionar imagem"
+es_MX "Agregar una imagen"
+
+es "[Opcional] Página web a la que quieres que te lleve la imagen al hacer click"
+pt "[Opcional] Endereço do site que o usuário entrará ao clicar na imagem"
+es_MX "[Opcional] ¿A qué página quieres que lleve la imagen al hacer clic?"
+
+es "Pasar las imágenes de forma automática"
+pt "Passar as imagens automaticamente"
+es_MX "Pasar las imágenes automáticamente"
+
+es "Te recomendamos utilizar imágenes de 980x90 px. <a target='_blank' href='http://ayuda.tiendanube.com/diseno/cual-es-el-tamano-recomendado-del-banner'>¿Cuál es el tamaño recomendado del banner?</a>"
+pt "Recomendamos utilizar imagens de 980x90 px"
+es_MX "Te recomendamos utilizar imágenes de 980x90 px. <a target='_blank' href='http://ayuda.tiendanube.com/diseno/cual-es-el-tamano-recomendado-del-banner'>¿Cuál es el tamaño recomendado del banner?</a>"
+
+es "[Opcional] Página web a la que quieres que te lleve el banner de las página de inicio al hacer click"
+pt "[Opcional] Endereço do site que o usuário entrará ao clicar no banner da home"
+es_MX "[Opcional] ¿A qué página quieres que lleve el banner de la página de inicio al hacer clic?"
+
+es "Te recomendamos utilizar imágenes de 980x90 px"
+pt "Recomendamos utilizar imagens de 980x90 px"
+es_MX "Te recomendamos usar imágenes de 980x90 px"
+
+es "[Opcional] Página web a la que quieres que te lleve el banner de las páginas de categorías al hacer click"
+pt "[Opcional] Endereço do site que o usuário entrará ao clicar no banner das páginas de categorias"
+es_MX "[Opcional] ¿A qué página quieres que lleve el banner de las páginas de categorías al hacer clic?"
+
+es "Te recomendamos utilizar imágenes de 980x90 px"
+pt "Recomendamos utilizar imagens de 980x90 px"
+es_MX "Te recomendamos usar imágenes de 980x90 px"
+
+es "[Opcional] Página web a la que quieres que te lleve el banner de la página de contacto al hacer click"
+pt "[Opcional] Endereço do site que o usuário entrará ao clicar no banner da página de contato"
+es_MX "[Opcional] ¿A qué página quieres que lleve el banner de la página de contacto al hacer clic?"
+
+es "Imagem dos banners"
+pt "Banners imagenes"
+es_MX "Imagen de los banners"
+
+es "Banner horizontal"
+pt "Banner horizontai"
+en "Horizontal banner"
+es_MX "Banner horizontal"
+
+es "Banners horizontales"
+pt "Banners horizontais"
+en "Horizontal banners"
+es_MX "Banners horizontales"
+
+es "Imagen para las páginas de categorías"
+pt "Imagem para as páginas de categorias"
+es_MX "Imagen para las páginas de categorías"
+
+es "Imagen para las páginas institucionales"
+pt "Imagem para as páginas institucionais"
+es_MX "Imagen para las páginas institucionales"
+
+es "Imagen para la página de contacto"
+pt "Imagem para a página de contato"
+es_MX "Imagen para la página de contacto"
+
+es "Imagen para la página de inicio"
+pt "Imagem para a página de início"
+es_MX "Imagen para la página de inicio"
+
+es "Banners informativos"
+pt "Banners informativos"
+en "Services banner"
+es_MX "Banners informativos"
+
+es "Ubicación de los banners"
+pt "Posicionamento dos banners"
+es_MX "Ubicación de los banners"
+
+es "Mostrar los banners en toda la tienda (se verá arriba del footer)"
+pt "Mostrar os banners em toda loja (aparecerá acima do rodapé)"
+en "Enable services banner thought the entire site (it will appear over the footer"
+es_MX "Mostrar los banners en todo el sitio (se verán encima del footer)"
+
+es "Mostrar los banners en la página principal"
+pt "Mostrar os banners na home"
+en "Enable services in the home page"
+es_MX "Mostrar los banners en la página principal"
+
+es "Mostrar los banners solo en la página principal (se verá debajo del carrusel)"
+pt "Mostrar os banners somente na home (aparecerá abaixo do banner rotativo)"
+en "Enable services only in the home page (it will appear under the slider)"
+es_MX "Mostrar los banners en la página principal (se verán debajo del carrusel)"
+
+es "Mostrar los banners en el listado de productos (se verán arriba de los mismos en una computadora, y debajo de ellos en celulares)"
+pt "Mostrar os banners na lista de produtos (serão vistos acima dos mesmos no computador, e abaixo deles em celulares)"
+en "Enable services banner in the product category page (it will appear over the products on desktop and below them on mobile)"
+es_MX "Mostrar los banners en el listado de productos (se verán encima de los mismos en computadoras y debajo de ellos en celulares)"
+
+es "Ícono"
+pt "Ícone"
+en "Icon"
+es_MX "Ícono"
+
+es "Envíos"
+pt "Frete"
+en "Shipping"
+es_MX "Envíos"
+
+es "Seguridad"
+pt "Segurança"
+en "Security"
+es_MX "Seguridad"
+
+es "Cambios y devoluciones"
+pt "Trocas e devoluções"
+en "Returns & Exchanges"
+es_MX "Cambios y devoluciones"
+
+es "Promociones"
+pt "Promoções"
+en "Promotions"
+es_MX "Promociones"
+
+es "Pago en efectivo"
+pt "Boleto Bancário"
+en "Cash"
+es_MX "Pago en efectivo"
+
+es "Banner izquierdo de la página de inicio"
+pt "Banner esquerdo da página de início"
+es_MX "Banner izquierdo de la página de inicio"
+
+es "Banner central de la página de inicio"
+pt "Banner central da página de início"
+es_MX "Banner central de la página de inicio"
+
+es "Banner derecho de la página de inicio"
+pt "Banner direito da página de início"
+es_MX "Banner derecho de la página de inicio"
+
+es "Para las páginas de categorías"
+pt "Para as páginas de categoria"
+es_MX "Para las páginas de categorías"
+
+es "Para la página de inicio"
+pt "Para a página de início"
+es_MX "Para la página de inicio"
+
+es "Para la página de contacto"
+pt "Para a página de contato"
+es_MX "Para la página de contacto"
+
+es "Banners de categorías"
+pt "Banners de categorias"
+en "Categories banners"
+es_MX "Banners de categorías"
+
+es "CATEGORÍA 1"
+pt "CATEGORIA 1"
+en "CATEGORY 1"
+es_MX "CATEGORÍA 1"
+
+es "CATEGORÍA 2"
+pt "CATEGORIA 2"
+en "CATEGORY 2"
+es_MX "CATEGORÍA 2"
+
+es "CATEGORÍA 3"
+pt "CATEGORIA 3"
+en "CATEGORY 3"
+es_MX "CATEGORÍA 3"
+
+es "Mostrar banner"
+pt "Mostrar banner"
+en "Show banner"
+es_MX "Mostrar el banner"
+
+es "Los banners se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares"
+pt "Os banners serão exibidos da esquerda para a direita em computadores, e de cima para baixo em celulares."
+en "Banners will be displayed from left to right on desktop and from top to bottom on mobile"
+es_MX "Los banners se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares"
+
+es "Ubicación del banner"
+pt "Localização dos banners"
+es_MX "Ubicación del banner"
+
+--- --- Modules
+
+es "Módulos de imagen y texto"
+pt "Módulos de imagem e texto"
+en "Modules with image and text"
+es_MX "Módulos de imagen y texto"
+
+es "MÓDULO 1"
+pt "MÓDULO 1"
+en "MODULE 1"
+es_MX "MÓDULO 1"
+
+es "MÓDULO 2"
+pt "MÓDULO 2"
+en "MODULE 2"
+es_MX "MÓDULO 2"
+
+es "Cada módulo mostrará una imagen y un texto al lado de la misma en computadoras y debajo de ella en celulares"
+pt "Cada módulo exibirá uma imagem e texto ao lado quando visto em computadores e abaixo quando visto em celulares"
+en "Each module will display an image and text next to it on computers and below it on cell phones"
+es_MX "Cada módulo mostrará una imagen y un texto al lado del mismo en computadoras y debajo de este en celulares"
+
+es "Mostrar módulo"
+pt "Exibir módulo"
+en "Show module"
+es_MX "Mostrar módulo"
+
+es "Imagen"
+pt "Imagem"
+en "Image"
+es_MX "Imagen"
+
+es "Imagen de fondo"
+pt "Imagem de fundo"
+en "Background image"
+es_MX "Imagen de fondo"
+
+es "Cargar imagen (JPG, GIF, PNG)"
+pt "Carregar imagem (JPG, GIF, PNG)"
+en "Upload image (JPG, GIF, PNG)"
+es_MX "Cargar imagen (JPG, GIF, PNG)"
+
+es "Título"
+pt "Título"
+en "Title"
+es_MX "Título"
+
+es "Texto del botón"
+pt "Texto do botão"
+en "Button text"
+es_MX "Texto del botón"
+
+es "Link"
+pt "Link"
+en "Link"
+es_MX "Link"
+
+es "Alineación del texto"
+pt "Alinhamento do texto"
+en "Text align"
+es_MX "Alineación del texto"
+
+es "Alineación de la imagen"
+pt "Alinhamento da imagem"
+en "Image alignment"
+es_MX "Alineación de la imagen"
+
+es "Izquierda"
+pt "Esquerda"
+en "Left"
+es_MX "Izquierda"
+
+es "Centrado"
+pt "Centralizado"
+en "Center"
+es_MX "Centrada"
+
+es "Derecha"
+pt "Direita"
+en "Right"
+es_MX "Derecha"
+
+es "Color del texto"
+pt "Cor do texto"
+en "Text color"
+es_MX "Color del texto"
+
+es "Blanco"
+pt "Branco"
+en "White"
+es_MX "Blanco"
+
+es "Negro"
+pt "Preto"
+en "Black"
+es_MX "Negro"
+
+es "Verde"
+pt "Verde"
+en "Green"
+
+
+--- --- Video
+
+es "Video"
+pt "Video"
+en "Video"
+es_MX "Video"
+
+es "Link (Youtube o Vimeo)"
+pt "Link (Youtube/Vimeo)"
+en "Link (Youtube or Vimeo)"
+es_MX "Link (Youtube o Vimeo)"
+
+es "Ej: https://www.youtube.com/watch?v=dptrWehSI8c"
+pt "Ex: https://www.youtube.com/watch?v=dptrWehSI8c"
+en "Eg: https://www.youtube.com/watch?v=dptrWehSI8c"
+es_MX "Ej: https://www.youtube.com/watch?v=dptrWehSI8c"
+
+es "Ver video"
+pt "Ver vídeo"
+en "Watch video"
+es_MX "Ver video"
+
+
+--- --- List
+
+es "Mostrar barra lateral con filtros en listado de productos"
+pt "Mostrar barra lateral com filtros na lista de produtos"
+es_MX "Mostrar una barra lateral con filtros en el listado de productos"
+
+es "Mostrar filtros en listado de productos"
+pt "Mostrar filtros na lista de produtos"
+es_MX "Mostrar filtros en listado de productos"
+
+es "¿Permitir que en el listado de productos tus clientes carguen nuevos productos cuando llegan al final de la página?"
+pt "Permitir que na apresentação dos produtos, os seus clientes carreguem novos produtos quando chegarem ao final da página?"
+es_MX "Permitir que tus clientes carguen más productos al llegar al final de la página."
+
+es "Texto que se verá al colocar el mouse sobre un producto, antes de abrir la ventana emergente"
+pt "Texto que aparece ao colocar o mouse sobre um produto, antes de abrir o pop-up"
+es_MX "Texto que se mostrará al colocar el mouse sobre un producto antes de abrir la ventana emergente"
+
+es "Productos en el listado"
+pt "Produtos na lista"
+en "List of products"
+es_MX "Productos en el listado"
+
+es "Cantidad de productos por página"
+pt "Quantidade de produtos por página"
+en "Number of products per page"
+es_MX "Cantidad de productos por página"
+
+es "Botón de seguir cargando productos"
+pt "Botão de seguir carregando produtos"
+es_MX "Botón de seguir cargando productos"
+
+es "Pop-up de compra rápida"
+pt "Visualização rápida"
+es_MX "Pop-up de compra rápida"
+
+es "Compra rápida texto"
+pt "Edições de texto de compra rápida"
+es_MX "Texto de compra rápida"
+
+es "Compra rápida"
+pt "Compra rápida"
+es_MX "Compra rápida"
+
+es "Permitir que tus clientes puedan agregar productos a su carrito rápidamente desde el listado de productos"
+pt "Permitir que seus clientes possam agregar produtos ao seu carrinho rapidamente na lista de produtos"
+es_MX "Permitir que tus clientes puedan agregar productos a su carrito rápidamente desde el listado de productos"
+
+es "Botón para seguir cargando productos"
+pt "Botão para seguir carregando produtos"
+es_MX "Botón para seguir cargando productos"
+
+es "Cantidad de productos por fila en computadora"
+pt "Quantidade de produtos por linha no computador"
+es_MX "Cantidad de productos por fila en computadora"
+
+es "2 productos"
+pt "2 produtos"
+es_MX "2 productos"
+
+es "3 productos"
+pt "3 produtos"
+es_MX "3 productos"
+
+es "4 productos"
+pt "4 produtos"
+es_MX "4 productos"
+
+es "Foto del producto"
+pt "Foto do produto"
+en "Product photo"
+es_MX "Foto del producto"
+
+es "Mostrar la segunda foto al posar el mouse"
+pt "Mostrar a segunda foto ao colocar o mouse"
+en "Show the second photo on mouseover"
+es_MX "Mostrar la segunda foto al posar el mouse"
+
+es "Título para productos destacados"
+pt "Título para produtos em destaque"
+es_MX "Título para productos destacados"
+
+es "Título para productos relacionados"
+pt "Título para produtos relacionados"
+es_MX "Título para productos relacionados"
+
+
+--- --- Details
+
+es "¿Dónde deseas mostrar la descripción del producto en la página de producto?"
+pt "Onde você deseja mostrar a descrição do produto dentro da página de produto?"
+es_MX "¿Dónde quieres mostrar la descripción del producto en la página del mismo?"
+
+es "Debajo del botón de compra (para descripciones cortas)"
+pt "Embaixo do botão de compra (para descrições curtas)"
+es_MX "Debajo del botón de compra (para descripciones cortas)"
+
+es "Debajo de las imágenes y el botón de compra (para descripciones largas)"
+pt "Embaixo das imagens e do botão de compra (para descrições longas)"
+es_MX "Debajo de las imágenes y el botón de compra (para descripciones largas)"
+
+es "Ubicación de la descripción del producto"
+pt "Localização da descrição do produto"
+es_MX "Ubicación de la descripción del producto"
+
+es "Texto para los productos con envío sin cargo"
+pt "Texto para os produtos com envio gratuito"
+es_MX "Texto para los productos con envío gratis"
+
+es "Texto de oferta"
+pt "Texto para ofertas"
+es_MX "Texto de rebaja"
+
+es "Texto para los productos sin stock"
+pt "Texto para Sem Estoque"
+es_MX "Texto para los productos agotados"
+
+
+--- --- Cart
+
+es "Permitir que tus clientes puedan agregar productos a su carrito rápidamente desde una ventana emergente en el listado de productos"
+pt "Permitir que seus clientes possam agregar produtos ao seu carrinho rapidamente a partir de um pop-up na lista de produtos"
+es_MX "Permitir a tus clientes agregar productos a su carrito rápidamente desde una ventana emergente en el listado de productos"
+
+es "Monto mínimo de compra"
+pt "Valor mínimo de compra"
+es_MX "Monto mínimo de compra"
+
+es "Mostrar el botón de 'Seguir comprando' en el carrito de compras"
+pt "Mostrar o botão de 'Continuar comprando' no carrinho de compras"
+es_MX "Mostrar el botón 'Seguir comprando' en el carrito de compras"
+
+es "Mostrar la opción 'Seguir comprando' en el carrito de compras"
+pt "Mostrar o opção de 'Continuar comprando' no carrinho de compras"
+en "Show 'Continue buying' option on the shopping cart"
+es_MX "Mostrar la opción 'Seguir comprando' en el carrito de compras"
+
+es "Opción de seguir comprando en el carrito de compras"
+pt "Opção de continuar comprando no carrinho de compras"
+en "Continue buying option on the shopping cart page"
+es_MX "Opción de seguir comprando en el carrito de compras"
+
+es "Botón seguir comprando en el carrito de compras"
+pt "Botão de seguir comprando no carrinho de compras"
+es_MX "Botón 'Seguir comprando' en el carrito de compras"
+
+es "¿Cuánto es lo mínimo que pueden gastar tus clientes?"
+pt "Qual o valor mínimo que seus clientes podem gastar?"
+es_MX "¿Cuánto es lo mínimo que quieres que gasten tus clientes?"
+
+es "Valor mínimo de compra"
+pt "valor mínimo de compra"
+es_MX "Valor mínimo de compra"
+
+es "Carrito de compras rápidas"
+pt "Carrinho de compra rápida"
+en "AJAX Shopping Cart"
+es_MX "Carrito de compras rápidas"
+
+es "Tus clientes pueden agregar y ver los productos que van a comprar sin necesidad de ir a otra página, ya que la información está siempre visible."
+pt "Seus clientes podem escolher produtos e conferir o que vão comprar sem a necessidade abrir outra página, já que a informação está sempre visível."
+en "Tus clientes pueden agregar y ver los productos que van a comprar sin necesidad de ir a otra página, porque la información está siempre visible."
+es_MX "Tus clientes pueden agregar y ver los artículos que comprarán sin necesidad de ir a otra página, ya que la información está siempre visible."
+
+
+--- --- Footer
+
+es "Elegí el menú para el final de la página (footer). Si aún no configuraste ninguno, podés hacerlo <a target='_blank' href='/admin/navigation/?ref=submenu'>desde acá</a>"
+pt "Escolher menu para o final da página (rodapé). Caso não tenha nenhum configurado, pode fazê-lo <a target='_blank' href='/admin/navigation/?ref=submenu'>aqui</a>"
+es_MX "Elige el menú para el final de la página (footer). Si aún no has configurado ninguno, hazlo <a target='_blank' href='/admin/navigation/?ref=submenu'>aquí</a>"
+
+es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-el-menu-inferior-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio el menú inferior de mi tienda?</a>"
+pt "<a target='_blank' href='http://atendimento.nuvemshop.com.br/layout/como-adicionar-um-menu-no-rodape-da-home/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como inserir um novo menu na minha loja?</a>"
+es_MX "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-el-menu-inferior-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio el menú inferior de mi tienda?</a>"
+
+es "¿Qué menú deseas mostrar al final de la página?"
+pt "Escolher menu para o final da página (rodapé)"
+es_MX "¿Qué menú quieres mostrar al final de la página?"
+
+es "Menú del final de la página. (footer)"
+pt "Menu do final da página (rodapé)"
+es_MX "Menú del final de la página (footer)."
+
+es "¿Qué menú vas a mostrar al final de la página?"
+pt "Escolher menu para o final da página (rodapé)"
+es_MX "¿Qué menú quieres mostrar al final de la página?"
+
+es "Elige un título para identificar el menú"
+pt "Selecione um título para identificar o menu"
+es_MX "Elige un título para identificar el menú"
+
+es "Elige el menú que deseas mostrar."
+pt "Selecione o menu que deseja mostrar."
+es_MX "Elige el menú que quieres mostrar."
+
+es "Texto para contacto al final de la página (footer)."
+pt "Texto para contato do rodapé"
+es_MX "Título de la sección 'Contacto' al final de la página (footer)."
+
+es "Seguridad y Certificaciones"
+pt "Segurança e Certificações"
+en "Security and Certifications"
+es_MX "Seguridad y certificaciones"
+
+es "Sellos personalizados en el footer"
+pt "Selos personalizados no rodapé"
+en "Custom seals in the footer"
+es_MX "Sellos personalizados en el footer"
+
+es "Podés agregar sellos de dos formas: subiendo una imagen o pegando el código Javascript o HTML"
+pt "Você pode adicionar selos de duas formas: incluindo uma imagem ou adicionando um código HTML/Javascript"
+en "You can add seals through two ways: uploading an image or pasting the Javascript or HTML code"
+es_MX "Agrega sellos subiendo una imagen o pegando un código Javascript/HTML"
+
+es "Imagen del sello"
+pt "Imagem do selo"
+en "Seal image"
+es_MX "Imagen del sello"
+
+es "Código Javascript o HTML del sello"
+pt "Código HTML ou Javascript do selo"
+en "HTML or Javascript seal´s code"
+es_MX "Código Javascript o HTML del sello"
+
+es "[Opcional] Página web externa a la que llevará la imagen del sello al hacer clic"
+pt "[Opcional] Página da web externa a que levará a imagem do selo quando clicado"
+en "[Optional] External website linked to the image when is clicked"
+es_MX "[Opcional] ¿A qué página quieres que lleve la imagen del sello al hacer clic?"
+
+
+--- --- CSS
+
+es "Acá podés escribir código CSS para que se muestre en tu sitio web"
+pt "Aqui, você poderá colocar código css para que se mostre em sua página"
+es_MX "Aquí puedes escribir código CSS para que se refleje en tu sitio"
+
+es "Edición avanzada de CSS"
+pt "Edição de css avançada"
+es_MX "Edición avanzada de CSS"
+
+es "Para diseñadores web"
+pt "Para webdesigners"
+es_MX "Para diseñadores web"
+
+es "Esta sección es recomendada solo para quienes tengan conocimiento de CSS"
+pt "Esta área é recomendada apenas para aqueles que tenham conhecimento de CSS"
+es_MX "Esta sección se recomienda sólo para quienes tienen conocimiento de CSS"
+
+es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el-codigo-css-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo edito el código CSS de mi tienda?</a>"
+pt ""
+es_MX "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el-codigo-css-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo edito el código CSS de mi tienda?</a>"
+
+
+--- --- Shipping and Payments
+
+es "Medios de envío"
+pt "Opções de frete"
+en "Shipping Methods"
+es_MX "Opciones de envío"
+
+es "Mostrar calculador de costos de envío en la página de producto"
+pt "Mostrar o Cálculo de Frete na página de produto"
+en "Show shipping cost calculator on product page"
+es_MX "Mostrar el calculador de costos de envío en la página de producto"
+
+es "Mostrar calculador de costos de envío en el carrito"
+pt "Mostrar o Cálculo de Frete no carrinho"
+en "Show shipping cost calculator to cart"
+es_MX "Mostrar el calculador de costos de envío en el carrito"
+
+es "Mostrar medios de envío en tu tienda"
+pt "Mostrar as opções de frete na sua loja"
+en "Show Shipping Methods in your store"
+es_MX "Mostrar las opciones de envío en tu sitio"
+
+es "Mostrar medios de pago en tu tienda"
+pt "Mostrar as opções de pagamento na sua loja"
+en "Show payment methods in your store"
+es_MX "Mostrar los métodos de pago en tu sitio"
+
+
+--- --- Social
+
+es "Social"
+pt "Social"
+es_MX "Social"
+
+es "Mostrar el recuadro de 'Me gusta' de tu Página de Facebook en la página de inicio (tienes que configurar la página de Facebook en 'Diseño > Redes Sociales')"
+pt "Mostrar a ‘Caixa Curtir’ da sua Página do Facebook na home (você tem que configurar a página do Facebook em ‘Layout > Redes Sociais’)"
+es_MX "Mostrar los 'Me gusta' de tu página de Facebook en la página de inicio (debes configurar la página de Facebook desde 'Diseño > Redes Sociales')"
+
+es "Mostrar tus últimos Tweets (se debe configurar <a href='https://twitter.com/settings/widgets/' target='_blank'>un nuevo widget en Twitter</a> y copiar y pegar el HTML aquí)"
+pt "Mostrar seus últimos Tweets (você vai ter que configurar <a href='https://twitter.com/settings/widgets/' target='_blank'>um novo widget no Twitter</a> e copiar e colar o HTML aqui)"
+es_MX "Mostrar tus últimos Tweets (debes configurar <a href='https://twitter.com/settings/widgets/' target='_blank'>un nuevo widget en Twitter</a> y copiar y pegar el HTML aquí)"
+
+es "Permitir que tus clientes te dejen comentarios con su usuario de Facebook en la página de producto"
+pt "Permitir que seus clientes deixem comentários com seus respectivos usuários do Facebook na página de produto"
+es_MX "Permitir que tus clientes comenten en la página de producto con su usuario de Facebook "
+
+es "Para moderar los comentarios de Facebook necesitamos tu ID de tu perfil de Facebook (puedes obtenerlo <a target='_blank' href='http://findmyfbid.com/'>aquí</a>)"
+pt "Para moderar os comentários do Facebook necessitamos do seu ID do seu perfil do Facebook (você pode obtê-lo <a target='_blank' href='http://findmyfbid.com/'>aqui</a>)"
+es_MX "Necesitamos el ID de tu perfil de Facebook para moderar comentarios. (Obtenlo <a target='_blank' href='http://findmyfbid.com/'>aquí</a>)"
+
+es "Recuadro de 'Me gusta' de tu Página de Facebook"
+pt "Quadro de 'Curtir' em sua página do Facebook"
+es_MX "Recuadro de 'Me gusta' de tu página de Facebook"
+
+es "Comentarios en el producto"
+pt "Comentário no produto"
+es_MX "Comentarios en el producto"
+
+es "Moderar comentarios de facebook"
+pt "Moderar comentários do Facebook"
+es_MX "Moderar comentarios de Facebook"
+
+es "Mostrar tus últimos Tweets"
+pt "Mostrar seus últimos Tweets"
+es_MX "Mostrar tus últimos Tweets"
+
+es "Publicaciones de Instagram"
+pt "Postagens do Instagram"
+es_MX "Publicaciones de Instagram"
+
+es "Visitá nuestra página"
+pt "Visite nossa página"
+en "Visit our page"
+es_MX "Visitá nuestra página"
+
+es "Me gusta"
+pt "Curtir"
+en "Like"
+es_MX "Me gusta"
+
+es "El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda"
+pt "O feed do Instagram exibe automaticamente suas últimas postagens na página inicial da sua loja."
+es_MX "El Feed de Instagram muestra tus últimas publicaciones en la página de inicio."
+
+es "Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda"
+pt "Exibir suas postagens do Instagram na página inicial da sua loja."
+es_MX "Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda online"
+
+es "Configurar cuenta de Instagram"
+pt "Configurar conta do Instagram"
+es_MX "Configurar tu cuenta de Instagram"
+
+es "<a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>"
+pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/como-adicionar-o-feed-do-instagram'>Como obter o Access Token?</a>"
+es_MX "<a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>"
+
+es "Access Token (Necesario para validar tu cuenta)"
+pt "Access Token (Necessário para validar sua conta)"
+es_MX "Access Token (Necesario para validar tu cuenta)"
+
+es "Imágenes en las publicaciones de Instagram"
+pt "Imagens em posts do Instagram"
+es_MX "Imágenes en las publicaciones de Instagram"
+
+es "¿Cuántas publicaciones querés mostrar?"
+pt "Quantos posts você deseja exibir?"
+es_MX "¿Cuántas publicaciones quieres mostrar?"
+
+es "2 en celular y 4 en computadora"
+pt "2 no celular e 4 no computador"
+es_MX "2 en celular y 4 en computadora"
+
+es "4 en celular y 8 en computadora"
+pt "4 no celular e 8 no computador"
+es_MX "4 en celular y 8 en computadora"
+
+es "6 en celular y 12 en computadora"
+pt "6 no celular e 12 no computador"
+es_MX "6 en celular y 12 en computadora"
+
+es "Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación"
+pt "Exibir quantidade de <em>“Likes”</em> de cada post"
+es_MX "Mostrar los <em>‘Me gusta’</em> de cada publicación"
+
+es "Mostrar la cantidad de comentarios de cada publicación"
+pt "Exibir quantidade de comentários de cada post"
+es_MX "Mostrar la cantidad de comentarios de cada publicación"
+
+es "Facebook"
+pt "Facebook"
+en "Facebook"
+es_MX "Facebook"
+
+es "Twitter"
+pt "Twitter"
+en "Twitter"
+es_MX "Twitter"
+
+es "Google plus"
+pt "Google plus"
+en "Google plus"
+es_MX "Google plus"
+
+es "Pinterest"
+pt "Pinterest"
+en "Pinterest"
+es_MX "Pinterest"
+
+es "Instagram"
+pt "Instagram"
+en "Instagram"
+es_MX "Instagram"
+
+
+--- --- Newsletter
+
+es "Newsletter"
+pt "Newsletter"
+es_MX "Newsletter"
+
+es "¡Escribí algo para que tus clientes se suscriban a tu newsletter!"
+pt "Escreva algo para que seus clientes se inscrevam em sua newsletter!"
+es_MX "¡Escribe algo para invitar a tus clientes a suscribirse a tu newsletter!"
+
+es "Suscripción al newsletter desde el footer"
+pt "Inscrição para newsletter (rodapé)"
+es_MX "Suscripción al newsletter desde el footer"
+
+es "Elegí el título para la sección 'Newsletter' en el footer"
+pt "Escolha o título da seção 'Newsletter' no rodapé"
+es_MX "Elige el título para la sección 'Newsletter' del footer"
+
+es "Suscripción al newsletter desde un pop-up en el inicio"
+pt "Inscrição para newsletter em pop-up na página inicial"
+es_MX "Suscripción al newsletter desde un pop-up en el inicio"
+
+es "Permitir que tus clientes se registren para recibir novedades desde un pop-up en la página de inicio"
+pt "Permitir que seus clientes se inscrevam na newsletter"
+es_MX "Permitir que tus clientes se registren para recibir novedades desde un pop-up en la página de inicio"
+
+es "¡Invitá a los clientes a registrarse para recibir tus novedades!"
+pt "Escreva algo para seus clientes se inscreverem na sua newsletter!"
+es_MX "¡Invita a los clientes a registrarse para recibir tus novedades!"
+
+es "Imagen para el pop-up"
+pt "Imagem para popup"
+es_MX "Imagen para el pop-up"
+
+es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/que-es-un-pop-up-y-como-agrego-uno-en-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Qué es un pop-up y cómo lo agrego?</a>"
+pt "<a target='_blank' href='http://atendimento.nuvemshop.com.br/layout/como-inserir-a-inscricao-para-newsletter-em-pop-up-na-minha-loja/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como inserir a inscrição para newsletter em pop-up na minha loja?</a>"
+es_MX "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/que-es-un-pop-up-y-como-agrego-uno-en-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Qué es un pop-up y cómo lo agrego?</a>"
+
+es "Usá una imagen atractiva para aumentar las suscripciones. Te recomendamos que midan 280 x 320 px"
+pt "Você pode utilizar uma imagem (de preferência de 280 x 320 px)"
+es_MX "Utiliza una imagen atractiva para aumentar las suscripciones. Te recomendamos que mida 280 x 320 px"
+
+es "Frase motivadora para el pop-up"
+pt "Frase motivadora para o pop-up"
+es_MX "Frase motivadora del pop-up"
