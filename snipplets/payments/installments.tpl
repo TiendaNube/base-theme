@@ -2,51 +2,57 @@
 
   {# Product installments #}
 
-  {% set product_can_show_installments = product.show_installments and product.display_price %}
+  {% if product.show_installments and product.display_price %}
 
-  {% if product_can_show_installments %}
+    {% set installments_info_base_variant = product.installments_info %}
+    {% set installments_info = product.installments_info_from_any_variant %}
 
     {# If product detail installments, include container with "see installments" link #}
 
     {% if product_detail and installments_info %}
-      <div href="#installments-modal" class="js-product-payments-container mb-2" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
+      <div data-toggle="#installments-modal" class="js-modal-open js-product-payments-container mb-2" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
     {% endif %}
 
-    {# If NOT product detail, just include installments alone without link or container #}
-    <div class="{% if product_detail %}js-max-installments-container js-max-installments text-center text-sm-left{% else %}item-installments{% endif %}">
-      {% set max_installments_without_interests = product.get_max_installments(false) %}
-      {% set max_installments_with_interests = product.get_max_installments %}
-      {% if store.country == 'AR' %}
-        {% if max_installments_with_interests %}
-          <div>{{ "Hasta <strong class='installment-amount'>{1}</strong> cuotas" | t(max_installments_with_interests.installment, max_installments_with_interests.installment_data.installment_value_cents | money) }}</div>
-        {% else %}
-          <div style="display: none;">
-          {% if product.max_installments_without_interests %}
-            {{ "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés" | t(null, null) }}
+    {% set product_can_show_installments = product.show_installments and product.display_price and product.get_max_installments.installment > 1 %}
+
+    {% if product_can_show_installments %}
+
+      {# If NOT product detail, just include installments alone without link or container #}
+      <div class="{% if product_detail %}js-max-installments-container js-max-installments text-center text-sm-left{% else %}item-installments{% endif %}">
+        {% set max_installments_without_interests = product.get_max_installments(false) %}
+        {% set max_installments_with_interests = product.get_max_installments %}
+        {% if store.country == 'AR' %}
+          {% if max_installments_with_interests %}
+            <div>{{ "Hasta <strong class='installment-amount'>{1}</strong> cuotas" | t(max_installments_with_interests.installment, max_installments_with_interests.installment_data.installment_value_cents | money) }}</div>
           {% else %}
-            {{ "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés" | t(null, null) }}
-          {% endif %}
-          </div>
-        {% endif %}
-      {% else %}
-          {% if max_installments_without_interests and max_installments_without_interests.installment > 1 %}
-            <div class="js-max-installments">{{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(max_installments_without_interests.installment, max_installments_without_interests.installment_data.installment_value_cents | money) }}</div>
-          {% else %}
-            {% set max_installments_with_interests = product.get_max_installments %}
-            {% if max_installments_with_interests %}
-              <div class="js-max-installments">{{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price'>{2}</strong>" | t(max_installments_with_interests.installment, max_installments_with_interests.installment_data.installment_value_cents | money) }}</div>
+            <div style="display: none;">
+            {% if product.max_installments_without_interests %}
+              {{ "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés" | t(null, null) }}
             {% else %}
-              <div class="js-max-installments" style="display: none;">
-                {% if product.max_installments_without_interests %}
-                  {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
-                {% else %}
-                  {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
-                {% endif %}
-              </div>
+              {{ "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés" | t(null, null) }}
             {% endif %}
+            </div>
           {% endif %}
-      {% endif %}
-    </div>
+        {% else %}
+            {% if max_installments_without_interests and max_installments_without_interests.installment > 1 %}
+              <div class="js-max-installments">{{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(max_installments_without_interests.installment, max_installments_without_interests.installment_data.installment_value_cents | money) }}</div>
+            {% else %}
+              {% set max_installments_with_interests = product.get_max_installments %}
+              {% if max_installments_with_interests %}
+                <div class="js-max-installments">{{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>" | t(max_installments_with_interests.installment, max_installments_with_interests.installment_data.installment_value_cents | money) }}</div>
+              {% else %}
+                <div class="js-max-installments" style="display: none;">
+                  {% if product.max_installments_without_interests %}
+                    {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
+                  {% else %}
+                    {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
+                  {% endif %}
+                </div>
+              {% endif %}
+            {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
 
     {% if product_detail and installments_info %}
       <div class="form-row align-items-center align-items-start-sm">
@@ -75,9 +81,9 @@
           </ul>
         {% endif %}
         <div class="col text-left">
-          <a id="btn-installments" class="js-modal-open btn-link" data-toggle="#installments-modal" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
-            {% set store_fit_for_payments = store.country == 'AR' or store.country == 'BR'  %}
-            {% if store_fit_for_payments %}
+          <a id="btn-installments" class="btn-link" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
+            {% set store_set_for_new_installments_view = store.is_set_for_new_installments_view %}
+            {% if store_set_for_new_installments_view %}
                 {{ "Ver medios de pago" | translate }}
             {% else %}
                 {{ "Ver el detalle de las cuotas" | translate }}
@@ -86,8 +92,7 @@
         </div>
       </div>
     </div>
-    {% endif %}
-    
+    {% endif %}  
   {% endif %}
 {% else %}
 

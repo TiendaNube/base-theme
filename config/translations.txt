@@ -902,6 +902,11 @@ pt "Mostrar os dados de contato na sua loja"
 en "Show contact data in your store"
 es_MX "Mostrar datos de contacto en tu tienda"
 
+es "Estás consultando por el producto:"
+pt "Está consultando o produto:"
+en "You are consulting by the following product:"
+es_MX "Esta consultando por el siguiente producto:
+
 --- --- Form
 
 es "Dirección"

@@ -1,6 +1,8 @@
+{% set installments_info_base_variant = product.installments_info %}
+{% set installments_info = product.installments_info_from_any_variant %}
 {% if installments_info %}
 {% set gateways = installments_info | length %}
-{% set store_fit_for_payments = store.country == 'AR' or store.country == 'BR'  %}
+{% set store_set_for_new_installments_view = store.is_set_for_new_installments_view %}
 
     {% embed "snipplets/modal.tpl" with{modal_id: 'installments-modal', modal_position: 'bottom', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered'  } %}
         {% block modal_head %}
@@ -35,7 +37,7 @@
                         <div id="installment_{{ method }}_" class="js-tab-panel tab-panel {% if loop.first %} active {% endif %} js-gw-tab-pane">
                             <div>
 
-                                {% if store_fit_for_payments %}
+                                {% if store_set_for_new_installments_view %}
 
                                     {# Payments info with readonly #}
 

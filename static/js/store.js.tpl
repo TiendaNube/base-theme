@@ -105,13 +105,11 @@ $(document).ready(function(){
     $modal_open.click(function (e) {
         e.preventDefault(); 
         var $modal_id = $(this).data('toggle');
-        var $modal_overlay = $($modal_id).next(".js-modal-overlay");
+        $(".js-modal-overlay").fadeToggle();
         if ($($modal_id).hasClass("modal-show")) {
             $($modal_id).removeClass("modal-show").delay(200).hide(0);
-            $($modal_overlay).fadeToggle(300);
         } else {
-            $($modal_id).show(0).addClass("modal-show");
-            $($modal_overlay).fadeToggle(300);
+            $($modal_id).detach().insertAfter(".js-modal-overlay").show(0).addClass("modal-show");
         }             
     });
 
