@@ -20,7 +20,7 @@
 
                         {# Password confirm input #}
 
-                        {% embed "snipplets/forms/form-input.tpl" with{type_password: true, input_for: 'password_confirmation', input_name: 'password_confirmation', input_id: 'password_confirmation', input_label_text: 'Confirmar Contraseña' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_password: true, input_for: 'password_confirm', input_name: 'password_confirm', input_id: 'password_confirm', input_label_text: 'Confirmar Contraseña' | translate } %}
                         {% endembed %}
                         
                     {% endblock %}
