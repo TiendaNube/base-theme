@@ -314,6 +314,17 @@ h6,.h6{
     @extend %body-font;
     border-bottom: 2px solid;
   }
+  &-facebook{
+    background-color: #1977f2;
+    .svg-fb-icon {
+      position: relative;
+      bottom: 1px;
+      height: 26px;
+      margin-right: 10px;
+      vertical-align: middle;
+      fill: #fff;
+    }
+  }
 }
 
 button{
