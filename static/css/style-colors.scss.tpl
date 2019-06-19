@@ -259,7 +259,6 @@ h6,.h6{
 {# /* // Buttons */ #}
 
 .btn{
-  white-space: nowrap;
   text-decoration: none;
   text-align: center;
   border: 0;

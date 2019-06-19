@@ -41,7 +41,7 @@
 
             {# If page is loaded from customization page on the admin, load all fonts #}
 
-            {{ '//fonts.googleapis.com/css?family=Muli:400,600,700|Lato:100,300,400,700,900|Open+Sans:400,300,700|Lora:400,700|Slabo+27px|Playfair+Display:900|Droid+Sans:400,700' | css_tag }}
+            @import url('https://fonts.googleapis.com/css?family=Muli:400,700|Lato:400,700|Open+Sans:400,700|Lora:400,700|Slabo+27px|Playfair+Display:00,700|Droid+Sans:400,700&display=swap');
 
         {% else %}
 
@@ -49,8 +49,7 @@
 
             {# Get only the saved fonts on settings #}
 
-            {{ [settings.font_headings,
-            settings.font_rest] | google_fonts_url | css_tag }}
+            @import url('{{ [settings.font_headings, settings.font_rest] | google_fonts_url('300, 400, 700') | raw }}');
 
         {% endif %}
 
