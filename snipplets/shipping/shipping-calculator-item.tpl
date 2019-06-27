@@ -42,16 +42,41 @@
                         </div>
                     {% endif %}
                 </div>
-                {% if option.img_code != "branch" %}
-                    <div class="radio-button-text">{{option.short_name}}</div>
-                    {% if option.payment_rules %}
-                        <div>
-                            <i class="far fa-info-circle" aria-hidden="true"></i>
-                            <i>{{option.payment_rules}}</i>
-                        </div>
+                <div class="radio-button-text">
+                    {{option.short_name}}
+
+                    {% if option.address %}
+                        - {{option.address.address}} {{option.address.number}}
+                        {% if option.address.floor %}
+                            , {{option.address.floor}}
+                        {% endif %}
+                        {% if option.address.locality == option.address.city %}
+                            , {{option.address.city}}
+                        {% else %}
+                            , {{option.address.locality}} - {{option.address.city}}
+                        {% endif %}
                     {% endif %}
-                {% else %}
-                    <div>{{option.name}}</div>
+                    {% if option.pickup_hours %}
+                        {% if option.pickup_hours | length > 1 %}
+                            <ul class="pl-3">
+                                {% for hour in option.pickup_hours %}
+                                    <li>{{ hour }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {% for hour in option.pickup_hours %}
+                                <div>
+                                    {{ hour }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% if option.payment_rules %}
+                    <div>
+                        <i class="far fa-info-circle" aria-hidden="true"></i>
+                        <i>{{option.payment_rules}}</i>
+                    </div>
                 {% endif %}
                 {% if option.suboptions is not empty %}
                     {% include "snipplets/shipping_suboptions/#{option.suboptions.type}.tpl" with {'suboptions': option.suboptions} %}
