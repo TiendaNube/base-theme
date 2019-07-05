@@ -548,7 +548,7 @@ Redes sociales
 		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>
 	checkbox
 		name = show_instafeed
-		description = Mostrar tus Publicaciones de instagram en la página de inicio de tu tienda
+		description = Mostrar tus publicaciones de instagram en la página de inicio de tu tienda
 	checkbox
 		name = instafeed_like
 		description = Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación
