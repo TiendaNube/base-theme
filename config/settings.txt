@@ -346,7 +346,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 	dropdown
 		name = home_order_position_2
@@ -358,7 +358,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 	dropdown
 		name = home_order_position_3
@@ -370,7 +370,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 	dropdown
 		name = home_order_position_4
@@ -382,7 +382,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 	dropdown
 		name = home_order_position_5
@@ -394,7 +394,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 	dropdown
 		name = home_order_position_6
@@ -406,7 +406,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 	dropdown
 		name = home_order_position_7
@@ -418,7 +418,7 @@ Página de inicio
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
-			instafeed = Publicaciones de instagram
+			instafeed = Publicaciones de Instagram
 			empty = Ninguno
 
 Listado de productos
@@ -548,7 +548,7 @@ Redes sociales
 		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>
 	checkbox
 		name = show_instafeed
-		description = Mostrar tus publicaciones de instagram en la página de inicio de tu tienda
+		description = Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda
 	checkbox
 		name = instafeed_like
 		description = Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación
