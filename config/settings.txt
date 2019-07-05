@@ -536,7 +536,7 @@ Redes sociales
 		icon = share-alt
 		advanced = true
 	title
-		title = Publicaciones de instagram
+		title = Publicaciones de Instagram
 	description
 		description = El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda
 	subtitle
