@@ -43,34 +43,16 @@
 
     {% if related_slider %}
                 </div>
+                {% if related_products | length < 4 %}
+                <div class="d-sm-none">
+                {% endif %}
                 <div class="js-swiper-related-pagination swiper-pagination"></div>
                 <div class="js-swiper-related-prev swiper-button-prev">{% include "snipplets/svg/chevron-left.tpl" with {'big': true} %}</div>
                 <div class="js-swiper-related-next swiper-button-next">{% include "snipplets/svg/chevron-right.tpl" with {'big': true} %}</div>
+                {% if related_products | length < 4 %}
+                </div>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
-
-    {% if show_help %}
-        {% for i in 1..4 %}
-            {% if loop.index % 4 == 1 %}
-                <div class="grid-row">
-            {% endif %}
-
-            <div class="span3">
-                <div class="item">
-                    <div class="item-image-container">
-                        <a href="/admin/products/new" target="_top">{{'placeholder-product.png' | static_url | img_tag}}</a>
-                    </div>
-                    <div class="item-info-container">
-                        <div class="title"><a href="/admin/products/new" target="_top">{{"Producto" | translate}}</a></div>
-                        <div class="price">{{"$0.00" | translate}}</div>
-                    </div>
-                </div>
-            </div>
-
-            {% if loop.index % 4 == 0 or loop.last %}
-                </div>
-            {% endif %}
-        {% endfor %}
     {% endif %}
 </div>

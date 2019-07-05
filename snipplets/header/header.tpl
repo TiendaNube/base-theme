@@ -21,7 +21,7 @@
 			<div class="col text-right">{% snipplet "header/header-utilities.tpl" %}</div>
 		</div>
 	</div>    
-    {% snipplet "notifications.tpl" %}
+    {% include "snipplets/notification.tpl" with {order_notification: true, add_to_cart: true} %}
 </header>
 
 {# Hamburger panel #}

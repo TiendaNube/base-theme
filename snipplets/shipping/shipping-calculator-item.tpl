@@ -22,13 +22,15 @@
                 
                 <div class="radio-button-text"> 
                     {% if option.show_price %} 
-                        <h6 class="text-primary mb-1 d-inline-block">
-                            {% if option.cost.value == 0  %}
-                                {{ 'Gratis' | translate }}
-                            {% else %}
-                                {{option.cost}}
-                            {% endif %}
-                        </h6>
+                        <div class="mb-1 d-inline-block">
+                            <span class="text-primary h6">
+                                {% if option.cost.value == 0  %}
+                                    {{ 'Gratis' | translate }}
+                                {% else %}
+                                    {{option.cost}}
+                                {% endif %}
+                            </span>
+                        </div>
                     {% endif %}
                     {% if option.time %}
                         <div>
@@ -42,17 +44,35 @@
                         </div>
                     {% endif %}
                 </div>
-                {% if option.img_code != "branch" %}
-                    <div class="radio-button-text">{{option.short_name}}</div>
-                    {% if option.payment_rules %}
-                        <div>
-                            <i class="far fa-info-circle" aria-hidden="true"></i>
-                            <i>{{option.payment_rules}}</i>
-                        </div>
+                <div class="radio-button-text">
+                    {{option.short_name}}
+
+                    {% if option.pickup_address %}
+                       {{ option.pickup_address }}
                     {% endif %}
-                {% else %}
-                    <div>{{option.name}}</div>
+                    {% if option.pickup_hours %}
+                        {% if option.pickup_hours | length > 1 %}
+                            <ul class="pl-3">
+                                {% for hour in option.pickup_hours %}
+                                    <li>{{ hour }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            {% for hour in option.pickup_hours %}
+                                <div>
+                                    {{ hour }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+                {% if option.payment_rules %}
+                    <div>
+                        <i class="far fa-info-circle" aria-hidden="true"></i>
+                        <i>{{option.payment_rules}}</i>
+                    </div>
                 {% endif %}
+
                 {% if option.suboptions is not empty %}
                     {% include "snipplets/shipping_suboptions/#{option.suboptions.type}.tpl" with {'suboptions': option.suboptions} %}
                 {% endif %}

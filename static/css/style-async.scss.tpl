@@ -3,60 +3,53 @@ style.css
 
     -This file contains all the theme non critical styles wich will be loaded asynchronously
     -Rest of styling can be found in:
-        -static/css/style.scss.tpl --> For color and font styles related to config/settings.txt
-        -snipplets/css/critical-css.tpl --> For critical CSS rendered inline before the rest of the site
+      --static/css/style-colors.scss.tpl --> For color and font styles related to config/settings.txt
+      --static/css/style-critical.tpl --> For critical CSS rendered inline before the rest of the site
 
 ==============================================================================*/
 
 /*============================================================================
   Table of Contents
 
-  #Margin and Padding
   #Components
+    // Margin and Padding
     // Mixins
     // Animations
-    // Placeholders and preloaders
     // Forms
-    // Links
-    // Images
     // Icons
-    // Titles and breadcrumbs
+    // Alerts and Notifications
     // Modals
+    // Tables
+    // Tabs
     // Cards
+  #Header and nav
+    // Nav
+    // Search
+  #Footer
+    // Nav
+    // Newsletter
   #Home page
     // Instafeed
     // Video
-  #Header and nav
-    // Nav
-    // Logo
-    // Cart widget and search
-  #Footer
-    // Copyright
-  #Banners
-    // Image banners
-    // Banner services
+    // Banners
   #Product grid
-    // Preloaders and lazy loading
     // Filters
-    // Sort by
-    // Grid item
   #Product detail
   	// Image
   	// Form and info
-  	// Quickshop
-  #Cart page
   #Media queries
     // Min width 768px
-  
-  #Helper classes
+      //// Components
+      //// Footer
   #Critical path utilities
 
 ==============================================================================*/
-  
 
 /*============================================================================
-  #Margin and Padding
+  #Components
 ==============================================================================*/
+
+{# /* // Margin and Padding */ #}
 
 %section-margin {
   margin-bottom: 70px;
@@ -67,11 +60,6 @@ style.css
 %element-margin-small {
   margin-bottom: 20px;
 }
-
-
-/*============================================================================
-  #Components
-==============================================================================*/
 
 {# /* // Mixins */ #}
 
@@ -181,15 +169,6 @@ style.css
   }
 }
 
-{# /* // Icons */ #}
-
-.social-icon {
-  display: inline-block;
-  padding: 8px;
-  font-size: 22px;
-}
-
-
 {# /* Disabled controls */ #}
 
 input,
@@ -202,6 +181,14 @@ textarea{
     background-color: #DDD;
     cursor: not-allowed; 
   }
+}
+
+{# /* // Icons */ #}
+
+.social-icon {
+  display: inline-block;
+  padding: 8px;
+  font-size: 22px;
 }
 
 {# /* // Alerts and notifications */ #}
@@ -286,7 +273,7 @@ textarea{
   }
   &-close { 
     display: inline-block;
-    padding: 2px 5px 5px 0;
+    padding: 1px 5px 5px 0;
     margin-right: 5px;
     vertical-align: middle;
     cursor: pointer;
@@ -352,7 +339,7 @@ textarea{
   display: block;
 }
 
-{# /* Cards */ #}
+{# /* // Cards */ #}
 
 .card {
 	position: relative;
@@ -447,8 +434,6 @@ textarea{
   }
 }
 
-
-
 .hamburger-panel{
     box-shadow: none;
     .btn-hamburger-close {
@@ -510,11 +495,6 @@ textarea{
   }
 }
 
-.nav-secondary {
-  
-}
-
-
 {# /* // Search */ #}
 
 .search-input {
@@ -564,6 +544,7 @@ footer {
 }
 
 {# /* // Nav */ #}
+
 .footer-menu {
   list-style: none;
   .footer-menu-item{
@@ -598,11 +579,8 @@ footer {
 
 .powered-by-logo {
   display: inline-block;
-  width: 65px;
-  margin-left: 2px; }
-
-.copyright {
-  padding-top: 15px; }
+  width: 160px;
+}
 
 .footer-logo {
   img {
@@ -669,7 +647,6 @@ footer {
     }
   }
 }
-
 
 {# /* // Video */ #}
 
@@ -739,27 +716,6 @@ footer {
 
 {# /* // Filters */ #}
 
-.modal-filters .modal-header {
-    margin-top: 25px;
-}
-.filters-container {
-  padding: 0 15px 15px 15px;
-  .filter-title {
-    margin: 0 0 5px 0;
-  }
-  .btn-filter {
-    margin: 0 5px 5px 0;
-    padding: 0 15px;
-    line-height: 26px;
-    border-radius: 0;
-    border: 1px solid rgba(0,0,0,0.1);
-    &.color-filter {
-      height: 32px;
-      border-radius: 50%;
-    }
-  }
-}
-
 .filter-remove {
   position: relative;
   padding: 10px 28px 10px 10px;
@@ -774,12 +730,6 @@ footer {
     font-size: 12px;
     content: "\f00d";
   }
-}
-
-{# /* // Sort By */ #}
-
-.sort-by-container {
-  margin-bottom: 15px;
 }
 
 /*============================================================================
@@ -812,8 +762,6 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
 .section-products-related {
   @extend %section-margin;
 }
-
-
 
 /*============================================================================
   #Cart detail
@@ -946,7 +894,6 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
   #Media queries
 ==============================================================================*/ #}
 
-
 {# /* // Min width 768px */ #}
 
 @media (min-width: 768px) { 
@@ -981,7 +928,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
     }
   }
 
-  {# /* Footer */ #}
+  {# /* //// Footer */ #}
 
   .footer-menu {
     list-style: none;
@@ -990,17 +937,6 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
       padding: 0 15px;
     }
   }
-  .copyright {
-    padding: 0;
-  }
-
-  {# /* //// Category */ #}
-
-  .sort-by {
-    display: inline-block;
-  }
-
-
 }
 
 {#/*============================================================================

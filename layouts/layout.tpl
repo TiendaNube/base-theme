@@ -48,7 +48,7 @@
 
                 {# If page is loaded from customization page on the admin, load all fonts #}
 
-                @import url('https://fonts.googleapis.com/css?family=Muli:400,700|Lato:400,700|Open+Sans:400,700|Lora:400,700|Slabo+27px|Playfair+Display:00,700|Droid+Sans:400,700&display=swap');
+                @import url('https://fonts.googleapis.com/css?family=Muli:400,700|Lato:400,700|Open+Sans:400,700|Lora:400,700|Slabo+27px|Playfair+Display:400,700|Droid+Sans:400,700|Poppins:400,700,900|Niramit:400,700&display=swap');
 
             {% else %}
 

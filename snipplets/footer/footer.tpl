@@ -72,7 +72,7 @@
                 #}
                 {{ new_powered_by_link }}
             </div>
-            <div class="col-md-6 copyright text-center text-sm-right">
+            <div class="col-md-6 copyright text-center text-sm-right pt-4 pt-md-0">
                 {{ "Copyright {1} - {2}. Todos los derechos reservados." | translate( (store.business_name ? store.business_name : store.name) ~ (store.business_id ? ' - ' ~ store.business_id : ''), "now" | date('Y') ) }}
             </div>
         </div>
