@@ -15,12 +15,15 @@
 		<div class="row">
 			{% if products %}
 				{% set columns = settings.grid_columns %}
-				<div class="col-6{% if columns == 2 %} col-sm-9{% else %} col-sm-8{% endif %}">
+				<div class="col-6{% if columns == 2 %} col-sm-9{% else %} col-sm-9{% endif %}">
 				{% if has_filters %}
 					<a href="#" class="js-modal-open filter-link" data-toggle="#nav-filters">
 						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" %} 
 					</a>		   
 					{% embed "snipplets/modal.tpl" with{modal_id: 'nav-filters', modal_class: 'filters modal-docked-small', modal_position: 'left', modal_transition: 'slide', modal_width: 'full'  } %}
+						{% block modal_head %}
+				            {{'Filtros' | translate }}
+				        {% endblock %}
 						{% block modal_body %}
 							{% snipplet "grid/filters.tpl" %}
 						{% endblock %}
@@ -29,7 +32,7 @@
 					<h6 class="filter-title">{{ 'Filtro aplicado:' | translate }}</h6>
 				{% endif %}
 				</div>
-				<div class="col-6{% if columns == 2 %} col-sm-3{% else %} col-sm-4{% endif %} text-right">
+				<div class="col-6{% if columns == 2 %} col-sm-3{% else %} col-sm-3{% endif %} text-right">
 					{% include 'snipplets/grid/sort-by.tpl' %}
 				</div>
 				<div class="js-append-filters col-12" style="display: none;">

@@ -340,11 +340,11 @@ Página de inicio
 		name = home_order_position_1
 		description = Posición 1
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -352,11 +352,11 @@ Página de inicio
 		name = home_order_position_2
 		description = Posición 2
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -364,11 +364,11 @@ Página de inicio
 		name = home_order_position_3
 		description = Posición 3
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -376,11 +376,11 @@ Página de inicio
 		name = home_order_position_4
 		description = Posición 4
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -388,11 +388,11 @@ Página de inicio
 		name = home_order_position_5
 		description = Posición 5
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -400,11 +400,11 @@ Página de inicio
 		name = home_order_position_6
 		description = Posición 6
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -412,11 +412,11 @@ Página de inicio
 		name = home_order_position_7
 		description = Posición 7
 		values
-			welcome = Mensaje de Bienvenida
-			products = Productos Destacados
+			welcome = Mensaje de bienvenida
+			products = Productos destacados
 			informatives = Banners Informativos
-			categories = Banners de Categorías
-			modules = Módulos de Imagen y Texto
+			categories = Banners de categorías
+			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
 			empty = Ninguno
@@ -439,7 +439,7 @@ Listado de productos
 			1 = 1 en celular y 3 en computadora
 			2 = 2 en celular y 4 en computadora
 	title
-		title = Título para productos destacados
+		title = Título para Productos destacados
 	i18n_input
 		description = Título
 		name = featured_products_title

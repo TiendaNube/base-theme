@@ -224,71 +224,77 @@ $(document).ready(function(){
 
 		{# /* // Home slider */ #}
 
-        {% if settings.slider and settings.slider is not empty %}
+        var width = window.innerWidth;
+        if (width > 767) {  
+            var slider_autoplay = {delay: 6000,};
+        } else {
+            var slider_autoplay = false;
+        }
 
-            var width = window.innerWidth;
-            if (width > 767) {  
-                var slider_autoplay = {delay: 6000,};
-            } else {
-                var slider_autoplay = false;
-            }
+        window.homeSlider = {
+            getAutoRotation: function() {
+                return slider_autoplay;
+            },
+            updateSlides: function(slides) {
+                homeSwiper.removeAllSlides();
+                slides.forEach(function(aSlide){
+                    homeSwiper.appendSlide(
+                        '<div class="swiper-slide slide-container">' +
+                            (aSlide.link ? '<a href="' + aSlide.link + '">' : '' ) +
+                            '<div style="background-image: url(' + aSlide.src + ')" class="slider-slide"></div>' +
+                            (aSlide.link ? '</a>' : '' ) +
+                        '</div>'
+                    );
+                });
+                if(!slides.length){
+                    $(".js-home-slider-container").addClass("hidden");
+                    $(".js-home-empty-slider-container").removeClass("hidden")
+                }else{
+                    $(".js-home-slider-container").removeClass("hidden");
+                    $(".js-home-empty-slider-container").addClass("hidden");
+                }
+            },
+            changeAutoRotation: function(){
 
-            window.homeSlider = {
-                getAutoRotation: function() {
-                    return slider_autoplay;
-                },
-                updateSlides: function(slides) {
-                    homeSwiper.removeAllSlides();
-                    slides.forEach(function(aSlide){
-                        homeSwiper.appendSlide(
-                            '<div class="swiper-slide slide-container">' +
-                                (aSlide.link ? '<a href="' + aSlide.link + '">' : '' ) +
-                                '<div style="background-image: url(' + aSlide.src + ')" class="slider-slide"></div>' +
-                                (aSlide.link ? '</a>' : '' ) +
-                            '</div>'
-                        );
-                    });
-                },
-                changeAutoRotation: function(){
-
-                },
-            };
-            var homeSwiper = new Swiper ('.js-home-slider', {
-                {% if not params.preview %}
-                lazy: true,
-                {% endif %}
+            },
+        };
+        var homeSwiper = new Swiper ('.js-home-slider', {
+            {% if not params.preview %}
+            lazy: true,
+            {% endif %}
+            {% if settings.slider | length > 1 %}
                 loop: true,
-                autoplay: slider_autoplay,
-                pagination: {
-                    el: '.js-swiper-home-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.js-swiper-home-next',
-                    prevEl: '.js-swiper-home-prev',
-                },
-                on: {
-                    init: function () {
-                      $(".js-home-slider-placeholder").hide();
-                      $(".js-home-slider").css({"visibility" : "visible" , "height" : "100%"});
-                    },
-                },
-            });
-
-            {% if settings.slider | length == 1 %}
-                $('.js-swiper-home .swiper-wrapper').addClass( "disabled" );
-                $('.js-swiper-home-pagination, .js-swiper-home-prev, .js-swiper-home-next').remove();
             {% endif %}
+            autoplay: slider_autoplay,
+            watchOverflow: true,
+            pagination: {
+                el: '.js-swiper-home-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.js-swiper-home-next',
+                prevEl: '.js-swiper-home-prev',
+            },
+            on: {
+                init: function () {
+                  $(".js-home-slider-placeholder").hide();
+                  $(".js-home-slider").css({"visibility" : "visible" , "height" : "100%"});
+                },
+            },
+        });
 
-            var head_height = $(".js-head-main").height();
-
-            {% if not settings.head_transparent %}
-                $(".js-home-slider").css("padding-top", head_height); 
-            {% endif %}
-            
-            $(".js-home-slider").css("margin-top", - head_height);             
-
+        {% if settings.slider | length == 1 %}
+            $('.js-swiper-home .swiper-wrapper').addClass( "disabled" );
+            $('.js-swiper-home-pagination, .js-swiper-home-prev, .js-swiper-home-next').remove();
         {% endif %}
+
+        var head_height = $(".js-head-main").height();
+
+        {% if not settings.head_transparent %}
+            $(".js-home-slider").css("padding-top", head_height); 
+        {% endif %}
+        
+        $(".js-home-slider").css("margin-top", - head_height);             
 
         {% if sections.primary.products %}
 
@@ -322,10 +328,22 @@ $(document).ready(function(){
 
         {# /* // Product Related */ #}
 
+            {% set related_products_ids = product.metafields.related_products.related_products_ids %}
+            {% if related_products_ids %}
+                {% set related_products = related_products_ids | get_products %}
+                {% set show = (related_products | length > 0) %}
+            {% endif %}
+            {% if not show %}
+                {% set related_products = category.products | shuffle | take(8) %}
+                {% set show = (related_products | length > 1) %}
+            {% endif %}
+
             {% set columns = settings.grid_columns %}
             var relatedSwiper = new Swiper ('.js-swiper-related', {
                 lazy: true,
+                {% if related_products | length > 4 %}
                 loop: true,
+                {% endif %}
                 spaceBetween: 30,
                 slidesPerView: {% if columns == 2 %}2{% else %}1{% endif %},
                 pagination: {
@@ -338,7 +356,7 @@ $(document).ready(function(){
                 },
                 breakpointsInverse: true,
                 breakpoints: {
-                    640: {
+                    767: {
                         slidesPerView: {% if columns == 2 %}4{% else %}3{% endif %},
                     }
                 }
@@ -348,7 +366,7 @@ $(document).ready(function(){
 
 
 
-	{% set has_banner_services = settings.banner_services or settings.banner_services_category or settings.banner_services_home %}
+	{% set has_banner_services = settings.banner_services %}
 
 	{% if has_banner_services %}
 

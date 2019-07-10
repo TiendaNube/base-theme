@@ -1,4 +1,6 @@
-{% if status_page_url %}
+{# Order notification #}
+
+{% if order_notification and status_page_url %}
     <div data-url="{{ status_page_url }}" class="js-notification notification notification-secondary" style="display:none;">
         <div class="container">
             <div class="row">
@@ -11,9 +13,13 @@
     </div>
 {% endif %}
 
-<div class="js-alert-added-to-cart notification-floating notification-hidden" style="display: none;">
-    <div class="js-toggle-cart notification notification-primary"> 
-        <i class="far fa-shopping-cart"></i>
-        <span>{{ '¡Excelente! Ya agregamos tu producto al carrito.' | translate }}</span>
+{# Add to cart notification #}
+
+{% if add_to_cart %}
+    <div class="js-alert-added-to-cart notification-floating notification-hidden" style="display: none;">
+        <div class="js-toggle-cart notification notification-primary"> 
+            <i class="far fa-shopping-cart"></i>
+            <span>{{ '¡Excelente! Ya agregamos tu producto al carrito.' | translate }}</span>
+        </div>
     </div>
-</div>
+{% endif %}

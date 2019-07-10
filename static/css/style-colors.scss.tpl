@@ -3,23 +3,29 @@ style.scss.tpl
 
     -This file contains all the theme styles related to settings defined by user from config/settings.txt
     -Rest of styling can be found in:
-        -static/css/style.css --> For non critical styles witch will be loaded asynchronously
-        -snipplets/css/critical-css.tpl --> For critical CSS rendered inline before the rest of the site
+      --static/css/style-async.css.tpl --> For non critical styles witch will be loaded asynchronously
+      --static/css/style-critical.tpl --> For critical CSS rendered inline before the rest of the site
 
 ==============================================================================*/#}
 
 {# /*============================================================================
   Table of Contents
+
   #Colors and fonts
     // Colors
     // Font families
+    // SVG Icons
     // Texts
-  #Margin and Padding
   #Components
+    // Margin and padding
     // Mixins
-    // Wrappers
     // Animations
+    // Functions
+    // Wrappers
+    // Placeholders
+    // Dividers
     // Breadcrumbs
+    // Headings
     // Buttons
     // Links
     // Modals
@@ -28,7 +34,6 @@ style.scss.tpl
     // Cards
     // Panels
     // Pills
-    // Dividers
     // Preloaders
     // Banners
     // Sliders
@@ -53,7 +58,6 @@ style.scss.tpl
     // Header
     // Search
   #Footer
-    // Copyright
 
 ==============================================================================*/ #}
 
@@ -75,18 +79,36 @@ $body-font: {{ settings.font_rest | raw }};
 {# /* // SVG Icons */ #}
 
 .svg-icon-primary{
-   fill: $primary-color;
+  fill: $primary-color;
 }
 .svg-icon-text{
-    fill: $main-foreground;
+  fill: $main-foreground;
 }
 .svg-icon-invert{
-    fill: $main-background;
+  fill: $main-background;
+}
+
+{# /* // Texts */ #}
+
+.text-primary {
+  color: $primary-color;
+}
+
+.text-secondary {
+  color: $main-background;
 }
 
 {#/*============================================================================
   #Margin and Padding
 ==============================================================================*/#}
+
+
+
+{#/*============================================================================
+  #Components
+==============================================================================*/#}
+
+{# /* // Margin and padding */ #}
 
 %section-margin {
   margin-bottom: 70px;
@@ -97,11 +119,6 @@ $body-font: {{ settings.font_rest | raw }};
 %element-margin-half {
   margin-bottom: 10px;
 }
-
-{#/*============================================================================
-  #Components
-==============================================================================*/#}
-
 
 {# /* // Mixins */ #}
 
@@ -213,7 +230,6 @@ body{
   background-color:rgba($main-foreground, 0.2);
 }
 
-
 {# /* // Dividers */ #}
 
 .divider{
@@ -229,22 +245,7 @@ body{
   @extend %element-margin-half;
 }
 
-
 {# /* Headings */ #}
-
-.page-header {
-  @extend %element-margin;
-  h1, .h1{
-    margin-bottom: 0;
-  }
-}
-
-.category-header {
-  @extend %element-margin;
-  h1, .h1{
-    margin-bottom: 0;
-  }
-}
 
 h1,.h1,
 h2,.h2,
@@ -254,6 +255,13 @@ h5,.h5,
 h6,.h6{
   margin-top: 0;
   font-family: $heading-font;
+}
+
+.page-header {
+  @extend %element-margin;
+  h1, .h1{
+    margin-bottom: 0;
+  }
 }
 
 {# /* // Buttons */ #}
@@ -296,6 +304,12 @@ h6,.h6{
       color: $main-background;
     }
   }
+  &-secondary{
+    padding: 10px 15px; 
+    background-color: $main-background;
+    color: $main-foreground;
+    border: 1px solid $main-foreground;
+  }
   &-block{
     float: left;
     width: 100%;
@@ -313,6 +327,10 @@ h6,.h6{
     @extend %body-font;
     border-bottom: 2px solid;
   }
+  &-circle{
+    height: 32px;
+    border-radius: 50%;
+  }
   &-facebook{
     background-color: #1977f2;
     .svg-fb-icon {
@@ -327,6 +345,7 @@ h6,.h6{
 }
 
 button{
+  @extend %body-font;
   cursor: pointer;
   &:focus{
     outline: 0;
