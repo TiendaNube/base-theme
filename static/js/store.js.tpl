@@ -451,7 +451,7 @@ $(document).ready(function(){
                 userId: '{{ userid }}',
                 accessToken: '{{ settings.instafeed_accesstoken }}',
                 resolution: resolution,
-                template: '<div class="col-4"><a class="instafeed-link" href="{{instlink}}" target="_blank"><div class="instafeed-img lazyload" data-bg="{{instimg}}">{% if settings.instafeed_like %}<div class="instafeed-info"><span class="instafeed-info-item"><i class="far fa-heart"></i> {{instlike}}</span></div>{% endif %}</div></a></div>',
+                template: '<div class="col-4"><a class="instafeed-link" href="{{instlink}}" target="_blank"><div class="instafeed-img lazyload" data-bg="{{instimg}}">{% if settings.instafeed_like %}<div class="instafeed-info"><span class="instafeed-info-item">{% include "snipplets/svg/heart.tpl" with {svg_custom_class: "icon-inline"} %} {{instlike}}</span></div>{% endif %}</div></a></div>',
                 limit: feedqty
            });
            userFeed.run();

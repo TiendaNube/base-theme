@@ -22,7 +22,7 @@
   <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
   <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>
   <span class="js-promo-buying" style="display:none;"> {{ "comprando" | translate }}</span>
-  <span class="js-promo-units-or-more" style="display:none;"> {{ "o más un." | translate }}</span>
+  <span class="js-promo-units-or-more" style="display:none;"> {{ "o más" | translate }}</span>
   {% for promotion in cart.promotional_discount.promotions_applied %}
     {% if(promotion.scope_value_id) %}
       {% set id = promotion.scope_value_id %}
@@ -40,7 +40,7 @@
           {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
 
           {% if promotion.discount_script_type == "NAtX%off" %}
-            <span>{{ "Comprando {1} o más un." | translate(promotion.selected_threshold.quantity) }}</span>
+            <span>{{ "Comprando {1} o más" | translate(promotion.selected_threshold.quantity) }}</span>
           {% endif %}
           :
         </span>

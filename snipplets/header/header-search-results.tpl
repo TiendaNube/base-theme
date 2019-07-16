@@ -37,7 +37,7 @@
                     {% endif %}
                 </div>
                 <div class="col-xs-auto">
-                    <i class="search-suggest-icon far fa-chevron-right"></i>
+                    {% include "snipplets/svg/chevron-right.tpl" with {svg_custom_class: "icon-inline search-suggest-icon"} %}
                 </div>
             </a>
         </li>

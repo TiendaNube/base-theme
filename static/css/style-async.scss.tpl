@@ -146,7 +146,7 @@ style.css
   }
   &-label{
     display: table;
-    padding-top: 2px;
+    padding-top: 1px;
   }
   &-text{
     display: table;
@@ -484,7 +484,7 @@ textarea{
     top: 15px;
     right: 10px;
     margin-top: -10px;
-    &.selected i{
+    &.selected svg{
       transform-origin: center;
       transform: rotate(180deg);
       -webkit-transform: rotate(180deg);
@@ -726,9 +726,8 @@ footer {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-family: "Font Awesome 5 Pro";
-    font-size: 12px;
-    content: "\f00d";
+    right: 10px;
+    width: 10px;
   }
 }
 
@@ -827,7 +826,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
   }
 }
 
-.cart-quantity-input-container i{
+.cart-quantity-input-container svg{
   padding: 6px 14px;
 }
 

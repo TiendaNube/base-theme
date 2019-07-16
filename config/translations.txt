@@ -620,14 +620,14 @@ pt "Nesta promoção você pode combinar este produto com outros da mesma catego
 en "You can combine this offer with other products of the same category"
 es_mx "Combina esta promoción con otros productos de la misma categoría."
 
-es "Comprando {1} o más."
-pt "Comprando {1} ou mais un."
-en "Buying :amount un. or more"
-es_mx "Comprando {1} o más."
+es "Comprando {1} o más"
+pt "Comprando {1} ou mais"
+en "Buying {1} or more"
+es_mx "Comprando {1} o más"
 
-es "¡{1}% OFF comprando {2} o más un.!"
-pt "{1}% OFF comprando {2} ou mais un.!"
-en "Buying :amount un. or more"
+es "¡{1}% OFF comprando {2} o más!"
+pt "{1}% OFF comprando {2} ou mais!"
+en "{1}% OFF buying {2} or more!"
 es_mx "¡{1}% OFF comprando {2} o más!"
 
 es "comprando"
@@ -635,10 +635,10 @@ pt "comprando"
 en "buying"
 es_mx "comprando"
 
-es "o más."
-pt "ou mais un."
-en "or more un."
-es_mx "o más."
+es "o más"
+pt "ou mais"
+en "or more"
+es_mx "o más"
 
 --- --- CTA
 

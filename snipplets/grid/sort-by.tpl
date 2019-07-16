@@ -8,7 +8,7 @@
 'created-descending': 'Más Nuevo al más Viejo',
 'best-selling': 'Más Vendidos',
 } %}
-{% embed "snipplets/forms/form-select.tpl" with{select_label: false, select_custom_class: 'js-sort-by'} %}
+{% embed "snipplets/forms/form-select.tpl" with{select_label: false, select_custom_class: 'js-sort-by', select_group_custom_class: 'mb-0'} %}
 	{% block select_options %}
 		{% for sort_method in sort_methods %}
 	        {# This is done so we only show the user sorting method when the user chooses it #}

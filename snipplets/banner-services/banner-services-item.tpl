@@ -3,19 +3,19 @@
         
         <div class="col-sm-auto">
             {% if banner_services_icon == 'shipping' %}
-                {% include "snipplets/svg/truck.tpl" with {'service': true} %}
+                {% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline icon-w-20 icon-2x service-icon"} %}
             {% elseif banner_services_icon == 'card' %}
-                {% include "snipplets/svg/credit-card-blank.tpl" with {'service': true} %}
+                {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-2x service-icon"} %}
             {% elseif banner_services_icon == 'security' %}
-                {% include "snipplets/svg/lock.tpl" with {'service': true} %}
+                {% include "snipplets/svg/lock.tpl" with {svg_custom_class: "icon-inline icon-w-14 icon-2x service-icon"} %}
             {% elseif banner_services_icon == 'returns' %}
-                {% include "snipplets/svg/sync-alt.tpl" with {'service': true} %}
+                {% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline icon-w-16 icon-2x service-icon"} %}
             {% elseif banner_services_icon == 'whatsapp' %}
-                {% include "snipplets/svg/whatsapp.tpl" with {'service': true} %}
+                {% include "snipplets/svg/whatsapp.tpl" with {svg_custom_class: "icon-inline icon-w-16 icon-2x service-icon service-icon-big"} %}
             {% elseif banner_services_icon == 'promotions' %}
-                {% include "snipplets/svg/tag.tpl" with {'service': true} %}
+                {% include "snipplets/svg/tag.tpl" with {svg_custom_class: "icon-inline icon-w-16 icon-2x service-icon"} %}
             {% elseif banner_services_icon == 'cash' %}
-                {% include "snipplets/svg/dollar-sign.tpl" with {'service': true} %}
+                {% include "snipplets/svg/dollar-sign.tpl" with {svg_custom_class: "icon-inline icon-w-9 icon-2x service-icon"} %}
             {% endif %}
         </div>
         <div class="col">

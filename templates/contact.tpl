@@ -6,7 +6,7 @@
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-8">
-				{% include "snipplets/contact-links.tpl" with {'columns': false} %}
+				{% include "snipplets/contact-links.tpl" %}
 			</div>
 		</div>
 		<div class="row justify-content-md-center">

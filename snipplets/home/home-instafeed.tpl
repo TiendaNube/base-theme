@@ -4,7 +4,17 @@
             <div class="row">
                 {% set instuser = store.instagram|split('/')|last %}
                 <div class="col-12 text-center">
-                    {% if store.instagram %}<a target="_blank" href="{{ store.instagram }}" class="instafeed-title"><i class="fab fa-2x fa-instagram"></i> <h3 class="instafeed-user">{{ instuser }}</h3></a>{% else %}<div class="instafeed-title"><i class="fab fa-2x fa-instagram"></i> <h3 class="instafeed-user">Instagram</h3></div>{% endif %}
+                    {% if store.instagram %}
+                        <a target="_blank" href="{{ store.instagram }}" class="instafeed-title">
+                            {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-text"} %}
+                            <h3 class="instafeed-user">{{ instuser }}</h3>
+                        </a>
+                    {% else %}
+                        <div class="instafeed-title">
+                            {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-text"} %}
+                            <h3 class="instafeed-user">{{ "Instagram" | translate }}</h3>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

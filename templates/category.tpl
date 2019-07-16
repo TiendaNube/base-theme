@@ -12,13 +12,13 @@
 				{% endembed %}
 			</div>
 		</div>
-		<div class="row">
+		<div class="row mb-3 align-items-center">
 			{% if products %}
 				{% set columns = settings.grid_columns %}
 				<div class="col-6{% if columns == 2 %} col-sm-9{% else %} col-sm-9{% endif %}">
 				{% if has_filters %}
 					<a href="#" class="js-modal-open filter-link" data-toggle="#nav-filters">
-						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" %} 
+						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" with {svg_custom_class: "icon-inline icon-w-16"} %} 
 					</a>		   
 					{% embed "snipplets/modal.tpl" with{modal_id: 'nav-filters', modal_class: 'filters modal-docked-small', modal_position: 'left', modal_transition: 'slide', modal_width: 'full'  } %}
 						{% block modal_head %}
@@ -35,9 +35,11 @@
 				<div class="col-6{% if columns == 2 %} col-sm-3{% else %} col-sm-3{% endif %} text-right">
 					{% include 'snipplets/grid/sort-by.tpl' %}
 				</div>
-				<div class="js-append-filters col-12" style="display: none;">
-				</div>
 			{% endif %}
+		</div>
+		<div class="row">
+			<div class="js-append-filters col-12 mb-3 mt-3" style="display: none;">
+			</div>
 		</div>
 	</div>
 </section>
@@ -52,11 +54,12 @@
 	        {% if pages.current == 1 and not pages.is_last %}
              	<div class="text-center mt-5 mb-5">
 	                <a class="js-load-more btn btn-primary">
-	                	<i class="js-load-more-spinner far fa-sync-alt fa-spin" style="display:none;"></i>{{ 'Mostrar más productos' | t }}
+	                	<span class="js-load-more-spinner" style="display:none;">{% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline icon-spin"} %}</span>
+	                	{{ 'Mostrar más productos' | t }}
 	                </a>
 	            </div>
 	             <div id="js-infinite-scroll-spinner" class="mt-5 mb-5 text-center w-100" style="display:none">
-                    <i class="far fa-sync-alt fa-spin fa-3x"></i>
+                    {% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline icon-3x svg-icon-text icon-spin"} %} 
                 </div>
 	        {% endif %}
 	    {% else %}

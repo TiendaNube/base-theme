@@ -28,7 +28,7 @@
     <div class="js-product-promo-container text-center text-sm-left">
         {% if product.promotional_offer.script.is_discount_for_quantity %}
             {% for threshold in product.promotional_offer.parameters %}
-                <h4 class="mb-2"><strong>{{ "¡{1}% OFF comprando {2} o más un.!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>
+                <h4 class="mb-2"><strong>{{ "¡{1}% OFF comprando {2} o más!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>
             {% endfor %}
         {% else %}
             <h4 class="mb-2"><strong>{{ "¡Llevá {1} y pagá {2}!" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}</strong></h4> 

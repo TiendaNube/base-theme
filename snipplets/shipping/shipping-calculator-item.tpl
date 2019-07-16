@@ -68,7 +68,7 @@
                 </div>
                 {% if option.payment_rules %}
                     <div>
-                        <i class="far fa-info-circle" aria-hidden="true"></i>
+                        {% include "snipplets/svg/info-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
                         <i>{{option.payment_rules}}</i>
                     </div>
                 {% endif %}

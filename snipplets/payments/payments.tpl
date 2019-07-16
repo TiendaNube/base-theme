@@ -6,7 +6,7 @@
 
     {% embed "snipplets/modal.tpl" with{modal_id: 'installments-modal', modal_position: 'bottom', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered'  } %}
         {% block modal_head %}
-            {{'Medios de pago ' | translate }}
+            {{'Medios de pago' | translate }}
         {% endblock %}
         {% block modal_body %}
 

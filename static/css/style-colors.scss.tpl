@@ -292,22 +292,26 @@ h6,.h6{
     padding: 10px 15px; 
     background-color: rgba($main-foreground, .2);
     color: $main-foreground;
+    fill: $main-foreground;
     font-weight: bold;
   }
   &-primary{
     padding: 15px;
-  	background-color: $primary-color;
-  	color: $main-background;
+    background-color: $primary-color;
+    color: $main-background;
+    fill: $main-background;
     letter-spacing: 4px;
     @extend %body-font;
     &:hover{
       color: $main-background;
+      fill: $main-background;
     }
   }
   &-secondary{
     padding: 10px 15px; 
     background-color: $main-background;
     color: $main-foreground;
+    fill: $main-foreground;
     border: 1px solid $main-foreground;
   }
   &-block{
@@ -323,6 +327,7 @@ h6,.h6{
   &-line{
     padding: 10px 0;
     color: $main-background;
+    fill: $main-background;
     letter-spacing: 4px;
     @extend %body-font;
     border-bottom: 2px solid;
@@ -334,11 +339,6 @@ h6,.h6{
   &-facebook{
     background-color: #1977f2;
     .svg-fb-icon {
-      position: relative;
-      bottom: 1px;
-      height: 26px;
-      margin-right: 10px;
-      vertical-align: middle;
       fill: #fff;
     }
   }
@@ -367,23 +367,28 @@ button{
 
 a {
   color: $main-foreground;
+  fill: $main-foreground;
   @include prefix(transition, all 0.4s ease, webkit ms moz o);
   &:hover,
   &:focus{
     color: rgba($main-foreground, .5);
+    fill: rgba($main-foreground, .5);
   }
 }
 
 .link-contrast {
   color: $main-background;
+  fill: $main-background;
   &:hover,
   &:focus{
     color: rgba($main-background, .8);
+    fill: rgba($main-background, .8);
   }
 }
 
 .btn-link{
   color: $primary-color;
+  fill: $primary-color;
   text-transform: uppercase;
   border-bottom: 1px solid;
   font-weight: bold;
@@ -391,6 +396,7 @@ a {
   &:hover,
   &:focus{
     color: rgba($primary-color, .5);
+    fill: rgba($primary-color, .5);
   }
 }
 
@@ -469,8 +475,6 @@ textarea {
   }
 }
 
-
-
 {# /* // Alerts and notifications */ #}
 
 .alert{
@@ -504,6 +508,7 @@ textarea {
 
 .notification-primary{
   color: $primary-color;
+  fill: $primary-color;
   border-color: rgba($primary-color, .2);
   background-color: rgba($primary-color, .1);
 }
@@ -593,10 +598,6 @@ textarea {
   @extend %element-margin;
 }
 
-.video-player-icon {
-  color: $main-background;
-}
-
 {# /* // Instafeed */ #}
 
 .section-instafeed-home {
@@ -611,6 +612,7 @@ textarea {
 
 .instafeed-info {
   color: $main-background;
+  fill: $main-background;
   background: rgba($main-foreground, .6);
 }
 
@@ -646,6 +648,9 @@ textarea {
 .filter-remove {
   background: none;
   border-color: rgba(0,0,0,0.2);
+  &:after{
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="%23{{ settings.text_color |trim('#') }}"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"/></svg>');
+  }
 }
 
 

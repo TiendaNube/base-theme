@@ -61,13 +61,16 @@
                                 {% endblock %}
                                 {% block card_body %}
                                     <p>
-                                        <i class="far fa-info-circle"></i> <strong>{{'Estado' | translate}}:</strong> {{ (order.status == 'open'? 'Abierta' : (order.status == 'closed'? 'Cerrada' : 'Cancelada')) | translate }}
+                                        {% include "snipplets/svg/info-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                                        <strong>{{'Estado' | translate}}:</strong> {{ (order.status == 'open'? 'Abierta' : (order.status == 'closed'? 'Cerrada' : 'Cancelada')) | translate }}
                                     </p>
                                     <p>
-                                        <i class="far fa-credit-card-blank"></i> <strong>{{'Pago' | translate}}: </strong><span class="{{ order.payment_status }}">{{ (order.payment_status == 'pending'? 'Pendiente' : (order.payment_status == 'authorized'? 'Autorizado' : (order.payment_status == 'paid'? 'Pagado' : (order.payment_status == 'voided'? 'Cancelado' : (order.payment_status == 'refunded'? 'Reintegrado' : 'Abandonado'))))) | translate }}</span>
+                                        {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                                        <strong>{{'Pago' | translate}}: </strong><span class="{{ order.payment_status }}">{{ (order.payment_status == 'pending'? 'Pendiente' : (order.payment_status == 'authorized'? 'Autorizado' : (order.payment_status == 'paid'? 'Pagado' : (order.payment_status == 'voided'? 'Cancelado' : (order.payment_status == 'refunded'? 'Reintegrado' : 'Abandonado'))))) | translate }}</span>
                                     </p>
                                     <p>
-                                        <i class="far fa-truck"></i> <strong>{{'Envío' | translate}}:</strong> {{ (order.shipping_status == 'fulfilled'? 'Enviado' : 'No enviado') | translate }}
+                                        {% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                                        <strong>{{'Envío' | translate}}:</strong> {{ (order.shipping_status == 'fulfilled'? 'Enviado' : 'No enviado') | translate }}
                                     </p>
                                     <h4 class="m-0 mt-4">
                                         <strong>{{'Total' | translate}}</strong> {{ order.total | money }}

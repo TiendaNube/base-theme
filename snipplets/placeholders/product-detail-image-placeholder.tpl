@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="placeholder-icon">
-        {% include "snipplets/svg/shopping-bag.tpl" with {'huge': true} %}
+        {% include "snipplets/svg/shopping-bag.tpl" with {svg_custom_class: "icon-inline icon-w-14 icon-8x svg-icon-text"} %}
     </div>
     <div class="placeholder-shine">
     </div>

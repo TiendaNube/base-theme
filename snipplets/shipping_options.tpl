@@ -22,9 +22,14 @@
 
         {% if has_options_to_hide %}
             <div class="js-show-more-shipping-options d-inline-block w-100 mt-3 text-center">
-                <a href="#" class=" btn-link">
-                    <span class="js-shipping-see-more">{{ 'Ver más opciones' | translate }}<i class="far fa-chevron-down ml-1" aria-hidden="true"></i></span>
-                    <span class="js-shipping-see-less" style="display: none;">{{ 'Ver menos opciones' | translate }}<i class="far fa-chevron-up ml-1" aria-hidden="true"></i></span>
+                <a href="#" class="btn-link">
+                    <span class="js-shipping-see-more">
+                        {{ 'Ver más opciones' | translate }}
+                        {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "icon-inline ml-1"} %}
+                    </span>
+                    <span class="js-shipping-see-less" style="display: none;">{{ 'Ver menos opciones' | translate }}
+                        {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline ml-1"} %}
+                    </span>
                 </a>
             </div>
             <div class="js-other-shipping-option w-100 mt-3" style="display: none;">
@@ -37,7 +42,8 @@
 
     <div class="js-product-shipping-label font-small mt-3 pull-left" style="display: none;">
         <span class="js-shipping-filled-cart js-visible-on-cart-filled" {% if cart.items_count == 0 %}style="display:none;"{% endif%}>
-            <i class="far fa-info-circle mr-1"></i><span>{{ 'El precio de envío incluye este producto y todos los que agregaste al carrito.' | translate }}</span>
+            {% include "snipplets/svg/info-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
+            <span>{{ 'El precio de envío incluye este producto y todos los que agregaste al carrito.' | translate }}</span>
         </span>
     </div>
 {% else %}

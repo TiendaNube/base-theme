@@ -32,7 +32,7 @@
         {% endblock select_options %}
     </select>
     <div class="form-select-icon">
-        {% include "snipplets/svg/chevron-down.tpl" %}
+        {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "icon-inline icon-w-14 icon-lg svg-icon-text"} %}
     </div>
 </div>
 

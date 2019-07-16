@@ -4,7 +4,7 @@
     		<div class="js-nav-list-toggle-accordion">
 	            <a class="nav-list-link" href="{{ item.url }}">{{ item.name }}</a>
 	            <span class="js-toggle-page-accordion nav-list-arrow transition-soft">
-	            	<i class="far fa-chevron-down"></i>
+	            	{% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
 	            </span>
 	        </div>
 			<ul class="js-pages-accordion list-subitems nav-list-accordion" style="display:none;">
