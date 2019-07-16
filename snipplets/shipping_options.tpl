@@ -25,7 +25,7 @@
                 <a href="#" class="btn-link">
                     <span class="js-shipping-see-more">
                         {{ 'Ver más opciones' | translate }}
-                        {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "icon-inline"} %}
+                        {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "icon-inline ml-1"} %}
                     </span>
                     <span class="js-shipping-see-less" style="display: none;">{{ 'Ver menos opciones' | translate }}
                         {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline ml-1"} %}

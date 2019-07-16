@@ -25,7 +25,7 @@
                         {{ 'Elegir local' | translate }}
                     </span>
                 {% endif %}
-                {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "js-see-branches icon-inline"} %}
+                {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "js-see-branches icon-inline ml-1"} %}
 
                 <span class="js-hide-branches" style="display: none;">
                     {% if product_detail %}
@@ -35,7 +35,7 @@
                             {{ 'Ocultar local' | translate }}
                         {% endif %}
                     {% endif %}
-                    {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline"} %}
+                    {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline ml-1"} %}
                 </span>
             </div>
         </div>
