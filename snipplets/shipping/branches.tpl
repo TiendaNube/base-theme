@@ -1,7 +1,7 @@
 <div class="js-toggle-branches w-100">
     <span class="form-row">
         <div class="col-auto">
-            <i class="far fa-store fa-lg link-module-icon"></i>
+            {% include "snipplets/svg/store.tpl" with {svg_custom_class: "icon-inline icon-lg link-module-icon svg-icon-text"} %}
         </div>
         <div class="col-6">
             <div class="mb-1"> 
@@ -25,7 +25,7 @@
                         {{ 'Elegir local' | translate }}
                     </span>
                 {% endif %}
-                <i class="js-see-branches far fa-chevron-down"></i>
+                {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "js-see-branches icon-inline"} %}
 
                 <span class="js-hide-branches" style="display: none;">
                     {% if product_detail %}
@@ -35,7 +35,7 @@
                             {{ 'Ocultar local' | translate }}
                         {% endif %}
                     {% endif %}
-                    <i class="far fa-chevron-up"></i>
+                    {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline"} %}
                 </span>
             </div>
         </div>

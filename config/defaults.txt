@@ -1,7 +1,7 @@
 primary_color = #0CE8DD
 background_color = #F9F9F2
 text_color = #808080
-head_background = transparent
+head_background = dark
 head_fix = 1
 home_display = both
 slider_auto = 0

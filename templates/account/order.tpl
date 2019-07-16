@@ -11,24 +11,30 @@
                 {% endif %}
                 <h4>{{ 'Detalles' | translate }}</h4>
                 <p>
-                    <i class="far fa-calendar-alt"></i> <strong>{{'Fecha' | translate}}:</strong> {{ order.date | i18n_date('%d/%m/%Y') }}
+                    {% include "snipplets/svg/calendar-alt.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                    <strong>{{'Fecha' | translate}}:</strong> {{ order.date | i18n_date('%d/%m/%Y') }}
                 </p>
                 <p>
-                    <i class="far fa-info-circle"></i> <strong>{{'Estado' | translate}}:</strong> {{ (order.status == 'open'? 'Abierta' : (order.status == 'closed'? 'Cerrada' : 'Cancelada')) | translate }}
+                    {% include "snipplets/svg/info-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                    <strong>{{'Estado' | translate}}:</strong> {{ (order.status == 'open'? 'Abierta' : (order.status == 'closed'? 'Cerrada' : 'Cancelada')) | translate }}
                 </p>
                 <p>
-                    <i class="far fa-credit-card-blank"></i> <strong>{{'Pago' | translate}}:</strong> {{ (order.payment_status == 'pending'? 'Pendiente' : (order.payment_status == 'authorized'? 'Autorizado' : (order.payment_status == 'paid'? 'Pagado' : (order.payment_status == 'voided'? 'Cancelado' : (order.payment_status == 'refunded'? 'Reintegrado' : 'Abandonado'))))) | translate }}
+                    {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                    <strong>{{'Pago' | translate}}:</strong> {{ (order.payment_status == 'pending'? 'Pendiente' : (order.payment_status == 'authorized'? 'Autorizado' : (order.payment_status == 'paid'? 'Pagado' : (order.payment_status == 'voided'? 'Cancelado' : (order.payment_status == 'refunded'? 'Reintegrado' : 'Abandonado'))))) | translate }}
                 </p>
                 <p>
-                    <i class="far fa-usd-circle"></i> <strong>{{'Medio de pago' | translate}}:</strong> {{ order.payment_name }}
+                    {% include "snipplets/svg/usd-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                    <strong>{{'Medio de pago' | translate}}:</strong> {{ order.payment_name }}
                 </p>
 
                 {% if order.address %}
                     <p>
-                        <i class="far fa-truck"></i> <strong>{{'Envío' | translate}}:</strong> {{ (order.shipping_status == 'fulfilled'? 'Enviado' : 'No enviado') | translate }}
+                        {% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                        <strong>{{'Envío' | translate}}:</strong> {{ (order.shipping_status == 'fulfilled'? 'Enviado' : 'No enviado') | translate }}
                     </p>
                     <p> 
-                        <i class="far fa-map-marker-alt"></i> <strong>{{ 'Dirección de envío' | translate }}:</strong>
+                        {% include "snipplets/svg/map-marker-alt.tpl" with {svg_custom_class: "icon-inline svg-icon-text mr-1"} %}
+                        <strong>{{ 'Dirección de envío' | translate }}:</strong>
                         <span class="d-block">
                             {{ order.address | format_address }}
                         </span>

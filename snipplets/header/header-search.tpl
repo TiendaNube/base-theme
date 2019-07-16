@@ -2,7 +2,7 @@
 	<div class="form-group m-0">
         <input class="js-search-input form-control search-input" autocomplete="off" type="search" name="q" placeholder="{{ 'Buscar' | translate }}"/>
         <button type="submit" class="btn search-input-submit" value="">
-            <i class="far fa-search"></i>
+            {% include "snipplets/svg/search.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
         </button>
 	</div>
 </form>

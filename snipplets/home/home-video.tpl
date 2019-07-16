@@ -5,7 +5,9 @@
                 <div class="col">
                     <div class="js-video-home embed-responsive embed-responsive-16by9">
                         <div class="js-play-button video-player">
-                            <div class="video-player-icon"><i class="far fa-2x fa-play-circle"></i></div>
+                            <div class="video-player-icon">
+                                {% include "snipplets/svg/play-circle.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-invert"} %}
+                            </div>
                         </div>
                         <div class="js-video-image">
                             <img data-src="" class="lazyload js-lazy-loading img-fluid video-image">

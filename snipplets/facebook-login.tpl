@@ -1,7 +1,7 @@
 {% if store_fb_app_id %}
 
     <a class="btn btn-primary btn-facebook d-block mb-4" onclick="loginFacebook();" >
-        {% include "snipplets/svg/facebook.tpl" %}
+        {% include "snipplets/svg/facebook.tpl" with {svg_custom_class: "svg-fb-icon"} %}
         {{ 'Facebook login' | translate }}
     </a>
     {% if result.facebook and result.invalid %}

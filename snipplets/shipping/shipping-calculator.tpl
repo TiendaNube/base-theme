@@ -7,7 +7,7 @@
             {% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_value: cart.shipping_zipcode, input_name: 'zipcode', input_custom_class: 'js-shipping-input', input_placeholder: "Código postal" | translate, input_label: false, input_append_content: true, input_group_custom_class: 'form-row align-items-center mb-3', form_control_container_custom_class: 'col-5'} %}
 	            {% block input_prepend_content %}
 	            	<span class="col-1">
-		            	{% include "snipplets/svg/truck.tpl" %}
+		            	{% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-lg svg-icon-text"} %}
 	        	 	</span>
 	    		{% endblock input_prepend_content %}
                 {% block input_form_alert %}
@@ -22,7 +22,9 @@
 	                <button class="js-calculate-shipping btn btn-default btn-block">	
 				    	<span class="js-calculate-shipping-wording">{{ "Calcular envío" | translate }}</span>
 			    		<span class="js-calculating-shipping-wording" style="display: none;">{{ "Calculando" | translate }}</span>
-				    	<span class="loading" style="display: none;"><i class="far fa-sync-alt fa-spin"></i></span>
+				    	<span class="loading" style="display: none;">
+				    		{% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline svg-icon-text icon-spin"} %}
+				    	</span>
 				    </button>
 	    		    {% if shipping_calculator_variant %}
 				    	<input type="hidden" name="variant_id" id="shipping-variant-id" value="{{ shipping_calculator_variant.id }}">

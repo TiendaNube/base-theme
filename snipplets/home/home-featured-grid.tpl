@@ -33,8 +33,8 @@
     {% if featured_slider %}
                 </div>
                 <div class="js-swiper-featured-pagination swiper-pagination"></div>
-                <div class="js-swiper-featured-prev swiper-button-prev d-none d-sm-block">{% include "snipplets/svg/chevron-left.tpl" with {'big': true} %}</div>
-                <div class="js-swiper-featured-next swiper-button-next d-none d-sm-block">{% include "snipplets/svg/chevron-right.tpl" with {'big': true} %}</div>
+                <div class="js-swiper-featured-prev swiper-button-prev d-none d-sm-block">{% include "snipplets/svg/chevron-left.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
+                <div class="js-swiper-featured-next swiper-button-next d-none d-sm-block">{% include "snipplets/svg/chevron-right.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
             </div>
         </div>
     {% endif %}

@@ -27,7 +27,7 @@
     {% endif %}
     <div class="js-modal-close modal-header">
         <span class="modal-close">
-            <i class="far fa-times"></i>
+            {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
         </span>
         {% block modal_head %}{% endblock %}
     </div>

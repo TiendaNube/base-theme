@@ -76,7 +76,7 @@
                 {% endif %}
             {% endfor %}
               <li>
-                {% include "snipplets/svg/credit-card-blank.tpl" %}
+                {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-2x svg-icon-text"} %}
               </li>
           </ul>
         {% endif %}

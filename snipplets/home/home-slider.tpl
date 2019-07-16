@@ -18,8 +18,8 @@
 	        {% endfor %}
 	    </div>
 	    <div class="js-swiper-home-pagination swiper-pagination swiper-pagination-white"></div>
-	    <div class="js-swiper-home-prev swiper-button-prev d-none d-sm-block">{% include "snipplets/svg/chevron-left.tpl" with {'invert': true} %}</div>
-	    <div class="js-swiper-home-next swiper-button-next d-none d-sm-block">{% include "snipplets/svg/chevron-right.tpl" with {'invert': true} %}</i></div>
+	    <div class="js-swiper-home-prev swiper-button-prev d-none d-sm-block">{% include "snipplets/svg/chevron-left.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-lg svg-icon-invert"} %}</div>
+	    <div class="js-swiper-home-next swiper-button-next d-none d-sm-block">{% include "snipplets/svg/chevron-right.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-lg svg-icon-invert"} %}</div>
 	</div>
 	{% snipplet 'placeholders/home-slider-placeholder.tpl' %}
 </section>
