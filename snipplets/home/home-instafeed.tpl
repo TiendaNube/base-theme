@@ -12,7 +12,7 @@
                     {% else %}
                         <div class="instafeed-title">
                             {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-text"} %}
-                            <h3 class="instafeed-user">Instagram</h3>
+                            <h3 class="instafeed-user">{{ "Instagram" | translate }}</h3>
                         </div>
                     {% endif %}
                 </div>
