@@ -297,8 +297,8 @@ h6,.h6{
   }
   &-primary{
     padding: 15px;
-  	background-color: $primary-color;
-  	color: $main-background;
+    background-color: $primary-color;
+    color: $main-background;
     fill: $main-background;
     letter-spacing: 4px;
     @extend %body-font;
