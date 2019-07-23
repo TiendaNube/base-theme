@@ -99,7 +99,7 @@
         {% head_content %}
 
     </head>
-    <body {% if settings.head_fix %}class="js-head-offset head-offset"{% endif %} itemscope itemtype="http://schema.org/WebPage" itemid="body">
+    <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}" itemscope itemtype="http://schema.org/WebPage" itemid="body">
         {# Facebook comments on product page #}
 
         {% if template == 'product' %}
