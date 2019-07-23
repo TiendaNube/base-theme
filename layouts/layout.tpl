@@ -188,10 +188,5 @@
                 {% include "static/js/store.js.tpl" %}
             });
         </script>
-        
-        {# Google survey JS for Tienda Nube Survey #}
-
-        {% include "static/js/google-survey.js.tpl" %}
-
     </body>
 </html>

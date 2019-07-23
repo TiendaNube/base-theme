@@ -144,10 +144,5 @@
             {% include "static/js/external-no-dependencies.js.tpl" %}
 
         </script>
-
-        {# Google survey JS for Tienda Nube Survey #}
-
-        {% include "static/js/google-survey.js.tpl" %}
-
     </body>
 </html>
