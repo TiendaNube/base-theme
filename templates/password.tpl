@@ -94,7 +94,7 @@
         {% head_content %}
 
     </head>
-    <body itemscope itemtype="http://schema.org/WebPage" itemid="body">
+    <body itemscope itemtype="http://schema.org/WebPage" itemid="body" class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}">
         
         {# Back to admin bar #}
 
@@ -144,10 +144,5 @@
             {% include "static/js/external-no-dependencies.js.tpl" %}
 
         </script>
-
-        {# Google survey JS for Tienda Nube Survey #}
-
-        {% include "static/js/google-survey.js.tpl" %}
-
     </body>
 </html>
