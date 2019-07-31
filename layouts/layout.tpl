@@ -161,7 +161,7 @@
 
         {# Footer #}
 
-        {% snipplet "footer/footer.tpl" %}
+        {% snipplet "footer.tpl" %}
 
         {#/*============================================================================
             #Javascript: Needed after HTML loads

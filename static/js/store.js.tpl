@@ -27,14 +27,12 @@
   	#Product detail functions
 	  	// Installments
 	  	// Change Variant
-	  	// Submit to contact form
 	  	// Product labels on variant change
 	  	// Color and size variants change
 	  	// Custom mobile variants change
 	  	// Submit to contact
 	  	// Product slider
 	  	// Pinterest sharing
-	  	// Add to cart
         // Product quantity
   	#Cart
   		// Toggle cart 
@@ -260,7 +258,9 @@ $(document).ready(function(){
         };
         var homeSwiper = new Swiper ('.js-home-slider', {
             {% if not params.preview %}
-            lazy: true,
+            lazy: {
+                loadPrevNext: true,
+            },
             {% endif %}
             {% if settings.slider | length > 1 %}
                 loop: true,
