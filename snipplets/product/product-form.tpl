@@ -12,12 +12,13 @@
     <span class="d-inline-block">
 	   <h4 id="compare_price_display" class="js-compare-price-display price-compare {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
     </span>
-    <spa class="d-inline-block">
+    <span class="d-inline-block">
     	<h4 class="js-price-display {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" id="price_display" itemprop="price"{% if product.display_price %} content="{{ product.price / 100 }}"{% endif %} {% if not product.display_price %}style="display:none;"{% endif %}>{% if product.display_price %}{{ product.price | money }}{% endif %}</h4>
     </span>
 	<meta itemprop="priceCurrency" content="{{ product.currency }}" />
 	{% if product.stock_control %}
         <meta itemprop="inventoryLevel" content="{{ product.stock }}" />
+        {% set schema_org_availability = "http://schema.org/#{ product.stock ? 'InStock' : 'OutOfStock' }" %}
         <meta itemprop="availability" href="http://schema.org/{{ product.stock ? 'InStock' : 'OutOfStock' }}" content="{{ product.stock ? 'In stock' : 'Out of stock' }}" />
     {% endif %}
 </div>
@@ -31,17 +32,17 @@
                 <h4 class="mb-2"><strong>{{ "¡{1}% OFF comprando {2} o más!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>
             {% endfor %}
         {% else %}
-            <h4 class="mb-2"><strong>{{ "¡Llevá {1} y pagá {2}!" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}</strong></h4> 
+            <h4 class="mb-2"><strong>{{ "¡Llevá {1} y pagá {2}!" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}</strong></h4>
         {% endif %}
         {% if product.promotional_offer.scope_type == 'categories' %}
-            <p>{{ "Válido para" | translate }} {{ "este producto y todos los de la categoría" | translate }}:  
+            <p>{{ "Válido para" | translate }} {{ "este producto y todos los de la categoría" | translate }}:
             {% for scope_value in product.promotional_offer.scope_value_info %}
                {{ scope_value.name }}{% if not loop.last %}, {% else %}.{% endif %}
             {% endfor %}</br>{{ "Podés combinar esta promoción con otros productos de la misma categoría." | translate }}</p>
         {% elseif product.promotional_offer.scope_type == 'all'  %}
             <p>{{ "Vas a poder aprovechar esta promoción en cualquier producto de la tienda." | translate }}</p>
-        {% endif %}  
-    </div> 
+        {% endif %}
+    </div>
 {% endif %}
 
 {# Product installments #}
@@ -72,19 +73,19 @@
         <div id="product-shipping-container" class="product-shipping-calculator list" {% if not product.display_price or not product.has_stock %}style="display:none;"{% endif %}>
 
             {# Shipping Calculator #}
-            
+
             {% if store.has_shipping %}
                 {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_show': settings.shipping_calculator_cart_page and not product.free_shipping, 'shipping_calculator_variant' : product.selected_or_first_available_variant} %}
             {% endif %}
 
             {% if store.branches and store.country != 'BR' %}
-                
+
                 {# Link for branches #}
                 {% include "snipplets/shipping/branches.tpl" with {'product_detail': true} %}
             {% endif %}
         </div>
         <div class="divider"></div>
-    {% endif %} 
+    {% endif %}
  </form>
 
 {# Product payments details #}
