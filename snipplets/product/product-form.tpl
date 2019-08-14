@@ -18,7 +18,7 @@
 	<meta itemprop="priceCurrency" content="{{ product.currency }}" />
 	{% if product.stock_control %}
         <meta itemprop="inventoryLevel" content="{{ product.stock }}" />
-        <meta itemprop="availability" href="http://schema.org/{{ product.stock ? 'InStock' : 'OutOfStock' }}" content="{{ product.stock ? 'In stock' : 'Out of stock' }}" />
+        <meta itemprop="availability" href="http://schema.org/{{ product.stock ? 'InStock' : 'OutOfStock' }}" content="http://schema.org/{{ product.stock ? 'InStock' : 'OutOfStock' }}" />
     {% endif %}
 </div>
 
