@@ -19,7 +19,7 @@
 	{% if product.stock_control %}
         <meta itemprop="inventoryLevel" content="{{ product.stock }}" />
         {% set schema_org_availability = "http://schema.org/#{ product.stock ? 'InStock' : 'OutOfStock' }" %}
-        <meta itemprop="availability" href="http://schema.org/{{ product.stock ? 'InStock' : 'OutOfStock' }}" content="{{ product.stock ? 'In stock' : 'Out of stock' }}" />
+        <meta itemprop="availability" href="{{ schema_org_availability }}" content="{{ schema_org_availability }}" />
     {% endif %}
 </div>
 
