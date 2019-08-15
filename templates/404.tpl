@@ -6,7 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 text-center">
-				<p class="mb-1">{{ "La página que estás buscando no existe." | translate }}</br>
+				<p class="mb-1">{{ "La página que estás buscando no existe." | translate }}</p></br>
 			</div>
 		</div>
 		{% set related_products = sections.primary.products | take(4) | shuffle %}

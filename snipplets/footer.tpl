@@ -1,5 +1,5 @@
-{% set has_social_network = store.facebook or store.twitter or store.google_plus or store.pinterest or store.instagram %} 
-{% set has_footer_contact_info = store.phone or store.email or store.blog or store.address %}          
+{% set has_social_network = store.facebook or store.twitter or store.google_plus or store.pinterest or store.instagram %}
+{% set has_footer_contact_info = store.phone or store.email or store.blog or store.address %}
 
 {% set has_footer_menu = settings.footer_menu %}
 {% set has_payment_logos = settings.payments %}
@@ -16,7 +16,7 @@
 			{% endif %}
 
 		{% endif %}
-        
+
 
         {# Social #}
  		{% if has_social_network %}
@@ -103,7 +103,7 @@
 	                            {% if settings.seal_url != '' %}
                                     <a href="{{ settings.seal_url }}" target="_blank">
                                 {% endif %}
-                                    <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ "seal_img.jpg" | static_url }}" class="custom-seal-img lazyload" />
+                                    <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ "seal_img.jpg" | static_url }}" class="custom-seal-img lazyload" alt="Empty placeholder" />
                                 {% if settings.seal_url != '' %}
                                     </a>
                                 {% endif %}
