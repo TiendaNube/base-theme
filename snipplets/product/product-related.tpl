@@ -37,7 +37,7 @@
                             {% endfor %}
                         </div>
                         {% if related_products | length < 4 %}
-                        <div class="d-sm-none">
+                        <div class="d-md-none">
                         {% endif %}
                             <div class="js-swiper-related-pagination swiper-pagination"></div>
                             <div class="js-swiper-related-prev swiper-button-prev">{% include "snipplets/svg/chevron-left.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>

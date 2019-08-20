@@ -26,7 +26,7 @@
                 {% if banner_url %}
                     <a class="module-with-text-link" href="{{ module_url }}"{% if module_title %} alt="{{ module_title }}" title="{{ module_title }}"{% endif %}>
                 {% endif %}
-                    <div class="col-sm {% if module_align == 'right' %}order-sm-2{% endif %}">
+                    <div class="col-md {% if module_align == 'right' %}order-md-2{% endif %}">
                         <div class="textbanner">
                         {% if store.thumbnails_enabled %}
                             <div class="textbanner-image{% if has_banner_text and textoverimage %} overlay{% endif %} lazyautosizes lazyload blur-up"{% if "#{module}.jpg" | has_custom_image %} data-bgset='{{ "#{module}.jpg" | static_url | settings_image_url('large') }} 480w, {{ "#{module}.jpg" | static_url | settings_image_url('huge') }} 640w' data-sizes="auto" style="background-image: url({{ "#{module}.jpg" | static_url | settings_image_url('tiny') }});"{% endif %}>
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm">
+                    <div class="col-md">
                         <div class="textbanner-text{% if textoverimage %} over-image{% endif %}">
                             {% if module_title %}
                                 <div class="h1 textbanner-title">{{ module_title }}</div>

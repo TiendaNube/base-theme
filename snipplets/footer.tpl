@@ -1,5 +1,5 @@
-{% set has_social_network = store.facebook or store.twitter or store.google_plus or store.pinterest or store.instagram %}
-{% set has_footer_contact_info = store.phone or store.email or store.blog or store.address %}
+{% set has_social_network = store.facebook or store.twitter or store.google_plus or store.pinterest or store.instagram %} 
+{% set has_footer_contact_info = store.phone or store.email or store.blog or store.address %}          
 
 {% set has_footer_menu = settings.footer_menu %}
 {% set has_payment_logos = settings.payments %}
@@ -16,7 +16,7 @@
 			{% endif %}
 
 		{% endif %}
-
+        
 
         {# Social #}
  		{% if has_social_network %}
@@ -57,7 +57,7 @@
 		{% endif %}
 
 		<div class="row element-footer">
-			<div class="col-md-6 text-center text-sm-left">
+			<div class="col-md-6 text-center text-md-left">
                 {#
                 La leyenda que aparece debajo de esta linea de código debe mantenerse
                 con las mismas palabras y con su apropiado link a Tienda Nube;
@@ -72,7 +72,7 @@
                 #}
                 {{ new_powered_by_link }}
             </div>
-            <div class="col-md-6 copyright text-center text-sm-right pt-4 pt-md-0">
+            <div class="col-md-6 copyright text-center text-md-right pt-4 pt-md-0">
                 {{ "Copyright {1} - {2}. Todos los derechos reservados." | translate( (store.business_name ? store.business_name : store.name) ~ (store.business_id ? ' - ' ~ store.business_id : ''), "now" | date('Y') ) }}
             </div>
         </div>
@@ -103,7 +103,7 @@
 	                            {% if settings.seal_url != '' %}
                                     <a href="{{ settings.seal_url }}" target="_blank">
                                 {% endif %}
-                                    <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ "seal_img.jpg" | static_url }}" class="custom-seal-img lazyload" alt="Empty placeholder" />
+                                    <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ "seal_img.jpg" | static_url }}" class="custom-seal-img lazyload" alt="Empty placeholder"/>
                                 {% if settings.seal_url != '' %}
                                     </a>
                                 {% endif %}

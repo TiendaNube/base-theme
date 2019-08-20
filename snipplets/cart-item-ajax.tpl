@@ -2,7 +2,7 @@
 
   {# Cart item image #}
   <div class="col-2 {% if cart_page %}col-md-1{% endif %}">
-    <img src="{{ item.featured_image | product_image_url('medium') }}" class="img-fluid" alt="{{ item.short_name }}"/>
+    <img src="{{ item.featured_image | product_image_url('medium') }}" class="img-fluid" />
   </div>
   <div class="col-10 {% if cart_page %}col-md-11{% endif %}">
 

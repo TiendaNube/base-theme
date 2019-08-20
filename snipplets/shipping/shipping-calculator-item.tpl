@@ -30,6 +30,9 @@
                                     {{option.cost}}
                                 {% endif %}
                             </span>
+                            {% if option.cost.value == 0 and option.old_cost.value %}
+                                <span class="price-compare text-foreground font-small ml-1">{{option.old_cost}}</span>
+                            {% endif %}
                         </div>
                     {% endif %}
                     {% if option.time %}

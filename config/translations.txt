@@ -496,6 +496,16 @@ en "The page you are looking for does not exist"
 
 --- Sections ---
 
+es "Destacados"
+pt "Destaques"
+en "Featured"
+es_mx "Destacados"
+
+es "Los productos aparecen destacados en la página de inicio (hasta 40 productos)."
+pt "Os produtos são apresentados em destaque na página inicial (até 40 produtos)."
+en "The products appear featured on your home page (up to 40 products)"
+es_mx "Los productos aparecen destacados en la página de inicio (hasta 40 productos)."
+
 es "Página Principal"
 pt "Página Principal"
 en "Main"
@@ -1910,6 +1920,41 @@ es "El costo del envío se calculará después."
 pt "O frete será calculado depois."
 en "Shipping cost will be calculated at checkout"
 es_mx "El costo del envío se calculará después."
+
+es "<strong>Tenés envío gratis</strong> en esta compra. ¡Aprovechalo!"
+pt "Você ganhou <strong>frete grátis</strong> para esta compra. Aproveite!"
+en "You have <strong>free shipping</strong> in this order. Go for it!"
+es_mx "<strong>Tienes envío gratis</strong> en esta compra. ¡Aprovéchalo!"
+
+es "¡Genial! <strong class='text-primary'>Tenés envío gratis</strong> en esta compra"
+pt "Sucesso! Você <strong class='text-primary'>tem frete grátis</strong> para esta compra."
+en "You have <strong class='text-primary'>free shipping</strong> in this order."
+es_mx "¡Genial! <strong class='text-primary'>Tienes envío gratis</strong> en esta compra"
+
+es "¡Estas a <strong class='js-cart-free-shipping-amount'></strong> de tener <strong class='text-primary m-quarter-bottom'>envío gratis</strong> en tu compra!"
+pt "<strong>Ganhe frete grátis</strong> com mais <strong class='js-cart-free-shipping-amount'></strong> em compras"
+en "You need <strong class='js-cart-free-shipping-amount'></strong> to have <strong class='text-primary m-quarter-bottom'>free shipping</strong> on your order"
+es_mx "¡Estas a <strong class='js-cart-free-shipping-amount'></strong> de tener <strong class='text-primary m-quarter-bottom'>envío gratis</strong> en tu compra!"
+
+es "Ver más productos"
+pt "Escolher mais produtos"
+en "See more products"
+es_mx "Ver más productos"
+
+es "¡Todos los productos de esta categoría <strong>tienen envío gratis!</strong>"
+pt "Todos os produtos desta categoria <strong>tienen envío gratis!</strong>"
+en "All the products in this category <strong>have free shipping!</strong>"
+es_mx "¡Todos los productos de esta categoría <strong>tienen envío gratis!</strong>"
+
+es "<strong class='text-primary'>Envío gratis</strong> superando los"
+pt "<strong class='text-primary'>Frete grátis</strong> para compras acima de"
+en "<strong class='text-primary'>Free shipping</strong> buying more than"
+es_mx "<strong class='text-primary'>Envío gratis</strong> superando los"
+
+es "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios de envío"
+pt "<strong class='text-primary'>Frete grátis!</strong> com todos os meios de envio"
+en "<strong class='text-primary'>Free shipping!</strong> with all shipping options"
+es_mx "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios de envío"
 
 --- Installments ---
 

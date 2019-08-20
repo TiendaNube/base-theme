@@ -19,7 +19,7 @@
 
     <div class="container">
         <div class="row section-single-product">
-            <div class="col-12 col-md-7 px-0 px-sm-3">
+            <div class="col-12 col-md-7 px-0 px-md-3">
             	{% include 'snipplets/product/product-image.tpl' %}
             </div>
             <div class="col">

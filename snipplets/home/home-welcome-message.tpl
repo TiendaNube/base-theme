@@ -2,7 +2,7 @@
     <section class="section-welcome-home">
         <div class="container">
             <div class="row">
-                <div class="col-sm-8 offset-sm-2">
+                <div class="col-md-8 offset-md-2">
                     <h2 class="welcome-title">{{ settings.welcome_message }}</h2>
                     {% if settings.welcome_text %}
                         <p class="welcome-text">{{ settings.welcome_text }}</p>

@@ -237,7 +237,7 @@ textarea{
   &-full {
     width: 100%;
   }
-  &-docked-sm{
+  &-docked-md{
     width: 100%;
   }
   &-docked-small{
@@ -908,7 +908,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
       left: 10%;
       margin: 5% auto;
     }
-    &-docked-sm{
+    &-docked-md{
       width: 500px;
     }
     &-docked-small{
