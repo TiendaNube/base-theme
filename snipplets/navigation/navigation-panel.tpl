@@ -15,7 +15,7 @@
     {% endif %}
     <ul class="nav-account">
         {% if not customer %}
-            {% if store.customer_accounts != 'mandatory' %}
+            {% if 'mandatory' not in store.customer_accounts %}
             <li class="nav-accounts-item">{{ "Crear cuenta" | translate | a_tag(store.customer_register_url, '', 'nav-accounts-link') }}</li>
             {% endif %}
             <li class="nav-accounts-item">{{ "Iniciar sesión" | translate | a_tag(store.customer_login_url, '', 'nav-accounts-link') }}</li>
