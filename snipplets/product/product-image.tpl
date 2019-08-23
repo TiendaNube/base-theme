@@ -13,7 +13,7 @@
 	    </div>
 	    <div class="js-swiper-product-pagination swiper-pagination swiper-pagination-white"></div>
 	    {% if product.images_count > 1 %}
-		    <div class="js-swiper-product-prev swiper-button-prev d-none d-md-block">{% include "snipplets/svg/chevron-left.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
+			<div class="js-swiper-product-prev swiper-button-prev d-none d-md-block">{% include "snipplets/svg/chevron-left.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
 	        <div class="js-swiper-product-next swiper-button-next d-none d-md-block">{% include "snipplets/svg/chevron-right.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
         {% endif %}
 	</div>
