@@ -5,7 +5,7 @@
 <div id="store-curr" class="hidden">{{ cart.currency }}</div>
     
 {# Cart panel subtotal #}
-<h5 class="js-visible-on-cart-filled {% if not cart_page %}row{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
+<h5 class="js-visible-on-cart-filled {% if not cart_page %}row no-gutters{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
   <span {% if not cart_page %}class="col"{% endif %}>
     {{ "Subtotal" | translate }}
     {% if settings.shipping_calculator_cart_page %}
@@ -97,7 +97,7 @@
 {# Cart panel total #}
 
 <div class="js-cart-total-container js-visible-on-cart-filled mb-3" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
-  <h2 class="{% if not cart_page %}row{% else %}text-right{% endif %} text-primary mb-0">
+  <h2 class="{% if not cart_page %}row no-gutters{% else %}text-right{% endif %} text-primary mb-0">
     <span {% if not cart_page %}class="col"{% endif %}>{{ "Total" | translate }}:</span>
     <span class="js-cart-total {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} {% if not cart_page %}col{% endif %} text-right">{{ cart.total | money }}</span>
   </h2>

@@ -12,19 +12,19 @@
 
 	            		{# Free shipping achieved label #}
 
-						<span class="js-free-shipping-message" {% if not free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
+						<span class="js-free-shipping-message" {% if not cart.free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
 							{{ "¡Genial! <strong class='text-primary'>Tenés envío gratis</strong> en esta compra" | translate }}
 						</span>
 
 						{# Free shipping with min price label #}
 
-						<span class="js-shipping-calculator-label" {% if free_shipping.cart_has_free_shipping or not free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
-							{{ "<strong class='text-primary'>Envío gratis</strong> superando los" | translate }} <span>{{ free_shipping.min_price_free_shipping.min_price }}</span>
+						<span class="js-shipping-calculator-label" {% if cart.free_shipping.cart_has_free_shipping or not cart.free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
+							{{ "<strong class='text-primary'>Envío gratis</strong> superando los" | translate }} <span>{{ cart.free_shipping.min_price_free_shipping.min_price }}</span>
 						</span>
 
 						{# Shipping default label #}
 
-						<span class="js-shipping-calculator-label-default" {% if free_shipping.cart_has_free_shipping or free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
+						<span class="js-shipping-calculator-label-default" {% if cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
 
 							{# Regular shipping calculator label #}
 							
