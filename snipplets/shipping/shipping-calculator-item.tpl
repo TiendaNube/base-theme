@@ -48,7 +48,7 @@
                     {% endif %}
                 </div>
                 <div class="radio-button-text">
-                    {{option.short_name}}
+                    {{option.short_name}} {{ option.method == 'branch'  ? option.extra.extra  :  '' }}
                 </div>
                 {% if option.payment_rules %}
                     <div>
