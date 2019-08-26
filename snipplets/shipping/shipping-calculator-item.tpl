@@ -49,25 +49,6 @@
                 </div>
                 <div class="radio-button-text">
                     {{option.short_name}}
-
-                    {% if option.pickup_address %}
-                       {{ option.pickup_address }}
-                    {% endif %}
-                    {% if option.pickup_hours %}
-                        {% if option.pickup_hours | length > 1 %}
-                            <ul class="pl-3">
-                                {% for hour in option.pickup_hours %}
-                                    <li>{{ hour }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% else %}
-                            {% for hour in option.pickup_hours %}
-                                <div>
-                                    {{ hour }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endif %}
                 </div>
                 {% if option.payment_rules %}
                     <div>
