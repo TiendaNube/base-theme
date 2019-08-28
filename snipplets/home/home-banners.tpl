@@ -21,7 +21,7 @@
                 {% set has_banner =  banner_show and (banner_title or banner_description or "#{banner}.jpg" | has_custom_image) %}
                 {% set has_banner_text =  banner_title or banner_description or banner_button_text %}
                 {% if has_banner %}
-                    <div class="col-sm">
+                    <div class="col-md">
                         <div class="textbanner">
                             {% if banner_url %}
                                 <a class="textbanner-link" href="{{ banner_url }}"{% if banner_title %} alt="{{ banner_title }}" title="{{ banner_title }}"{% endif %}>

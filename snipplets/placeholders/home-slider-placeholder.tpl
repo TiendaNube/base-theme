@@ -1,6 +1,6 @@
 {# Mobile home slider placeholder: to be hidden after content loaded #}
 {% if settings.slider and settings.slider is not empty %}
-    <div class="js-home-slider-placeholder placeholder-full-height placeholder-container d-sm-none overflow-hidden">
+    <div class="js-home-slider-placeholder placeholder-full-height placeholder-container d-md-none overflow-hidden">
         <div class="container home-placeholder-icons">
             <div class="row">
                 <div class="col-10 offset-1 mb-3 placeholder-line-medium placeholder-color">

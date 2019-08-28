@@ -1,7 +1,7 @@
-<div class="service-item-container col-sm swiper-slide p-0 px-sm-3">
-    <div class="service-item row justify-content-md-center text-sm-left">
+<div class="service-item-container col-md swiper-slide p-0 px-md-3">
+    <div class="service-item row justify-content-md-center text-md-left">
         
-        <div class="col-sm-auto">
+        <div class="col-md-auto">
             {% if banner_services_icon == 'shipping' %}
                 {% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline icon-w-20 icon-2x service-icon"} %}
             {% elseif banner_services_icon == 'card' %}

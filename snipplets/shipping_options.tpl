@@ -16,7 +16,7 @@
             {% endif %}
         {% endfor %}
 
-        {% for option in options_to_show if store.country == 'BR' or option.img_code != "branch" %}
+        {% for option in options_to_show if store.country == 'BR' or option.method != "branch" %}
             {% include "snipplets/shipping/shipping-calculator-item.tpl" with {'featured_option': true} %}
         {% endfor %}
 
@@ -33,7 +33,7 @@
                 </a>
             </div>
             <div class="js-other-shipping-option w-100 mt-3" style="display: none;">
-                {% for option in options_to_hide if store.country == 'BR' or option.img_code != "branch" %}
+                {% for option in options_to_hide if store.country == 'BR' or option.method != "branch" %}
                     {% include "snipplets/shipping/shipping-calculator-item.tpl" %}
                 {% endfor %}
                 </div>

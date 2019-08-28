@@ -310,7 +310,7 @@ p{
 .icon-xs {
   font-size: .75em;
 }
-.icon-sm {
+.icon-md {
   font-size: .875em; 
 }
 .icon-lg {

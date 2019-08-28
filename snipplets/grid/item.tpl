@@ -11,7 +11,7 @@
 {% set slide_item = slide_item | default(false) %}
 {% set columns = settings.grid_columns %}
 
-<div class="{% if slide_item %}swiper-slide{% else %}col{% if columns == 2 %}-6 col-sm-3{% else %}-12 col-sm-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}">
+<div class="{% if slide_item %}swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}">
     {% set product_url_with_selected_variant = has_filters ?  ( product.url | add_param('variant', product.selected_or_first_available_variant.id)) : product.url  %}
     <div class="item-image mb-2">
         <div style="padding-bottom: {{ product.featured_image.dimensions['height'] / product.featured_image.dimensions['width'] * 100}}%;" class="p-relative">

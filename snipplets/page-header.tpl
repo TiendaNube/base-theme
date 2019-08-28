@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row">
 	{% endif %}
-			<div class="{% if template != 'product' %}col text-center{% endif %} {% if template == 'product' %}text-center text-sm-left{% endif %}">
+			<div class="{% if template != 'product' %}col text-center{% endif %} {% if template == 'product' %}text-center text-md-left{% endif %}">
 				{% include 'snipplets/breadcrumbs.tpl' %}
 			    <h1>{% block page_header_text %}{% endblock %}</h1>
 			</div>

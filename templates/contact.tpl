@@ -11,20 +11,20 @@
 		</div>
 		<div class="row justify-content-md-center">
 			<div class="col-md-8">
-				{% if product %}
-					<div>
+				{% if product %}  
+					<div> 
 						<p>{{ "Usted está consultando por el siguiente producto:" | translate }} </br> {{ product.name | a_tag(product.url) }}</p>
 						<img src="{{ product.featured_image | product_image_url('thumb') }}" title="{{ product.name }}" alt="{{ product.name }}" />
 					</div>
-				{% endif %}
+				{% endif %}	
 				{% if contact %}
 					{% if contact.success %}
 						<div class="alert alert-success">{{ "¡Gracias por contactarnos! Vamos a responderte apenas veamos tu mensaje." | translate }}</div>
 					{% else %}
 						<div class="alert alert-danger">{{ "Necesitamos tu nombre y un email para poder responderte." | translate }}</div>
 					{% endif %}
-				{% endif %}
-
+				{% endif %}	
+				
 				{% embed "snipplets/forms/form.tpl" with{form_id: 'contact-form', form_custom_class: 'js-winnie-pooh-form', form_action: '/winnie-pooh', submit_name: 'contact', submit_text: 'Enviar' | translate } %}
 					{% block form_body %}
 

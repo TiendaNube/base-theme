@@ -18,7 +18,7 @@
     {% if product_can_show_installments %}
 
       {# If NOT product detail, just include installments alone without link or container #}
-      <div class="{% if product_detail %}js-max-installments-container js-max-installments text-center text-sm-left{% else %}item-installments{% endif %}">
+      <div class="{% if product_detail %}js-max-installments-container js-max-installments text-center text-md-left{% else %}item-installments{% endif %}">
         {% set max_installments_without_interests = product.get_max_installments(false) %}
         {% set max_installments_with_interests = product.get_max_installments %}
         {% if store.country == 'AR' %}
@@ -55,10 +55,10 @@
     {% endif %}
 
     {% if product_detail and installments_info %}
-      <div class="form-row align-items-center align-items-start-sm mb-4">
+      <div class="form-row align-items-center align-items-start-md mb-4">
         {% set has_payment_logos = settings.payments %}
         {% if has_payment_logos %}
-          <ul class="list-inline col col-sm-auto text-center text-sm-left mb-1">
+          <ul class="list-inline col col-md-auto text-center text-md-left mb-1">
             {% for payment in settings.payments %}
                 {# Payment methods flags #}
                 {% if store.country == 'BR' %}
@@ -80,7 +80,7 @@
               </li>
           </ul>
         {% endif %}
-        <div class="col-12 col-sm-auto text-center">
+        <div class="col-12 col-md-auto text-center">
           <a id="btn-installments" class="btn-link" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
             {% set store_set_for_new_installments_view = store.is_set_for_new_installments_view %}
             {% if store_set_for_new_installments_view %}

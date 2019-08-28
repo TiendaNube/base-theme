@@ -16,7 +16,7 @@
 
 {% set has_image_sizes = max_product_width > 0 %}
 
-<div class="js-product-slider-placeholder d-sm-none product-placeholder-container placeholder-container {% if product.images_count == 1 %}hidden-when-content-ready{% endif %}">
+<div class="js-product-slider-placeholder d-md-none product-placeholder-container placeholder-container {% if product.images_count == 1 %}hidden-when-content-ready{% endif %}">
     <div class="p-relative overflow-none" {% if has_image_sizes %}style="padding-bottom: {{ max_product_height / max_product_width * 100}}%;"{% endif %}>
         <div class="product-placeholder img-absolute">
         </div>

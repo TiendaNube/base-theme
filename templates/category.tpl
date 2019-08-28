@@ -15,7 +15,7 @@
 		<div class="row mb-3 align-items-center">
 			{% if products %}
 				{% set columns = settings.grid_columns %}
-				<div class="col-6{% if columns == 2 %} col-sm-9{% else %} col-sm-9{% endif %}">
+				<div class="col-6{% if columns == 2 %} col-md-9{% else %} col-md-9{% endif %}">
 				{% if has_filters %}
 					<a href="#" class="js-modal-open filter-link" data-toggle="#nav-filters">
 						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" with {svg_custom_class: "icon-inline icon-w-16"} %} 
@@ -32,7 +32,7 @@
 					<h6 class="filter-title">{{ 'Filtro aplicado:' | translate }}</h6>
 				{% endif %}
 				</div>
-				<div class="col-6{% if columns == 2 %} col-sm-3{% else %} col-sm-3{% endif %} text-right">
+				<div class="col-6{% if columns == 2 %} col-md-3{% else %} col-md-3{% endif %} text-right">
 					{% include 'snipplets/grid/sort-by.tpl' %}
 				</div>
 			{% endif %}

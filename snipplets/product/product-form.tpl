@@ -8,24 +8,25 @@
 
 {# Product price #}
 
-<div class="price-container text-center text-sm-left" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+<div class="price-container text-center text-md-left" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
     <span class="d-inline-block">
 	   <h4 id="compare_price_display" class="js-compare-price-display price-compare {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
     </span>
-    <spa class="d-inline-block">
+    <span class="d-inline-block">
     	<h4 class="js-price-display {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" id="price_display" itemprop="price"{% if product.display_price %} content="{{ product.price / 100 }}"{% endif %} {% if not product.display_price %}style="display:none;"{% endif %}>{% if product.display_price %}{{ product.price | money }}{% endif %}</h4>
     </span>
 	<meta itemprop="priceCurrency" content="{{ product.currency }}" />
 	{% if product.stock_control %}
         <meta itemprop="inventoryLevel" content="{{ product.stock }}" />
-        <meta itemprop="availability" href="http://schema.org/{{ product.stock ? 'InStock' : 'OutOfStock' }}" content="{{ product.stock ? 'In stock' : 'Out of stock' }}" />
+        {% set schema_org_availability = "http://schema.org/#{ product.stock ? 'InStock' : 'OutOfStock' }" %}
+        <meta itemprop="availability" href="{{ schema_org_availability }}" content="{{ schema_org_availability }}" />
     {% endif %}
 </div>
 
 {# Promotional text #}
 
 {% if product.promotional_offer and not product.promotional_offer.script.is_percentage_off and product.display_price %}
-    <div class="js-product-promo-container text-center text-sm-left">
+    <div class="js-product-promo-container text-center text-md-left">
         {% if product.promotional_offer.script.is_discount_for_quantity %}
             {% for threshold in product.promotional_offer.parameters %}
                 <h4 class="mb-2"><strong>{{ "¡{1}% OFF comprando {2} o más!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>

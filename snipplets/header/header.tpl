@@ -35,7 +35,7 @@
 
 {# Modal Search #}
 
-{% embed "snipplets/modal.tpl" with{modal_id: 'nav-search', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-sm' } %}
+{% embed "snipplets/modal.tpl" with{modal_id: 'nav-search', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-md' } %}
     {% block modal_body %}
         {% snipplet "header/header-search.tpl" %}
     {% endblock %}
@@ -45,7 +45,7 @@
 
     {# Cart Ajax #}
 
-    {% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-sm', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel' } %}
+    {% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-md', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel' } %}
         {% block modal_head %}
             {% block page_header_text %}{{ "Carrito de Compras" | translate }}{% endblock page_header_text %}
         {% endblock %}
