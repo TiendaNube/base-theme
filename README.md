@@ -1,7 +1,7 @@
 # Base Theme
 BETA v1.0.0
 
-The main purpose of this theme is to create a clean and ordered base for future themes. It includes all Tienda Nube´s features up to 01/01/19.
+The main purpose of this theme is to create a clean and ordered base for future themes. It includes all Nuvemshop´s features up to 01/01/19.
 It was conceived as Mobile First and then adapted to Desktop, and the code is focused an generating small and easy to use or update components.
 In terms of speed and performance, involves changes that benefit the weight and loading time but also cares for a excellent experience specially on the first loading seconds were the user gets to see part of the store´s content.
 
