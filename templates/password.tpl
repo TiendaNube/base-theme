@@ -93,8 +93,12 @@
 
         {% head_content %}
 
+        {# Structured data to provide information for Google about the page content #}
+
+        {% include 'snipplets/structured_data/webpage-structured-data.tpl' %}
+
     </head>
-    <body itemscope itemtype="http://schema.org/WebPage" itemid="body" class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}">
+    <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}">
         
         {# Back to admin bar #}
 

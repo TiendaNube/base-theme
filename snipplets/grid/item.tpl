@@ -26,17 +26,15 @@
     </div>
     <div class="item-description">
         <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}" class="item-link">
-            <div itemprop="name" class="item-name mb-1">{{ product.name }}</div>
-            <meta itemprop="url" content="{{ product.url }}" />
+            <div class="item-name mb-1">{{ product.name }}</div>
             {% if product.display_price %}
-                <div class="item-price-container mb-1" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                    <meta itemprop="priceCurrency" content="{{ product.currency }}" />
+                <div class="item-price-container mb-1">
                     {% if product.compare_at_price %}
                         <span class="price-compare">
                             {{ product.compare_at_price | money }}
                         </span>
                     {% endif %}
-                    <span class="item-price" itemprop="price" content="{{ product.price / 100 }}">
+                    <span class="item-price">
                         {{ product.price | money }}
                     </span>
                 </div>
@@ -44,4 +42,7 @@
         </a>
     </div>
     {% include 'snipplets/payments/installments.tpl' %}
+
+    {# Structured data to provide information for Google about the product content #}
+    {% include 'snipplets/structured_data/item-structured-data.tpl' %}
 </div>

@@ -26,6 +26,7 @@
     // input_rows for textarea rows
     // input_data_attr for data attributes
     // input_data_val for input_data_attr value
+    // input_aria_label for aria-label attribute
 #Append
     // input_append_content to add content after input
 #Alerts 
@@ -65,7 +66,8 @@
             {% if input_value %}value="{{ input_value }}"{% endif %}
             {% if input_min %}min="{{ input_min }}"{% endif %}
             {% if input_placeholder %}placeholder="{{ input_placeholder }}"{% endif %}
-            {% if input_data_attr %}data-{{ input_data_attr }}="{{ input_data_val }}"{% endif %}/>
+            {% if input_data_attr %}data-{{ input_data_attr }}="{{ input_data_val }}"{% endif %}
+            {% if input_aria_label %}aria-label="{{ input_aria_label }}"{% endif %}/>
     {% endif %}
     {% if input_append_content or input_prepend_content %}
     </div>

@@ -280,6 +280,36 @@ pt "Escolha aqui os produtos que deseja destacar na página inicial"
 en "Select here your featured products"
 es_mx "Elegí acá los productos que quieras destacar en la página de inicio"
 
+es "Carrusel"
+pt "Banner rotativo"
+en "Slide"
+es_mx "Carrusel"
+
+es "Banner de"
+pt "Banner de"
+en "Banner of"
+es_mx "Banner de"
+
+es "Instagram de"
+pt "Instagram de"
+en "Instagram of"
+es_mx "Instagram de"
+
+es "Publicación de Instagram de"
+pt "Postagem do Instagram de"
+en "Instagram post of"
+es_mx "Publicación de Instagram de"
+
+es "Video de"
+pt "Vídeo de"
+en "Video of"
+es_mx "Video de"
+
+es "Comunicate por WhatsApp"
+pt "Fale conosco pelo WhatsApp"
+en "Communicate on WhatsApp"
+es_mx "Comunicate por WhatsApp"
+
 --- Catalog ---
 
 es "Productos"
@@ -470,6 +500,11 @@ pt "Buscar"
 en "Search"
 es_mx "Buscar"
 
+es "Buscador"
+pt "Barra de pesquisa"
+en "Search field"
+es_mx "Buscador"
+
 es "Resultados de búsqueda"
 pt "Resultados da pesquisa"
 en "Search results"
@@ -559,6 +594,26 @@ es "¿Qué te parecio el producto?"
 pt "O que você acha do produto?"
 en "What do you think of the product?"
 es_mx "¿Qué te parecio el producto?"
+
+es "Compartir en WhatsApp"
+pt "Compartilhar pelo WhatsApp"
+en "Share on WhatsApp"
+es_mx "Compartir en WhatsApp"
+
+es "Compartir en Facebook"
+pt "Compartilhar pelo Facebook"
+en "Share on Facebook"
+es_mx "Compartir en Facebook"
+
+es "Compartir en Twitter"
+pt "Compartilhar pelo Twitter"
+en "Share on Twitter"
+es_mx "Compartir en Twitter"
+
+es "Compartir en Pinterest"
+pt "Compartilhar pelo Pinterest"
+en "Share on Pinterest"
+es_mx "Compartir en Pinterest"
 
 --- --- Labels
 
@@ -865,10 +920,10 @@ es_mx "El carrito de compras está vacío."
 
 --- --- CTA
 
-es "Cambiar Cantidades"
-pt "Alterar Quantidades"
-en "Update quantities"
-es_mx "Cambiar cantidades"
+es "Cambiar cantidad"
+pt "Alterar quantidade"
+en "Update quantity"
+es_mx "Cambiar cantidad"
 
 es "Iniciar Compra"
 pt "Finalizar Compra"
@@ -1751,10 +1806,25 @@ pt "Calcular frete"
 en "Calculate shipping"
 es_mx "Calcular envío"
 
+es "Calcular"
+pt "Calcular"
+en "Calculate"
+es_mx "Calcular"
+
 es "Código postal"
 pt "CEP"
 en "Zipcode"
 es_mx "Código postal"
+
+es "Tu código postal"
+pt "Seu CEP"
+en "Your zipcode"
+es_mx "Tu código postal"
+
+es "No sé mi código"
+pt "Não sei meu CEP"
+en "I don't know my code"
+es_mx "No sé mi código"
 
 es "Calcular costo de envío"
 pt "Calcular Frete"
@@ -1806,6 +1876,26 @@ pt "Retire grátis em nossa loja física"
 en "Free pickup on our store"
 es_mx "Recoge gratis en nuestra tienda"
 
+es "Nuestros locales"
+pt "Nossas lojas"
+en "Our stores"
+es_mx "Nuestras tiendas"
+
+es "Nuestro local"
+pt "Nossa loja"
+en "Our store"
+es_mx "Nuestra tienda"
+
+es "Ver opciones"
+pt "Ver opções"
+en "See options"
+es_mx "Ver opciones"
+
+es "Ocultar opciones"
+pt "Esconder opções"
+en "Hide options"
+es_mx "Ocultar opciones"
+
 es "Ver locales"
 pt "Ver lojas físicas"
 en "See our stores"
@@ -1820,6 +1910,27 @@ es "Elegir local"
 pt "Escolher loja física"
 en "Select store"
 es_mx "Elegir una tienda"
+
+es "Nuestros locales"
+pt "Nossas lojas"
+en "Our stores"
+es_mx "Nuestras tiendas"
+
+es "Nuestro local"
+pt "Nossa loja"
+en "Our store"
+es_mx "Nuestra tienda"
+
+es "Ver opciones"
+pt "Ver opções"
+en "See options"
+es_mx "Ver opciones"
+
+es "Ocultar opciones"
+pt "Esconder opções"
+en "Hide options"
+es_mx "Ocultar opciones"
+
 
 es "Conocé nuestras opciones de envío"
 pt "Conheça nossas opções de frete"
@@ -1876,7 +1987,7 @@ pt "O custo de frete inclui este produto e outros adicionados ao carrinho."
 en "The shipping cost includes this product and all the products added to the cart."
 es_mx "El precio de envío incluye este producto y todos los que has agregado al carrito."
 
-es "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
+es "Vas a poder alguna de las siguientes opciones antes de finalizar la compra:"
 pt "Você pode escolher uma das seguintes opções antes de finalizar a compra"
 en "You will be able to choose some of the following options before ending the purchase"
 es_mx "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
@@ -1926,10 +2037,10 @@ pt "Você ganhou <strong>frete grátis</strong> para esta compra. Aproveite!"
 en "You have <strong>free shipping</strong> in this order. Go for it!"
 es_mx "<strong>Tienes envío gratis</strong> en esta compra. ¡Aprovéchalo!"
 
-es "¡Genial! <strong class='text-primary'>Tenés envío gratis</strong> en esta compra"
-pt "Sucesso! Você <strong class='text-primary'>tem frete grátis</strong> para esta compra."
-en "You have <strong class='text-primary'>free shipping</strong> in this order."
-es_mx "¡Genial! <strong class='text-primary'>Tienes envío gratis</strong> en esta compra"
+es "¡Genial! <strong class='text-primary'>Tenés envío gratis</strong>"
+pt "Sucesso! Você <strong class='text-primary'>tem frete grátis</strong>"
+en "You have <strong class='text-primary'>free shipping</strong>"
+es_mx "¡Genial! <strong class='text-primary'>Tienes envío gratis</strong>"
 
 es "¡Estas a <strong class='js-cart-free-shipping-amount'></strong> de tener <strong class='text-primary m-quarter-bottom'>envío gratis</strong> en tu compra!"
 pt "<strong>Ganhe frete grátis</strong> com mais <strong class='js-cart-free-shipping-amount'></strong> em compras"
@@ -1947,7 +2058,7 @@ en "All the products in this category <strong>have free shipping!</strong>"
 es_mx "¡Todos los productos de esta categoría <strong>tienen envío gratis!</strong>"
 
 es "<strong class='text-primary'>Envío gratis</strong> superando los"
-pt "<strong class='text-primary'>Frete grátis</strong> para compras acima de"
+pt "<strong class='text-primary'>Frete grátis</strong> a partir de"
 en "<strong class='text-primary'>Free shipping</strong> buying more than"
 es_mx "<strong class='text-primary'>Envío gratis</strong> superando los"
 
@@ -3301,6 +3412,15 @@ pt "[Opcional] Página da web externa a que levará a imagem do selo quando clic
 en "[Optional] External website linked to the image when is clicked"
 es_mx "[Opcional] ¿A qué página quieres que lleve la imagen del sello al hacer clic?"
 
+es "Sello de"
+pt "Selo de"
+en "Seal of"
+es_mx "Sello de"
+
+es "Logo de AFIP"
+pt "Logo da AFIP"
+en "AFIP logo"
+es_mx "Logo de AFIP"
 
 --- --- CSS
 
@@ -3328,7 +3448,7 @@ es_mx "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el
 --- --- Shipping and Payments
 
 es "Medios de envío"
-pt "Opções de frete"
+pt "Meios de envio"
 en "Shipping Methods"
 es_mx "Opciones de envío"
 

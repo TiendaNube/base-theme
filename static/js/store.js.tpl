@@ -50,6 +50,7 @@
 		// Calculate shipping on page load
 		// Shipping provinces
     #Forms
+    #Footer
 
 ==============================================================================*/#}
 
@@ -477,7 +478,7 @@ $(document).ready(function(){
                 userId: '{{ userid }}',
                 accessToken: '{{ settings.instafeed_accesstoken }}',
                 resolution: resolution,
-                template: '<div class="col-4"><a class="instafeed-link" href="{{instlink}}" target="_blank"><div class="instafeed-img lazyload" data-bg="{{instimg}}">{% if settings.instafeed_like %}<div class="instafeed-info"><span class="instafeed-info-item">{% include "snipplets/svg/heart.tpl" with {svg_custom_class: "icon-inline"} %} {{instlike}}</span></div>{% endif %}</div></a></div>',
+                template: '<div class="col-4"><a class="instafeed-link" href="{{instlink}}" target="_blank" aria-label="{{ "Publicación de Instagram de" | translate }} {{ store.name }}"><div class="instafeed-img lazyload" data-bg="{{instimg}}">{% if settings.instafeed_like %}<div class="instafeed-info"><span class="instafeed-info-item">{% include "snipplets/svg/heart.tpl" with {svg_custom_class: "icon-inline"} %} {{instlike}}</span></div>{% endif %}</div></a></div>',
                 limit: feedqty
            });
            userFeed.run();
@@ -948,8 +949,8 @@ $(document).ready(function(){
 
     $(document).on("click", ".js-toggle-branches", function (e) {
         e.preventDefault();
-        $(this).next().slideToggle("fast");
-        $(this).find(".js-see-branches, .js-hide-branches").toggle();
+        $(".js-store-branches-container").slideToggle("fast");
+        $(".js-see-branches, .js-hide-branches").toggle();
     });
 
     {# /* // Toggle more shipping options */ #}
@@ -964,7 +965,7 @@ $(document).ready(function(){
 
     {# Only shipping input has value, cart has saved shipping and there is no branch selected #}
 
-    if($("#cart-shipping-container .js-shipping-input").val() && !$(".js-branch-method").hasClass('js-selected-shipping-method') && $(".js-cart-total").hasClass('js-cart-saved-shipping')){
+    if($("#cart-shipping-container .js-shipping-input").val()){
        
         // If user already had calculated shipping: recalculate shipping
        
@@ -974,8 +975,15 @@ $(document).ready(function(){
                 '{{store.shipping_calculator_url | escape('js')}}',
                 $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
         }, 100);
-    }else if($(".js-branch-method").hasClass('js-selected-shipping-method')){
-        $("#cart-shipping-container .js-toggle-branches").click();
+    } 
+
+    if($(".js-branch-method").hasClass('js-selected-shipping-method')){
+        
+        {% if store.branches|length > 1 %}
+            $(".js-store-branches-container").slideDown("fast");
+            $(".js-see-branches").hide();
+            $(".js-hide-branches").show();
+        {% endif %}
 
         // Trigger function only for free pickup stores
         LS.saveCalculatedShipping(false);
@@ -997,5 +1005,17 @@ $(document).ready(function(){
     $(".js-winnie-pooh-form").submit(function (e) {
         $(this).attr('action', '');
     });
+
+    {#/*============================================================================
+      #Footer
+    ==============================================================================*/ #}
+
+    {% if store.afip %}
+
+        {# Add alt attribute to external AFIP logo to improve SEO #}
+
+        $('img[src*="www.afip.gob.ar"]').attr('alt', '{{ "Logo de AFIP" | translate }}');
+
+    {% endif %}
 
 });

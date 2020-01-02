@@ -1,5 +1,5 @@
 {# /*============================================================================
-  #Page breadcrmubs
+  #Page breadcrumbs
 ==============================================================================*/
 #Properties
 
@@ -7,9 +7,8 @@
     //breadcrumbs_custom_class for custom CSS classes
 #}
 
-
 {% if breadcrumbs %}
-    <div class="breadcrumbs {{ breadcrumbs_custom_class }}" itemprop="breadcrumb" itemscope itemtype="http://www.schema.org/WebPage" itemid="body">
+    <div class="breadcrumbs {{ breadcrumbs_custom_class }}">
         <a class="crumb" href="{{ store.url }}" title="{{ store.name }}">{{ "Inicio" | translate }}</a>
         <span class="divider">></span>
         {% if template == 'page' %}

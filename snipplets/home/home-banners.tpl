@@ -24,7 +24,7 @@
                     <div class="col-md">
                         <div class="textbanner">
                             {% if banner_url %}
-                                <a class="textbanner-link" href="{{ banner_url }}"{% if banner_title %} alt="{{ banner_title }}" title="{{ banner_title }}"{% endif %}>
+                                <a class="textbanner-link" href="{{ banner_url }}"{% if banner_title %} title="{{ banner_title }}" aria-label="{{ banner_title }}"{% else %} title="{{ 'Banner de' | translate }} {{ store.name }}" aria-label="{{ 'Banner de' | translate }} {{ store.name }}"{% endif %}>
                             {% endif %}
                             {% if store.thumbnails_enabled %}
                                 <div class="textbanner-image{% if has_banner_text and textoverimage %} overlay{% endif %} lazyautosizes lazyload blur-up"{% if "#{banner}.jpg" | has_custom_image %} data-bgset='{{ "#{banner}.jpg" | static_url | settings_image_url('large') }} 480w, {{ "#{banner}.jpg" | static_url | settings_image_url('huge') }} 640w' data-sizes="auto" style="background-image: url({{ "#{banner}.jpg" | static_url | settings_image_url('tiny') }});"{% endif %}>
@@ -40,7 +40,7 @@
                                     <div class="textbanner-paragraph">{{ banner_description }}</div>
                                 {% endif %}
                                 {% if banner_url and banner_button_text %}
-                                    <div class="btn btn-line btn-small">{{ banner_button_text }}</div>
+                                    <button class="btn btn-line btn-small">{{ banner_button_text }}</button>
                                 {% endif %}
                             </div>
                             {% if banner_url %}

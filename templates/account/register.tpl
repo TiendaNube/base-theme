@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-8">
-				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', submit_text: 'Crear cuenta' | translate } %}
+				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', submit_custom_class: 'js-recaptcha-button btn-block', submit_prop: 'disabled', submit_text: 'Crear cuenta' | translate } %}
 					{% block form_body %}
 
 						{# Facebook login #}
@@ -61,6 +61,10 @@
 					            {% endif %}
 							{% endblock input_form_alert %}
 						{% endembed %}
+
+						{# Google reCAPTCHA #}
+
+						<div class="g-recaptcha mb-4" data-sitekey="6LdvubwUAAAAAKg5583RDx5WbiQg-J3lUa_INUHR" data-callback="recaptchaCallback"></div>
 						
 					{% endblock %}
 				{% endembed %}
