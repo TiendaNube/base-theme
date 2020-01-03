@@ -20,10 +20,6 @@ Colores de tu marca
 				primary_color = #86C2B4
 				background_color = #FFF9EE
 				text_color = #0F5672
-			palette_4
-				primary_color = #C9DFF1
-				background_color = #FFFFFF
-				text_color = #9E998A
 	title
 		title = Configuración avanzada
 	color

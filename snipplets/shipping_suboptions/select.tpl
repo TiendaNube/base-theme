@@ -2,7 +2,7 @@
 <div class="js-shipping-suboption {{suboptions.name}}">
     {% if suboptions.options %}
 
-        <p class="js-shipping-suboption-product mb-1" style="display: none;">{{ 'Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:' | translate }}</p>
+        <p class="js-shipping-suboption-product mb-1" style="display: none;">{{ 'Vas a poder elegir alguna de las siguientes opciones antes de finalizar la compra:' | translate }}</p>
 
         {# Read only suboptions #}
         <ul class="js-shipping-suboption-list" name="{{suboptions.name}}" style="display: none;">

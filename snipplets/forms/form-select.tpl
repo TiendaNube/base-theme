@@ -17,6 +17,7 @@
     // select_custom_class for custom CSS classes 
     // input_rows for textarea rows
     // select_options to insert select options
+    // select_aria_label for aria-label attribute
 
 #}
 
@@ -27,7 +28,8 @@
     <select 
         {% if select_id %}id="{{ select_id }}"{% endif %}
         class="form-select {{ select_custom_class }} {% if select_inline %}form-control-inline{% endif %}"
-        {% if select_name %}name="{{ select_name }}"{% endif %}>
+        {% if select_name %}name="{{ select_name }}"{% endif %}
+        {% if select_aria_label %}aria-label="{{ select_aria_label }}"{% endif %}>
         {% block select_options %}
         {% endblock select_options %}
     </select>

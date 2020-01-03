@@ -1,0 +1,25 @@
+Clothing
+	base = true
+	vertical = clothing
+	primary_color = #000000
+	background_color = #FFFFFF
+	text_color = #000000
+	font_headings = "Muli", sans-serif
+	font_rest = "Muli", sans-serif
+	head_background = dark
+	head_transparent = 1
+	head_fix = 1
+	banner_services = 1
+	banners_full = 0
+	modules_full = 1
+	video_full = 1
+	home_order_position_1 = welcome
+	home_order_position_2 = categories
+	home_order_position_3 = video
+	home_order_position_4 = products
+	home_order_position_5 = instafeed
+	home_order_position_6 = modules
+	home_order_position_7 = informatives
+	product_filters = 1
+	grid_columns = 1
+	news_show = 1

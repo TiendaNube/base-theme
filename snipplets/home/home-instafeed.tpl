@@ -5,7 +5,7 @@
                 {% set instuser = store.instagram|split('/')|last %}
                 <div class="col-12 text-center">
                     {% if store.instagram %}
-                        <a target="_blank" href="{{ store.instagram }}" class="instafeed-title">
+                        <a target="_blank" href="{{ store.instagram }}" class="instafeed-title" aria-label="{{ 'Instagram de' | translate }} {{ store.name }}">
                             {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-text"} %}
                             <h3 class="instafeed-user">{{ instuser }}</h3>
                         </a>

@@ -21,11 +21,11 @@
             {% set has_module =  module_show and (module_title or module_description or "#{module}.jpg" | has_custom_image) %}
             {% set has_module_text =  module_title or module_description or module_button_text %}
             {% if has_module %}
-            <div class="row {% if settings.modules_full %}no-gutters{% endif %} align-items-center">               
-                
-                {% if banner_url %}
-                    <a class="module-with-text-link" href="{{ module_url }}"{% if module_title %} alt="{{ module_title }}" title="{{ module_title }}"{% endif %}>
+                {% if module_url %}
+                    <a class="module-with-text-link" href="{{ module_url }}"{% if module_title %} title="{{ module_title }}" aria-label="{{ module_title }}"{% else %} title="{{ 'Módulo de' | translate }} {{ store.name }}" aria-label="{{ 'Módulo de' | translate }} {{ store.name }}"{% endif %}>
                 {% endif %}
+                <div class="row {% if settings.modules_full %}no-gutters{% endif %} align-items-center">               
+                    
                     <div class="col-md {% if module_align == 'right' %}order-md-2{% endif %}">
                         <div class="textbanner">
                         {% if store.thumbnails_enabled %}
@@ -45,15 +45,15 @@
                                 <div class="textbanner-paragraph">{{ module_description }}</div>
                             {% endif %}
                             {% if module_url and module_button_text %}
-                                <div class="btn btn-primary btn-small">{{ module_button_text }}</div>
+                                <button class="btn btn-primary btn-small">{{ module_button_text }}</button>
                             {% endif %}
                         </div>
-                    </div>  
+                    </div>
+
+                </div>
                 {% if module_url %}
                     </a>
                 {% endif %}
-
-            </div>
             {% endif %}
         {% endfor %}
     </div>

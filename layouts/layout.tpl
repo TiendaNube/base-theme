@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" lang="{% for language in languages %}{% if language.active %}{{ language.lang }}{% endif %}{% endfor %}">
     <head>
         <link rel="preconnect" href="https://d26lpennugtm8s.cloudfront.net" />
         <link rel="dns-prefetch" href="https://d26lpennugtm8s.cloudfront.net" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{{ page_title }}</title>
         <meta name="description" content="{{ page_description }}" />
         {% if settings.fb_admins %}
@@ -98,8 +98,12 @@
 
         {% head_content %}
 
+        {# Structured data to provide information for Google about the page content #}
+
+        {% include 'snipplets/structured_data/webpage-structured-data.tpl' %}
+
     </head>
-    <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}" itemscope itemtype="http://schema.org/WebPage" itemid="body">
+    <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}">
         {# Facebook comments on product page #}
 
         {% if template == 'product' %}
@@ -188,5 +192,17 @@
                 {% include "static/js/store.js.tpl" %}
             });
         </script>
+
+        {# Google reCAPTCHA on register page #}
+
+        {% if template == 'account.register' %}
+            {{ '//www.google.com/recaptcha/api.js' | script_tag(true) }}
+            <script type="text/javascript">
+                var recaptchaCallback = function() {
+                    $('.js-recaptcha-button').prop('disabled', false);
+                };
+            </script>
+        {% endif %}
+        
     </body>
 </html>

@@ -21,8 +21,7 @@
             <form method="post" action="/winnie-pooh" onsubmit="$(this).attr('action', '');">
                 <div class="input-append">
                   
-                    {% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_name: 'email', input_id: 'email', input_placeholder: 'E-mail' } %}
-                        {% block input_label_text %}{{ 'E-mail' | translate }}{% endblock input_label_text %}
+                    {% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_name: 'email', input_id: 'email', input_placeholder: 'Email' | translate, input_aria_label: 'Email' | translate } %}
                     {% endembed %}
 
                 <div class="winnie-pooh" style="display: none;">

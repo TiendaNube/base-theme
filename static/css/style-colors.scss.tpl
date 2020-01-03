@@ -58,6 +58,8 @@ style.scss.tpl
     // Header
     // Search
   #Footer
+  #Media queries
+    // Forms
 
 ==============================================================================*/ #}
 
@@ -410,8 +412,9 @@ textarea {
 
 .form-control {
   display: block;
-  padding: 10px 8px;
+  padding: 8px;
   width: 100%;
+  font-size: 16px; /* Hack to avoid autozoom on IOS */
   border: 0;
   border-bottom: 1px solid rgba($main-foreground, .5);
   -webkit-appearance: none;
@@ -444,6 +447,7 @@ textarea {
   display: block;
   padding: 10px 0;
   width: 100%;
+  font-size: 16px; /* Hack to avoid autozoom on IOS */
   border: 0;
   border-bottom: 1px solid rgba($main-foreground, .5);
   border-radius: 0;
@@ -762,4 +766,26 @@ textarea {
 
 .newsletter-btn {
   color: $main-foreground;
+}
+
+{#/*============================================================================
+  #Media queries
+==============================================================================*/ #}
+
+
+{# /* // Min width 768px */ #}
+
+@media (min-width: 768px) { 
+
+  {# /* Forms */ #}
+
+  .form-control {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .form-select {
+    font-size: 14px;
+  }
+
 }

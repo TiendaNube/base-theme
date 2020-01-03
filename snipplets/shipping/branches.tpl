@@ -4,40 +4,26 @@
             {% include "snipplets/svg/store.tpl" with {svg_custom_class: "icon-inline icon-lg link-module-icon svg-icon-text"} %}
         </div>
         <div class="col-6">
-            <div class="mb-1"> 
+            <div {% if store.branches|length > 1 %}class="mb-1"{% endif %}> 
                 {% if store.branches|length > 1 %}
-                    {{ 'Retirá gratis en nuestros locales' | translate }}
+                    {{ 'Nuestros locales' | translate }}
                 {% else %}
-                    {{ 'Retirá gratis en nuestro local' | translate }}
+                    {{ 'Nuestro local' | translate }}
                 {% endif %}
             </div>
-            <div class="btn-link float-left">
-                {% if product_detail %}
+            {% if store.branches|length > 1 %}
+                <div class="btn-link float-left">
                     <span class="js-see-branches">
-                        {% if store.branches|length > 1 %}
-                            {{ 'Ver locales' | translate }}
-                        {% else %}
-                            {{ 'Ver local' | translate }}
-                        {% endif %}
+                        {{ 'Ver opciones' | translate }}
                     </span>
-                {% else %}
-                    <span>
-                        {{ 'Elegir local' | translate }}
-                    </span>
-                {% endif %}
-                {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "js-see-branches icon-inline ml-1"} %}
+                    {% include "snipplets/svg/chevron-down.tpl" with {svg_custom_class: "js-see-branches icon-inline ml-1"} %}
 
-                <span class="js-hide-branches" style="display: none;">
-                    {% if product_detail %}
-                        {% if store.branches|length > 1 %}
-                            {{ 'Ocultar locales' | translate }}
-                        {% else %}
-                            {{ 'Ocultar local' | translate }}
-                        {% endif %}
-                    {% endif %}
-                    {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline ml-1"} %}
-                </span>
-            </div>
+                    <span class="js-hide-branches" style="display: none;">
+                        {{ 'Ocultar opciones' | translate }}
+                        {% include "snipplets/svg/chevron-up.tpl" with {svg_custom_class: "icon-inline ml-1"} %}
+                    </span>
+                </div>
+            {% endif %}
         </div>
     </span>
 </div>
@@ -46,7 +32,7 @@
 
 {% if not product_detail %}
     
-    <ul class="js-store-branches-container list-unstyled radio-button-container mt-3" style="display: none;">
+    <ul class="js-store-branches-container list-unstyled radio-button-container mt-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
 
         {# Selectable branches #}
 
@@ -81,7 +67,7 @@
         {% endfor %}
     </ul>
 {% else %}
-    <ul class="js-store-branches-container list-unstyled list mt-3" style="display: none;">
+    <ul class="js-store-branches-container list-unstyled list mt-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
         {% for branch in store.branches %}
             <li class="list-item">
                 <span class="list-item-content">

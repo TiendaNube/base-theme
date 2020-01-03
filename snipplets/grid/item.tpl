@@ -11,7 +11,7 @@
 {% set slide_item = slide_item | default(false) %}
 {% set columns = settings.grid_columns %}
 
-<div class="{% if slide_item %}swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}">
+<div class="{% if slide_item %}swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}" data-product-type="list" data-product-id="{{ product.id }}">
     {% set product_url_with_selected_variant = has_filters ?  ( product.url | add_param('variant', product.selected_or_first_available_variant.id)) : product.url  %}
     <div class="item-image mb-2">
         <div style="padding-bottom: {{ product.featured_image.dimensions['height'] / product.featured_image.dimensions['width'] * 100}}%;" class="p-relative">
@@ -26,17 +26,15 @@
     </div>
     <div class="item-description">
         <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}" class="item-link">
-            <div itemprop="name" class="item-name mb-1">{{ product.name }}</div>
-            <meta itemprop="url" content="{{ product.url }}" />
+            <div class="item-name mb-1">{{ product.name }}</div>
             {% if product.display_price %}
-                <div class="item-price-container mb-1" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                    <meta itemprop="priceCurrency" content="{{ product.currency }}" />
+                <div class="item-price-container mb-1">
                     {% if product.compare_at_price %}
                         <span class="price-compare">
                             {{ product.compare_at_price | money }}
                         </span>
                     {% endif %}
-                    <span class="item-price" itemprop="price" content="{{ product.price / 100 }}">
+                    <span class="item-price">
                         {{ product.price | money }}
                     </span>
                 </div>
@@ -44,4 +42,7 @@
         </a>
     </div>
     {% include 'snipplets/payments/installments.tpl' %}
+
+    {# Structured data to provide information for Google about the product content #}
+    {% include 'snipplets/structured_data/item-structured-data.tpl' %}
 </div>

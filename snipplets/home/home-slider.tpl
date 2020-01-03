@@ -4,7 +4,7 @@
 	        {% for slide in settings.slider %}
                 <div class="swiper-slide slide-container">
                 	{% if slide.link %}
-                		<a href="{{ slide.link }}">
+                		<a href="{{ slide.link }}" aria-label="{{ 'Carrusel' | translate }} {{ loop.index }}">
                 	{% endif %}		
 	                	<div data-background="{{ slide.image | static_url | settings_image_url('1080p') }}" class="slider-slide swiper-lazy">
 			            </div>

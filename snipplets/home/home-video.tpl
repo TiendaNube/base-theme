@@ -10,7 +10,7 @@
                             </div>
                         </div>
                         <div class="js-video-image">
-                            <img data-src="" class="lazyload js-lazy-loading img-fluid video-image">
+                            <img data-src="" class="lazyload js-lazy-loading img-fluid video-image" alt="{{ 'Video de' | translate }} {{ store.name }}">
                         </div>
                     </div>
                 </div>
