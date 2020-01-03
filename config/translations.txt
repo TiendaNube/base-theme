@@ -1987,7 +1987,7 @@ pt "O custo de frete inclui este produto e outros adicionados ao carrinho."
 en "The shipping cost includes this product and all the products added to the cart."
 es_mx "El precio de envío incluye este producto y todos los que has agregado al carrito."
 
-es "Vas a poder alguna de las siguientes opciones antes de finalizar la compra:"
+es "Vas a poder elegir alguna de las siguientes opciones antes de finalizar la compra:"
 pt "Você pode escolher uma das seguintes opções antes de finalizar a compra"
 en "You will be able to choose some of the following options before ending the purchase"
 es_mx "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
