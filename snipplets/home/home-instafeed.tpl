@@ -1,4 +1,4 @@
-{% if settings.show_instafeed  %}
+{% if settings.show_instafeed and store.instagram %}
     <section class="section-instafeed-home">
         <div class="container">
             <div class="row">

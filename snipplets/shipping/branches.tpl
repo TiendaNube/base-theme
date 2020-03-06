@@ -32,7 +32,7 @@
 
 {% if not product_detail %}
     
-    <ul class="js-store-branches-container list-unstyled radio-button-container mt-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
+    <ul class="js-store-branches-container list-unstyled radio-button-container mt-4 mb-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
 
         {# Selectable branches #}
 
@@ -67,7 +67,7 @@
         {% endfor %}
     </ul>
 {% else %}
-    <ul class="js-store-branches-container list-unstyled list mt-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
+    <ul class="js-store-branches-container list-unstyled list mt-4 mb-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
         {% for branch in store.branches %}
             <li class="list-item">
                 <span class="list-item-content">

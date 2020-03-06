@@ -64,7 +64,7 @@
 
 						{# Google reCAPTCHA #}
 
-						<div class="g-recaptcha mb-4" data-sitekey="6LdvubwUAAAAAKg5583RDx5WbiQg-J3lUa_INUHR" data-callback="recaptchaCallback"></div>
+						<div class="g-recaptcha mb-4" data-sitekey="{{recaptchaSiteKey}}" data-callback="recaptchaCallback"></div>
 						
 					{% endblock %}
 				{% endembed %}
