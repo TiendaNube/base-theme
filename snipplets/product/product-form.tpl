@@ -54,7 +54,30 @@
     {% endif %}
     {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
     {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}
-    <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mb-4 {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
+
+    {# Add to cart CTA #}
+
+    <div class="mb-4">
+
+        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mb-4 {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
+
+        {# Fake add to cart CTA visible during add to cart event #}
+
+        <div class="js-addtocart js-addtocart-placeholder btn btn-primary btn-transition btn-block mb-4 disabled" style="display: none;">
+            <span class="js-addtocart-text transition-container btn-transition-start active">{{ 'Agregar al carrito' | translate }}</span>
+            <span class="js-addtocart-success transition-container btn-transition-success">
+                {{ '¡Listo!' | translate }}
+            </span>
+            <div class="js-addtocart-adding transition-container btn-transition-progress">
+                {{ 'Agregando...' | translate }}
+            </div>
+        </div>
+
+        <div class="js-added-to-cart-product-message float-leftt w-100 mb-3 text-center text-md-left" style="display: none;">
+            {{'Ya agregaste este producto.' | translate }}<a href="#" class="js-modal-open js-fullscreen-modal-open btn btn-link ml-1" data-toggle="#modal-cart" data-modal-url="modal-fullscreen-cart">{{ 'Ver carrito' | translate }}</a>
+        </div>
+
+    </div>
 
     {% if settings.shipping_calculator_product_page and not product.free_shipping %}
 
@@ -70,7 +93,7 @@
                 {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_show': settings.shipping_calculator_cart_page and not product.free_shipping, 'shipping_calculator_variant' : product.selected_or_first_available_variant} %}
             {% endif %}
 
-            {% if store.branches and store.country != 'BR' %}
+            {% if store.branches %}
                 
                 {# Link for branches #}
                 {% include "snipplets/shipping/branches.tpl" with {'product_detail': true} %}
