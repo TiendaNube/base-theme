@@ -35,11 +35,11 @@
 	  	// Pinterest sharing
         // Product quantity
   	#Cart
-		// Toggle cart 
-		// Add to cart
-		// Cart quantitiy changes
-		// Empty cart alert
-		// Go to checkout
+  		// Toggle cart 
+  		// Add to cart
+  		// Cart quantitiy changes
+  		// Empty cart alert
+        // Go to checkout
 	#Shipping calculator
 		// Select and save shipping function
 		// Calculate shipping function
