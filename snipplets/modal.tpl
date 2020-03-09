@@ -21,11 +21,11 @@
 
 {% set modal_overlay = modal_overlay | default(true) %}
 
-<div id="{{ modal_id }}" class="js-modal {% if modal_mobile_full_screen %}js-fullscreen-modal{% endif %} modal modal-{{ modal_class }} modal-{{modal_position}} transition-{{modal_transition}} modal-{{modal_width}} transition-soft" style="display: none;">
+<div id="{{ modal_id }}" class="js-modal modal modal-{{ modal_class }} modal-{{modal_position}} transition-{{modal_transition}} modal-{{modal_width}} transition-soft" style="display: none;">
     {% if modal_form_action %}
     <form action="{{ modal_form_action }}" method="post" class="{{ modal_form_class }}">
     {% endif %}
-    <div class="js-modal-close {% if modal_mobile_full_screen %}js-fullscreen-modal-close{% endif %} modal-header">
+    <div class="js-modal-close modal-header">
         <span class="modal-close">
             {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
         </span>

@@ -50,10 +50,8 @@ critical-css.tpl
     // Data contact
   #Media queries
     // Min width 768px
-      //// Components
       //// Banners
       //// Home
-      //// Helper classes
   
   #Helper classes
     // Margin and padding
@@ -496,19 +494,17 @@ p{
 
 .notification{
   padding: 10px;
+  opacity: 0.98;
   text-align: center;
 }
 .notification-floating {
   position: absolute;
-  right: 15px;
+  left: 0;
+  width: 100%;
   z-index: 2000;
-  width: calc(100% - 30px);
-  margin-top: -10px;
 }
-.notification-fixed {
-  position: fixed;
-  right: 0;
-  left: 15px;
+.notification-floating .notification{
+  margin: 10px;
 }
 .notification-close {
   padding: 0 5px;
@@ -644,8 +640,7 @@ p{
 }    
 
 .cart-widget-amount {
-  display: inline-block;
-  font-size: 14px;
+  font-size: 10px;
 }
     
    
@@ -860,38 +855,6 @@ p{
 
 @media (min-width: 768px) { 
 
-  {# /* //// Components */ #}
-  
-  .h1-md {
-    font-size: 28px;
-    font-weight: 700;
-  }
-
-  .h2-md {
-    font-size: 24px;
-    font-weight: 700;
-  }
-
-  .h3-md {
-    font-size: 20px;
-    font-weight: 700;
-  }
-
-  .h4-md {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  .h5-md {
-    font-size: 16px;
-    font-weight: 700;
-  }
-
-  .h6-md {
-    font-size: 14px;
-    font-weight: 700;
-  }
-
   {# /* //// Banners */ #}
 
   {# /* Home Banners */ #}
@@ -910,16 +873,6 @@ p{
     font-size: 30px;
     margin: -32px 0 0 -32px;
   }
-
-  {# /* //// Helper classes */ #}
-
-  {# /* // Float */ #}
-
-  .float-md-left{float:left!important}.float-md-right{float:right!important}.float-md-none{float:none!important}
-
-  {# /* // Position */ #}
-
-  .position-relative-md{position:relative!important;}.position-sticky-md{position:sticky!important;position:-webkit-sticky!important;}
 }
 
 /*============================================================================

@@ -10,14 +10,14 @@
 
 #}
 
-<section class="page-header {% if template == 'product' %}mt-md-3{% else %}mt-3{% endif %}">
+<section class="page-header">
     {% if template != 'product' %}
     <div class="container">
         <div class="row">
     {% endif %}
             <div class="{% if template != 'product' %}col text-center{% endif %} {% if template == 'product' %}text-center text-md-left{% endif %}">
                 {% include 'snipplets/breadcrumbs.tpl' %}
-                <h1 {% if template == 'product' %}class="js-product-name"{% endif %}>{% block page_header_text %}{% endblock %}</h1>
+                <h1>{% block page_header_text %}{% endblock %}</h1>
             </div>
     {% if template != 'product' %}
         </div>

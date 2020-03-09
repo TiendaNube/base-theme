@@ -279,10 +279,8 @@ h6,.h6{
     opacity: 0.8;
   }
   &[disabled],
-  &.disabled,
-  &[disabled]:hover,
-  &.disabled:hover,{
-    opacity: 0.8;
+  &[disabled]:hover{
+    opacity: 0.5;
     cursor: not-allowed;
     outline: 0;
   }
@@ -315,9 +313,6 @@ h6,.h6{
   &-block{
     float: left;
     width: 100%;
-  }
-  &-medium{
-    padding: 12px;
   }
   &-small{
     display: inline-block;
@@ -518,37 +513,14 @@ textarea {
 
 .notification-floating .notification-primary{
   background-color: $main-background;
-  border: 1px solid rgba($main-foreground, .14);
+  border-color: rgba($primary-color, .2);
 }
 
 .notification-secondary {
-  padding: 12px 0;
+  padding: 5px 0;
   background: darken($main-background, 3%);
   color: rgba($main-foreground, .8);
   border-bottom: 1px solid rgba($main-foreground, .1);
-}
-
-.notification-with-arrow:after,
-.notification-with-arrow:before{
-  position: absolute;
-  width: 0;
-  height: 0;
-  display: block;
-  border-style: solid;
-  @include prefix(transform, rotate(-90deg), webkit ms moz o);
-  content: '';
-}
-.notification-with-arrow:after {
-  top: -17px;
-  right: 14px;
-  border-color: transparent transparent transparent $main-background;
-  border-width: 9px;
-}
-.notification-with-arrow:before {
-  top: -18px;
-  right: 14px;
-  border-color: transparent transparent transparent rgba($main-foreground, .14);
-  border-width: 9px;
 }
 
 {# /* // Informative banners */ #}

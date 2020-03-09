@@ -21,15 +21,8 @@
 			<div class="col text-right">{% snipplet "header/header-utilities.tpl" %}</div>
 		</div>
 	</div>    
-    {% include "snipplets/notification.tpl" with {order_notification: true} %}
-    {% if settings.head_fix and settings.ajax_cart %}
-        {% include "snipplets/notification.tpl" with {add_to_cart: true} %}
-    {% endif %}
+    {% include "snipplets/notification.tpl" with {order_notification: true, add_to_cart: true} %}
 </header>
-
-{% if not settings.head_fix %}
-    {% include "snipplets/notification.tpl" with {add_to_cart: true, add_to_cart_fixed: true} %}
-{% endif %}
 
 {# Hamburger panel #}
 
@@ -48,11 +41,11 @@
     {% endblock %}
 {% endembed %}
 
-{% if not store.is_catalog and settings.ajax_cart and template != 'cart' %}           
+{% if not store.is_catalog %}           
 
     {# Cart Ajax #}
 
-    {% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-md', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel', modal_mobile_full_screen: true } %}
+    {% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-md', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel' } %}
         {% block modal_head %}
             {% block page_header_text %}{{ "Carrito de Compras" | translate }}{% endblock page_header_text %}
         {% endblock %}

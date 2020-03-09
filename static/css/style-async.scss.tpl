@@ -15,7 +15,6 @@ style.css
     // Margin and Padding
     // Mixins
     // Animations
-    // Buttons
     // Forms
     // Icons
     // Alerts and Notifications
@@ -77,68 +76,15 @@ style.css
 {# /* // Animations */ #}
 
 .transition-soft {
-  @include prefix(transition, all 0.3s ease, webkit ms moz o);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
-
-.beat {
-  animation: .8s 2 beat;
-}
-@keyframes beat {
-  0% {
-    @include prefix(transform, scale(1), webkit ms moz o);
-  }
-  25% {
-    @include prefix(transform, scale(1.3), webkit ms moz o);
-  }
-  40% {
-    @include prefix(transform, scale(1), webkit ms moz o);
-  }
-  60% {
-    @include prefix(transform, scale(1.3), webkit ms moz o);
-  }
-  100% {
-    @include prefix(transform, scale(1), webkit ms moz o);
-  }
-}
-
-@keyframes bounceIn{
-  0%{
-    transform: scale(1) translate3d(0,0,0);
-  }
-  50%{
-    transform: scale(1.2);
-  }
-  80%{
-    transform: scale(0.89);
-  }
-  100%{
-    transform: scale(1) translate3d(0,0,0);
-  }
-}
-
-{# /* // Buttons */ #}
-
-.btn-transition {
-  position: relative;
-  overflow: hidden;
-  .transition-container {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    margin-top: -7px;
-    opacity: 0;
-    text-align: center;
-    @include prefix(transition, all 0.5s ease, webkit ms moz o);
-    cursor: not-allowed;
-    pointer-events: none;
-    &.active {
-      opacity: 1;
-    }
-  }
-} 
 
 {# /* // Forms */ #}
+
 
 .form-group{
   @extend %element-margin;
@@ -258,20 +204,12 @@ textarea{
 .notification-hidden{
   transition: all .1s cubic-bezier(.16,.68,.43,.99);
   @include prefix(transform, rotatex(90deg), webkit ms moz o);
-  pointer-events: none;
 }
 .notification-visible{
   transition: all .5s cubic-bezier(.16,.68,.43,.99);
   @include prefix(transform, rotatex(0deg), webkit ms moz o);
 }
-.notification-close {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  z-index: 1;
-  font-size: 20px; 
-  cursor: pointer;
-}
+
 
 {# /* // Modals */ #}
 
@@ -976,12 +914,6 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
     &-docked-small{
       width: 350px;
     }
-  }
-
-  {# /*  Notifications */ #}
-
-  .notification-floating .notification{
-    width: 350px;
   }
 
   {# /* Tabs */ #}

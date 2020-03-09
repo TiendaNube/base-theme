@@ -1,64 +1,42 @@
-<div class="js-cart-item cart-item {% if cart_page %}row align-items-md-center {% if loop.last %}mb-2{% else %}mb-5{% endif %} {% else %}form-row{% endif %}" data-item-id="{{ item.id }}">
+<div class="js-cart-item cart-item form-row" data-item-id="{{ item.id }}">
 
   {# Cart item image #}
-  <div class="{% if cart_page %}col-3 col-md-2{% else %}col-3 pr-3{% endif %}">
-    <a href="{{ item.url }}">
-      <img src="{{ item.featured_image | product_image_url('medium') }}" class="img-fluid" />
-    </a>
+  <div class="col-2 {% if cart_page %}col-md-1{% endif %}">
+    <img src="{{ item.featured_image | product_image_url('medium') }}" class="img-fluid" />
   </div>
-  <div class="{% if cart_page %}col-9 col-md pl-0 pl-md-3{% else %}col-9 d-flex align-items-center{% endif %}">
+  <div class="col-10 {% if cart_page %}col-md-11{% endif %}">
 
     {# Cart item name #}
-    <div class="{% if cart_page %}row align-items-center{% else %}w-100{% endif %}">
-      <h6 class="font-weight-normal {% if cart_page %}col-12 col-md-6 h4-md mb-2 mb-md-0{% else %}cart-item-name mb-0{% endif %}">
-        <a href="{{ item.url }}">
-          {{ item.short_name }}
-        </a>
-        <small>{{ item.short_variant_name }}</small>
-      </h6>
-      
-      {% if cart_page %}
-        {% set cart_quantity_class = 'float-md-none m-auto ' %}
-      {% else %}
-        {% set cart_quantity_class = 'float-left ' %}
-      {% endif %}
-
-      <div class="cart-item-quantity {% if cart_page %}col-7 col-md-3{% endif %}">
-        {% embed "snipplets/forms/form-input.tpl" with{
-          type_number: true, 
-          input_value: item.quantity, 
-          input_name: 'quantity[' ~ item.id ~ ']', 
-          input_data_attr: 'item-id',
-          input_data_val: item.id,
-          input_group_custom_class: cart_quantity_class ~ 'form-quantity w-auto mb-2', 
-          input_custom_class: 'js-cart-quantity-input cart-item-input form-control', 
-          input_label: false, input_append_content: true} %}
-            {% block input_prepend_content %}
-            <div class="row m-0 justify-content-md-center {% if cart_page %}align-items-center{% endif %}">
-              <span class="js-cart-quantity-btn cart-item-btn btn" onclick="LS.minusQuantity({{ item.id }}{% if not cart_page %}, true{% endif %})">
-                {% include "snipplets/svg/minus.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
-              </span>
-            {% endblock input_prepend_content %}
-            {% block input_append_content %}
-              <span class="js-cart-input-spinner cart-item-spinner" style="display: none;">
-                {% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline icon-spin svg-icon-text"} %}
-              </span>
-              <span class="js-cart-quantity-btn cart-item-btn btn" onclick="LS.plusQuantity({{ item.id }}{% if not cart_page %}, true{% endif %})">
-                {% include "snipplets/svg/plus.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
-              </span>
-            </div>
-            {% endblock input_append_content %}
-        {% endembed %}
-      </div>
-
-      {# Cart item subtotal #}
-      <h6 class="js-cart-item-subtotal cart-item-subtotal {% if cart_page %}col-5 col-md-3 text-right text-md-center h4-md font-weight-bold{% endif %}" data-line-item-id="{{ item.id }}">{{ item.subtotal | money }}</h6>
+    <div class="cart-item-name">
+      <a href="{{ item.url }}">
+        {{ item.short_name }}
+      </a>
+      <small>{{ item.short_variant_name }}</small>
     </div>
+
+    {# Cart item quantity controls #}
+    <span class="pull-left">
+      <button type="button" class="js-cart-quantity-btn cart-item-btn btn" onclick="LS.minusQuantity({{ item.id }}{% if not cart_page %}, true{% endif %})">
+        {% include "snipplets/svg/minus.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
+      </button>
+      <span>
+        <input type="number" name="quantity[{{ item.id }}]" data-item-id="{{ item.id }}" value="{{ item.quantity }}" class="js-cart-quantity-input cart-item-input form-control"/>
+      </span>
+      <span class="js-cart-input-spinner cart-item-spinner" style="display: none;">
+        {% include "snipplets/svg/sync-alt.tpl" with {svg_custom_class: "icon-inline icon-spin svg-icon-text"} %}
+      </span>
+      <button type="button" class="js-cart-quantity-btn cart-item-btn btn" onclick="LS.plusQuantity({{ item.id }}{% if not cart_page %}, true{% endif %})">
+        {% include "snipplets/svg/plus.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
+      </button>
+    </span>
+
+    {# Cart item subtotal mobile #}
+    <h6 class="js-cart-item-subtotal cart-item-subtotal" data-line-item-id="{{ item.id }}">{{ item.subtotal | money }}</h6>
   </div>
 
   {# Cart item delete #}
-  <div class="cart-item-delete {% if cart_page %}position-relative-md col-auto col-md-1{% else %}col-1{% endif %} text-right">
-    <button type="button" class="btn h6 {% if cart_page %}h5-md{% endif %} m-0" onclick="LS.removeItem({{ item.id }}{% if not cart_page %}, true{% endif %})">
+  <div class="col-1 cart-item-delete text-right">
+    <button type="button" class="btn" onclick="LS.removeItem({{ item.id }}{% if not cart_page %}, true{% endif %})">
       {% include "snipplets/svg/trash-alt.tpl" with {svg_custom_class: "icon-inline icon-lg svg-icon-text"} %}
     </button>
   </div>

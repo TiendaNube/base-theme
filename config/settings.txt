@@ -460,19 +460,16 @@ Carrito de compras
 	meta
 		icon = shopping-cart
 		advanced = true
-	checkbox
-		name = continue_buying
-		description = Mostrar el botón 'Ver más productos' en el carrito de compras
-	title
-		title = Carrito de compras rápidas
-	checkbox
-		name = ajax_cart
-		description = Tus clientes pueden agregar y ver los productos que van a comprar sin necesidad de ir a otra página, ya que la información está siempre visible.
 	title
 		title = Monto mínimo de compra
 	text
 		name = cart_minimum_value
 		description = ¿Cuánto es lo mínimo que pueden gastar tus clientes?
+	title
+		title = Botón seguir comprando en el carrito de compras
+	checkbox
+		name = continue_buying
+		description = Mostrar el botón de 'Seguir comprando' en el carrito de compras
 	title
 		title = Medios de envío
 	checkbox_global
@@ -537,15 +534,20 @@ Redes sociales
 	title
 		title = Publicaciones de Instagram
 	description
-		description = El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda. Tu perfil debe ser público.
+		description = El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda
+	subtitle
+		subtitle = Configurar cuenta de Instagram
+	i18n_input
+		name = instafeed_accesstoken
+		description = Access Token (Necesario para validar tu cuenta)
+	subtitle
+		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>
 	checkbox
 		name = show_instafeed
 		description = Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda
 	checkbox
 		name = instafeed_like
 		description = Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación
-	subtitle
-		subtitle = Si no ingresaste tu usuario de Instagram, hacelo desde <a target='_blank' href='/admin/preferences/social_networks/'>acá</a>
 	title
 		title = Facebook
 	subtitle

@@ -3,7 +3,7 @@
 	<h5 class="my-3">{{ "Compartir" | translate }}</h5>
 
 	{# Whatsapp button #}
-	<a class="social-share-button d-inline-block d-md-none" data-network="whatsapp" target="_blank" href="whatsapp://send?text={{ product.social_url }}" title="{{ 'Compartir en WhatsApp' | translate }}" aria-label="{{ 'Compartir en WhatsApp' | translate }}">
+	<a class="social-share-button" data-network="whatsapp" target="_blank" href="whatsapp://send?text={{ product.social_url }}" title="{{ 'Compartir en WhatsApp' | translate }}" aria-label="{{ 'Compartir en WhatsApp' | translate }}">
 	 	{% include "snipplets/svg/whatsapp.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
 	</a>
 

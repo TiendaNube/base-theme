@@ -39,7 +39,6 @@
   		// Add to cart
   		// Cart quantitiy changes
   		// Empty cart alert
-        // Go to checkout
 	#Shipping calculator
 		// Select and save shipping function
 		// Calculate shipping function
@@ -95,100 +94,9 @@ $(document).ready(function(){
         });
     }
 
-    {# /* // Cart notification: Dismiss notification */ #}
-
-    $(".js-cart-notification-close").click(function(){
-        $(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
-        setTimeout(function(){
-            $('.js-cart-notification-item-img').attr('src', '');
-            $(".js-alert-added-to-cart").hide();
-        },2000);
-    });
-
-    {% if not settings.head_fix %}
-
-        {# /* // Add to cart notification on non fixed header */ #}
-
-        var headHeight = $(".js-head-main").outerHeight();
-        var $addedToCartNotification = $(".js-alert-added-to-cart");
-
-        $addedToCartNotification.css("top" , headHeight);
-
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() == 0) {
-                    $addedToCartNotification.css("top" , headHeight).addClass("notification-with-arrow");
-                } else {
-                    $addedToCartNotification.css("top" , 30);
-                }
-            });
-        })
-
-    {% endif %}
-
     {#/*============================================================================
       #Modals
     ==============================================================================*/ #}
-
-    {# Full screen mobile modals back events #}
-
-    if ($(window).width() < 768) {
-
-        {# Clean url hash function #}
-
-        cleanURLHash = function(){
-            const uri = window.location.toString();
-            const clean_uri = uri.substring(0, uri.indexOf("#"));
-            window.history.replaceState({}, document.title, clean_uri);
-        };
-
-        {# Go back 1 step on browser history #}
-
-        goBackBrowser = function(){
-            cleanURLHash();
-            history.back();
-        };
-
-        {# Clean url hash on page load: All modals should be closed on load #}
-
-        if(window.location.href.indexOf("modal-fullscreen") > -1) {
-            cleanURLHash();
-        }
-
-        {# Open full screen modal and url hash #}
-
-        $(".js-fullscreen-modal-open").click(function(e){
-            e.preventDefault();
-            var modal_url_hash = $(this).data("modal-url");            
-            window.location.hash = modal_url_hash;
-        });
-
-        {# Close full screen modal: Remove url hash #}
-
-        $(".js-fullscreen-modal-close").click(function(e){
-            e.preventDefault();
-            goBackBrowser();
-        });
-
-        {# Hide panels or modals on browser backbutton #}
-
-        window.onhashchange = function() {
-            if(window.location.href.indexOf("modal-fullscreen") <= -1) {
-
-                {# Close opened modal #}
-
-                if($(".js-fullscreen-modal").hasClass("modal-show")){
-
-                    var $opened_modal = $(".js-fullscreen-modal.modal-show");
-                    var $opened_modal_overlay = $opened_modal.prev();
-
-                    $opened_modal.removeClass("modal-show").delay(500).hide(0);
-                    $opened_modal_overlay.fadeOut(500);
-                }
-            }
-        }
-
-    }
 
     var $modal_close = $('.js-modal-close');
     var $modal_open = $('.js-modal-open');
@@ -207,13 +115,7 @@ $(document).ready(function(){
     $modal_close.click(function (e) {
         e.preventDefault();  
         $(this).closest(".js-modal").removeClass("modal-show").delay(200).hide(0); 
-        $(".js-modal-overlay").fadeOut(300);
-
-        {# Close full screen modal: Remove url hash #}
-
-        if (($(window).width() < 768) && ($(this).hasClass(".js-fullscreen-modal-close"))) {
-            goBackBrowser();
-        }     
+        $(".js-modal-overlay").fadeOut(300);     
     });
 
     $(".js-modal-overlay").click(function (e) {
@@ -556,29 +458,30 @@ $(document).ready(function(){
 
         {# /* // Instagram feed */ #}
 
-        {% if settings.show_instafeed and store.instagram %}
-
-            {% set instuser = store.instagram|split('/')|last %}
-
+        {% if settings.show_instafeed %}
             var width = window.innerWidth;
             if (width > 767) {  
-                var resolution = 640;  
+                var resolution = "standard_resolution";  
             } else {
-                var resolution = 320;
+                var resolution = "low_resolution";
             }
+            var feedqty = 9;
+            {% set userid = settings.instafeed_accesstoken|split('.')|first %}
 
-            $.instagramFeed({
-                'username': '{{ instuser }}',
-                'container': '#instafeed',
-                'item_class': 'col-4',
-                'image_class': 'instafeed-img',
-                'private_class': 'col text-center',
-                'image_size': resolution,
-                'items': 9,
-                'likes': {% if settings.instafeed_like %}true{% else %}false{% endif %},
-                'like_icon': '{% include "snipplets/svg/heart.tpl" with {svg_custom_class: "icon-inline"} %}'
-            });
+            {% set instlink = '{{link}}' %}
+            {% set instimg = '{{image}}' %}
+            {% set instlike = '{{likes}}' %}
+            {% set instcomm = '{{comments}}' %}
 
+            var userFeed = new Instafeed({
+            get: 'user',
+                userId: '{{ userid }}',
+                accessToken: '{{ settings.instafeed_accesstoken }}',
+                resolution: resolution,
+                template: '<div class="col-4"><a class="instafeed-link" href="{{instlink}}" target="_blank" aria-label="{{ "Publicación de Instagram de" | translate }} {{ store.name }}"><div class="instafeed-img lazyload" data-bg="{{instimg}}">{% if settings.instafeed_like %}<div class="instafeed-info"><span class="instafeed-info-item">{% include "snipplets/svg/heart.tpl" with {svg_custom_class: "icon-inline"} %} {{instlike}}</span></div>{% endif %}</div></a></div>',
+                limit: feedqty
+           });
+           userFeed.run();
        {% endif %}
 
    	{% endif %}
@@ -885,8 +788,6 @@ $(document).ready(function(){
 	            var selectedPosition = liImage.data('image-position');
 	            var slideToGo = parseInt(selectedPosition);
                 productSwiper.slideTo(slideToGo);
-                $(".js-product-slide-img").removeClass("js-active-variant");
-                liImage.find(".js-product-slide-img").addClass("js-active-variant");
 	        });
 	    {% endif %}
 
@@ -918,169 +819,31 @@ $(document).ready(function(){
 	  #Cart
 	==============================================================================*/ #}
 
-    {# /* // Position of cart page summary */ #}
-
-    var head_height = $(".js-head-main").outerHeight();
-
-    if ($(window).width() > 768) {
-        {% if settings.head_fix %}
-            $("#cart-sticky-summary").css("top" , head_height + 10);
-        {% else %}
-            $("#cart-sticky-summary").css("top" , 10);
-        {% endif %}
-    }
-
     {# /* // Add to cart */ #}
 
-	$(document).on("click", ".js-addtocart:not(.js-addtocart-placeholder)", function (e) {
-
-        {# Button variables for transitions on add to cart #}
-
-        var $productContainer = $(this).closest('.js-product-container');
-        var $productVariants = $productContainer.find(".js-variation-option");
-        var $productButton = $productContainer.find("input[type='submit'].js-addtocart");
-        var $productButtonPlaceholder = $productContainer.find(".js-addtocart-placeholder");
-        var $productButtonText = $productButtonPlaceholder.find(".js-addtocart-text");
-        var $productButtonAdding = $productButtonPlaceholder.find(".js-addtocart-adding");
-        var $productButtonSuccess = $productButtonPlaceholder.find(".js-addtocart-success");
-        var productButttonHeight = $productButton.height();
-
-        if($(".js-product-slide-img.js-active-variant").length) {
-            var imageSrc = $($productContainer.find('.js-product-slide-img.js-active-variant')[0]).data('srcset').split(' ')[0];
-        } else {
-            var imageSrc = $($productContainer.find('.js-product-slide-img')[0]).data('srcset').split(' ')[0];
-        }
-        var quantity = $('.js-quantity-input').val();
-        var name = $('.js-product-name').text();
-        var price = $('.js-price-display').text();
-
-
+	$(document).on("click", ".js-addtocart", function (e) {
         if (!$(this).hasClass('contact')) {
-
-            {% if settings.ajax_cart %}
-                e.preventDefault();
-            {% endif %}
-
-            {# Hide real button and show button placeholder during event #}
-
-            $productButton.hide();
-            $productButtonPlaceholder.show().addClass("active");
-            $productButtonPlaceholder.height(productButttonHeight);
-            $productButtonText.removeClass("active");
-            setTimeout(function(){
-                $productButtonAdding.addClass("active");
-            },300);
-
-            {% if settings.ajax_cart %}
-
-                var callback_add_to_cart = function(){
-
-                    {# Animate cart amount #}
-
-                    $(".js-cart-widget-amount").addClass("beat");
-
+            e.preventDefault();
+            var callback_add_to_cart = function(){
+                if ($(window).width() > 768) {
+                    $(".js-toggle-cart").click();
+                }else{
+                   $(".js-alert-added-to-cart").show().toggleClass("notification-visible notification-hidden");
                     setTimeout(function(){
-                        $(".js-cart-widget-amount").removeClass("beat");
-                    },4000);
-
-                    {# Fill notification info #}
-
-                    $('.js-cart-notification-item-img').attr('src', imageSrc);
-                    $('.js-cart-notification-item-name').text(name);
-                    $('.js-cart-notification-item-quantity').text(quantity);
-                    $('.js-cart-notification-item-price').text(price);
-
-                    if($productVariants.length){
-                        var output = [];
-
-                        $productVariants.each( function(){  
-                            var variants = $(this);
-                            output.push(variants.val());
-                        });
-                        $(".js-cart-notification-item-variant-container").show();
-                        $(".js-cart-notification-item-variant").text(output.join(', '))
-                    }else{
-                        $(".js-cart-notification-item-variant-container").hide();
-                    }
-
-                    {# Set products amount wording visibility #}
-
-                    var cartItemsAmount = $(".js-cart-widget-amount").first().text();
-
-                    if(cartItemsAmount > 1){
-                        $(".js-cart-counts-plural").show();
-                        $(".js-cart-counts-singular").hide();
-                    }else{
-                        $(".js-cart-counts-singular").show();
-                        $(".js-cart-counts-plural").hide();
-                    }
-
-                    {# Show button placeholder with transitions #}
-
-                    $productButtonAdding.removeClass("active");
-
-                    setTimeout(function(){
-                        $productButtonSuccess.addClass("active");
-                    },300);
-                    setTimeout(function(){
-                        $productButtonSuccess.removeClass("active");
-                        setTimeout(function(){
-                            $productButtonText.addClass("active");
-                        },300);
-                        $productButtonPlaceholder.removeClass("active");
-                    },2000);
-
-                    setTimeout(function(){
-                        $productButtonPlaceholder.removeAttr("style").hide();
-                        $productButton.show();
-                    },4000);
-
-                    $productContainer.find(".js-added-to-cart-product-message").slideDown();
-
-                    if ($(window).width() > 768) {
-                        $(".js-toggle-cart").click();
-                    }else{
-                       {# Show notification and hide it only after second added to cart #}
-
-                        setTimeout(function(){
-                            $(".js-alert-added-to-cart").show().addClass("notification-visible").removeClass("notification-hidden");
-                        },500);
-
-                        if (typeof $.cookie('first_product_added_successfully') === 'undefined') {
-                            $.cookie('first_product_added_successfully', true, { path: '/', expires: 7 }); 
-                        } else{
-                            setTimeout(function(){
-                                $(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
-                                setTimeout(function(){
-                                    $('.js-cart-notification-item-img').attr('src', '');
-                                    $(".js-alert-added-to-cart").hide();
-                                },2000);
-                            },8000);
-                        }
-                    }
-                    $(".js-shipping-filled-cart").show();
+                        $(".js-alert-added-to-cart").toggleClass("notification-visible notification-hidden");
+                    },7000);
                 }
-                var callback_error = function(){
-
-                    {# Restore real button visibility in case of error #}
-
-                    $productButtonPlaceholder.removeClass("active");
-                    $productButtonText.fadeIn("active");
-                    $productButtonAdding.removeClass("active");
-                    $productButtonPlaceholder.hide();
-                    $productButton.show();
-                }
-                $prod_form = $(this).closest("form");
-                LS.addToCartEnhanced(
-                    $prod_form,
-                    '{{ "Agregar al carrito" | translate }}',
-                    '{{ "Agregando..." | translate }}',
-                    '{{ "¡Uy! No tenemos más stock de este producto para agregarlo al carrito." | translate }}',
-                    {{ store.editable_ajax_cart_enabled ? 'true' : 'false' }},
-                        callback_add_to_cart,
-                        callback_error
-                );
-            {% endif %}
+                $(".js-shipping-filled-cart").show();
+            }
+            $prod_form = $(this).closest("form");
+            LS.addToCartEnhanced(
+                $prod_form,
+                '{{ "Agregar al carrito" | translate }}',
+                '{{ "Agregando..." | translate }}',
+                '{{ "¡Uy! No tenemos más stock de este producto para agregar este producto al carrito." | translate }}',
+                {{ store.editable_ajax_cart_enabled ? 'true' : 'false' }},
+                    callback_add_to_cart
+            );
         }
     });
 
@@ -1116,14 +879,6 @@ $(document).ready(function(){
         e.preventDefault();
         $(".js-mobile-nav-empty-cart-alert").fadeIn(100).delay(1500).fadeOut(500);
     });
-
-    {# /* // Go to checkout */ #}
-
-    {# Clear cart notification cookie after consumers continues to checkout #}
-
-    $('form[action="{{ store.cart_url | escape('js') }}"]').submit(function() {
-        $.removeCookie('first_product_added_successfully', { path: '/' });
-    }); 
 
 	{#/*============================================================================
 	  #Shipping calculator

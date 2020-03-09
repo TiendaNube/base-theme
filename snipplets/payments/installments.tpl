@@ -110,7 +110,7 @@
     {% set interest = true %}
     {% set interest_value = cart.installments.interest %}
   {% endif %}
-  <div {% if installment < 2 %} style="display: none;" {% endif %} data-interest="{{ interest_value }}" data-cart-installment="{{ installment }}" class="js-installments-cart-total text-right {% if template == 'cart' %}text-md-center{% endif %}"> 
+  <div {% if installment < 2 %} style="display: none;" {% endif %} data-interest="{{ interest_value }}" data-cart-installment="{{ installment }}" class="js-installments-cart-total text-right"> 
     {{ 'O hasta' | translate }}
     <span class="js-cart-installments-amount">{{ installment }}</span> 
     {{ 'cuotas de' | translate }} 
