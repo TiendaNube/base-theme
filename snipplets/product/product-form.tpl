@@ -90,7 +90,7 @@
             {# Shipping Calculator #}
             
             {% if store.has_shipping %}
-                {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_show': settings.shipping_calculator_cart_page and not product.free_shipping, 'shipping_calculator_variant' : product.selected_or_first_available_variant} %}
+                {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_show': settings.shipping_calculator_product_page and not product.free_shipping, 'shipping_calculator_variant' : product.selected_or_first_available_variant} %}
             {% endif %}
 
             {% if store.branches %}

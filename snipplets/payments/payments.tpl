@@ -4,7 +4,7 @@
 {% set gateways = installments_info | length %}
 {% set store_set_for_new_installments_view = store.is_set_for_new_installments_view %}
 
-    {% embed "snipplets/modal.tpl" with{modal_id: 'installments-modal', modal_position: 'bottom', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered'  } %}
+    {% embed "snipplets/modal.tpl" with{modal_id: 'installments-modal', modal_position: 'bottom', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered', modal_mobile_full_screen: 'true'} %}
         {% block modal_head %}
             {{'Medios de pago' | translate }}
         {% endblock %}
@@ -23,7 +23,12 @@
 
                         {% if loop.last and custom_payment is not null %}
                             <li id="method_{{ custom_payment.code }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab" data-code="{{ custom_payment.code }}">
-                                <a href="#installment_{{ custom_payment.code }}" class="js-tab-link tab-link">{{ custom_payment.name | upper }}</a>
+                                <a href="#installment_{{ custom_payment.code }}" class="js-tab-link tab-link">
+                                    {{ custom_payment.name | upper }}
+                                    {% if custom_payment.discount > 0 %}
+                                        <span class="label label-primary ml-1"><strong>{{ custom_payment.discount }}% {{'OFF' | translate }}</strong></span>
+                                    {% endif %}
+                                </a>
                             </li>
                         {% endif %}
                     {% endfor %}
@@ -79,16 +84,29 @@
 
                                     {# Custom method instructions #}
 
-                                    <h6 class="mb-1">{{ 'Cuando termines la compra vas a ver la información de pago en relación a esta opción.' | translate }}</h6>
+                                    <h6 class="mb-2">{{ 'Cuando termines la compra vas a ver la información de pago en relación a esta opción.' | translate }}</h6>
+
+                                    {% if custom_payment.discount > 0 %}
+                                        <div class="mb-1">
+                                            <span><strong>{{ custom_payment.discount }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ custom_payment.name }}</span>
+                                        </div>
+                                    {% endif %}
 
                                     {# Price total #}
 
                                     <h4 class="mb-1 font-weight-normal">
-                                        <span>{{ 'Total:' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
+                                        <span>{{ 'Total:' | translate }}</span>
+                                        {% if custom_payment.discount > 0 %}
+                                            {% set price_with_discount = product.price - ((product.price * custom_payment.discount) / 100) %}
+                                            <span class="price-compare">{{ product.price | money }}</span>
+                                            <strong class="js-installments-one-payment h3 text-brand">{{ price_with_discount | money }}</strong> 
+                                        {% else %} 
+                                            <strong class="js-installments-one-payment ml-3">{{ product.price | money }}</strong>
+                                        {% endif %}
                                     </h4>
 
                                     {% if custom_payment.discount > 0 %}
-                                        <div> {{ custom_payment.name }}: {{ 'tiene un' | translate }} <strong>{{ custom_payment.discount }}% {{'de descuento' | translate }}</strong> {{'que será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
+                                        <div class="mt-3">{{'El descuento será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
                                     {% endif %}
                                 
                                 </div>
@@ -101,7 +119,7 @@
         {% endblock %}
         {% block modal_foot %}
             <div class="text-right">
-                <span class="js-modal-close btn-link pull-right">{{ 'Volver al producto' | translate }}</span>
+                <span class="js-modal-close js-fullscreen-modal-close btn-link pull-right">{{ 'Volver al producto' | translate }}</span>
             </div>
         {% endblock %}
     {% endembed %}

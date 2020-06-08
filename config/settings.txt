@@ -473,6 +473,8 @@ Carrito de compras
 	text
 		name = cart_minimum_value
 		description = ¿Cuánto es lo mínimo que pueden gastar tus clientes?
+		placeholder = Ej.: 3000
+		legend = Solo tenés que ingresar números
 	title
 		title = Medios de envío
 	checkbox_global

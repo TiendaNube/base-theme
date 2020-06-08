@@ -17,36 +17,41 @@
     {% set size_name = 'Size' %}
 {% endif %}
 <div id="filters">
-    {% if filter_colors %}
+    {% if filter_colors or filter_more_colors %}
         <div class="mb-4">
-            <h6 class="mb-2">{{ 'Color' | translate }}</h6>
+            <h6 class="mb-3">{{ 'Color' | translate }}</h6>
             {% for name,color in insta_colors %}
-                <button type="button" class="btn btn-secondary btn-circle mr-2 mb-2" style="background-color: {{ color[name] }};" title="{{ name }}" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ name|replace("'","%27") }}');">
-                </button>
+                <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ name|replace("'","%27") }}');">
+                    <span class="checkbox">
+                        <input type="checkbox" autocomplete="off">
+                        <span class="checkbox-icon"></span>
+                        <span class="checkbox-text">{{ name }}</span>
+                        <span class="checkbox-color" style="background-color: {{ color[name] }};" title="{{ name }}"></span>
+                    </span>
+                </label>
             {% endfor %}
-        </div>
-    {% endif %}
-    {% if filter_more_colors %}
-        <div class="mb-4">
-            <h6 class="mb-2">
-                {% if filter_colors %}
-                    {{ 'Más colores' | translate }}
-                {% else %}
-                    {{ 'Color' | translate }}
-                {% endif %}
-            </h6>
             {% for color in other_colors %}
-                <button type="button" class="btn btn-secondary mr-2 mb-2" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ color|replace("'","%27") }}');">{{ color }}
-                </button>
+                <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ color|replace("'","%27") }}');">
+                    <span class="checkbox">
+                        <input type="checkbox" autocomplete="off">
+                        <span class="checkbox-icon"></span>
+                        <span class="checkbox-text">{{ color }}</span>
+                    </span>
+                </label>
             {% endfor %}
         </div>
     {% endif %}
     {% if filter_sizes %}
         <div class="mb-4">
-            <h6 class="mb-2">{{ 'Talle' | translate }}</h6>
+            <h6 class="mb-3">{{ 'Talle' | translate }}</h6>
             {% for size in size_properties_values %}
-                <button type="button" class="btn btn-secondary mr-2 mb-2" onclick="LS.urlAddParam('{{ size_name|replace("'","%27") }}', '{{ size|replace("'","%27") }}');">{{ size }}
-                </button>
+                <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ size_name|replace("'","%27") }}', '{{ size|replace("'","%27") }}');">
+                    <span class="checkbox">
+                        <input type="checkbox" autocomplete="off">
+                        <span class="checkbox-icon"></span>
+                        <span class="checkbox-text">{{ size }}</span>
+                    </span>
+                </label>
             {% endfor %}
         </div>
     {% endif %}
@@ -54,10 +59,15 @@
     {% for variants_property in variants_properties %}
         {% if filter_other %}
             <div class="mb-4">
-                <h6 class="mb-2">{{ variants_property }}</h6>
+                <h6 class="mb-3">{{ variants_property }}</h6>
                 {% for value in variants_properties_values[variants_property] %}
-                    <button type="button" class="btn btn-secondary mr-2 mb-2" onclick="LS.urlAddParam('{{ variants_property|replace("'","%27") }}', '{{ value|replace("'","%27") }}');">{{value}}
-                    </button>
+                    <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ variants_property|replace("'","%27") }}', '{{ value|replace("'","%27") }}');">
+                        <span class="checkbox">
+                            <input type="checkbox" autocomplete="off">
+                            <span class="checkbox-icon"></span>
+                            <span class="checkbox-text">{{value}}</span>
+                        </span>
+                    </label>
                 {% endfor %}
             </div>
         {% endif %}

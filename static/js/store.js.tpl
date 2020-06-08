@@ -35,11 +35,11 @@
 	  	// Pinterest sharing
         // Product quantity
   	#Cart
-		// Toggle cart 
-		// Add to cart
-		// Cart quantitiy changes
-		// Empty cart alert
-		// Go to checkout
+  		// Toggle cart 
+  		// Add to cart
+  		// Cart quantitiy changes
+  		// Empty cart alert
+        // Go to checkout
 	#Shipping calculator
 		// Select and save shipping function
 		// Calculate shipping function
@@ -587,7 +587,32 @@ $(document).ready(function(){
 	  #Product grid
 	==============================================================================*/ #}
 
+    var $category_controls = $(".js-category-controls");
+    var mobile_nav_height = $(".js-head-main").outerHeight();
+
 	{% if template == 'category' %}
+
+        {# /* // Fixed category controls */ #}
+
+        if ($(window).width() < 768) {
+            {% if settings.head_fix %}
+                $(".js-category-controls").css("top" , mobile_nav_height);
+            {% else %}
+                $(".js-category-controls").css("top" , 0);
+            {% endif %}
+
+            {# Detect if category controls are sticky and add css #}
+
+            var observer = new IntersectionObserver(function(entries) {
+                if(entries[0].intersectionRatio === 0)
+                    document.querySelector(".js-category-controls").classList.add("is-sticky");
+                else if(entries[0].intersectionRatio === 1)
+                    document.querySelector(".js-category-controls").classList.remove("is-sticky");
+                }, { threshold: [0,1] 
+            });
+
+            observer.observe(document.querySelector(".js-category-controls-prev"));
+        }
 
 		{# /* // Show filters */ #}
 
@@ -1058,7 +1083,6 @@ $(document).ready(function(){
                             },8000);
                         }
                     }
-                    $(".js-shipping-filled-cart").show();
                 }
                 var callback_error = function(){
 

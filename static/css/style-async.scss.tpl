@@ -212,6 +212,53 @@ style.css
   margin-bottom: 0;
 }
 
+.checkbox-container{
+  .checkbox {
+    position: relative;
+    display: block;
+    margin-bottom: 15px;
+    padding-left: 30px;
+    line-height: 20px;
+    cursor: pointer;
+    @include prefix(user-select, none, webkit ms moz o);
+
+    &-color {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 0 0 2px 5px;
+      vertical-align: middle;
+      border-radius: 100%;
+    }
+
+    input {
+      display: none;
+      &:checked ~ .checkbox-icon:after {
+        display: block;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 20px;
+      height: 20px;
+
+      &:after {
+        position: absolute;
+        top: 1px;
+        left: 6px;
+        display: none;
+        width: 7px;
+        height: 12px;
+        content: '';
+        @include prefix(transform, rotate(45deg), webkit ms moz o);
+      }
+    }
+  }
+}
+
 .form-select {
   display: block;
   width: 100%;
@@ -781,7 +828,7 @@ footer {
 .filter-remove {
   position: relative;
   padding: 10px 28px 10px 10px;
-  margin: 0 5px 5px 0;
+  margin: 0 8px 10px 0;
   line-height: 18px;
   border-radius: 0;
   &:after {

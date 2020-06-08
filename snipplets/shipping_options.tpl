@@ -1,7 +1,7 @@
 {% if options %}
-    {% if store.has_smart_dates and show_time %}
-        <div class="radio-group-label mb-3">{{"El tiempo de entrega no considera feriados." | translate}}</div>
-    {% endif %}
+    <div class="{% if cart.items_count > 0 %}js-product-shipping-label{% endif %} font-small mb-4 pb-1" style="display: none;">
+        {{ 'Opciones para tu compra <strong>si sumás este producto</strong>.' | translate }}
+    </div>
     <ul class="list-unstyled">
 
         {# Smart shipping hides similar shipping options on a toggle div and also shows an improved shipping item #}
@@ -40,12 +40,9 @@
         {% endif %}
     </ul>
 
-    <div class="js-product-shipping-label font-small mt-3 pull-left" style="display: none;">
-        <span class="js-shipping-filled-cart js-visible-on-cart-filled" {% if cart.items_count == 0 %}style="display:none;"{% endif%}>
-            {% include "snipplets/svg/info-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
-            <span>{{ 'El precio de envío incluye este producto y todos los que agregaste al carrito.' | translate }}</span>
-        </span>
-    </div>
+    {% if store.has_smart_dates and show_time %}
+        <div class="font-small float-left w-100 my-3">{{"El tiempo de entrega <strong>no considera feriados</strong>." | translate}}</div>
+    {% endif %}
 {% else %}
 <span>{{"No hay costos de envío para el código postal dado." | translate}}</span>
 {% endif %}
