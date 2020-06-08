@@ -1486,6 +1486,42 @@ a {
   }
 }
 
+{# /* // Modal */ #}
+
+.modal {
+  &-dialog {
+    background: $background-color;
+  }
+}
+
+@media (max-width: $xs) {
+  .modal-xs {
+    background: $background-color;
+  }
+}
+
+{# /* // List */ #}
+
+.list-group-item {
+  border-color: $box-border-color;
+}
+
+{# /* // Announcement */ #}
+
+.announcement {
+  color: darken($accent-brand-color, 10%);
+
+  &-bg {
+    background: $accent-brand-color;
+    box-shadow: 0px 3px 5px -1px rgba(darken($accent-brand-color, 20%), 0.35);
+    border-radius: $box-radius;
+  }
+
+  &-close {
+    color: $accent-brand-color;
+  }
+}
+
 {%  endif %}
 
 {%  endif %}

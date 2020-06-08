@@ -1,5 +1,7 @@
 <div class="js-cart-item cart-item {% if cart_page %}row align-items-md-center {% if loop.last %}mb-2{% else %}mb-5{% endif %} {% else %}form-row{% endif %}" data-item-id="{{ item.id }}">
 
+  {% set show_free_shipping_label = item.product.free_shipping and not (cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price) %}
+
   {# Cart item image #}
   <div class="{% if cart_page %}col-3 col-md-2{% else %}col-3 pr-3{% endif %}">
     <a href="{{ item.url }}">
@@ -15,6 +17,11 @@
           {{ item.short_name }}
         </a>
         <small>{{ item.short_variant_name }}</small>
+        {% if show_free_shipping_label %}
+          <div class="my-2">
+            <span class="label label-secondary font-smallest">{{ "Envío gratis" | translate }}</span>
+          </div>
+        {% endif %}
       </h6>
       
       {% if cart_page %}

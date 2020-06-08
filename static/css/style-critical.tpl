@@ -299,6 +299,10 @@ p{
   opacity: 0.5;
 }
 
+.font-smallest {
+  font-size: 11px!important;
+}
+
 {# /* // Icons */ #}
 
 .icon-inline {
@@ -748,6 +752,18 @@ p{
   #Product grid
 ==============================================================================*/
 
+{# /* // Category controls */ #}
+
+.category-controls-sticky-detector {
+  height: 1px;
+}
+
+.category-controls {
+  position: sticky;
+  z-index: 100;
+  padding: 15px 0;
+}
+
 {# /* // Category header */ #}
 
 .filter-link {
@@ -909,6 +925,13 @@ p{
     height: 64px;
     font-size: 30px;
     margin: -32px 0 0 -32px;
+  }
+
+  {# /* //// Product grid */ #}
+
+  .category-controls {
+    position: relative;
+    padding: 0;
   }
 
   {# /* //// Helper classes */ #}

@@ -5,8 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    {{ "Seguí acá" | translate | a_tag(status_page_url, {class: 'btn btn-link'}) }}
-                    <span>{{ "tu última compra" | translate }}</span>
+                    <a class="btn" href="{{ status_page_url }}"><strong>{{ "Seguí acá" | translate }}</strong> {{ "tu última compra" | translate }}</a>
                     <a class="js-notification-close ml-3" href="#">
                         {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-primary icon-lg"} %}
                     </a>

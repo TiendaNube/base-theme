@@ -12,7 +12,14 @@
 				{% endembed %}
 			</div>
 		</div>
-		<div class="row mb-3 align-items-center">
+	</div>
+</section>
+
+{% if not show_help %}
+<section class="category-body">
+	<div class="container">
+		<div class="js-category-controls-prev category-controls-sticky-detector"></div>
+		<div class="js-category-controls row align-items-center mb-md-3 category-controls">
 			{% if products %}
 				{% set columns = settings.grid_columns %}
 				<div class="col-6{% if columns == 2 %} col-md-9{% else %} col-md-9{% endif %}">
@@ -20,7 +27,7 @@
 					<a href="#" class="js-modal-open filter-link" data-toggle="#nav-filters">
 						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" with {svg_custom_class: "icon-inline icon-w-16"} %} 
 					</a>		   
-					{% embed "snipplets/modal.tpl" with{modal_id: 'nav-filters', modal_class: 'filters modal-docked-small', modal_position: 'left', modal_transition: 'slide', modal_width: 'full'  } %}
+					{% embed "snipplets/modal.tpl" with{modal_id: 'nav-filters', modal_class: 'filters modal-docked-small', modal_position: 'left', modal_transition: 'slide', modal_width: 'full'} %}
 						{% block modal_head %}
 				            {{'Filtros' | translate }}
 				        {% endblock %}
@@ -28,8 +35,6 @@
 							{% snipplet "grid/filters.tpl" %}
 						{% endblock %}
 					{% endembed %}
-				{% else %}
-					<h6 class="filter-title">{{ 'Filtro aplicado:' | translate }}</h6>
 				{% endif %}
 				</div>
 				<div class="col-6{% if columns == 2 %} col-md-3{% else %} col-md-3{% endif %} text-right">
@@ -38,15 +43,10 @@
 			{% endif %}
 		</div>
 		<div class="row">
-			<div class="js-append-filters col-12 mb-3 mt-3" style="display: none;">
+			<div class="js-append-filters col-12 mb-3" style="display: none;">
+				<div class="d-md-inline-block mr-md-2 mb-3">{{ 'Filtrado por:' | translate }}</div>
 			</div>
 		</div>
-	</div>
-</section>
-
-{% if not show_help %}
-<section class="category-body">
-	<div class="container">
 		{% if products %}
 	        <div class="js-product-table row">
 	        	{% include 'snipplets/product_grid.tpl' %}

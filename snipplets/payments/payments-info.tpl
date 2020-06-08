@@ -143,16 +143,28 @@
 
         </div>
 
-        {# Cash total #}
-
-        <h4 class="font-weight-normal mb-0">
-            <span>{{ 'Total:' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
-        </h4>
-
         {# Boleto message #}
 
         {% if method in ['boleto_paghiper'] and discount > 0.0 %}
-            <div> {{'Boleto Paghiper tiene un' | translate }} <strong>{{discount}}% {{'de descuento' | translate }}</strong> {{'que será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
+            {% set price_with_boleto_discount = product.price - ((product.price * discount) / 100) %}
+            <div class="my-1"> {{'Boleto Paghiper tiene un' | translate }} <strong>{{discount}}% {{'de descuento' | translate }}</strong></div>
+
+            <h4 class="font-weight-normal mb-3">
+                <span>{{ 'Total:' | translate }}</span>
+                <span class="price-compare">{{ product.price | money }}</span><strong class="js-installments-one-payment">{{ price_with_boleto_discount | money }}</strong> 
+            </h4>
+
+            <div class="font-small">{{'El descuento será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
+
+        {% else %}
+
+            {# Cash total #}
+
+            <h4 class="font-weight-normal mb-0">
+                <span>{{ 'Total:' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
+            </h4>
+
         {% endif %}
+
     </div>
 {% endif %}

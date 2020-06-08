@@ -67,10 +67,10 @@
 
           <div class="js-shipping-method-unavailable alert alert-warning row" style="display: none;">
             <div>
-              <strong>{{ 'El medio de envío que habías elegido ya no se encuentra disponible ' | translate }}</strong>{{ 'porque el total de los items del carrito superan el peso máximo.' | translate }}
+              <strong>{{ 'El medio de envío que habías elegido ya no se encuentra disponible para este carrito. ' | translate }}</strong>
             </div>
             <div>
-              {{ '¡No te preocupes! Podés elegir otro medio de envío.' | translate}}
+              {{ '¡No te preocupes! Podés elegir otro.' | translate}}
             </div>
           </div>
 
@@ -161,7 +161,7 @@
               <div class="js-cart-total-container js-visible-on-cart-filled mb-3" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
                 <h2 class="row no-gutters text-primary mb-0 {% if cart_page %}justify-content-end justify-content-md-center{% endif %}">
                   <span class="col {% if cart_page %}col-md-auto{% endif %} mr-1">{{ "Total" | translate }}:</span>
-                  <span class="js-cart-total {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right">{{ cart.total | money }}</span>
+                  <span class="js-cart-total {% if cart.free_shipping.cart_has_free_shipping %}js-free-shipping-achieved{% endif %} {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right">{{ cart.total | money }}</span>
                 </h2>
 
                 {# IMPORTANT Do not remove this hidden total, it is used by JS to calculate cart total #}
@@ -186,7 +186,7 @@
                 {# Cart CTA Module for cart popup or cart page #}
 
                 {% if cart_page %}
-                  {% if cart.total >= cart_total %}
+                  {% if cart.checkout_enabled %}
                     <input id="go-to-checkout" class="btn btn-primary btn-block mb-3" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}"/>
                   {% else %}
 
@@ -197,13 +197,13 @@
                     </div>
                   {% endif %}
                 {% else %}
-                  <div class="js-ajax-cart-submit row mb-3" {{ cart.total < cart_total ? 'style="display:none"' }} id="ajax-cart-submit-div">
+                  <div class="js-ajax-cart-submit row mb-3" {{ not cart.checkout_enabled ? 'style="display:none"' }} id="ajax-cart-submit-div">
                     <input class="btn btn-primary btn-block" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}"/>
                   </div>
 
                   {# Cart minium alert #}
 
-                  <div class="js-ajax-cart-minimum alert alert-warning mt-4" {{ cart.total >= cart_total ? 'style="display:none"' }} id="ajax-cart-minumum-div">
+                  <div class="js-ajax-cart-minimum alert alert-warning mt-4" {{ cart.checkout_enabled ? 'style="display:none"' }} id="ajax-cart-minumum-div">
                     {{ "El monto mínimo de compra (sin envío) es de" | translate }} {{ cart_total | money }}
                   </div>
                   <input type="hidden" id="ajax-cart-minimum-value" value="{{ cart_total }}"/>
