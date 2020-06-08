@@ -3361,7 +3361,7 @@ pt "Qual o valor mínimo que seus clientes podem gastar?"
 es_mx "¿Cuánto es lo mínimo que quieres que gasten tus clientes?"
 
 es "Ej.: 3000"
-pt "Ej.: 300"
+pt "p. ex.: 300"
 es_mx "Ej.: 800"
 
 es "Solo tenés que ingresar números"
