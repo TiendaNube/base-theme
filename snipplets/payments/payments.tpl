@@ -106,7 +106,7 @@
                                     </h4>
 
                                     {% if custom_payment.discount > 0 %}
-                                        <div class="mt-3">{{'El descuento será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
+                                        <div class="mt-3">{{'El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma.' | translate }}</div>
                                     {% endif %}
                                 
                                 </div>

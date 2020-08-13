@@ -1234,29 +1234,35 @@ $(document).ready(function(){
 
     {# Only shipping input has value, cart has saved shipping and there is no branch selected #}
 
-    if($("#cart-shipping-container .js-shipping-input").val()){
+    calculateCartShippingOnLoad = function(){
+        if($("#cart-shipping-container .js-shipping-input").val()){
        
-        // If user already had calculated shipping: recalculate shipping
-       
-       setTimeout(function() { 
-            LS.calculateShippingAjax(
-                $('#cart-shipping-container').find(".js-shipping-input").val(), 
-                '{{store.shipping_calculator_url | escape('js')}}',
-                $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
-        }, 100);
-    } 
+            // If user already had calculated shipping: recalculate shipping
+           
+           setTimeout(function() { 
+                LS.calculateShippingAjax(
+                    $('#cart-shipping-container').find(".js-shipping-input").val(), 
+                    '{{store.shipping_calculator_url | escape('js')}}',
+                    $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
+            }, 100);
+        } 
 
-    if($(".js-branch-method").hasClass('js-selected-shipping-method')){
-        
-        {% if store.branches|length > 1 %}
-            $(".js-store-branches-container").slideDown("fast");
-            $(".js-see-branches").hide();
-            $(".js-hide-branches").show();
-        {% endif %}
+        if($(".js-branch-method").hasClass('js-selected-shipping-method')){
+            
+            {% if store.branches|length > 1 %}
+                $(".js-store-branches-container").slideDown("fast");
+                $(".js-see-branches").hide();
+                $(".js-hide-branches").show();
+            {% endif %}
 
-        // Trigger function only for free pickup stores
-        LS.saveCalculatedShipping(false);
-    }
+            // Trigger function only for free pickup stores
+            LS.saveCalculatedShipping(false);
+        }
+    };
+    
+    {% if cart.has_shippable_products %}
+        calculateCartShippingOnLoad();
+    {% endif %}
 
 	{# /* // Shipping provinces */ #}
 

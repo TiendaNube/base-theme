@@ -5,12 +5,13 @@
                 <div class="swiper-slide slide-container">
                 	{% if slide.link %}
                 		<a href="{{ slide.link }}" aria-label="{{ 'Carrusel' | translate }} {{ loop.index }}">
-                	{% endif %}		
-	                	<div data-background="{{ slide.image | static_url | settings_image_url('1080p') }}" class="slider-slide swiper-lazy">
-			            </div>
-			            {% if not params.preview %}
-                		<div style="background-image: url({{ slide.image | static_url | settings_image_url('tiny') }});" class="js-slider-preloader slider-slide preloader-bg-img"></div>
-                		{% endif %}
+                	{% endif %}
+                		<div class="slider-slide">
+	                		<img {% if loop.first %}src="{{ slide.image | static_url | settings_image_url('original') }}" srcset="{{ slide.image | static_url | settings_image_url('original') }} 1024w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image"{% else %}data-src="{{ slide.image | static_url | settings_image_url('original') }}" data-srcset="{{ slide.image | static_url | settings_image_url('original') }} 1024w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w"class="slider-image swiper-lazy"{% endif %}>
+				            {% if not params.preview and not loop.first %}
+	                		<div style="background-image: url({{ slide.image | static_url | settings_image_url('tiny') }});" class="js-slider-preloader slider-slide preloader-bg-img"></div>
+	                		{% endif %}
+                		</div>
 		            {% if slide.link %}
 		            	</a>
 		            {% endif %}

@@ -1,6 +1,10 @@
 {# IMPORTANT Do not remove this hidden subtotal, it is used by JS to calculate cart total #}
 <div class="subtotal-price hidden" data-priceraw="{{ cart.subtotal }}"></div>
 
+{# Define contitions to show shipping calculator and store branches on cart #}
+
+{% set show_calculator_on_cart = settings.shipping_calculator_cart_page and store.has_shipping %}
+
 {# Used to assign currency to total #}
 <div id="store-curr" class="hidden">{{ cart.currency }}</div>
 
@@ -9,9 +13,7 @@
   <h5 class="js-visible-on-cart-filled {% if not cart_page %}row no-gutters{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
     <span {% if not cart_page %}class="col"{% endif %}>
       {{ "Subtotal" | translate }}
-      {% if settings.shipping_calculator_cart_page %}
-        <small>{{ " (sin envío)" | translate }}</small>
-      {% endif %}
+      <small class="js-subtotal-shipping-wording" {% if not (cart.has_shippable_products or show_calculator_on_cart) %}style="display: none"{% endif %}>{{ " (sin envío)" | translate }}</small>
       :
     </span>
     <strong class="js-ajax-cart-total js-cart-subtotal {% if not cart_page %}col{% endif %} text-right" data-priceraw="{{ cart.subtotal }}">{{ cart.subtotal | money }}</strong>
@@ -58,49 +60,50 @@
     {% if cart_page %}
       <div class="col-12 col-md-5">
     {% endif %}
-      {% if settings.shipping_calculator_cart_page %}
-        <div class="js-visible-on-cart-filled divider {% if cart_page %}d-md-none{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
+      {% if show_calculator_on_cart or store.branches %}
+        <div class="js-fulfillment-info js-allows-non-shippable" {% if not cart.has_shippable_products %}style="display: none"{% endif %}>
+          <div class="js-visible-on-cart-filled divider {% if cart_page %}d-md-none{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
 
-        <div class="js-visible-on-cart-filled js-has-new-shipping js-shipping-calculator-container container-fluid">
+          <div class="js-visible-on-cart-filled js-has-new-shipping js-shipping-calculator-container container-fluid">
 
-          {# Saved shipping not available #}
+            {# Saved shipping not available #}
 
-          <div class="js-shipping-method-unavailable alert alert-warning row" style="display: none;">
-            <div>
-              <strong>{{ 'El medio de envío que habías elegido ya no se encuentra disponible para este carrito. ' | translate }}</strong>
+            <div class="js-shipping-method-unavailable alert alert-warning row" style="display: none;">
+              <div>
+                <strong>{{ 'El medio de envío que habías elegido ya no se encuentra disponible para este carrito. ' | translate }}</strong>
+              </div>
+              <div>
+                {{ '¡No te preocupes! Podés elegir otro.' | translate}}
+              </div>
             </div>
-            <div>
-              {{ '¡No te preocupes! Podés elegir otro.' | translate}}
+
+            {# Shipping calculator and branch link #}
+
+            <div id="cart-shipping-container" class="row" {% if cart.items_count == 0 %} style="display: none;"{% endif %} data-shipping-url="{{ store.shipping_calculator_url }}">
+
+              {# Used to save shipping #}
+
+              <span id="cart-selected-shipping-method" data-code="{{ cart.shipping_data.code }}" class="hidden">{{ cart.shipping_data.name }}</span>
+
+              {# Shipping Calculator #}
+
+              {% if show_calculator_on_cart %}
+                {% include "snipplets/shipping/shipping-calculator.tpl" with {'product_detail': false} %}
+              {% endif %}
+
+              {# Store branches #}
+
+              {% if store.branches %}
+
+                {# Link for branches #}
+
+                {% include "snipplets/shipping/branches.tpl" with {'product_detail': false} %}
+              {% endif %}
             </div>
           </div>
 
-          {# Shipping calculator and branch link #}
-
-          <div id="cart-shipping-container" class="row" {% if cart.items_count == 0 %} style="display: none;"{% endif %} data-shipping-url="{{ store.shipping_calculator_url }}">
-
-            {# Used to save shipping #}
-
-            <span id="cart-selected-shipping-method" data-code="{{ cart.shipping_data.code }}" class="hidden">{{ cart.shipping_data.name }}</span>
-
-            {# Shipping Calculator #}
-
-            {% if store.has_shipping %}
-              {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_show': settings.shipping_calculator_cart_page, 'product_detail': false} %}
-            {% endif %}
-
-            {# Store branches #}
-
-            {% if store.branches %}
-
-              {# Link for branches #}
-
-              {% include "snipplets/shipping/branches.tpl" with {'product_detail': false} %}
-            {% endif %}
-          </div>
+          <div class="js-visible-on-cart-filled divider {% if cart_page %}d-md-none{% endif %} {% if not store.branches %} mt-0{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
         </div>
-
-        <div class="js-visible-on-cart-filled divider {% if cart_page %}d-md-none{% endif %} {% if not store.branches %} mt-0{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
-
       {% endif %}
     {% if cart_page %}
       </div>
@@ -193,7 +196,7 @@
                     {# Cart minium alert #}
 
                     <div class="alert alert-warning mt-4">
-                      {{ "El monto mínimo de compra (sin envío) es de" | translate }} {{ cart_total | money }}
+                      {{ "El monto mínimo de compra es de {1} sin incluir el costo de envío" | t(cart_total | money) }}
                     </div>
                   {% endif %}
                 {% else %}
@@ -204,7 +207,7 @@
                   {# Cart minium alert #}
 
                   <div class="js-ajax-cart-minimum alert alert-warning mt-4" {{ cart.checkout_enabled ? 'style="display:none"' }} id="ajax-cart-minumum-div">
-                    {{ "El monto mínimo de compra (sin envío) es de" | translate }} {{ cart_total | money }}
+                    {{ "El monto mínimo de compra es de {1} sin incluir el costo de envío" | t(cart_total | money) }}
                   </div>
                   <input type="hidden" id="ajax-cart-minimum-value" value="{{ cart_total }}"/>
                 {% endif %}

@@ -35,6 +35,15 @@
             {% snipplet "metas/facebook-category-og.tpl" %}
         {% endif %}
 
+        {# Preload of first image of Slider to improve LCP #}
+        {% if template == 'home' and (settings.slider or settings.slider is not empty) %}
+            {% for slide in settings.slider %}
+                {% if loop.index == 1%}
+                    <link rel="preload" as="image" href="{{ slide.image | static_url | settings_image_url('original') }}" imagesrcset="{{ slide.image | static_url | settings_image_url('original') }} 1024w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
         {#/*============================================================================
             #CSS and fonts
         ==============================================================================*/#}
@@ -203,6 +212,15 @@
                 };
             </script>
         {% endif %}
+
+        {# Store external codes added from admin #}
+
+        <script>
+            LS.ready.then(function() {
+                var trackingCode = $.parseHTML('{{ store.assorted_js| escape("js") }}', document, true);
+                $('body').append(trackingCode);
+            });
+        </script>
         
     </body>
 </html>

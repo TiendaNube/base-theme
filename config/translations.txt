@@ -367,6 +367,11 @@ pt "Página"
 en "Page"
 es_mx "Página"
 
+es "Banner de la categoría"
+pt "Banner da categoria"
+en "Banner for category"
+es_mx "Banner de la categoría"
+
 --- --- Empty
 
 es "Próximamente"
@@ -814,10 +819,10 @@ pt "Não podemos te oferecer {1} unidades do produto {2}. No momento, somente po
 en "We cannot offer you {1} units of {2}. We only have {3} left in stock."
 es_mx "Sólo tenemos {3} unidades de {2}."
 
-es "El monto mínimo de compra (sin envío) es de"
-pt "O valor mínimo de compra (sem frete) é de"
-en "The minimum subtotal value (without shipping) is"
-es_mx "El monto mínimo de compra (sin envío) es de"
+es "El monto mínimo de compra es de {1} sin incluir el costo de envío"
+pt "O valor mínimo de compra é de {1} sem considerar o custo de frete"
+en "The minimum purchase value is {1} without including shipping costs"
+es_mx "El monto mínimo de compra es de {1} sin incluir el costo de envío"
 
 es "El monto mínimo de compra es de"
 pt "O valor mínimo de compra é de"
@@ -2134,6 +2139,11 @@ pt "Em até <strong class='installment-amount'>{1}</strong>x"
 en "In up to <strong class='installment-amount'>{1}</strong> installments"
 es_mx "En hasta <strong class='installment-amount'>{1}</strong> meses"
 
+es "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
+pt "Até <strong class='installment-amount'>{1}</strong>x sem juros"
+en "In up to <strong class='installment-amount'>{1}</strong> installments without interest"
+es_mx "Hasta <strong class='installment-amount'>{1}</strong> meses sin intereses"
+
 es "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>"
 pt "<strong class='installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
 en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
@@ -2249,10 +2259,10 @@ pt "a ser aplicado sobre o custo total da compra ao finalizá-la."
 en "that will be applied over the total cost of the order when the checkout process is finished."
 es_mx "que será aplicado sobre el costo total de la compra al finalizar la misma."
 
-es "El descuento será aplicado sobre el costo total de la compra al finalizar la misma."
-pt "O desconto será aplicado aplicado sobre o custo total da compra ao finalizá-la."
-en "The discount will be applied over the total cost of the order when the checkout process is finished."
-es_mx "El descuento será aplicado sobre el costo total de la compra al finalizar la misma."
+es "El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma."
+pt "O desconto será aplicado sobre o custo total da compra (sem frete) ao finalizá-la."
+en "The discount will be applied over the total cost of the order (without shipping) when the checkout process is finished."
+es_mx "El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma."
 
 es "Cantidad de cuotas"
 pt "Quantidade de parcelas"
@@ -2965,9 +2975,15 @@ pt "Banners horizontais"
 en "Horizontal banners"
 es_mx "Banners horizontales"
 
-es "Imagen para las páginas de categorías"
-pt "Imagem para as páginas de categorias"
-es_mx "Imagen para las páginas de categorías"
+es "Imagen para las categorías"
+pt "Imagem para as categorias"
+en "Categories image"
+es_mx "Imagen para las categorías"
+
+es "Podés subir una imagen diferente para cada categoría <a target='_blank' href='/admin/categories/'>desde acá</a>"
+pt "Pode subir uma imagem diferente para cada categoria <a target='_blank' href='/admin/categories/'>por aqui</a>"
+en "You can upload a different image for each category <a target='_blank' href='/admin/categories/'>here</a>"
+es_mx "Puedes subir una imagen diferente para cada categoría <a target='_blank' href='/admin/categories/'>aquí</a>"
 
 es "Imagen para las páginas institucionales"
 pt "Imagem para as páginas institucionais"
@@ -3361,7 +3377,7 @@ pt "Qual o valor mínimo que seus clientes podem gastar?"
 es_mx "¿Cuánto es lo mínimo que quieres que gasten tus clientes?"
 
 es "Ej.: 3000"
-pt "p. ex.: 300"
+pt "Ej.: 300"
 es_mx "Ej.: 800"
 
 es "Solo tenés que ingresar números"

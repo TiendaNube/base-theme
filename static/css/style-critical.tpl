@@ -462,6 +462,11 @@ p{
   background-size: cover; 
   overflow: hidden;
 }
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .swiper-pagination-fraction{
   position: absolute;
   left: 50%;

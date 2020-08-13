@@ -43,8 +43,3 @@
 	
 	{% endraw %}
 {% endif %}
-
-{# Store external codes added from admin #}
-
-var trackingCode = $.parseHTML('{{ store.assorted_js| escape("js") }}', document, true);
-$('body').append(trackingCode);
