@@ -422,6 +422,15 @@ Listado de productos
 		icon = list-ul
 		advanced = true
 	title
+		title = Imagen para las categorías
+	image
+		title = Cargar imagen (JPG, GIF, PNG)
+		original = banner-products.jpg
+		width = 1580
+		height = 220
+	subtitle
+		subtitle = Podés subir una imagen diferente para cada categoría <a target='_blank' href='/admin/categories/'>desde acá</a>
+	title
 		title = Filtros
 	checkbox
 		name = product_filters

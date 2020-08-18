@@ -10,6 +10,9 @@
 				{% embed "snipplets/page-header.tpl" with { breadcrumbs: false } %}
 					{% block page_header_text %}{{ category.name }}{% endblock page_header_text %}
 				{% endembed %}
+				{% if (category.images is not empty) or ("banner-products.jpg" | has_custom_image) %}
+					{% include 'snipplets/category-banner.tpl' %}
+				{% endif %}
 			</div>
 		</div>
 	</div>

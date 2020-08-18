@@ -154,7 +154,7 @@
                 <span class="price-compare">{{ product.price | money }}</span><strong class="js-installments-one-payment">{{ price_with_boleto_discount | money }}</strong> 
             </h4>
 
-            <div class="font-small">{{'El descuento será aplicado sobre el costo total de la compra al finalizar la misma.' | translate }}</div>
+            <div class="font-small">{{'El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma.' | translate }}</div>
 
         {% else %}
 

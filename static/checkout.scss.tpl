@@ -900,22 +900,24 @@ a {
   }
 }
 .btn-secondary {
-  background: darken($background-color, 5%);
   color: $foreground-color;
+  background: darken($background-color, 5%);
   border-color: darken($background-color, 12%);
 
   &:hover,
   &:focus,
   &:active,
   &:active:focus {
+    color: $foreground-color;
     background: darken($background-color, 10%);
     border-color: darken($background-color, 20%);
-  }
-  &.btn-icon-right {
 
-    svg {
+    .btn-icon-right {
       fill: $foreground-color;
     }
+  }
+  .btn-icon-right {
+    fill: $foreground-color;
   }
 }
 .btn-transparent {
@@ -924,17 +926,13 @@ a {
   &:hover {
     color: $accent-brand-color;
     
-    &.btn-icon-right {
-    svg {
-        fill: $accent-brand-color;
-      }
+    .btn-icon-right {
+      fill: $accent-brand-color;
     }
   }
   
-  &.btn-icon-right {
-  svg {
-      fill: lighten($foreground-color, 15%);
-    }
+  .btn-icon-right {
+    fill: lighten($foreground-color, 15%);
   }
 }
 
@@ -980,36 +978,11 @@ a {
 
 .accordion {
   border-radius: $box-radius;
+  border-color: rgba($box-border-color, 0.5);
+}
 
-  @if lightness($background-color) < 10% {
-    border-color: rgba($box-border-color, 0.7);
-  } @else {
-    border-color: rgba($box-border-color, 0.7);
-  }
-  
-  &.open {
-    border-color: darken($foreground-color, 10%);
-  }
-
-  .section {
-    border-color: rgba($box-border-color, 0.5);
-
-    &:first-child {
-      border-radius: $box-radius;
-    }
-    &:last-child {
-      border-radius: $box-radius;
-    }
-  }
-
-  .section-body {
-    @if lightness($background-color) < 10% {
-      background: desaturate($background-color, 10%);
-    } @else {
-      background: desaturate(darken($background-color, 1%), 10%);
-    }
-    border-color: $foreground-color;
-  }
+.accordion-section-header-icon {
+  fill: $foreground-color;
 }
 
 {# /* // Summary */ #}
@@ -1124,16 +1097,6 @@ a {
   border-color: rgba($box-border-color, 0.7);
   font-weight: bold;
 }
-.panel-header-tooltip {
-  .tooltip-icon {
-    fill: lighten($foreground-color, 20%);
-  }
-  &:hover {
-    .tooltip-icon {
-      fill: $foreground-color;
-    }
-  }
-}
 .panel-header-sticky {
   background-color: set-background-color($background-color);
 }
@@ -1219,11 +1182,35 @@ a {
   }
 }
 
-{# /* // Status */ #}
+{# /* // Order Status */ #}
+
+.orderstatus {
+  border: 1px solid rgba($foreground-color, .1); 
+}
 
 .orderstatus-footer {
   @media (max-width: $sm) {
     background: $background-color;
+  }
+}
+
+{# /* // Destination */ #}
+
+.destination {
+  border-color: rgba($foreground-color, .1);
+}
+
+.destination-icon {
+  svg {
+    fill: $accent-brand-color;
+  }
+}
+
+{# /* // User Detail */ #}
+
+.user-detail-icon {
+  svg {
+    fill: $accent-brand-color;
   }
 }
 
@@ -1330,13 +1317,15 @@ a {
 {# /* // Status */ #}
 
 .status {
-  border-color: rgba($box-border-color, 0.5);
-  border-top-left-radius: $box-radius;
-  border-top-right-radius: $box-radius;
+  border: 1px solid rgba($foreground-color, .1); 
+  padding: 25px 0;
+  @media (min-width: $md) {
+    padding: 40px 0;
+  }
 }
 .status-icon {
   svg {
-    fill: darken($background-color, 45%);
+    fill: $accent-brand-color;
   }
 }
 
@@ -1344,13 +1333,6 @@ a {
 
 .tracking-item-time {
   color: $foreground-color;
-}
-.user-detail-icon-circle {
-  background: lighten($background-color, 5%);
-  
-  svg {
-    fill: rgba(desaturate($foreground-color, 50%), .5);
-  }
 }
 
 {# /* // Support */ #}
@@ -1477,12 +1459,16 @@ a {
 {# /* // Sign Up */ #}
 
 .signup {
-  &-success-header {
-    color: $accent-brand-color;
+  border: 1px solid rgba($foreground-color, .1); 
+  padding: 25px 0;
+  @media (min-width: $md) {
+    padding: 40px 0;
+  }
+}
 
-    svg {
-        fill: $accent-brand-color;
-    }
+.signup-icon {
+  svg {
+    fill: $accent-brand-color;
   }
 }
 
@@ -1500,10 +1486,16 @@ a {
   }
 }
 
+@media (max-width: $xs) {
+  .modal-xs {
+    background: $background-color;
+  }
+}
+
 {# /* // List */ #}
 
 .list-group-item {
-  border-color: $box-border-color;
+  border-color: rgba($foreground-color, .1);
 }
 
 {# /* // Announcement */ #}
@@ -1520,6 +1512,24 @@ a {
   &-close {
     color: $accent-brand-color;
   }
+}
+
+{# /* // Alert */ #}
+
+.alert-info {
+  background-color: rgba($accent-brand-color, .15);
+  border-color: rgba($accent-brand-color, .2);
+  color: desaturate(darken($accent-brand-color, 10%), 30%);
+
+  .alert-icon {
+    fill: desaturate(darken($accent-brand-color, 10%), 20%);
+  }
+}
+
+{# /* // Tooltip */ #}
+
+.tooltip-icon {
+  fill: $foreground-color;
 }
 
 {%  endif %}

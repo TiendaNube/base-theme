@@ -17,20 +17,8 @@
                             {% set product_can_show_installments = product.show_installments and product.display_price and product.get_max_installments.installment > 1 %}
                             {% if product_can_show_installments %}
                                 {% set max_installments_without_interests = product.get_max_installments(false) %}
-                                {% if store.country == 'AR' %}
-                                    {% set max_installments_with_interests = product.get_max_installments %}
-                                    {% if max_installments_with_interests %}
-                                        <span>| {{ "Hasta <strong class='installment-amount'>{1}</strong> cuotas" | t(max_installments_with_interests.installment, max_installments_with_interests.installment_data.installment_value_cents | money) }}</span>
-                                    {% endif %}
-                                {% else %}
-                                    {% if max_installments_without_interests and max_installments_without_interests.installment > 1 %}
-                                        <span>| {{ "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>" | t(max_installments_without_interests.installment, max_installments_without_interests.installment_data.installment_value_cents | money) }}</span>
-                                    {% else %}
-                                        {% set max_installments_with_interests = product.get_max_installments %}
-                                        {% if max_installments_with_interests %}
-                                            <span>| {{ "<strong class='installment-amount'>{1}</strong> cuotas de <strong class='installment-price'>{2}</strong>" | t(max_installments_with_interests.installment, max_installments_with_interests.installment_data.installment_value_cents | money) }}</span>
-                                        {% endif %}
-                                    {% endif %}
+                                {% if max_installments_without_interests and max_installments_without_interests.installment > 1 %}
+                                    <span>| {{ "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés" | t(max_installments_without_interests.installment) }}</span>
                                 {% endif %}
                             {% endif %}
                     	</p>

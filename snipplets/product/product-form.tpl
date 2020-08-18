@@ -79,7 +79,13 @@
 
     </div>
 
-    {% if settings.shipping_calculator_product_page and not product.free_shipping %}
+    {# Define contitions to show shipping calculator and store branches on product page #}
+
+    {% set show_calculator_on_product = settings.shipping_calculator_product_page and store.has_shipping and not product.free_shipping and not product.is_non_shippable  %}
+
+    {% set show_branches_on_product = store.branches and not product.free_shipping and not product.is_non_shippable  %}
+
+    {% if show_calculator_on_product or show_branches_on_product %}
 
         <div class="divider"></div>
 
@@ -89,11 +95,11 @@
 
             {# Shipping Calculator #}
             
-            {% if store.has_shipping %}
-                {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_show': settings.shipping_calculator_product_page and not product.free_shipping, 'shipping_calculator_variant' : product.selected_or_first_available_variant} %}
+            {% if show_calculator_on_product %}
+                {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_variant' : product.selected_or_first_available_variant, 'product_detail': true} %}
             {% endif %}
 
-            {% if store.branches %}
+            {% if show_branches_on_product %}
                 
                 {# Link for branches #}
                 {% include "snipplets/shipping/branches.tpl" with {'product_detail': true} %}
