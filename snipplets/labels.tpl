@@ -2,11 +2,20 @@
 {% set price_discount_percentage = ((product.compare_at_price) - (product.price)) * 100 / (product.compare_at_price) %}
 {% endif %}
 
-{% if not product.has_stock or product.free_shipping or product.compare_at_price or product.promotional_offer %}
+{% if color %}
+  {% set show_labels = settings.product_color_variants %}
+{% else %}
+  {% set show_labels = not product.has_stock or product.free_shipping or product.compare_at_price or product.promotional_offer %}
+{% endif %}
+
+{% if show_labels %}
   <div class="labels">
     {% if not product.has_stock %}
       <div class="{% if product_detail %}js-stock-label {% endif %}label label-default">{{ "Sin stock" | translate }}</div>
     {% else %}
+      {% if product_detail or color %}
+        <div class="js-stock-label label label-default" {% if product.has_stock %}style="display:none;"{% endif %}>{{ "Sin stock" | translate }}</div>
+      {% endif %}
       {% if product.compare_at_price or product.promotional_offer %}
         <div class="{% if not product.promotional_offer and product %}js-offer-label{% endif %} label label-primary" {% if (not product.compare_at_price and not product.promotional_offer) or not product.display_price %}style="display:none;"{% endif %}>
           {% if product.promotional_offer.script.is_percentage_off %}
@@ -21,7 +30,7 @@
               {{ "Promo" | translate }} {{ product.promotional_offer.script.type }} 
             {% endif %}
           {% else %}
-            <span {% if product_detail %}class="js-offer-percentage"{% endif %}>{{ price_discount_percentage |round }}</span>% OFF
+            <span {% if product_detail or color %}class="js-offer-percentage"{% endif %}>{{ price_discount_percentage |round }}</span>% OFF
           {% endif %}
         </div>
       {% endif %}

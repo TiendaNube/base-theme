@@ -222,7 +222,8 @@ body{
       opacity: 0.8;
   }
 }
-.placeholder-shine{
+.placeholder-shine,
+.placeholder-fade{
   background-color:rgba($main-foreground, 0.2);
 }
 
@@ -679,6 +680,16 @@ textarea {
   color: $main-foreground;
 }
 
+.item-colors {
+  background: rgba($main-foreground, .6);
+  &-bullet {
+    color: $main-foreground;
+  }
+  &-bullet-text {
+    color: $main-background;
+  }
+}
+
 {# /* // Labels */ #}
 
 .label {
@@ -834,6 +845,18 @@ textarea {
 {# /* // Min width 768px */ #}
 
 @media (min-width: 768px) { 
+
+  {# /* Product grid */ #}
+
+  .item-colors {
+    &-bullet:not(.item-colors-bullet-text) {
+      background-color: $main-background;
+      border: 1px solid rgba($main-background, .5);
+      &.selected {
+        border: 1px solid $main-background;
+      }
+    }
+  }
 
   {# /* Forms */ #}
 

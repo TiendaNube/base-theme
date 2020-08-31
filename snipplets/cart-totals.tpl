@@ -4,6 +4,7 @@
 {# Define contitions to show shipping calculator and store branches on cart #}
 
 {% set show_calculator_on_cart = settings.shipping_calculator_cart_page and store.has_shipping %}
+{% set show_cart_fulfillment = settings.shipping_calculator_cart_page and (store.has_shipping or store.branches) %}
 
 {# Used to assign currency to total #}
 <div id="store-curr" class="hidden">{{ cart.currency }}</div>
@@ -60,7 +61,7 @@
     {% if cart_page %}
       <div class="col-12 col-md-5">
     {% endif %}
-      {% if show_calculator_on_cart or store.branches %}
+      {% if show_cart_fulfillment %}
         <div class="js-fulfillment-info js-allows-non-shippable" {% if not cart.has_shippable_products %}style="display: none"{% endif %}>
           <div class="js-visible-on-cart-filled divider {% if cart_page %}d-md-none{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}></div>
 
@@ -87,7 +88,7 @@
 
               {# Shipping Calculator #}
 
-              {% if show_calculator_on_cart %}
+              {% if store.has_shipping %}
                 {% include "snipplets/shipping/shipping-calculator.tpl" with {'product_detail': false} %}
               {% endif %}
 
@@ -161,7 +162,7 @@
 
               {# Cart total #}
 
-              <div class="js-cart-total-container js-visible-on-cart-filled mb-3" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
+              <div class="js-cart-total-container js-visible-on-cart-filled mb-3" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-total">
                 <h2 class="row no-gutters text-primary mb-0 {% if cart_page %}justify-content-end justify-content-md-center{% endif %}">
                   <span class="col {% if cart_page %}col-md-auto{% endif %} mr-1">{{ "Total" | translate }}:</span>
                   <span class="js-cart-total {% if cart.free_shipping.cart_has_free_shipping %}js-free-shipping-achieved{% endif %} {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right">{{ cart.total | money }}</span>

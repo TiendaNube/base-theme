@@ -1,4 +1,4 @@
-<li class="js-shipping-list-item radio-button-item">
+<li class="js-shipping-list-item radio-button-item" data-store="shipping-calculator-item-{{ option.code }}">
     <label class="js-shipping-radio radio-button list-item" data-loop="shipping-radio-{{loop.index}}">
         <input 
         id="{% if featured_option %}featured-{% endif %}shipping-{{loop.index}}" 

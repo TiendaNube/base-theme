@@ -722,17 +722,21 @@ footer {
 }
 
 .instafeed-link {
+  position: relative;
   display: block;
   overflow: hidden;
-}
-
-.instafeed-img {
-  overflow: hidden;
-  position: relative;
-  padding-top: 100%;
-  background-position: center center;
-  background-size: cover;
-  @include prefix(transition, all 0.8s ease, webkit ms moz o);
+  &:hover,
+  &:focus {
+    .instafeed-img {
+      @include prefix(transform, scale(1.03), webkit ms moz o);
+    }
+    .instafeed-info {
+      opacity: 1;
+    }
+  }
+  .instafeed-img {
+    @include prefix(transition, all 0.8s ease, webkit ms moz o);
+  }
   .instafeed-info {
     position: absolute;
     top: 0;
@@ -748,14 +752,8 @@ footer {
       margin-top: 45%;
     }
   }
-  &:hover,
-  &:focus {
-    @include prefix(transform, scale(1.03), webkit ms moz o);
-    .instafeed-info {
-      opacity: 1;
-    }
-  }
 }
+
 
 {# /* // Video */ #}
 

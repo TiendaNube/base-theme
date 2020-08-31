@@ -22,7 +22,7 @@
 {% endmacro %}
 {% import _self as banner_services %}
 {% if settings.banner_services %}
-    <section class="section-informative-banners">
+    <section class="section-informative-banners" data-store="banner-services">
         <div class="container">
             <div class="row">
                 <div class="js-informative-banners swiper-container">

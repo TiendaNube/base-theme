@@ -5,7 +5,7 @@
 {% set has_payment_logos = settings.payments %}
 {% set has_shipping_logos = settings.shipping %}
 {% set has_shipping_payment_logos = has_payment_logos or has_shipping_logos %}
-<footer class="js-hide-footer-while-scrolling display-when-content-ready">
+<footer class="js-hide-footer-while-scrolling display-when-content-ready" data-store="footer">
 	<div class="container">
 
 		{% if template != 'password' %}

@@ -3,6 +3,8 @@
 {% if installments_info %}
 {% set gateways = installments_info | length %}
 {% set store_set_for_new_installments_view = store.is_set_for_new_installments_view %}
+{# Get the array that contains the display settings for each payment method #}
+{% set payment_methods_config = product.payment_methods_config %}
 
     {% embed "snipplets/modal.tpl" with{modal_id: 'installments-modal', modal_position: 'bottom', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered', modal_mobile_full_screen: 'true'} %}
         {% block modal_head %}
@@ -15,8 +17,10 @@
             <div class="js-tab-container">
                 <ul class="js-tab-group tab-group">
                     {% for method, installments in installments_info %}
-                        <li id="method_{{ method }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab {% if loop.first %} active {% endif %}" data-code="{{ method }}">
-                            <a href="#installment_{{ method }}_{{ installment }}" class="js-tab-link tab-link">{{ method == 'paypal_multiple' ? 'PAYPAL' : (method == 'itaushopline'? 'ITAU SHOPLINE' : method == 'boleto_paghiper'? 'BOLETO PAGHIPER' : method | upper) }}</a>
+                        {% set method_clean = method | replace(" ", "_") | lower %}
+
+                        <li id="method_{{ method_clean }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab {% if loop.first %} active {% endif %}" data-code="{{ method }}">
+                            <a href="#installment_{{ method_clean }}_{{ installment }}" class="js-tab-link tab-link">{{ method == 'paypal_multiple' ? 'PAYPAL' : (method == 'itaushopline'? 'ITAU SHOPLINE' : method == 'boleto_paghiper'? 'BOLETO PAGHIPER' : method | upper) }}</a>
                         </li>
 
                         {# Custom payment method #}
@@ -38,15 +42,18 @@
 
                 <div class="js-tabs-content tab-content">
                     {% for method, installments in installments_info %}
+                        {% set method_clean = method | replace(" ", "_") | lower %}
                         {% set discount = product.get_gateway_discount(method) %}
-                        <div id="installment_{{ method }}_" class="js-tab-panel tab-panel {% if loop.first %} active {% endif %} js-gw-tab-pane">
+                        <div id="installment_{{ method_clean }}_" class="js-tab-panel tab-panel {% if loop.first %} active {% endif %} js-gw-tab-pane">
                             <div>
 
                                 {% if store_set_for_new_installments_view %}
 
                                     {# Payments info with readonly #}
 
-                                    {% if method == 'mercadopago' and store.country == 'AR' %}
+                                    {# Evaluate whether the payment method should show complete installments data #}
+                                    
+                                    {% if payment_methods_config[method].show_full_installments %}
 
                                         {# Payments Gateways with banks: at the moment only MP AR #}
 

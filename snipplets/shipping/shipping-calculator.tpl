@@ -1,4 +1,4 @@
-<div class="{% if product_detail %}product-shipping-calculator{% endif %} {% if store.branches %}mb-4{% else %}mb-2{% endif %}">
+<div class="{% if product_detail %}product-shipping-calculator{% endif %} {% if store.branches %}mb-4{% else %}mb-2{% endif %}" data-store="shipping-calculator">
 	<div class="js-shipping-calculator-form">
 
 		{# Shipping calcualtor input #}

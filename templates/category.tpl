@@ -51,7 +51,7 @@
 			</div>
 		</div>
 		{% if products %}
-	        <div class="js-product-table row">
+	        <div class="js-product-table row" data-store="category-grid-{{ category.id }}">
 	        	{% include 'snipplets/product_grid.tpl' %}
 	        </div>
 	        {% if pages.current == 1 and not pages.is_last %}

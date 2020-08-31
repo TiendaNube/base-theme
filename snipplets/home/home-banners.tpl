@@ -1,4 +1,4 @@
-<section class="section-banners-home">
+<section class="section-banners-home" data-store="banner-home-categories">
     <div class="container{% if settings.banners_full %}-fluid p-0{% endif %}">
         <div class="row {% if settings.banners_full %}no-gutters{% endif %} align-items-center">
             {% set num_banners = 0 %}
@@ -26,11 +26,8 @@
                             {% if banner_url %}
                                 <a class="textbanner-link" href="{{ banner_url }}"{% if banner_title %} title="{{ banner_title }}" aria-label="{{ banner_title }}"{% else %} title="{{ 'Banner de' | translate }} {{ store.name }}" aria-label="{{ 'Banner de' | translate }} {{ store.name }}"{% endif %}>
                             {% endif %}
-                            {% if store.thumbnails_enabled %}
-                                <div class="textbanner-image{% if has_banner_text and textoverimage %} overlay{% endif %} lazyautosizes lazyload blur-up"{% if "#{banner}.jpg" | has_custom_image %} data-bgset='{{ "#{banner}.jpg" | static_url | settings_image_url('large') }} 480w, {{ "#{banner}.jpg" | static_url | settings_image_url('huge') }} 640w' data-sizes="auto" style="background-image: url({{ "#{banner}.jpg" | static_url | settings_image_url('tiny') }});"{% endif %}>
-                            {% else %}
-                                <div class="textbanner-image{% if has_banner_text and textoverimage %} overlay{% endif %} lazyload blur-up"{% if "#{banner}.jpg" | has_custom_image %} data-bg='{{ "#{banner}.jpg" | static_url }}' style="background-image: url({{ "#{banner}.jpg" | static_url | settings_image_url('tiny') }});" {% endif %}>
-                            {% endif %}
+                            <div class="textbanner-image{% if has_banner_text and textoverimage %} overlay{% endif %}">
+                                <img class="textbanner-image-background lazyautosizes lazyload blur-up-big" src="{{ "#{banner}.jpg" | static_url | settings_image_url('tiny') }}" data-srcset="{{ "#{banner}.jpg" | static_url | settings_image_url('large') }} 480w, {{ "#{banner}.jpg" | static_url | settings_image_url('huge') }} 640w" data-sizes="auto" data-expand="-10" {% if banner_title %}alt="{{ banner_title }}"{% else %}alt="{{ 'Banner de' | translate }} {{ store.name }}"{% endif %} />
                             </div>
                             <div class="textbanner-text{% if textoverimage %} over-image{% endif %}">
                                 {% if banner_title %}

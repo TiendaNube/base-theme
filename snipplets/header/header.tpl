@@ -6,7 +6,7 @@
 
 {% set show_transparent_head = template == 'home' and settings.head_transparent and settings.slider and not settings.slider is empty %}
 
-<header class="js-head-main head-main {% if show_transparent_head %}head-transparent{% endif %} head-{{ settings.head_background }} {% if settings.head_fix %}head-fix{% endif %}">
+<header class="js-head-main head-main {% if show_transparent_head %}head-transparent {% if settings.head_fix %}head-transparent-fixed{% else %}head-transparent-absolute{% endif %}{% endif %} head-{{ settings.head_background }} {% if settings.head_fix %}head-fix{% endif %} {% if not settings.head_fix and show_transparent_head %}head-absolute{% endif %}" data-store="head">
 
     {# Advertising #}
     
@@ -52,7 +52,7 @@
 
     {# Cart Ajax #}
 
-    {% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-md', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel', modal_mobile_full_screen: true } %}
+    {% embed "snipplets/modal.tpl" with{modal_id: 'modal-cart', modal_position: 'right', modal_transition: 'slide', modal_width: 'docked-md', modal_form_action: store.cart_url, modal_form_class: 'js-ajax-cart-panel', modal_mobile_full_screen: true, modal_form_hook: 'cart-form' } %}
         {% block modal_head %}
             {% block page_header_text %}{{ "Carrito de Compras" | translate }}{% endblock page_header_text %}
         {% endblock %}

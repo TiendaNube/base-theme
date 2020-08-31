@@ -1,4 +1,4 @@
-<div class="js-cart-item cart-item {% if item.product.is_non_shippable %}js-cart-item-non-shippable{% else %}js-cart-item-shippable{% endif %} {% if cart_page %}row align-items-md-center {% if loop.last %}mb-2{% else %}mb-5{% endif %} {% else %}form-row{% endif %}" data-item-id="{{ item.id }}">
+<div class="js-cart-item cart-item {% if item.product.is_non_shippable %}js-cart-item-non-shippable{% else %}js-cart-item-shippable{% endif %} {% if cart_page %}row align-items-md-center {% if loop.last %}mb-2{% else %}mb-5{% endif %} {% else %}form-row{% endif %}" data-item-id="{{ item.id }}" data-store="cart-item-{{ item.product.id }}">
 
   {% set show_free_shipping_label = item.product.free_shipping and not (cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price) %}
 
