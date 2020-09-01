@@ -47,6 +47,7 @@
 --- --- Shipping and Payments
 --- --- Social
 
+--- Draft Store
 
 
 --- General ---
@@ -371,6 +372,16 @@ es "Banner de la categoría"
 pt "Banner da categoria"
 en "Banner for category"
 es_mx "Banner de la categoría"
+
+es "colores"
+pt "cores"
+en "colors"
+es_mx "colores"
+
+es "Ver más colores"
+pt "Ver mais cores"
+en "See more colors"
+es_mx "Ver más colores"
 
 --- --- Empty
 
@@ -2149,6 +2160,16 @@ pt "<strong class='installment-amount'>{1}</strong>x de <strong class='js-instal
 en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
 es_mx "<strong class='installment-amount'>{1}</strong> meses sin intereses de <strong class='installment-price'>{2}</strong>"
 
+es "<strong class='js-cart-installments-amount'>{1}</strong> cuotas de <strong class='js-cart-installments installment-price'>{2}</strong>"
+pt "<strong class='js-cart-installments-amount'>{1}</strong>x de <strong class='js-cart-installments installment-price'>{2}</strong>"
+en "<strong class='js-cart-installments-amount'>{1}</strong> installments of <strong class='js-cart-installments installment-price'>{2}</strong>"
+es_mx "<strong class='js-cart-installments-amount'>{1}</strong> meses de <strong class='js-cart-installments installment-price'>{2}</strong>"
+
+es "<strong class='js-cart-installments-amount'>{1}</strong> cuotas sin interés de <strong class='js-cart-installments installment-price'>{2}</strong>"
+pt "<strong class='js-cart-installments-amount'>{1}</strong>x de <strong class='js-cart-installments installment-price'>{2}</strong> sem juros"
+en "<strong class='js-cart-installments-amount'>{1}</strong> installments of <strong class='js-cart-installments installment-price'>{2}</strong> without interest"
+es_mx "<strong class='js-cart-installments-amount'>{1}</strong> meses sin intereses de <strong class='js-cart-installments installment-price'>{2}</strong>"
+
 es "{1} cuotas en tarjeta de crédito"
 pt "{1}x no cartão"
 en "In up to {1} installments"
@@ -3215,6 +3236,11 @@ es "Verde"
 pt "Verde"
 en "Green"
 
+es "Módulo de"
+pt "Módulo de"
+en "Module of"
+es_mx "Módulo de"
+
 
 --- --- Video
 
@@ -3324,6 +3350,16 @@ es_mx "Título para productos destacados"
 es "Título para productos relacionados"
 pt "Título para produtos relacionados"
 es_mx "Título para productos relacionados"
+
+es "Variantes de color"
+pt "Variações de cor"
+en "Color variants"
+es_mx "Variantes de color"
+
+es "Mostrar variantes de color en listado de productos"
+pt "Mostrar variações de cores na lista de produtos"
+en "Show color variants in product list"
+es_mx "Mostrar variantes de color en listado de productos"
 
 
 --- --- Details
@@ -3503,15 +3539,25 @@ pt "Meios de envio"
 en "Shipping Methods"
 es_mx "Opciones de envío"
 
-es "Mostrar calculador de costos de envío en la página de producto"
-pt "Mostrar o Cálculo de Frete na página de produto"
-en "Show shipping cost calculator on product page"
-es_mx "Mostrar el calculador de costos de envío en la página de producto"
+es "Formas de entrega"
+pt "Formas de entrega"
+en "Delivery Methods"
+es_mx "Formas de entrega"
 
-es "Mostrar calculador de costos de envío en el carrito"
-pt "Mostrar o Cálculo de Frete no carrinho"
-en "Show shipping cost calculator to cart"
-es_mx "Mostrar el calculador de costos de envío en el carrito"
+es "Mostrar el calculador de costos de envío y locales físicos en la página de producto"
+pt "Mostrar a calculadora de frete e as lojas físicas na página de produto"
+en "Show shipping cost calculator and stores on product page"
+es_mx "Mostrar el calculador de costos de envío y tiendas en la página de producto"
+
+es "Mostrar el calculador de costos de envío y locales físicos en el carrito"
+pt "Mostrar a calculadora de frete e as lojas físicas no carrinho"
+en "Show shipping cost calculator and stores on cart"
+es_mx "Mostrar el calculador de costos de envío y tiendas en el carrito"
+
+es "<a target='_blank' href='/admin/shipping/'>Agregar medios de envío o locales físicos</a>"
+pt "<a target='_blank' href='/admin/shipping/'>Adicionar meios de envio ou lojas físicas</a>"
+en "<a target='_blank' href='/admin/shipping/'>Add shipping methods or stores</a>"
+es_mx "<a target='_blank' href='/admin/shipping/'>Agregar métodos de envío o tiendas</a>"
 
 es "Mostrar medios de envío en tu tienda"
 pt "Mostrar as opções de frete na sua loja"
@@ -3699,3 +3745,20 @@ es_mx "Utiliza una imagen atractiva para aumentar las suscripciones. Te recomend
 es "Frase motivadora para el pop-up"
 pt "Frase motivadora para o pop-up"
 es_mx "Frase motivadora del pop-up"
+
+--- Draft Store ---
+
+es "Salir de la tienda borrador"
+pt "Saia da loja de rascunhos"
+en "Exit the draft store"
+es_mx "Salir de la tienda borrador"
+
+es "Estás viendo tu tienda borrador"
+pt "Você está visualizando sua loja de rascunhos"
+en "You are viewing your draft store"
+es_mx "Estás viendo tu tienda borrador"
+
+es "Tienda borrador"
+pt "Loja de rascunhos"
+en "Draft store"
+es_mx "Tienda borrador"

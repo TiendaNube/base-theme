@@ -22,6 +22,11 @@
             {{ ('https:' ~ store.logo) | og('image:secure_url') }}
         {% endif %}
 
+        {# Preload of first image of Slider to improve LCP #}
+        {% if template == 'home'%}
+            {% snipplet 'preload-images.tpl' %}
+        {% endif %}
+
         {# OG tags to control how the page appears when shared on Facebook. See http://ogp.me/ #}
         {% snipplet "metas/facebook-og.tpl" %}
         {# Twitter tags to control how the page appears when shared on Twitter. See https://dev.twitter.com/cards/markup #}
@@ -33,15 +38,6 @@
         {% elseif template == 'category' %}
             {# Facebook #}
             {% snipplet "metas/facebook-category-og.tpl" %}
-        {% endif %}
-
-        {# Preload of first image of Slider to improve LCP #}
-        {% if template == 'home' and (settings.slider or settings.slider is not empty) %}
-            {% for slide in settings.slider %}
-                {% if loop.index == 1%}
-                    <link rel="preload" as="image" href="{{ slide.image | static_url | settings_image_url('original') }}" imagesrcset="{{ slide.image | static_url | settings_image_url('original') }} 1024w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w">
-                {% endif %}
-            {% endfor %}
         {% endif %}
 
         {#/*============================================================================
@@ -103,7 +99,7 @@
 
         {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag(true) }}
 
-        {# Loads private Tienda Nube JS #}
+        {# Loads private Tiendanube JS #}
 
         {% head_content %}
 
@@ -188,7 +184,7 @@
 
             {% include "static/js/external-no-dependencies.js.tpl" %}
 
-            {# LS.ready.then function waits to Jquery and private Tienda Nube JS to be loaded before executing what´s inside #}
+            {# LS.ready.then function waits to Jquery and private Tiendanube JS to be loaded before executing what´s inside #}
 
             LS.ready.then(function(){
 

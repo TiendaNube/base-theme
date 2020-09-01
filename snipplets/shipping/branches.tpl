@@ -1,4 +1,4 @@
-<div class="js-toggle-branches w-100">
+<div class="js-toggle-branches w-100" data-store="branches">
     <span class="form-row">
         <div class="col-auto">
             {% include "snipplets/svg/store.tpl" with {svg_custom_class: "icon-inline icon-lg link-module-icon svg-icon-text"} %}
@@ -37,7 +37,7 @@
         {# Selectable branches #}
 
         {% for branch in store.branches %}
-            <li class="radio-button-item">
+            <li class="radio-button-item" data-store="branch-item-{{ branch.code }}">
                 <label class="js-shipping-radio js-branch-radio radio-button" data-loop="branch-radio-{{loop.index}}">
                 <input 
                     class="js-branch-method {% if cart.shipping_data.code == branch.code %} js-selected-shipping-method {% endif %} shipping-method" 
@@ -69,7 +69,7 @@
 {% else %}
     <ul class="js-store-branches-container list-unstyled list mt-4 mb-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
         {% for branch in store.branches %}
-            <li class="list-item">
+            <li class="list-item" data-store="branch-item-{{ branch.code }}">
                 <span class="list-item-content">
                     <h6 class="text-primary mb-1">{{ 'Gratis' | translate }}</h6>
                     <div>{{ branch.name }} - {{ branch.extra }}</div>

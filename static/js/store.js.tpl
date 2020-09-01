@@ -243,56 +243,57 @@ $(document).ready(function(){
 
     {# /* // Header */ #}
 
-        {% if template == 'home' and settings.head_transparent %}
-            {% if settings.slider and settings.slider is not empty %}        
+    {% if template == 'home' and settings.head_transparent %}
+        {% if settings.slider and settings.slider is not empty %}        
 
-                var $swiper_height = $(window).height() - 100;
-                
-                $(document).scroll(function() {
-                    if ($(document).scrollTop() > $swiper_height ) {
-                        $(".js-head-main").removeClass("head-transparent");
-                    } else {
-                        $(".js-head-main").addClass("head-transparent");
-                    }
-                });
+            var $swiper_height = $(window).height() - 100;
+            
+            $(document).scroll(function() {
+                if ($(document).scrollTop() > $swiper_height ) {
+                    $(".js-head-main").removeClass("head-transparent");
+                } else {
+                    $(".js-head-main").addClass("head-transparent");
+                }
+            });
 
-            {% endif %}
         {% endif %}
+    {% endif %}
 
-        {# /* // Nav offset */ #}
+    {# /* // Nav offset */ #}
 
-        function applyOffset(selector, is_negative){
+    function applyOffset(selector){
 
-            // Get nav height on load
+        // Get nav height on load
+        if ($(window).width() > 768) {
             var head_height = $(".js-head-main").height();
+            $(selector).css("padding-top", head_height); 
+        }else{
 
-            // Apply offset nav height on load
-            if(is_negative){
-                $(selector).css("margin-top", - head_height); 
-                $(window).resize(function() {
-
-                    // Get nav height on resize
-                    var head_height = $(".js-head-main").height();
-
-                    // Apply offset on resize
-                    $(selector).css("margin-top", - head_height);
-                });
-            }else{
-                $(selector).css("padding-top", head_height); 
-                $(window).resize(function() {
-
-                    // Get nav height on resize
-                    var head_height = $(".js-head-main").height();
-
-                    // Apply offset on resize
-                    $(selector).css("padding-top", head_height);
-                });
-            }
+            {# On mobile there is no top padding due to position sticky CSS #}
+            var head_height = 0;
         }
 
-        {% if settings.head_fix %}
-            applyOffset(".js-head-offset", false);
-        {% endif %}
+        // Apply offset nav height on load
+
+        $(window).resize(function() {
+
+            // Get nav height on resize
+            var head_height = $(".js-head-main").height();
+
+            // Apply offset on resize
+            if ($(window).width() > 768) {
+                $(selector).css("padding-top", head_height);
+            }else{
+
+                {# On mobile there is no top padding due to position sticky CSS #}
+                $(selector).removeAttr("style");
+            }
+        });
+    }
+
+    {% if settings.head_fix and ((settings.head_transparent and template != 'home') or (not settings.head_transparent)) %}
+        applyOffset(".js-head-offset");
+    {% endif %}
 
     {# /* // Nav */ #}
 
@@ -366,7 +367,7 @@ $(document).ready(function(){
                     homeSwiper.appendSlide(
                         '<div class="swiper-slide slide-container">' +
                             (aSlide.link ? '<a href="' + aSlide.link + '">' : '' ) +
-                            '<div style="background-image: url(' + aSlide.src + ')" class="slider-slide"></div>' +
+                            '<img src="' + aSlide.src + '" class="slider-image"/>' + +
                             (aSlide.link ? '</a>' : '' ) +
                         '</div>'
                     );
@@ -384,11 +385,8 @@ $(document).ready(function(){
             },
         };
         var homeSwiper = new Swiper ('.js-home-slider', {
-            {% if not params.preview %}
-            lazy: {
-                loadPrevNext: true,
-            },
-            {% endif %}
+            lazy: true,
+            preloadImages: false,
             {% if settings.slider | length > 1 %}
                 loop: true,
             {% endif %}
@@ -413,13 +411,7 @@ $(document).ready(function(){
         {% if settings.slider | length == 1 %}
             $('.js-swiper-home .swiper-wrapper').addClass( "disabled" );
             $('.js-swiper-home-pagination, .js-swiper-home-prev, .js-swiper-home-next').remove();
-        {% endif %}
-
-        {% if not settings.head_transparent %}
-            applyOffset(".js-home-slider", false);
-        {% endif %}
-        
-        applyOffset(".js-home-slider", true);          
+        {% endif %}      
 
         {% if sections.primary.products %}
 
@@ -428,6 +420,8 @@ $(document).ready(function(){
                 lazy: true,
                 loop: true,
                 spaceBetween: 30,
+                watchSlidesVisibility: true,
+                slideVisibleClass: 'js-swiper-slide-visible',
                 slidesPerView: {% if columns == 2 %}2{% else %}1{% endif %},
                 pagination: {
                     el: '.js-swiper-featured-pagination',
@@ -571,7 +565,7 @@ $(document).ready(function(){
                 'username': '{{ instuser }}',
                 'container': '#instafeed',
                 'item_class': 'col-4',
-                'image_class': 'instafeed-img',
+                'image_class': 'instafeed-img w-100 fade-in',
                 'private_class': 'col text-center',
                 'image_size': resolution,
                 'items': 9,
@@ -814,7 +808,30 @@ $(document).ready(function(){
 	{# Stock, Offer and discount labels update #}
 
 	$(document).on("change", ".js-variation-option", function(e) {
-        LS.changeVariant(changeVariant, '#single-product');
+
+        var $parent = $(this).closest(".js-product-variants");
+        var $variants_group = $(this).closest(".js-product-variants-group");
+        var quick_id = $(this).closest(".js-quickshop-container").attr("id");
+        if($parent.hasClass("js-product-quickshop-variants")){
+            {% if template == 'home' %}
+                LS.changeVariant(changeVariant, '.js-swiper-slide-visible #' + quick_id);
+            {% else %}
+                LS.changeVariant(changeVariant, '#' + quick_id);
+            {% endif %}
+
+            {% if settings.product_color_variants %}
+                {# Match selected color variant with selected quickshop variant #}
+
+                if(($variants_group).hasClass("js-color-variants-container")){
+                    var selected_option_id = $(this).find("option:selected").val();
+                    $('#' + quick_id).find('.js-color-variant').removeClass("selected");
+                    $('#' + quick_id).find('.js-color-variant[data-option="'+selected_option_id+'"]').addClass("selected");
+                }
+            {% endif %} 
+        } else {
+            LS.changeVariant(changeVariant, '#single-product');
+        }
+
 	    var $this_compare_price =  $(this).closest(".js-product-container").find(".js-compare-price-display");
 	    var $this_price = $(this).closest(".js-product-container").find(".js-price-display");
 	    var $installment_container = $(this).closest(".js-product-container").find(".js-product-payments-container");
@@ -852,6 +869,76 @@ $(document).ready(function(){
 	        $installment_text.show();
 	    }
 	});
+
+    {% if settings.product_color_variants %}
+
+        {# Product color variations #}
+
+        $(document).on("click", ".js-color-variant", function(e) {
+            e.preventDefault();
+            $this = $(this);
+
+            var option_id = $this.data('option');
+            $selected_option = $this.closest('.js-item-product').find('.js-variation-option option').filter(function() {
+                return this.value == option_id;
+            });
+            $selected_option.prop('selected', true).trigger('change');
+            var available_variant = $(this).closest(".js-quickshop-container").data('variants');
+
+            var available_variant_color = $(this).closest('.js-color-variant-active').data('option');
+
+            for (var variant in available_variant) {
+                if (option_id == available_variant[variant]['option'+ available_variant_color ]) {
+
+                    if (available_variant[variant]['stock'] == null || available_variant[variant]['stock'] > 0 ) {
+
+                        var otherOptions = getOtherOptionNumbers(available_variant_color);
+
+                        var otherOption = available_variant[variant]['option' + otherOptions[0]];
+                        var anotherOption = available_variant[variant]['option' + otherOptions[1]];
+
+                        changeSelect($(this), otherOption, otherOptions[0]);
+                        changeSelect($(this), anotherOption, otherOptions[1]);
+                        break;
+
+                    }
+                }
+            }
+            $this.siblings().removeClass("selected");
+            $this.addClass("selected");
+        });
+
+        function getOtherOptionNumbers(selectedOption) {
+            switch (selectedOption) {
+                case 0:
+                    return [1, 2];
+                case 1:
+                    return [0, 2];
+                case 2:
+                    return [0, 1];
+            }
+        }
+
+        function changeSelect(element, optionToSelect, optionIndex) {
+            if (optionToSelect != null) {
+                var selected_option_attribute = element.closest('.js-item-product').find('.js-color-variant-available-' + (optionIndex + 1)).data('value');
+                var selected_option = element.closest('.js-item-product').find('#' + selected_option_attribute + " option").filter(function() {
+                    return this.value == optionToSelect;
+                });
+
+                selected_option.prop('selected', true).trigger('change');
+            }
+        }
+
+        {# Product quickshop for color variations #}
+
+        LS.registerOnChangeVariant(function(variant){
+            {# Show product image on color change #}
+            var current_image = $('img', '.js-item-product[data-product-id="'+variant.product_id+'"]');
+            current_image.attr('srcset', variant.image_url);
+        });
+
+    {% endif %}
 
 	{# /* // Submit to contact */ #}
 
@@ -971,13 +1058,13 @@ $(document).ready(function(){
         var productButttonHeight = $productButton.height();
 
         if($(".js-product-slide-img.js-active-variant").length) {
-            var imageSrc = $($productContainer.find('.js-product-slide-img.js-active-variant')[0]).data('srcset').split(' ')[0];
+            var imageSrc = $($productContainer.find('.js-product-slide-img.js-active-variant')[0]).attr('srcset').split(' ')[0];
         } else {
-            var imageSrc = $($productContainer.find('.js-product-slide-img')[0]).data('srcset').split(' ')[0];
+            var imageSrc = $($productContainer.find('.js-product-slide-img')[0]).attr('srcset').split(' ')[0];
         }
-        var quantity = $('.js-quantity-input').val();
-        var name = $('.js-product-name').text();
-        var price = $('.js-price-display').text();
+        var quantity = $productContainer.find('.js-quantity-input').val();
+        var name = $productContainer.find('.js-product-name').text();
+        var price = $productContainer.find('.js-price-display').text();
 
 
         if (!$(this).hasClass('contact')) {

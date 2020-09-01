@@ -6,7 +6,7 @@
 
 {# Product price #}
 
-<div class="price-container text-center text-md-left">
+<div class="price-container text-center text-md-left" data-store="product-price-{{ product.id }}">
     <span class="d-inline-block">
 	   <h4 id="compare_price_display" class="js-compare-price-display price-compare {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
     </span>
@@ -43,7 +43,7 @@
 
 {# Product form, includes: Variants, CTA and Shipping calculator #}
 
- <form id="product_form" class="js-product-form" method="post" action="{{ store.cart_url }}">
+ <form id="product_form" class="js-product-form" method="post" action="{{ store.cart_url }}" data-store="product-form-{{ product.id }}">
 	<input type="hidden" name="add_to_cart" value="{{product.id}}" />
  	{% if product.variations %}
         {% include "snipplets/product/product-variants.tpl" %}
@@ -81,11 +81,9 @@
 
     {# Define contitions to show shipping calculator and store branches on product page #}
 
-    {% set show_calculator_on_product = settings.shipping_calculator_product_page and store.has_shipping and not product.free_shipping and not product.is_non_shippable  %}
+    {% set show_product_fulfillment = settings.shipping_calculator_product_page and (store.has_shipping or store.branches) and not product.free_shipping and not product.is_non_shippable %}
 
-    {% set show_branches_on_product = store.branches and not product.free_shipping and not product.is_non_shippable  %}
-
-    {% if show_calculator_on_product or show_branches_on_product %}
+    {% if show_product_fulfillment %}
 
         <div class="divider"></div>
 
@@ -95,11 +93,11 @@
 
             {# Shipping Calculator #}
             
-            {% if show_calculator_on_product %}
+            {% if store.has_shipping %}
                 {% include "snipplets/shipping/shipping-calculator.tpl" with {'shipping_calculator_variant' : product.selected_or_first_available_variant, 'product_detail': true} %}
             {% endif %}
 
-            {% if show_branches_on_product %}
+            {% if store.branches %}
                 
                 {# Link for branches #}
                 {% include "snipplets/shipping/branches.tpl" with {'product_detail': true} %}
@@ -120,7 +118,7 @@
 {# Product description #}
 
 {% if product.description is not empty %}
-    <div class="product-description user-content">
+    <div class="product-description user-content" data-store="product-description-{{ product.id }}">
         <h5 class="my-3">{{ "Descripción" | translate }}</h5>
         {{ product.description }}
     </div>

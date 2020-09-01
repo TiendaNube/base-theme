@@ -25,7 +25,7 @@
 
     {% if product_can_show_installments %}
       {# If NOT product detail, just include installments alone without link or container #}
-      <div class="{% if product_detail %}js-max-installments-container js-max-installments text-center text-md-left{% else %}item-installments{% endif %}">
+      <div class="js-max-installments-container js-max-installments {% if product_detail %}text-center text-md-left{% else %}item-installments{% endif %}">
         {% set max_installments_without_interests = product.get_max_installments(false) %}
         {% set max_installments_with_interests = product.get_max_installments %}
         {% if max_installments_without_interests and max_installments_without_interests.installment > 1 %}
@@ -93,7 +93,6 @@
 
   {# Cart installments #}
   
-  {% if store.country == 'BR' %}
   {% if cart.installments.max_installments_without_interest > 1 %}
     {% set installment =  cart.installments.max_installments_without_interest  %}
     {% set total_installment = cart.total %}
@@ -105,12 +104,12 @@
     {% set interest = true %}
     {% set interest_value = cart.installments.interest %}
   {% endif %}
-  <div {% if installment < 2 %} style="display: none;" {% endif %} data-interest="{{ interest_value }}" data-cart-installment="{{ installment }}" class="js-installments-cart-total text-right {% if template == 'cart' %}text-md-center{% endif %}"> 
+  <div {% if installment < 2 or ( store.country == 'AR' and interest == true ) %} style="display: none;" {% endif %} data-interest="{{ interest_value }}" data-cart-installment="{{ installment }}" class="js-installments-cart-total {% if template == 'cart' %}text-md-center{% endif %} text-right">    
     {{ 'O hasta' | translate }}
-    <span class="js-cart-installments-amount">{{ installment }}</span> 
-    {{ 'cuotas de' | translate }} 
-    <span class="js-cart-installments">{{ (total_installment / installment) | money }}</span> 
-    <span {% if interest == true %} style="display: none;" {% endif %}class="js-installments-type-interest">{{ 'sin interés' | translate}}</span>
+    {% if interest == true %}
+      {{ "<strong class='js-cart-installments-amount'>{1}</strong> cuotas de <strong class='js-cart-installments installment-price'>{2}</strong>" | t(installment, (total_installment / installment) | money) }}
+    {% else %}
+      {{ "<strong class='js-cart-installments-amount'>{1}</strong> cuotas sin interés de <strong class='js-cart-installments installment-price'>{2}</strong>" | t(installment, (total_installment / installment) | money) }}
+    {% endif %}
   </div>
-  {% endif %}
 {% endif %}

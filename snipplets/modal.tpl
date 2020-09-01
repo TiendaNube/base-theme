@@ -23,7 +23,7 @@
 
 <div id="{{ modal_id }}" class="js-modal {% if modal_mobile_full_screen %}js-fullscreen-modal{% endif %} modal modal-{{ modal_class }} modal-{{modal_position}} transition-{{modal_transition}} modal-{{modal_width}} transition-soft" style="display: none;">
     {% if modal_form_action %}
-    <form action="{{ modal_form_action }}" method="post" class="{{ modal_form_class }}">
+    <form action="{{ modal_form_action }}" method="post" class="{{ modal_form_class }}" {% if modal_form_hook %}data-store="{{ modal_form_hook }}"{% endif %}>
     {% endif %}
     <div class="js-modal-close {% if modal_mobile_full_screen %}js-fullscreen-modal-close{% endif %} modal-header">
         <span class="modal-close">

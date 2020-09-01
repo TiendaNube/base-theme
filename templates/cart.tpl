@@ -3,7 +3,7 @@
 {% endembed %}
 
 <div id="shoppingCartPage" class="container" data-minimum="{{ settings.cart_minimum_value }}">
-    <form action="{{ store.cart_url }}" method="post" class="cart-body">
+    <form action="{{ store.cart_url }}" method="post" class="cart-body" data-store="cart-form">
         <div class="cart-body">
 
             {# Cart alerts #}

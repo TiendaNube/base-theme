@@ -453,17 +453,23 @@ Listado de productos
 	i18n_input
 		description = Título
 		name = products_related_title
+	title
+		title = Variantes de color
+	checkbox
+		name = product_color_variants
+		description = Mostrar variantes de color en listado de productos
 
 Detalle de producto
 	meta
 		icon = cube
 		advanced = true
 	title
-		title = Medios de envío
+		title = Formas de entrega
 	checkbox_global
 		name = shipping_calculator_product_page
-		description = Mostrar calculador de costos de envío en la página de producto
-
+		description = Mostrar el calculador de costos de envío y locales físicos en la página de producto
+	subtitle
+		subtitle = <a target='_blank' href='/admin/shipping/'>Agregar medios de envío o locales físicos</a>
 
 Carrito de compras
 	meta
@@ -485,11 +491,12 @@ Carrito de compras
 		placeholder = Ej.: 3000
 		legend = Solo tenés que ingresar números
 	title
-		title = Medios de envío
+		title = Formas de entrega
 	checkbox_global
 		name = shipping_calculator_cart_page
-		description = Mostrar calculador de costos de envío en el carrito
-
+		description = Mostrar el calculador de costos de envío y locales físicos en el carrito
+	subtitle
+		subtitle = <a target='_blank' href='/admin/shipping/'>Agregar medios de envío o locales físicos</a>
 
 Pie de página
 	meta

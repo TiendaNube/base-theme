@@ -936,6 +936,30 @@ a {
   }
 }
 
+.btn-link {
+  color: $foreground-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $accent-brand-color;
+
+    svg {
+      fill: $accent-brand-color;
+    }
+  }
+}
+
+.btn-picker {
+  border-color: $box-border-color;
+  border-radius: $box-radius;
+}
+
+.login-info {
+  margin: 5px 0 0;
+  font-size: 12px;
+  text-align: left;
+}
+
 {# /* // Breadcrumb */ #}
 
 .breadcrumb {
@@ -1067,6 +1091,11 @@ a {
     background: darken($background-color, 2.5%);
   } @else {
     background: darken($background-color, 1.7%);
+  }
+}
+.radio.active {
+  .payment-item-discount {
+    color: $background-color;
   }
 }
 .shipping-option {
@@ -1387,8 +1416,7 @@ a {
 {# /* // Payment */ #}
 
 .payment-item-discount {
-  background-color: $accent-brand-color;
-  color: $background-color;
+  color: $accent-brand-color;
 }
 
 {# /* // Overlay */ #}
@@ -1530,6 +1558,24 @@ a {
 
 .tooltip-icon {
   fill: $foreground-color;
+}
+
+{# /* // Tabs */ #}
+
+.tabs-wrapper {
+  background: $background-color;
+  border-bottom-color: darken($background-color, 10%);
+}
+
+.tab-item {
+  &.active {
+    color: $accent-brand-color;
+    font-weight: bold;
+  }
+}
+
+.tab-indicator {
+  background-color: $accent-brand-color;
 }
 
 {%  endif %}

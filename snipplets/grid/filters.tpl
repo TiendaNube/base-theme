@@ -16,9 +16,9 @@
     {% set color_name = 'Color' %}
     {% set size_name = 'Size' %}
 {% endif %}
-<div id="filters">
+<div id="filters" data-store="filters-nav">
     {% if filter_colors or filter_more_colors %}
-        <div class="mb-4">
+        <div class="mb-4" data-store="filters-group">
             <h6 class="mb-3">{{ 'Color' | translate }}</h6>
             {% for name,color in insta_colors %}
                 <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ name|replace("'","%27") }}');">
@@ -42,7 +42,7 @@
         </div>
     {% endif %}
     {% if filter_sizes %}
-        <div class="mb-4">
+        <div class="mb-4" data-store="filters-group">
             <h6 class="mb-3">{{ 'Talle' | translate }}</h6>
             {% for size in size_properties_values %}
                 <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ size_name|replace("'","%27") }}', '{{ size|replace("'","%27") }}');">
@@ -58,7 +58,7 @@
 
     {% for variants_property in variants_properties %}
         {% if filter_other %}
-            <div class="mb-4">
+            <div class="mb-4" data-store="filters-group">
                 <h6 class="mb-3">{{ variants_property }}</h6>
                 {% for value in variants_properties_values[variants_property] %}
                     <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ variants_property|replace("'","%27") }}', '{{ value|replace("'","%27") }}');">
