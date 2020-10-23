@@ -1,5 +1,5 @@
 # Base Theme
-BETA v1.0.0
+v1.14.0
 
 The main purpose of this theme is to create a clean and ordered base for future themes. It includes all Nuvemshop´s features up to 01/01/19.
 It was conceived as Mobile First and then adapted to Desktop, and the code is focused an generating small and easy to use or update components.
