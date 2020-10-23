@@ -12,25 +12,34 @@ Colores de tu marca
 				primary_color = #000000
 				background_color = #FFFFFF
 				text_color = #000000
+				accent_color = #808E25
 			palette_2
 				primary_color = #F29466
 				background_color = #F9F9F9
 				text_color = #CC8563
+				accent_color = #F29466
 			palette_3
 				primary_color = #86C2B4
 				background_color = #FFF9EE
 				text_color = #0F5672
+				accent_color = #86C2B4
 	title
-		title = Configuración avanzada
+		title = Color principal de tu marca
 	color
 		name = primary_color
-		description = Color principal de tu marca
+	title
+		title = Color de fondo
 	color
 		name = background_color
-		description = Color de fondo
+	title
+		title = Color de los textos
 	color
 		name = text_color
-		description = Color de los textos
+	title
+		title = Color promocional
+	color
+		name = accent_color
+		description = Aplica a mensajes de descuento, promociones, envío gratis y cuotas sin interés
 		
 Tipo de letra
 	meta
@@ -434,7 +443,7 @@ Listado de productos
 		title = Filtros
 	checkbox
 		name = product_filters
-		description = Mostrar filtros en listado de productos
+		description = Mostrar filtros en el listado de productos
 	title
 		title = Productos en el listado
 	dropdown
@@ -458,6 +467,11 @@ Listado de productos
 	checkbox
 		name = product_color_variants
 		description = Mostrar variantes de color en listado de productos
+	title
+		title = Compra rápida
+	checkbox
+		name = quick_shop
+		description = Permitir que tus clientes puedan agregar productos a su carrito rápidamente desde el listado de productos
 
 Detalle de producto
 	meta

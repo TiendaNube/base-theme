@@ -1,3 +1,5 @@
+{% set has_multiple_slides = product.images_count > 1 or product.video_url %}
+
 {% if product.images_count > 0 %}
 	<div class="js-swiper-product nube-slider-product swiper-container" style="visibility:hidden; height:0;">
 		{% include 'snipplets/labels.tpl' with {'product_detail': true} %}
@@ -10,9 +12,10 @@
 	        	</a>
 	         </div>
 	        {% endfor %}
+	        {% include 'snipplets/product/product-video.tpl' %}
 	    </div>
 	    <div class="js-swiper-product-pagination swiper-pagination swiper-pagination-white"></div>
-	    {% if product.images_count > 1 %}
+	    {% if has_multiple_slides %}
 		    <div class="js-swiper-product-prev swiper-button-prev d-none d-md-block">{% include "snipplets/svg/chevron-left.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
 	        <div class="js-swiper-product-next swiper-button-next d-none d-md-block">{% include "snipplets/svg/chevron-right.tpl" with {svg_custom_class: "icon-inline icon-w-8 icon-2x svg-icon-text"} %}</div>
         {% endif %}

@@ -16,19 +16,15 @@
         {% elseif not store.has_custom_domain %}
         <meta property="fb:app_id" content="{{ fb_app.id }}" />
         {% endif %}
-        {{ store.name | og('site_name') }}
-        {% if template == 'home' and store.logo %}
-            {{ ('http:' ~ store.logo) | og('image') }}
-            {{ ('https:' ~ store.logo) | og('image:secure_url') }}
-        {% endif %}
 
         {# Preload of first image of Slider to improve LCP #}
         {% if template == 'home'%}
             {% snipplet 'preload-images.tpl' %}
         {% endif %}
 
-        {# OG tags to control how the page appears when shared on Facebook. See http://ogp.me/ #}
-        {% snipplet "metas/facebook-og.tpl" %}
+        {# OG tags to control how the page appears when shared on social networks. See http://ogp.me/ #}
+        {% snipplet "metas/general-og.tpl" %}
+        
         {# Twitter tags to control how the page appears when shared on Twitter. See https://dev.twitter.com/cards/markup #}
         {% if template == 'product' %}
             {# Twitter #}
@@ -163,6 +159,10 @@
         {# Modals overlay #}
 
         <div class="js-modal-overlay modal-overlay" style="display: none;"></div>
+
+        {# Quickshop modal #}
+
+        {% snipplet "grid/quick-shop.tpl" %}
 
         {# WhatsApp chat button #}
 

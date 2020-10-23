@@ -1,4 +1,7 @@
 {% set has_filters = insta_colors|length > 0 or other_colors|length > 0 or size_properties_values|length > 0 or variants_properties|length > 0 %}
+
+{% set show_filters = settings.product_filters and (filter_categories or insta_colors or other_colors or size_properties_values or variants_properties) %}
+
 {# Only remove this if you want to take away the theme onboarding advices #}
 {% set show_help = not has_products %}
 {% paginate by 12 %}
@@ -26,7 +29,7 @@
 			{% if products %}
 				{% set columns = settings.grid_columns %}
 				<div class="col-6{% if columns == 2 %} col-md-9{% else %} col-md-9{% endif %}">
-				{% if has_filters %}
+				{% if show_filters %}
 					<a href="#" class="js-modal-open filter-link" data-toggle="#nav-filters">
 						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" with {svg_custom_class: "icon-inline icon-w-16"} %} 
 					</a>		   
@@ -35,6 +38,7 @@
 				            {{'Filtros' | translate }}
 				        {% endblock %}
 						{% block modal_body %}
+							{% snipplet "grid/categories.tpl" %}
 							{% snipplet "grid/filters.tpl" %}
 						{% endblock %}
 					{% endembed %}

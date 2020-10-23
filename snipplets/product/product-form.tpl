@@ -21,10 +21,10 @@
     <div class="js-product-promo-container text-center text-md-left">
         {% if product.promotional_offer.script.is_discount_for_quantity %}
             {% for threshold in product.promotional_offer.parameters %}
-                <h4 class="mb-2"><strong>{{ "¡{1}% OFF comprando {2} o más!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>
+                <h4 class="mb-2 text-accent"><strong>{{ "¡{1}% OFF comprando {2} o más!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>
             {% endfor %}
         {% else %}
-            <h4 class="mb-2"><strong>{{ "¡Llevá {1} y pagá {2}!" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}</strong></h4> 
+            <h4 class="mb-2 text-accent"><strong>{{ "¡Llevá {1} y pagá {2}!" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}</strong></h4> 
         {% endif %}
         {% if product.promotional_offer.scope_type == 'categories' %}
             <p>{{ "Válido para" | translate }} {{ "este producto y todos los de la categoría" | translate }}:  
@@ -63,15 +63,7 @@
 
         {# Fake add to cart CTA visible during add to cart event #}
 
-        <div class="js-addtocart js-addtocart-placeholder btn btn-primary btn-transition btn-block mb-4 disabled" style="display: none;">
-            <span class="js-addtocart-text transition-container btn-transition-start active">{{ 'Agregar al carrito' | translate }}</span>
-            <span class="js-addtocart-success transition-container btn-transition-success">
-                {{ '¡Listo!' | translate }}
-            </span>
-            <div class="js-addtocart-adding transition-container btn-transition-progress">
-                {{ 'Agregando...' | translate }}
-            </div>
-        </div>
+        {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "btn-block mb-4"} %}
 
         <div class="js-added-to-cart-product-message float-leftt w-100 mb-3 text-center text-md-left" style="display: none;">
             {{'Ya agregaste este producto.' | translate }}<a href="#" class="js-modal-open js-fullscreen-modal-open btn btn-link ml-1" data-toggle="#modal-cart" data-modal-url="modal-fullscreen-cart">{{ 'Ver carrito' | translate }}</a>

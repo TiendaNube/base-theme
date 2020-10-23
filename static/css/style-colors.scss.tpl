@@ -16,6 +16,7 @@ style.scss.tpl
     // Font families
     // SVG Icons
     // Texts
+    // Backgrounds
   #Components
     // Margin and padding
     // Mixins
@@ -72,6 +73,7 @@ style.scss.tpl
 $primary-color: {{ settings.primary_color }};
 $main-foreground: {{ settings.text_color }};
 $main-background: {{ settings.background_color }};
+$accent-color: {{ settings.accent_color }};
 
 {# /* // Font families */ #}
 
@@ -86,6 +88,9 @@ $body-font: {{ settings.font_rest | raw }};
 .svg-icon-text{
   fill: $main-foreground;
 }
+.svg-icon-accent{
+  fill: $accent-color;
+}
 .svg-icon-invert{
   fill: $main-background;
 }
@@ -98,6 +103,16 @@ $body-font: {{ settings.font_rest | raw }};
 
 .text-secondary {
   color: $main-background;
+}
+
+.text-accent {
+  color: $accent-color;
+}
+
+{# /* // Backgrounds */ #}
+
+.background-primary {
+  background-color: $primary-color;
 }
 
 {#/*============================================================================
@@ -468,14 +483,46 @@ textarea {
   }
 }
 
-.radio-button {
-  input[type="radio"]{
-    & +  .radio-button-content .unchecked{
-      border:2px solid $main-foreground;
+.radio-button-container{
+  .radio-button {
+    &-content{
+      fill: $main-foreground;
+      border-bottom: 1px solid rgba($main-foreground, .1);
     }
-    & +  .radio-button-content .checked{
-      background-color: $main-foreground;
+    input[type="radio"]{
+      &:checked {
+        + .radio-button-content{
+          color: $primary-color;
+          fill: $primary-color;
+          outline: 2px solid $primary-color;
+          outline-offset: -1px;
+          .unchecked{
+            border: 2px solid $primary-color;
+          }
+        }
+        .shipping-method-price{
+          color: $primary-color;
+        }
+      }
+
+      & +  .radio-button-content .unchecked{
+        border: 2px solid $main-foreground;
+      }
+      & +  .radio-button-content .checked{
+        background-color: $primary-color;
+      }
     }
+  }
+  .shipping-extra-options .radio-button-item:first-child {
+    .radio-button-content{
+      border-top: 1px solid rgba($main-foreground, .1);
+    }
+    input[type="radio"]:checked .radio-button-content{
+      border: 2px solid $primary-color;
+    }
+  }
+  .radio-button-item:last-of-type .radio-button-content{
+    border-bottom: 0;
   }
 }
 
@@ -497,6 +544,30 @@ textarea {
       color: rgba($main-foreground,.8);
     }
   }
+}
+
+{# /* Lists */ #}
+
+.list-readonly {
+  .list-item {
+    border-bottom: 1px solid rgba($main-foreground, .1);
+    .radio-button-content{
+      border-bottom: none;
+    }
+    &:only-child,
+    &:last-of-type {
+      border-bottom: 0;
+    }
+  }
+  .shipping-extra-options .list-item:first-child {
+    border-top: 1px solid rgba($main-foreground, .1);
+    .radio-button-content{
+      border-top: none;
+    }
+  }
+  .list-item:last-of-type .radio-button-content{
+    border-bottom: none;
+  } 
 }
 
 {# /* // Alerts and notifications */ #}
@@ -645,6 +716,10 @@ textarea {
   @extend %element-margin;
 }
 
+.embed-responsive {
+  background: rgba($main-foreground, .2);
+}
+
 {# /* // Instafeed */ #}
 
 .section-instafeed-home {
@@ -698,6 +773,10 @@ textarea {
     background: $main-foreground;
     color: $main-background;
   }
+  &.label-accent{
+    background: $accent-color;
+    color: $main-background;
+  }
 }
 
 {# /* // Category controls */ #}
@@ -730,6 +809,10 @@ textarea {
 .nube-slider-product {
   background: rgba($main-foreground, 0.04);
   @extend %element-margin;
+}
+
+.product-video-container {
+  background-color: rgba($main-foreground, .07);
 }
 
 {# /* // Form and info */ #}

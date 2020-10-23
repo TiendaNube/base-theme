@@ -16,14 +16,9 @@
         {% elseif not store.has_custom_domain %}
         <meta property="fb:app_id" content="{{ fb_app.id }}" />
         {% endif %}
-        {{ store.name | og('site_name') }}
-        {% if template == 'home' and store.logo %}
-            {{ ('http:' ~ store.logo) | og('image') }}
-            {{ ('https:' ~ store.logo) | og('image:secure_url') }}
-        {% endif %}
 
-        {# OG tags to control how the page appears when shared on Facebook. See http://ogp.me/ #}
-        {% snipplet "metas/facebook-og.tpl" %}
+        {# OG tags to control how the page appears when shared on social networks. See http://ogp.me/ #}
+        {% snipplet "metas/general-og.tpl" %}
 
         {#/*============================================================================
             #CSS and fonts

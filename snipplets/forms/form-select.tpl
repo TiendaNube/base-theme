@@ -28,6 +28,7 @@
     <select 
         {% if select_id %}id="{{ select_id }}"{% endif %}
         class="form-select {{ select_custom_class }} {% if select_inline %}form-control-inline{% endif %}"
+        {% if select_data %}data-{{select_data}}="{{select_data_value}}"{% endif %}
         {% if select_name %}name="{{ select_name }}"{% endif %}
         {% if select_aria_label %}aria-label="{{ select_aria_label }}"{% endif %}>
         {% block select_options %}
