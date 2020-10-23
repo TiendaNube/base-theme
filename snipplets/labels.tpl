@@ -9,7 +9,7 @@
 {% endif %}
 
 {% if show_labels %}
-  <div class="labels">
+  <div class="{% if product.video_url and product %}js-labels-group{% endif %} labels">
     {% if not product.has_stock %}
       <div class="{% if product_detail %}js-stock-label {% endif %}label label-default">{{ "Sin stock" | translate }}</div>
     {% else %}
@@ -17,7 +17,7 @@
         <div class="js-stock-label label label-default" {% if product.has_stock %}style="display:none;"{% endif %}>{{ "Sin stock" | translate }}</div>
       {% endif %}
       {% if product.compare_at_price or product.promotional_offer %}
-        <div class="{% if not product.promotional_offer and product %}js-offer-label{% endif %} label label-primary" {% if (not product.compare_at_price and not product.promotional_offer) or not product.display_price %}style="display:none;"{% endif %}>
+        <div class="{% if not product.promotional_offer and product %}js-offer-label{% endif %} label label-accent" {% if (not product.compare_at_price and not product.promotional_offer) or not product.display_price %}style="display:none;"{% endif %}>
           {% if product.promotional_offer.script.is_percentage_off %}
             {{ product.promotional_offer.parameters.percent * 100 }}% OFF
           {% elseif product.promotional_offer.script.is_discount_for_quantity %}

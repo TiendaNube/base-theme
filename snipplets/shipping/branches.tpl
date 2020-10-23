@@ -29,17 +29,17 @@
 </div>
 
 {# Store branches #}
-
-{% if not product_detail %}
     
-    <ul class="js-store-branches-container list-unstyled radio-button-container mt-4 mb-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
+<ul class="js-store-branches-container box p-0 list-unstyled mt-4 {% if product_detail %}list-readonly{% else %}radio-button-container{% endif %}" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
 
-        {# Selectable branches #}
+    {% for branch in store.branches %}
+        <li class="{% if product_detail %}list-item{% else %}radio-button-item{% endif %}" data-store="branch-item-{{ branch.code }}">
 
-        {% for branch in store.branches %}
-            <li class="radio-button-item" data-store="branch-item-{{ branch.code }}">
+            {# If cart use radiobutton #}
+            
+            {% if not product_detail %}
                 <label class="js-shipping-radio js-branch-radio radio-button" data-loop="branch-radio-{{loop.index}}">
-                <input 
+                    <input 
                     class="js-branch-method {% if cart.shipping_data.code == branch.code %} js-selected-shipping-method {% endif %} shipping-method" 
                     data-price="0" 
                     {% if cart.shipping_data.code == branch.code %}checked{% endif %} type="radio" 
@@ -49,32 +49,32 @@
                     data-cost="{{ 'Gratis' | translate }}"
                     name="option" 
                     style="display:none">
-                    <span class="shipping-option row-fluid radio-button-content">
-                       <span class="radio-button-icons">
-                            <span class="radio-button-icon unchecked"></span>
-                            <span class="radio-button-icon checked"></span>
-                            <span class="radio-button-icon checked checked-invert"></span>
-                        </span>
-                        <span class="radio-button-label">
-                            <h6 class="text-primary mb-1 d-inline-block">{{ 'Gratis' | translate }}</h6>
-                            <span class="radio-button-text">
-                                {{ branch.name }} - {{ branch.extra }}
+                    <span class="radio-button-content">
+                        <div class="radio-button-icons-container">
+                            <span class="radio-button-icons">
+                                <span class="radio-button-icon unchecked"></span>
+                                <span class="radio-button-icon checked"></span>
                             </span>
-                        </span>
+                        </div>
+                        <div class="radio-button-label">
+            {% endif %}
+                            <div class="{% if product_detail %}list-item-content{% else %}radio-button-text{% endif %} row"> 
+                                <div class="col-8 pr-0">
+                                    <div class="font-small">
+                                        {{ branch.name }} <span class="ml-1">{{ branch.extra }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <span class="h5 shipping-price d-inline-block font-weight-bold text-primary">
+                                        {{ 'Gratis' | translate }}
+                                    </span>
+                                </div>
+                            </div>
+            {% if not product_detail %}
+                        </div>
                     </span>
                 </label>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <ul class="js-store-branches-container list-unstyled list mt-4 mb-4" {% if store.branches|length > 1 %}style="display: none;"{% endif %}>
-        {% for branch in store.branches %}
-            <li class="list-item" data-store="branch-item-{{ branch.code }}">
-                <span class="list-item-content">
-                    <h6 class="text-primary mb-1">{{ 'Gratis' | translate }}</h6>
-                    <div>{{ branch.name }} - {{ branch.extra }}</div>
-                </span>
-            </li>
-        {% endfor %}
-    </ul>
-{% endif %}
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

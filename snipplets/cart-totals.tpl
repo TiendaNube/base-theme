@@ -1,5 +1,5 @@
 {# IMPORTANT Do not remove this hidden subtotal, it is used by JS to calculate cart total #}
-<div class="subtotal-price hidden" data-priceraw="{{ cart.subtotal }}"></div>
+<div class="subtotal-price hidden" data-priceraw="{{ cart.total }}"></div>
 
 {# Define contitions to show shipping calculator and store branches on cart #}
 
@@ -21,7 +21,7 @@
   </h5>
 
   {# Cart popup promos #}
-  <div class="js-total-promotions">
+  <div class="js-total-promotions text-accent font-weight-bold">
     <span class="js-promo-title" style="display:none;">{{ "Promo" | translate }}</span>
     <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
     <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>

@@ -47,8 +47,6 @@
 --- --- Shipping and Payments
 --- --- Social
 
---- Draft Store
-
 
 --- General ---
 
@@ -368,6 +366,11 @@ pt "Página"
 en "Page"
 es_mx "Página"
 
+es "Compra rápida de"
+pt "Compra rápida de"
+en "Quickshop of"
+es_mx "Compra rápida de"
+
 es "Banner de la categoría"
 pt "Banner da categoria"
 en "Banner for category"
@@ -483,6 +486,16 @@ es "Filtrar"
 pt "Filtrar"
 en "Filter"
 es_mx "Filtrar"
+
+es "Ver más"
+pt "Ver mais"
+en "View more"
+es_mx "Ver más"
+
+es "Ver menos"
+pt "Ver menos"
+en "View less"
+es_mx "Ver menos"
 
 es "No tenemos productos en esas variantes. Por favor, intentá con otros filtros."
 pt "Não temos produtos com estas variações. Por favor, tente com outros filtros"
@@ -2088,30 +2101,55 @@ pt "Você ganhou <strong>frete grátis</strong> para esta compra. Aproveite!"
 en "You have <strong>free shipping</strong> in this order. Go for it!"
 es_mx "<strong>Tienes envío gratis</strong> en esta compra. ¡Aprovéchalo!"
 
-es "¡Genial! <strong class='text-primary'>Tenés envío gratis</strong>"
-pt "Sucesso! Você <strong class='text-primary'>tem frete grátis</strong>"
-en "You have <strong class='text-primary'>free shipping</strong>"
-es_mx "¡Genial! <strong class='text-primary'>Tienes envío gratis</strong>"
-
-es "¡Estas a <strong class='js-cart-free-shipping-amount'></strong> de tener <strong class='text-primary m-quarter-bottom'>envío gratis</strong> en tu compra!"
-pt "<strong>Ganhe frete grátis</strong> com mais <strong class='js-cart-free-shipping-amount'></strong> em compras"
-en "You need <strong class='js-cart-free-shipping-amount'></strong> to have <strong class='text-primary m-quarter-bottom'>free shipping</strong> on your order"
-es_mx "¡Estas a <strong class='js-cart-free-shipping-amount'></strong> de tener <strong class='text-primary m-quarter-bottom'>envío gratis</strong> en tu compra!"
+es "¡Genial! Tenés envío gratis"
+pt "Sucesso! Você tem frete grátis"
+en "You have free shipping"
+es_mx "¡Genial! Tienes envío gratis"
 
 es "¡Todos los productos de esta categoría <strong>tienen envío gratis!</strong>"
 pt "Todos os produtos desta categoria <strong>tienen envío gratis!</strong>"
 en "All the products in this category <strong>have free shipping!</strong>"
 es_mx "¡Todos los productos de esta categoría <strong>tienen envío gratis!</strong>"
 
-es "<strong class='text-primary'>Envío gratis</strong> superando los"
-pt "<strong class='text-primary'>Frete grátis</strong> a partir de"
-en "<strong class='text-primary'>Free shipping</strong> buying more than"
-es_mx "<strong class='text-primary'>Envío gratis</strong> superando los"
+es "<strong class='text-accent'>Envío gratis</strong> superando los"
+pt "<strong class='text-accent'>Frete grátis</strong> a partir de"
+en "<strong class='text-accent'>Free shipping</strong> buying more than"
+es_mx "<strong class='text-accent'>Envío gratis</strong> superando los"
 
 es "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios de envío"
 pt "<strong class='text-primary'>Frete grátis!</strong> com todos os meios de envio"
 en "<strong class='text-primary'>Free shipping!</strong> with all shipping options"
 es_mx "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios de envío"
+
+es "Ver más opciones de entrega"
+pt "Ver mais opções de entrega"
+en "See more delivery options"
+es_mx "Ver más opciones de entrega"
+
+es "Ver menos opciones de entrega"
+pt "Ver menos opções de entrega"
+en "See less delivery options"
+es_mx "Ver menos opciones de entrega"
+
+es "Ver más opciones de retiro"
+pt "Ver mais opções de retirada"
+en "See more pickup options"
+es_mx "Ver más opciones de retiro"
+
+es "Ver menos opciones de retiro"
+pt "Ver menos opções de retirada"
+en "See less pickup options"
+es_mx "Ver menos opciones de retiro"
+
+es "Retirar por"
+pt "Retirar em"
+en "Pickup"
+es_mx "Retirar por"
+
+es "Entrega a domicilio"
+pt "Entrega a domicílio"
+en "Delivery"
+es_mx "Entrega a domicilio"
 
 --- Installments ---
 
@@ -2124,6 +2162,11 @@ es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas
 pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
 en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
 es_mx "<strong class='js-installment-amount installment-amount'>{1}</strong> meses sin intereses de <strong class='js-installment-price installment-price'>{2}</strong>"
+
+es "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span> cuotas sin interés</span> de <span class='js-installment-price installment-price'>{2}</span>"
+pt "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span>x de <span class='js-installment-price installment-price'>{2}</span> sem juros</span>"
+en "In up to <span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span></span> installments of <span class='js-installment-price installment-price'>{2}</span> <span class='text-accent font-weight-bold'>without interest</span>"
+es_mx "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span> meses sin intereses</span> de <span class='js-installment-price installment-price'>{2}</span>"
 
 es "En hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas"
 pt "Em até <strong class='js-installment-amount installment-amount'>{1}</strong>x"
@@ -2165,10 +2208,10 @@ pt "<strong class='js-cart-installments-amount'>{1}</strong>x de <strong class='
 en "<strong class='js-cart-installments-amount'>{1}</strong> installments of <strong class='js-cart-installments installment-price'>{2}</strong>"
 es_mx "<strong class='js-cart-installments-amount'>{1}</strong> meses de <strong class='js-cart-installments installment-price'>{2}</strong>"
 
-es "<strong class='js-cart-installments-amount'>{1}</strong> cuotas sin interés de <strong class='js-cart-installments installment-price'>{2}</strong>"
-pt "<strong class='js-cart-installments-amount'>{1}</strong>x de <strong class='js-cart-installments installment-price'>{2}</strong> sem juros"
-en "<strong class='js-cart-installments-amount'>{1}</strong> installments of <strong class='js-cart-installments installment-price'>{2}</strong> without interest"
-es_mx "<strong class='js-cart-installments-amount'>{1}</strong> meses sin intereses de <strong class='js-cart-installments installment-price'>{2}</strong>"
+es "<span class='js-cart-installments-amount'>{1}</span> cuotas sin interés de <span class='js-cart-installments installment-price'>{2}</span>"
+pt "<span class='js-cart-installments-amount'>{1}</span>x de <span class='js-cart-installments installment-price'>{2}</span> sem juros"
+en "<span class='js-cart-installments-amount'>{1}</span> installments of <span class='js-cart-installments installment-price'>{2}</span> without interest"
+es_mx "<span class='js-cart-installments-amount'>{1}</span> meses sin intereses de <span class='js-cart-installments installment-price'>{2}</span>"
 
 es "{1} cuotas en tarjeta de crédito"
 pt "{1}x no cartão"
@@ -2517,6 +2560,16 @@ es_mx "Colores de tu marca"
 es "Color principal de tu marca"
 pt "Cor principal de sua marca"
 es_mx "Colores de tu marca"
+
+es "Color promocional"
+pt "Cor promocional"
+en "Promotional color"
+es_mx "Color promocional"
+
+es "Aplica a mensajes de descuento, promociones, envío gratis y cuotas sin interés"
+pt "Aplica as mensagens de desconto, promoções, frete grátis e parcelas sem juros"
+en "Applies to discount, promotions, free shipping and installments with no interest messages"
+es_mx "Aplica a mensajes de descuento, promociones, envío gratis y meses sin intereses"
 
 es "Probá nuestras combinaciones"
 pt "Experimente nossas combinações"
@@ -3271,9 +3324,9 @@ es "Mostrar barra lateral con filtros en listado de productos"
 pt "Mostrar barra lateral com filtros na lista de produtos"
 es_mx "Mostrar una barra lateral con filtros en el listado de productos"
 
-es "Mostrar filtros en listado de productos"
+es "Mostrar filtros en el listado de productos"
 pt "Mostrar filtros na lista de produtos"
-es_mx "Mostrar filtros en listado de productos"
+es_mx "Mostrar filtros en el listado de productos"
 
 es "¿Permitir que en el listado de productos tus clientes carguen nuevos productos cuando llegan al final de la página?"
 pt "Permitir que na apresentação dos produtos, os seus clientes carreguem novos produtos quando chegarem ao final da página?"
@@ -3745,20 +3798,3 @@ es_mx "Utiliza una imagen atractiva para aumentar las suscripciones. Te recomend
 es "Frase motivadora para el pop-up"
 pt "Frase motivadora para o pop-up"
 es_mx "Frase motivadora del pop-up"
-
---- Draft Store ---
-
-es "Salir de la tienda borrador"
-pt "Saia da loja de rascunhos"
-en "Exit the draft store"
-es_mx "Salir de la tienda borrador"
-
-es "Estás viendo tu tienda borrador"
-pt "Você está visualizando sua loja de rascunhos"
-en "You are viewing your draft store"
-es_mx "Estás viendo tu tienda borrador"
-
-es "Tienda borrador"
-pt "Loja de rascunhos"
-en "Draft store"
-es_mx "Tienda borrador"

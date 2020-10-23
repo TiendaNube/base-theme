@@ -11,14 +11,14 @@
 
 					{# Free shipping achieved label #}
 
-					<span class="js-free-shipping-message" {% if not cart.free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
-						{{ "¡Genial! <strong class='text-primary'>Tenés envío gratis</strong>" | translate }}
+					<span class="js-free-shipping-message font-weight-bold text-accent" {% if not cart.free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
+						{{ "¡Genial! Tenés envío gratis" | translate }}
 					</span>
 
 					{# Free shipping with min price label #}
 
-					<span class="js-shipping-calculator-label" {% if cart.free_shipping.cart_has_free_shipping or not cart.free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
-						{{ "<strong class='text-primary'>Envío gratis</strong> superando los" | translate }} <span>{{ cart.free_shipping.min_price_free_shipping.min_price }}</span>
+					<span class="js-shipping-calculator-label font-weight-bold" {% if cart.free_shipping.cart_has_free_shipping or not cart.free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
+						{{ "<strong class='text-accent'>Envío gratis</strong> superando los" | translate }} <span>{{ cart.free_shipping.min_price_free_shipping.min_price }}</span>
 					</span>
 
 					{# Shipping default label #}
@@ -62,5 +62,5 @@
 			{% endblock input_append_content %}
 		{% endembed %}
 	</div>
-	<div class="js-shipping-calculator-response mb-3 float-left w-100 {% if product_detail %}list{% endif %}" style="display: none;"></div>
+	<div class="js-shipping-calculator-response mb-3 float-left w-100 {% if product_detail %}list list-readonly{% endif %}" style="display: none;"></div>
 </div>

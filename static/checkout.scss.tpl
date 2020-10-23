@@ -1001,11 +1001,17 @@ a {
 {# /* // Accordion */ #}
 
 .accordion {
+  color: $foreground-color;
+  background-color: $background-color;
   border-radius: $box-radius;
   border-color: rgba($box-border-color, 0.5);
 }
 
 .accordion-section-header-icon {
+  fill: $foreground-color;
+}
+
+.accordion-rotate-icon {
   fill: $foreground-color;
 }
 
@@ -1417,6 +1423,21 @@ a {
 
 .payment-item-discount {
   color: $accent-brand-color;
+}
+
+.payment-option {
+  border-radius: $box-radius;
+  color: $foreground-color;
+  background-color: $background-color;
+  border-color: rgba($box-border-color, 0.5);
+}
+
+.radio-content.payment-option-content {
+  background: darken($background-color, 2%);
+  border: 1px solid rgba($box-border-color, 0.5);
+  border-top: 0;
+  border-bottom-right-radius: $box-radius;
+  border-bottom-left-radius: $box-radius;
 }
 
 {# /* // Overlay */ #}

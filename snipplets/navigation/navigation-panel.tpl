@@ -1,5 +1,5 @@
 <div class="nav-primary">
-    <ul class="nav-list">
+    <ul class="nav-list" data-store="navigation">
         {% snipplet "navigation/navigation-nav-list.tpl" %}
     </ul>
 </div>
@@ -15,7 +15,7 @@
             {% endfor %}
         </div>
     {% endif %}
-    <ul class="nav-account">
+    <ul class="nav-account" data-store="account-links">
         {% if not customer %}
             {% if 'mandatory' not in store.customer_accounts %}
             <li class="nav-accounts-item">{{ "Crear cuenta" | translate | a_tag(store.customer_register_url, '', 'nav-accounts-link') }}</li>

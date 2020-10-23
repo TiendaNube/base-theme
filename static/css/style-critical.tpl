@@ -16,13 +16,13 @@ critical-css.tpl
   #External CSS libraries and plugins
     // Bootstrap Grid v4.1.3
     // Swiper 4.4.2
-    // Font Awesome 5.5.0
   #Critical path helpers
   #Components
     // Wrappers
     // Placeholders and preloaders
     // Buttons
     // Links
+    // Headings
     // Titles and breadcrumbs
     // Texts
     // Icons
@@ -31,6 +31,7 @@ critical-css.tpl
     // Notifications
     // Images
     // Forms
+    // Video
   #Header and nav
     // Ad Bar
     // Logo
@@ -285,6 +286,13 @@ a {
   text-decoration: none;
 }
 
+{# /* // Headings */ #}
+
+.page-header-text {
+  margin: .5rem 0 0 0;
+  font-size: 12px;
+  text-align: center;
+}
 
 {# /* // Titles and breadcrumbs */ #}
 
@@ -539,11 +547,6 @@ p{
   margin: 0;
   list-style-type: none;
 }
-.list .list-item{
-  position: relative;
-  margin-bottom: 20px;
-  cursor: default;
-}
 
 .list-unstyled{
   padding: 0;
@@ -652,6 +655,64 @@ p{
 
 .g-recaptcha > div {
   margin: 0 auto;
+}
+
+{# /* // Video */ #}
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.embed-responsive.embed-responsive-16by9 {
+  padding-bottom: 56.25%;
+}
+.embed-responsive .embed-responsive-item,
+.embed-responsive embed,
+.embed-responsive  iframe,
+.embed-responsive  object,
+.embed-responsive  video {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.video-player-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  padding: 0;
+  font-size: 60px;
+  line-height: 30px;
+  text-align: center;
+  pointer-events: none;
+}
+.video-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 
 /*============================================================================
@@ -949,6 +1010,26 @@ p{
   max-height: 900px;
 }
 
+.product-video-container {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-top: -73px;
+  padding: 40px 0 100px 0;
+}
+.product-video {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.product-video .embed-responsive {
+  width: 100%;
+}
+
 /*============================================================================
   #Contact page
 ==============================================================================*/
@@ -1030,6 +1111,11 @@ p{
     font-weight: 700;
   }
 
+  .font-md-normal {
+    font-size: 14px;
+  }
+
+
   {# /* //// Banners */ #}
 
   {# /* Home Banners */ #}
@@ -1039,15 +1125,6 @@ p{
   }
 
   {# /* //// Home */ #}
-
-    {# /* Video */ #}
-
-  .video-player-icon {
-    width: 64px;
-    height: 64px;
-    font-size: 30px;
-    margin: -32px 0 0 -32px;
-  }
 
   {# /* //// Product grid */ #}
 
@@ -1099,6 +1176,6 @@ p{
 .float-left{float:left!important}.float-right{float:right!important}.float-none{float:none!important}
 
 {# /* // Width */ #}
-.w-100{width:100%!important}.w-auto{width:auto!important}
+.w-100{width:100%!important}.w-auto{width:auto!important}.full-width-container{width:100%;float:left;clear:both}
 
 {% endraw %}

@@ -4,6 +4,7 @@ Clothing
 	primary_color = #000000
 	background_color = #FFFFFF
 	text_color = #000000
+	accent_color = #808E25
 	font_headings = "Muli", sans-serif
 	font_rest = "Muli", sans-serif
 	head_background = dark

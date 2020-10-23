@@ -17,19 +17,40 @@
 
     {% if product_detail and custom_payment.discount > 0 %}
       <div class="text-center text-md-left mb-2">
-        <span><strong>{{ custom_payment.discount }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ custom_payment.name }}</span>
+        <span><strong class="text-accent">{{ custom_payment.discount }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ custom_payment.name }}</span>
       </div>
     {% endif %}
 
     {% set product_can_show_installments = product.show_installments and product.display_price and product.get_max_installments.installment > 1 %}
 
     {% if product_can_show_installments %}
+
+      {% set max_installments_without_interests = product.get_max_installments(false) %}
+      {% set max_installments_with_interests = product.get_max_installments %}
+
+      {% set has_no_interest_payments = max_installments_without_interests and max_installments_without_interests.installment > 1 %}
+
+      {% if has_no_interest_payments %}
+        {% set card_icon_color = 'svg-icon-accent' %}
+      {% else %}
+        {% set card_icon_color = 'svg-icon-text' %}
+      {% endif %}
+
       {# If NOT product detail, just include installments alone without link or container #}
-      <div class="js-max-installments-container js-max-installments {% if product_detail %}text-center text-md-left{% else %}item-installments{% endif %}">
-        {% set max_installments_without_interests = product.get_max_installments(false) %}
-        {% set max_installments_with_interests = product.get_max_installments %}
-        {% if max_installments_without_interests and max_installments_without_interests.installment > 1 %}
-          <div class="js-max-installments">{{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(max_installments_without_interests.installment, max_installments_without_interests.installment_data.installment_value_cents | money) }}</div>
+      <div class="js-max-installments-container js-max-installments {% if product_detail %}text-center text-md-left mb-2{% else %}item-installments{% endif %}">
+
+        {% if has_no_interest_payments %}
+
+          <div class="js-max-installments">
+            {% if product_detail %}
+
+              {# Accent color used on product detail #}
+
+              {{ "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span> cuotas sin interés</span> de <span class='js-installment-price installment-price'>{2}</span>" | t(max_installments_without_interests.installment, max_installments_without_interests.installment_data.installment_value_cents | money) }}
+            {% else %}
+              {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(max_installments_without_interests.installment, max_installments_without_interests.installment_data.installment_value_cents | money) }}
+            {% endif %}
+          </div>
         {% else %}
           {% if store.country != 'AR' or product_detail %}
             {% set max_installments_with_interests = product.get_max_installments %}
@@ -38,7 +59,15 @@
             {% else %}
               <div class="js-max-installments" style="display: none;">
                 {% if product.max_installments_without_interests %}
-                  {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
+                  {% if product_detail %}
+
+                    {# Accent color used on product detail #}
+
+                    {{ "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span> cuotas sin interés</span> de <span class='js-installment-price installment-price'>{2}</span>" | t(null, null) }}
+                    
+                  {% else %}
+                    {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
+                  {% endif %}
                 {% else %}
                   {{ "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>" | t(null, null) }}
                 {% endif %}
@@ -71,7 +100,7 @@
                 {% endif %}
             {% endfor %}
               <li>
-                {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-2x svg-icon-text"} %}
+                {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-2x " ~ card_icon_color ~ ""} %}
               </li>
           </ul>
         {% endif %}
@@ -104,12 +133,12 @@
     {% set interest = true %}
     {% set interest_value = cart.installments.interest %}
   {% endif %}
-  <div {% if installment < 2 or ( store.country == 'AR' and interest == true ) %} style="display: none;" {% endif %} data-interest="{{ interest_value }}" data-cart-installment="{{ installment }}" class="js-installments-cart-total {% if template == 'cart' %}text-md-center{% endif %} text-right">    
+  <div {% if installment < 2 or ( store.country == 'AR' and interest == true ) %} style="display: none;" {% endif %} data-interest="{{ interest_value }}" data-cart-installment="{{ installment }}" class="js-installments-cart-total {% if template == 'cart' %}text-md-center{% endif %} text-right {% if interest == false %}text-accent font-weight-bold{% endif %}">    
     {{ 'O hasta' | translate }}
     {% if interest == true %}
       {{ "<strong class='js-cart-installments-amount'>{1}</strong> cuotas de <strong class='js-cart-installments installment-price'>{2}</strong>" | t(installment, (total_installment / installment) | money) }}
     {% else %}
-      {{ "<strong class='js-cart-installments-amount'>{1}</strong> cuotas sin interés de <strong class='js-cart-installments installment-price'>{2}</strong>" | t(installment, (total_installment / installment) | money) }}
+      {{ "<span class='js-cart-installments-amount'>{1}</span> cuotas sin interés de <span class='js-cart-installments installment-price'>{2}</span>" | t(installment, (total_installment / installment) | money) }}
     {% endif %}
   </div>
 {% endif %}

@@ -31,7 +31,6 @@ style.css
     // Newsletter
   #Home page
     // Instafeed
-    // Video
     // Banners
   #Product grid
     // Filters
@@ -153,12 +152,8 @@ style.css
 }
 
 .radio-button{
-  width: 100%;
-  float: left;
-  clear: both;
-  text-align: left;
+  margin-bottom: 0;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
-  @extend %element-margin-small;
   cursor: pointer;
   &.disabled{
     opacity: 0.6;
@@ -167,17 +162,27 @@ style.css
       cursor: not-allowed;
     }
   }
+  &-content{
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: 15px; 
+    clear: both;
+    box-sizing: border-box;
+  }
+  &-icons-container{
+    position: absolute;
+    top: 14px;
+    left: 10px;
+  }
   &-icons{
     position: relative;
     float: left;
-    display: table;
-    width: 20px;
-    margin:0 5px 0 0;
   }
   &-icon{
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
   }
   input[type="radio"]{
     display: none;
@@ -186,25 +191,27 @@ style.css
     }
     & +  .radio-button-content .checked{
       position: absolute;
-      left:9px;
-      top:9px;
+      top: 8px;
+      left: 8px;
       width:0;
       height: 0;      
       @include prefix(transform, translate(-50%,-50%), webkit ms moz o);
       @include prefix(transition, all 0.2s , webkit ms moz o);
     }
-    &:checked + .radio-button-content .checked{
-      width: 6px;
-      height: 6px;
-    }
+    &:checked {
+      .shipping-method-name{
+        font-weight: bold;
+      } 
+      + .radio-button-content .checked{
+        width: 8px;
+        height: 8px;
+      }  
+    } 
   }
   &-label{
-    display: table;
-    padding-top: 1px;
-  }
-  &-text{
-    display: table;
-    margin-bottom: 2px;
+    width: 100%;
+    float: left;
+    padding-left: 30px;
   }
 }
 
@@ -267,6 +274,27 @@ style.css
   }
   &::-ms-expand {
     display: none;
+  }
+}
+
+{# /* Lists */ #}
+
+.list-readonly{
+  .radio-button-label{
+    width: 100%;
+    padding-left: 0;
+    cursor: default;
+  }
+  .list-item{
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: 15px;
+    clear: both;
+    cursor: default;
+    .radio-button-content{
+      padding: 0;
+    }
   }
 }
 
@@ -374,6 +402,16 @@ textarea{
   &-bottom.modal-show {
     top: 0;
   }
+  &-bottom-sheet {
+    top: initial;
+    bottom: -100%;
+    height: auto;
+    &.modal-show {
+      top: initial;
+      bottom: 0;
+      height: auto;
+    }
+  }
   &-left.modal-show {
     left: 0;
   }
@@ -400,6 +438,17 @@ textarea{
   height: 100%;
   background: #00000047;
   z-index: 10000;
+}
+
+.fancybox-slide--html{
+  .fancybox-content  {
+    width: 100%;
+    background: transparent;
+  }
+  .fancybox-close-small {
+    {# Hardcoded neutral color to match non iframe fancybox modal #}
+    color: #ccc!important;
+  }
 }
 
 {# /* // Tables */ #}
@@ -754,57 +803,6 @@ footer {
   }
 }
 
-
-{# /* // Video */ #}
-
-.embed-responsive {
-	position: relative;
-	display: block;
-	height: 0;
-	padding: 0;
-	overflow: hidden;
-	&.embed-responsive-16by9 {
-		padding-bottom: 56.25%;
-	}
-	.embed-responsive-item,
-	embed,
-	iframe,
-	object,
-	video {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
-}
-
-.video-player {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;    
-	cursor: pointer;
-}
-.video-player-icon {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 30px;
-	height: 30px;
-	margin: -15px 0 0 -15px;
-	padding: 0;
-	line-height: 30px;
-	text-align: center;
-}
-.video-image {
-	display: block;
-	width: 100%;
-}
-
 {# /* // Banners */ #}
 
 .textbanner {
@@ -1017,10 +1015,26 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
     }
     &-docked-md{
       width: 500px;
+      &-centered{
+        left: calc(50% - 250px);
+        bottom: auto;
+        height: auto;
+      }
+    }
+    &-bottom-sheet {
+      top: 100%;
+      &.modal-show {
+        top: 0;
+        bottom: auto;
+      }
     }
     &-docked-small{
       width: 350px;
     }
+  }
+
+  .fancybox-slide--html .fancybox-content{
+    width: 85%;
   }
 
   {# /*  Notifications */ #}
