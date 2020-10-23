@@ -9,7 +9,6 @@ In terms of speed and performance, involves changes that benefit the weight and 
   ```
   // Bootstrap Grid v4.1.3
   // Swiper 4.4.2
-  // Font Awesome 5.5.0
   ```
   
 **CSS / SCSS**
@@ -39,8 +38,6 @@ In terms of speed and performance, involves changes that benefit the weight and 
 **External No Dependencies JS** (static/js/external-no-dependencies.js.tpl)
   ```
 	// lazysizes - v4.0.0-rc2
-	// lazysizes extension to bgset 
-	// lazysizes - v4.1.5 extension
 	// Instafeed
 	// Swiper 4.4.2 (Custom Build)
   ```
@@ -50,28 +47,30 @@ In terms of speed and performance, involves changes that benefit the weight and 
   - config
   - layouts
   - snipplets
+    -- banner-services
+    -- forms
+    -- grid
     -- header
-    -- footer
+    -- home
     -- metas
     -- navigation
-    -- forms
-    -- placeholders
-    -- shipping
     -- payments
-    -- social
-    -- svg
-    -- home
-    -- grid
+    -- placeholders
     -- product
+    -- shipping
+    -- shipping_suboptions
+    -- social
+    -- structured_data
+    -- svg
+    
   _____________
   - components
   - static
   	-- css
   	-- js
   	-- images
-  	-- font-awesome
   - templates
   ```
 
 **Demo**
-[Base Theme Demo - Gnix](https://basetheme.mitiendanube.com/)
+[Base Theme Demo](https://basetheme.mitiendanube.com/)
