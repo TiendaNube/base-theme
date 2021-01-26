@@ -55,7 +55,8 @@
 
         <div class="full-width-container {% if has_featured_pickup %}mb-4{% endif %}">
 
-            <div class="box-title mb-2">
+            <div class="form-label mb-2">
+                {% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline icon-lg svg-icon-text mr-2 align-bottom"} %}
                 {{ "Envío a domicilio" | translate }}
             </div>
 
@@ -113,7 +114,8 @@
 
         <div class="full-width-container mb-2">
 
-            <div class="box-title mb-2">
+            <div class="form-label mb-2">
+                {% include "snipplets/svg/map-marker-alt.tpl" with {svg_custom_class: "icon-inline icon-lg svg-icon-text mr-2 align-bottom"} %}
                 {{ "Retirar por" | translate }}
             </div>
 

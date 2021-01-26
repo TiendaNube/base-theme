@@ -40,3 +40,4 @@
     {% endif %}
   </div>
 {% endif %}
+<span class="hidden" data-store="stock-product-{{ product.id }}-{% if product.has_stock %}{% if product.stock %}{{ product.stock }}{% else %}infinite{% endif %}{% else %}0{% endif %}"></span>

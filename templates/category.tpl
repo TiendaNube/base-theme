@@ -40,6 +40,12 @@
 						{% block modal_body %}
 							{% snipplet "grid/categories.tpl" %}
 							{% snipplet "grid/filters.tpl" %}
+							<div class="js-filters-overlay filters-overlay" style="display: none;">
+								<div class="filters-updating-message">
+									<h3 class="js-applying-filter" style="display: none;">{{ 'Aplicando filtro...' | translate }}</h3>
+									<h3 class="js-removing-filter" style="display: none;">{{ 'Borrando filtro...' | translate }}</h3>
+								</div>
+							</div>
 						{% endblock %}
 					{% endembed %}
 				{% endif %}
@@ -50,9 +56,7 @@
 			{% endif %}
 		</div>
 		<div class="row">
-			<div class="js-append-filters col-12 mb-3" style="display: none;">
-				<div class="d-md-inline-block mr-md-2 mb-3">{{ 'Filtrado por:' | translate }}</div>
-			</div>
+			{% include "snipplets/grid/filters.tpl" with {applied_filters: true} %}
 		</div>
 		{% if products %}
 	        <div class="js-product-table row" data-store="category-grid-{{ category.id }}">

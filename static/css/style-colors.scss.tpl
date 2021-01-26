@@ -29,6 +29,7 @@ style.scss.tpl
     // Headings
     // Buttons
     // Links
+    // Chips
     // Modals
     // Forms
     // Tabs
@@ -242,6 +243,10 @@ body{
   background-color:rgba($main-foreground, 0.2);
 }
 
+.spinner-ellipsis .point {
+  background-color: rgba($main-foreground, 0.2);
+}
+
 {# /* // Dividers */ #}
 
 .divider{
@@ -417,6 +422,18 @@ a {
   }
 }
 
+{# /* // Chips */ #}
+
+.chip {
+  color: $main-foreground;
+  background: rgba($main-foreground,0.1);
+  border: 0;
+
+  &-remove-icon {
+    fill: $main-foreground;
+  }
+}
+
 {# /* // Modals */ #}
 
 .modal{
@@ -452,16 +469,21 @@ textarea {
 }
 
 .form-control::-webkit-input-placeholder { 
-  color: $main-foreground;
+  color: rgba($main-foreground, .5);
 }
 .form-control:-moz-placeholder {
-  color: $main-foreground;
+  color: rgba($main-foreground, .5);
 }
 .form-control::-moz-placeholder {
-  color: $main-foreground;
+  color: rgba($main-foreground, .5);
 }
 .form-control:-ms-input-placeholder {
-  color: $main-foreground;
+  color: rgba($main-foreground, .5);
+}
+
+.form-control.alert-danger {
+  background-color: $main-background;
+  border-bottom: 1px solid #cc4845;
 }
 
 .form-select{
@@ -686,11 +708,7 @@ textarea {
 
 .card {
   background-color: $main-background;
-  border: 1px solid rgba($main-foreground, .08);
-}
-
-.card-header {
-  background-color: rgba($main-foreground, .1);
+  border: 1px solid rgba($main-foreground, .4);
 }
 
 {# /* // Sliders */ #}
@@ -717,7 +735,7 @@ textarea {
 }
 
 .embed-responsive {
-  background: rgba($main-foreground, .2);
+  background: $main-foreground;
 }
 
 {# /* // Instafeed */ #}
@@ -779,7 +797,7 @@ textarea {
   }
 }
 
-{# /* // Category controls */ #}
+{# /* // Filters */ #}
 
 .category-controls {
   background: $main-background;
@@ -789,16 +807,9 @@ textarea {
   }
 }
 
-{# /* // Filters */ #}
-
-.filter-remove {
-  background: rgba($main-foreground, .1);
-  border: 0;
-  &:after{
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="%23{{ settings.text_color |trim('#') }}"><path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"/></svg>');
-  }
+.filters-overlay {
+  background-color: rgba($main-background, .85);
 }
-
 
 /*============================================================================
   #Product detail
@@ -891,6 +902,11 @@ textarea {
 
 .head-transparent{
   background-color: transparent;
+}
+
+.nav-account{
+  background: $main-background;
+  border-top: 1px solid rgba($main-foreground, .5);
 }
 
 {# /* // Search */ #}

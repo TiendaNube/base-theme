@@ -10,7 +10,7 @@
     // Cancel if cancel button is needed
 #}
 
-<form id="{{ form_id }}" action="{{ form_action }}" method="post" class="form {{ form_custom_class }}">
+<form id="{{ form_id }}" action="{{ form_action }}" method="post" class="form {{ form_custom_class }}" {% if data_store %}data-store="{{ data_store }}"{% endif %}>
     {% block form_body %}
     {% endblock%}
     {% if cancel %}

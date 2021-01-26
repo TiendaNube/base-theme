@@ -1,75 +1,64 @@
-{% set default_lang = current_language.lang %}
-{% set filter_colors = insta_colors|length > 0 %}
-{% set filter_more_colors = other_colors|length > 0 %}
-{% set filter_sizes = size_properties_values|length > 0 %}
-{% set filter_other = variants_properties|length > 0 %}
+{% if applied_filters %}
+    
+    {# Applied filters chips #}
 
-{% if default_lang == 'pt' %}
-    {% set color_name = 'Cor' %}
-    {% set size_name = 'Tamanho' %}
-{% endif %}
-{% if default_lang == 'es' %}
-    {% set color_name = 'Color' %}
-    {% set size_name = 'Talle' %}
-{% endif %}
-{% if default_lang == 'en' %}
-    {% set color_name = 'Color' %}
-    {% set size_name = 'Size' %}
-{% endif %}
-<div id="filters" data-store="filters-nav">
-    {% if filter_colors or filter_more_colors %}
-        <div class="mb-4" data-store="filters-group">
-            <h6 class="mb-3">{{ 'Color' | translate }}</h6>
-            {% for name,color in insta_colors %}
-                <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ name|replace("'","%27") }}');">
-                    <span class="checkbox">
-                        <input type="checkbox" autocomplete="off">
-                        <span class="checkbox-icon"></span>
-                        <span class="checkbox-text">{{ name }}</span>
-                        <span class="checkbox-color" style="background-color: {{ color[name] }};" title="{{ name }}"></span>
-                    </span>
-                </label>
-            {% endfor %}
-            {% for color in other_colors %}
-                <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ color_name|replace("'","%27") }}', '{{ color|replace("'","%27") }}');">
-                    <span class="checkbox">
-                        <input type="checkbox" autocomplete="off">
-                        <span class="checkbox-icon"></span>
-                        <span class="checkbox-text">{{ color }}</span>
-                    </span>
-                </label>
-            {% endfor %}
-        </div>
-    {% endif %}
-    {% if filter_sizes %}
-        <div class="mb-4" data-store="filters-group">
-            <h6 class="mb-3">{{ 'Talle' | translate }}</h6>
-            {% for size in size_properties_values %}
-                <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ size_name|replace("'","%27") }}', '{{ size|replace("'","%27") }}');">
-                    <span class="checkbox">
-                        <input type="checkbox" autocomplete="off">
-                        <span class="checkbox-icon"></span>
-                        <span class="checkbox-text">{{ size }}</span>
-                    </span>
-                </label>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {% if has_applied_filters %}
+        <div class="col-12 mb-3">
+            <div class="d-md-inline-block mr-md-2 mb-3">{{ 'Filtrado por:' | translate }}</div>
+            {% for product_filter in product_filters %}
+                {% for value in product_filter.values %}
 
-    {% for variants_property in variants_properties %}
-        {% if filter_other %}
-            <div class="mb-4" data-store="filters-group">
-                <h6 class="mb-3">{{ variants_property }}</h6>
-                {% for value in variants_properties_values[variants_property] %}
-                    <label class="checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" onclick="LS.urlAddParam('{{ variants_property|replace("'","%27") }}', '{{ value|replace("'","%27") }}');">
-                        <span class="checkbox">
-                            <input type="checkbox" autocomplete="off">
-                            <span class="checkbox-icon"></span>
-                            <span class="checkbox-text">{{value}}</span>
-                        </span>
-                    </label>
+                    {# List applied filters as tags #}
+                    
+                    {% if value.selected %}
+                        <button class="js-remove-filter chip" data-filter-name="{{ product_filter.name|replace("'","%27") }}" data-filter-value="{{ value.name|replace("'","%27") }}">
+                            {{ value.name }}
+                            {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline chip-remove-icon"} %}
+                        </button>
+                    {% endif %}
                 {% endfor %}
-            </div>
-        {% endif %}
-    {% endfor %}
-</div>
+            {% endfor %}
+            <a href="#" class="js-remove-all-filters d-inline-block px-0">{{ 'Borrar filtros' | translate }}</a> 
+        </div>
+    {% endif %}
+{% else %}
+    <div id="filters" data-store="filters-nav">
+        {% for product_filter in product_filters %}
+            {% if product_filter.has_products %}
+                <div class="filters-container mb-5" data-store="filters-group">
+                    <h6 class="mb-3">{{product_filter.name}}</h6>
+                    {% set index = 0 %}
+                    {% for value in product_filter.values %}
+                        {% if value.product_count > 0 %}
+                            {% set index = index + 1 %}
+                            <label class="js-filter-checkbox {% if not value.selected %}js-apply-filter{% else %}js-remove-filter{% endif %} checkbox-container font-weight-bold {% if mobile %}mb-3{% else %}mb-2{% endif %}" data-filter-name="{{ product_filter.name|replace("'","%27") }}" data-filter-value="{{ value.name|replace("'","%27") }}">
+                                <span class="checkbox">
+                                    <input type="checkbox" autocomplete='off' {% if value.selected %}checked{% endif %}>
+                                    <span class="checkbox-icon"></span>
+                                    <span class="checkbox-text">{{ value.name }} ({{ value.product_count }})</span>
+                                    {% if product_filter.type == 'color' and value.color_type == 'insta_color' %}
+                                        <span class="checkbox-color" style="background-color: {{ value.color_hexa }};"></span>
+                                    {% endif %}
+                                </span>
+                            </label>
+                            {% if index == 8 and product_filter.values_with_products > 8 %}
+                                <div class="js-accordion-container" style="display: none;">
+                            {% endif %}
+                        {% endif %}
+                        {% if loop.last and product_filter.values_with_products > 8 %}
+                            </div>
+                            <a href="#" class="js-accordion-toggle btn-link d-inline-block mt-1 pl-0">
+                                <span class="js-accordion-toggle-inactive">
+                                    {{ 'Ver todos' | translate }}
+                                </span>
+                                <span class="js-accordion-toggle-active" style="display: none;">
+                                    {{ 'Ver menos' | translate }}
+                                </span>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endif %}

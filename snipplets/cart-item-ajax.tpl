@@ -3,12 +3,12 @@
   {% set show_free_shipping_label = item.product.free_shipping and not (cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price) %}
 
   {# Cart item image #}
-  <div class="{% if cart_page %}col-3 col-md-2{% else %}col-3 pr-3{% endif %}">
+  <div class="col-2 {% if cart_page %}col-md-1{% endif %}">
     <a href="{{ item.url }}">
       <img src="{{ item.featured_image | product_image_url('medium') }}" class="img-fluid" />
     </a>
   </div>
-  <div class="{% if cart_page %}col-9 col-md pl-0 pl-md-3{% else %}col-9 d-flex align-items-center{% endif %}">
+  <div class="col-10 {% if cart_page %}col-md-11{% endif %}">
 
     {# Cart item name #}
     <div class="{% if cart_page %}row align-items-center{% else %}w-100{% endif %}">
@@ -64,7 +64,7 @@
   </div>
 
   {# Cart item delete #}
-  <div class="cart-item-delete {% if cart_page %}position-relative-md col-auto col-md-1{% else %}col-1{% endif %} text-right">
+  <div class="col-1 cart-item-delete text-right">
     <button type="button" class="btn h6 {% if cart_page %}h5-md{% endif %} m-0" onclick="LS.removeItem({{ item.id }}{% if not cart_page %}, true{% endif %})">
       {% include "snipplets/svg/trash-alt.tpl" with {svg_custom_class: "icon-inline icon-lg svg-icon-text"} %}
     </button>

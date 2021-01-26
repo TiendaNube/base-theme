@@ -21,7 +21,7 @@
 		// Instagram feed
         // Facebook login
 	#Product grid
-		// Show filters
+		// Filters
 		// Sort by
 		// Infinite scroll
   	#Product detail functions
@@ -50,6 +50,7 @@
 		// Toggle more shipping options
 		// Calculate shipping on page load
 		// Shipping provinces
+		// Change store country
     #Forms
     #Footer
 
@@ -81,29 +82,39 @@ $(document).ready(function(){
 	  #Notifications
 	==============================================================================*/ #}
 
-	{# /* // Follow order status notification */ #}
+    {# /* // Close notification */ #}
 
-    var $js_notification = $(".js-notification");
-    if ($js_notification.size() > 0){
-        if (LS.shouldShowOrderStatusNotification($js_notification.data('url'))){
-            $js_notification.show();
+    $(".js-notification-close").on( "click", function(e) {
+        e.preventDefault();
+        $(this).closest(".js-notification").hide();
+    });
+
+    {# /* // Follow order status notification */ #}
+
+    var $js_notification_status_page = $(".js-notification-status-page");
+    if ($js_notification_status_page.size() > 0){
+        if (LS.shouldShowOrderStatusNotification($js_notification_status_page.data('url'))){
+            $js_notification_status_page.show();
         };
-        $(".js-notification-close").on( "click", function(e) {
+        $(".js-notification-status-page-close").on( "click", function(e) {
             e.preventDefault();
-            LS.dontShowOrderStatusNotificationAgain($js_notification.data('url'));
-            $(".js-notification").hide();
+            LS.dontShowOrderStatusNotificationAgain($js_notification_status_page.data('url'));
         });
     }
 
-    {# /* // Cart notification: Dismiss notification */ #}
+    {# /* // Follow order cancellation notification */ #}
 
-    $(".js-cart-notification-close").click(function(){
-        $(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
-        setTimeout(function(){
-            $('.js-cart-notification-item-img').attr('src', '');
-            $(".js-alert-added-to-cart").hide();
-        },2000);
-    });
+    var $js_notification_order_cancellation = $(".js-notification-order-cancellation");
+    if ($js_notification_order_cancellation.size() > 0){
+        if (LS.shouldShowOrderCancellationNotification($js_notification_order_cancellation.data('url'))){
+            $js_notification_order_cancellation.show();
+            $(".js-btn-fixed-bottom").css({"margin-bottom": "40px"});
+        };
+        $(".js-notification-order-cancellation-close").on( "click", function(e) {
+            e.preventDefault();
+            LS.dontShowOrderCancellationNotification($js_notification_order_cancellation.data('url'));
+        });
+    }
 
     {% if not settings.head_fix %}
 
@@ -222,19 +233,24 @@ $(document).ready(function(){
     
     $(document).on("click", ".js-modal-open", function(e) {
         e.preventDefault(); 
-        var $modal_id = $(this).data('toggle');
-        $(".js-modal-overlay").fadeToggle();
-        if ($($modal_id).hasClass("modal-show")) {
-            $($modal_id).removeClass("modal-show").delay(200).hide(0);
+        var modal_id = $(this).data('toggle');
+        var $overlay_id = $('.js-modal-overlay[data-modal-id="' + modal_id + '"]');
+        if ($(modal_id).hasClass("modal-show")) {
+            $(modal_id).removeClass("modal-show").delay(500).hide(0);
         } else {
-            $($modal_id).detach().insertAfter(".js-modal-overlay").show(0).addClass("modal-show");
+            $overlay_id.fadeIn(400);
+            $(modal_id).detach().appendTo("body");
+            $overlay_id.detach().insertBefore(modal_id);
+            $(modal_id).show(0).addClass("modal-show");
         }             
     });
 
     closeModal = function(element){
 
-        $(element).closest(".js-modal").removeClass("modal-show").delay(200).hide(0); 
-        $(".js-modal-overlay").fadeOut(300);
+        var $modal = $('body .js-modal.modal-show:last-child');
+        var $overlay = $modal.prev(".js-modal-overlay");
+        $modal.removeClass("modal-show").delay(500).hide(0); 
+        $overlay.fadeOut(500);
 
         {# Close full screen modal: Remove url hash #}
 
@@ -261,16 +277,17 @@ $(document).ready(function(){
         }
     });
 
-    $(".js-modal-overlay").click(function (e) {
+    $(document).on("click", ".js-modal-overlay", function(e) {
         e.preventDefault();  
-        $(".js-modal.modal-show").removeClass("modal-show").delay(200).hide(0);   
-        $(this).fadeOut(300);  
+        var modal_id = $(this).data('modal-id');
+        $(modal_id).removeClass("modal-show").delay(500).hide(0);   
+        $(this).fadeOut(500);   
 
         {% if settings.quick_shop %}
             restoreQuickshopForm();
         {% endif %}
 
-        if ($(window).width() < 768) {
+        if ($(this).hasClass("js-fullscreen-overlay") && $(window).width() < 768) {
             cleanURLHash();
         }
     });
@@ -387,6 +404,21 @@ $(document).ready(function(){
         }, {
             snipplet: 'header/header-search-results.tpl'
         });
+
+        if ($(window).width() > 768) {
+
+            {# Hide search suggestions if user click outside results #}
+
+            $("body").click(function () {
+                $(".js-search-suggest").hide();
+            });
+
+            {# Maintain search suggestions visibility if user click on links inside #}
+
+            $(document).on("click", ".js-search-suggest a", function () {
+                $(".js-search-suggest").show();
+            });
+        }
 
         $(".js-search-suggest").on("click", ".js-search-suggest-all-link", function (e) {
             e.preventDefault();
@@ -654,9 +686,45 @@ $(document).ready(function(){
             observer.observe(document.querySelector(".js-category-controls-prev"));
         }
 
-		{# /* // Show filters */ #}
+        {# /* // Filters */ #}
 
-		LS.showWhiteListedFilters("{{ filters|json_encode() }}");
+        $(document).on("click", ".js-apply-filter, .js-remove-filter", function(e) {
+            e.preventDefault();
+            var filter_name = $(this).data('filter-name');
+            var filter_value = $(this).data('filter-value');
+            if($(this).hasClass("js-apply-filter")){
+                $(this).find("[type=checkbox]").prop("checked", true);
+                LS.urlAddParam(
+                    filter_name, 
+                    filter_value, 
+                    true
+                );
+            }else{
+                $(this).find("[type=checkbox]").prop("checked", false);
+                LS.urlRemoveParam(
+                    filter_name, 
+                    filter_value
+                );   
+            }
+            {# Toggle class to avoid adding double parameters in case of double click and show applying changes feedback #}
+
+            if ($(this).hasClass("js-filter-checkbox")){
+                if ($(window).width() < 768) {
+                    $(".js-filters-overlay").show();
+                    if($(this).hasClass("js-apply-filter")){
+                        $(".js-applying-filter").show();
+                    }else{
+                        $(".js-removing-filter").show();
+                    }
+                }
+                $(this).toggleClass("js-apply-filter js-remove-filter");
+            }
+        });
+
+        $(document).on("click", ".js-remove-all-filters", function(e) {
+            e.preventDefault();
+            LS.urlRemoveAllParams();
+        });
 
 		{# /* //  Accordions */ #}
 
@@ -861,6 +929,13 @@ $(document).ready(function(){
 	        const base_price = Number($("#price_display").attr("content"));
 	        refreshInstallmentv2(base_price);
 	    {% endif %}
+
+        {# Update shipping on variant change #}
+
+        LS.updateShippingProduct();
+
+        zipcode_on_changevariant = $("#product-shipping-container .js-shipping-input").val();
+        $("#product-shipping-container .js-shipping-calculator-current-zip").text(zipcode_on_changevariant);
 	}
 
 	{# /* // Product labels on variant change */ #}
@@ -1024,10 +1099,10 @@ $(document).ready(function(){
 
             if($item_to_update_image.hasClass("swiper-slide-duplicate")){
                 var slide_item_index = $item_to_update_image_cloned.attr("data-swiper-slide-index");
-                var current_image = $('img', '.js-item-product[data-product-id="'+variant.product_id+'-clone-'+slide_item_index+'" ]');
+                var current_image = $('.js-item-image', '.js-item-product[data-product-id="'+variant.product_id+'-clone-'+slide_item_index+'" ]');
             }else{
                 var slide_item_index = $item_to_update_image.attr("data-swiper-slide-index");
-                var current_image = $('img', '.js-item-product[data-product-id="'+variant.product_id+'"]');
+                var current_image = $('.js-item-image', '.js-item-product[data-product-id="'+variant.product_id+'"]');
             }
             current_image.attr('srcset', variant.image_url);
         });
@@ -1141,12 +1216,12 @@ $(document).ready(function(){
 
     {# Product quantitiy #}
 
-    $('.js-quantity-up').on('click', function() {
+    $(document).on("click", ".js-quantity-up", function () {
         $quantity_input = $(this).closest(".js-quantity").find(".js-quantity-input");
         $quantity_input.val( parseInt($quantity_input.val(), 10) + 1);
     });
 
-    $('.js-quantity-down').on('click', function() {
+    $(document).on("click", ".js-quantity-down", function () {
         $quantity_input = $(this).closest(".js-quantity").find(".js-quantity-input");
         quantity_input_val = $quantity_input.val();
         if (quantity_input_val>1) { 
@@ -1317,6 +1392,20 @@ $(document).ready(function(){
                             },8000);
                         }
                     }
+
+                    {# Update shipping input zipcode on add to cart #}
+
+                    {# Use zipcode from input if user is in product page, or use zipcode cookie if is not #}
+
+                    if ($("#product-shipping-container .js-shipping-input").val()) {
+                        zipcode_on_addtocart = $("#product-shipping-container .js-shipping-input").val();
+                        $("#cart-shipping-container .js-shipping-input").val(zipcode_on_addtocart);
+                        $(".js-shipping-calculator-current-zip").text(zipcode_on_addtocart);
+                    } else if (!!$.cookie('calculator_zipcode')){
+                        var zipcode_from_cookie = $.cookie("calculator_zipcode");
+                        $('.js-shipping-input').val(zipcode_from_cookie);
+                        $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
+                    }
                 }
                 var callback_error = function(){
 
@@ -1403,23 +1492,70 @@ $(document).ready(function(){
         }
     };
 
+    {# Apply zipcode saved by cookie if there is no zipcode saved on cart from backend #}
+
+    {% if not cart.shipping_zipcode %}
+
+        if (!!$.cookie('calculator_zipcode')) {
+
+            {# If there is a cookie saved based on previous calcualtion, add it to the shipping input to triggert automatic calculation #}
+
+            var zipcode_from_cookie = $.cookie("calculator_zipcode");
+            $('#product-shipping-container .js-shipping-input').val(zipcode_from_cookie);
+            $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
+
+            {# Hide the shipping calculator and show spinner  #}
+
+            $(".js-shipping-calculator-head").addClass("with-zip").removeClass("with-form");
+            $(".js-shipping-calculator-with-zipcode").addClass("transition-up-active");
+            $(".js-shipping-calculator-spinner").show();
+        } else {
+
+            {# If there is no cookie saved, show calcualtor #}
+
+            $(".js-shipping-calculator-form").addClass("transition-up-active");
+        }            
+        
+    {% endif %}
+
+    {# Remove shipping suboptions from DOM to avoid duplicated modals #}
+
+    removeShippingSuboptions = function(){
+        var shipping_suboptions_id = $(".js-modal-shipping-suboptions").attr("id");
+        $("#" + shipping_suboptions_id).remove();
+        $('.js-modal-overlay[data-modal-id="#' + shipping_suboptions_id + '"').remove();
+    };
+
     {# /* // Calculate shipping function */ #}
 
 	$(".js-calculate-shipping").click(function (e) {
-	    e.preventDefault();
+        e.preventDefault();
 
-	        {# Take the Zip code to all shipping calculators on screen #}
-	        let shipping_input_val = $(this).closest(".js-shipping-calculator-form").find(".js-shipping-input").val();
-	        if (shipping_input_val.length != 0){
-	            $(".js-shipping-input").val(shipping_input_val);
-	        }
-	        
-	    LS.calculateShippingAjax(
-	        $(this).closest(".js-shipping-calculator-container").find(".js-shipping-input").val(),
-	        '{{ store.shipping_calculator_url | escape('js') }}',
-	        $(this).closest(".js-shipping-calculator-container")
-	    );
-	});
+        {# Take the Zip code to all shipping calculators on screen #}
+        let shipping_input_val = $(this).closest(".js-shipping-calculator-form").find(".js-shipping-input").val();
+
+        $(".js-shipping-input").val(shipping_input_val);
+
+        {# Calculate on page load for both calculators: Product and Cart #}
+
+        {% if template == 'product' %}
+            LS.calculateShippingAjax(
+                $('#product-shipping-container').find(".js-shipping-input").val(), 
+                '{{store.shipping_calculator_url | escape('js')}}',
+                $("#product-shipping-container").closest(".js-shipping-calculator-container") );
+        {% endif %}
+
+        if ($(".js-cart-item").length) {
+            LS.calculateShippingAjax(
+                $('#cart-shipping-container').find(".js-shipping-input").val(), 
+                '{{store.shipping_calculator_url | escape('js')}}',
+                $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
+        }
+
+        $(".js-shipping-calculator-current-zip").html(shipping_input_val);
+        removeShippingSuboptions();
+
+    });
 
 	{# /* // Calculate shipping by submit */ #}
 
@@ -1492,6 +1628,7 @@ $(document).ready(function(){
                     $('#cart-shipping-container').find(".js-shipping-input").val(), 
                     '{{store.shipping_calculator_url | escape('js')}}',
                     $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
+                    removeShippingSuboptions();
             }, 100);
         } 
 
@@ -1509,6 +1646,33 @@ $(document).ready(function(){
         calculateCartShippingOnLoad();
     {% endif %}
 
+    {# /* // Calculate product detail shipping on page load */ #}
+
+    {% if template == 'product' %}
+
+        if($('#product-shipping-container').find(".js-shipping-input").val()){
+            setTimeout(function() { 
+                LS.calculateShippingAjax(
+                    $('#product-shipping-container').find(".js-shipping-input").val(), 
+                    '{{store.shipping_calculator_url | escape('js')}}',
+                    $("#product-shipping-container").closest(".js-shipping-calculator-container") );
+                
+                removeShippingSuboptions();
+            }, 100);
+        }
+
+    {% endif %}
+
+    {# /* // Change CP */ #}
+
+    $(document).on("click", ".js-shipping-calculator-change-zipcode", function(e) {
+        e.preventDefault();
+        $(".js-shipping-calculator-response").fadeOut(100);
+        $(".js-shipping-calculator-head").addClass("with-form").removeClass("with-zip");
+        $(".js-shipping-calculator-with-zipcode").removeClass("transition-up-active");
+        $(".js-shipping-calculator-form").addClass("transition-up-active");
+    }); 
+
 	{# /* // Shipping provinces */ #}
 
 	{% if provinces_json %}
@@ -1518,12 +1682,44 @@ $(document).ready(function(){
 		}).change();
 	{% endif %}
 
+    {# /* // Change store country: From invalid zipcode message */ #}
+
+    $(document).on("click", ".js-save-shipping-country", function(e) {
+        e.preventDefault();
+        {# Change shipping country #}
+
+        var selected_country_url = $(this).closest(".js-modal-shipping-country").find(".js-shipping-country-select option:selected").attr("data-country-url");
+        location.href = selected_country_url; 
+
+        $(this).text('{{ "Aplicando..." | translate }}').addClass("disabled");
+    });
+
     {#/*============================================================================
       #Forms
     ==============================================================================*/ #}
 
     $(".js-winnie-pooh-form").submit(function (e) {
         $(this).attr('action', '');
+    });
+
+    {% if template == 'account.login' %}
+        {% if not result.facebook and result.invalid %}
+            $(".js-account-input").addClass("alert-danger");
+            $(".js-account-input.alert-danger").focus(function() {
+              $(".js-account-input").removeClass("alert-danger");
+            });
+        {% endif %}
+    {% endif %}
+
+    $('.js-password-view').click(function () {
+        $(this).toggleClass('password-view');
+        if($(this).hasClass('password-view')){
+           $(this).parent().find(".js-password-input").attr('type', '');
+           $(this).find(".js-eye-open, .js-eye-closed").toggle();
+        } else {
+           $(this).parent().find(".js-password-input").attr('type', 'password');
+           $(this).find(".js-eye-open, .js-eye-closed").toggle();
+        }
     });
 
     {#/*============================================================================

@@ -41,10 +41,10 @@
             {% set item_img_alt = product.featured_image.alt %}
         {% endif %}
 
-        <div class="js-item-image item-image mb-2">
+        <div class="item-image mb-2">
             <div style="padding-bottom: {{ item_img_spacing }}%;" class="p-relative" data-store="product-item-image-{{ product.id }}">
                 <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}">
-                    <img alt="{{ item_img_alt }}" data-sizes="auto" data-expand="-10" src="{{ 'images/empty-placeholder.png' | static_url }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="lazyautosizes lazyload img-absolute img-absolute-centered fade-in" /> 
+                    <img alt="{{ item_img_alt }}" data-sizes="auto" data-expand="-10" src="{{ 'images/empty-placeholder.png' | static_url }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="js-item-image lazyautosizes lazyload img-absolute img-absolute-centered fade-in" /> 
                     <div class="placeholder-fade"></div>
                 </a>
                 {% if settings.product_color_variants %}
@@ -60,7 +60,7 @@
             {# Hidden product form to update item image and variants: Also this is used for quickshop popup #}
             
             <div class="js-item-variants hidden">
-                <form id="product_form" class="js-product-form" method="post" action="{{ store.cart_url }}">
+                <form class="js-product-form" method="post" action="{{ store.cart_url }}">
                     <input type="hidden" name="add_to_cart" value="{{product.id}}" />
                     {% if product.variations %}
                         {% include "snipplets/product/product-variants.tpl" with {quickshop: true} %}
@@ -114,7 +114,7 @@
                 {% else %}
 
                     {# If not variants add directly to cart #}
-                    <form id="product_form" class="js-product-form" method="post" action="{{ store.cart_url }}">
+                    <form class="js-product-form" method="post" action="{{ store.cart_url }}">
                         <input type="hidden" name="add_to_cart" value="{{product.id}}" />
                         {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
                         {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}

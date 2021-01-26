@@ -79,6 +79,20 @@ style.css
   @include prefix(transition, all 0.3s ease, webkit ms moz o);
 }
 
+.transition-up {
+  position: relative;
+  top: -8px;
+  z-index: 10;
+  @include prefix(transition, all 0.5s ease, webkit ms moz o);
+  pointer-events: none; 
+  &-active {
+    top: 0;
+    opacity: 1; 
+    z-index: 100;
+    pointer-events: all; 
+  }
+}
+
 .beat {
   animation: .8s 2 beat;
 }
@@ -368,7 +382,7 @@ textarea{
     font-size: 20px;
   }
   &-footer{
-    padding: 10px;
+    padding: 10px 0;
     clear: both;
   }
   &-full {
@@ -397,10 +411,24 @@ textarea{
   &-centered{
     height: 100%;
     width: 100%;
+    &-small{
+      left: 50%;
+      width: 80%;
+      height: auto;
+      @include prefix(transform, translate(-50%, -50%), webkit ms moz o);
+      .modal-body{
+        min-height: 150px;
+        max-height: 400px;
+        overflow: auto;
+      }
+    }
   }
   &-top.modal-show,
   &-bottom.modal-show {
     top: 0;
+    &.modal-centered-small{
+      top: 50%;
+    }
   }
   &-bottom-sheet {
     top: initial;
@@ -438,17 +466,38 @@ textarea{
   height: 100%;
   background: #00000047;
   z-index: 10000;
+  &.modal-zindex-top{
+    z-index: 20000;
+  }
 }
 
 .fancybox-slide--html{
   .fancybox-content  {
     width: 100%;
+    height: calc(100% - 70px) ;
+    padding: 0;
+    @include prefix(transform, translateY(20px), webkit ms moz o);
     background: transparent;
   }
   .fancybox-close-small {
     {# Hardcoded neutral color to match non iframe fancybox modal #}
     color: #ccc!important;
   }
+}
+
+.fancybox-toolbar {
+  opacity: 1!important;
+  visibility: visible!important;
+  .fancybox-button {
+    display: none!important;
+    &.fancybox-button--close{
+      display: block!important;
+    }
+  }
+}
+
+.fancybox-close-small {
+  display: none!important;
 }
 
 {# /* // Tables */ #}
@@ -518,12 +567,12 @@ textarea{
 }
 
 .card-header {
-	padding: 15px;
+	padding: 15px 15px 0 15px;
 	margin-bottom: 0;
 }
 
 .card-footer {
-	padding: 15px;
+	padding: 0 15px 15px 15px;
 }
 
 /*============================================================================
@@ -544,7 +593,7 @@ textarea{
 }
 
 .nav-primary {
-  padding: 0 0 10px;
+  padding: 0 0 80px;
   .nav-list {
     padding: 10px 0 10px;
     list-style: none;
@@ -564,9 +613,9 @@ textarea{
       right: 20px;
       font-size: 14px;
       cursor: pointer;
-      &.selected {
-        transform: rotate(90deg);
-      }
+    }
+    .selected .nav-list-arrow  {
+      transform: rotate(90deg);
     }
     .list-subitems {
       padding: 0;
@@ -581,7 +630,10 @@ textarea{
 
 .nav-secondary {
   .nav-account {
-    margin: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    margin: 10px 0 0 -15px;
     padding: 0;
     list-style: none;
     .nav-accounts-item {
@@ -773,6 +825,7 @@ footer {
 .instafeed-link {
   position: relative;
   display: block;
+  padding-top: 100%;
   overflow: hidden;
   &:hover,
   &:focus {
@@ -784,6 +837,11 @@ footer {
     }
   }
   .instafeed-img {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     @include prefix(transition, all 0.8s ease, webkit ms moz o);
   }
   .instafeed-info {
@@ -816,23 +874,29 @@ footer {
 }
 
 /*============================================================================
-  #Product Grid
+  #Product grid
 ==============================================================================*/
 
 {# /* // Filters */ #}
 
-.filter-remove {
-  position: relative;
-  padding: 10px 28px 10px 10px;
-  margin: 0 8px 10px 0;
-  line-height: 18px;
-  border-radius: 0;
-  &:after {
+.filters-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30000;
+  width: 100%;
+  height: 100%;
+  .filters-updating-message {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    right: 10px;
-    width: 10px;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    text-align: center;
+    @include prefix(transform, translate(-50%, -50%), webkit ms moz o);
+    * {
+      font-size: 24px;
+      font-weight: normal;
+    }
   }
 }
 
@@ -1012,9 +1076,17 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
       width: 80%;
       left: 10%;
       margin: 5% auto;
+      &-small{
+        left: 50%;
+        width: 30%;
+        height: auto;
+        max-height: 80%;
+        margin: 0;
+      }
     }
     &-docked-md{
       width: 500px;
+      overflow-x: hidden;
       &-centered{
         left: calc(50% - 250px);
         bottom: auto;
@@ -1035,6 +1107,14 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
 
   .fancybox-slide--html .fancybox-content{
     width: 85%;
+    height: auto;
+    padding: 44px;
+  }
+
+  {# /*  Navigation */ #}
+
+  .nav-secondary .nav-account {
+    width: 330px;
   }
 
   {# /*  Notifications */ #}

@@ -81,7 +81,7 @@
 
         {# Shipping calculator and branch link #}
 
-        <div id="product-shipping-container" class="product-shipping-calculator list" {% if not product.display_price or not product.has_stock %}style="display:none;"{% endif %}>
+        <div id="product-shipping-container" class="product-shipping-calculator list" {% if not product.display_price or not product.has_stock %}style="display:none;"{% endif %} data-shipping-url="{{ store.shipping_calculator_url }}">
 
             {# Shipping Calculator #}
             
