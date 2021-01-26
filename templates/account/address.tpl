@@ -13,7 +13,7 @@
 
                         {# Name input #}
                         
-                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'name', input_value: result.name | default(address.name), input_name: 'name', input_id: 'name', input_label_text: 'Nombre' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'name', input_value: result.name | default(address.name), input_name: 'name', input_id: 'name', input_label_text: 'Nombre (alias)' | translate, input_placeholder: 'ej.: Trabajo' | translate } %}
                             {% block input_form_alert %}
                                 {% if result.errors.name %}
                                     <div class="alert alert-danger">{{ 'Necesitamos saber tu nombre para actualizar tu información.' | translate }}</div>
@@ -22,8 +22,14 @@
                         {% endembed %}
 
                         {# Address input #}
+
+                        {% if current_language.country == 'BR' %}
+                            {% set address_placeholder = 'ej.: Av. Pueyrredón' | translate %}
+                        {% else %}
+                            {% set address_placeholder = 'ej.: Av. Pueyrredón 1234, CABA' | translate %}
+                        {% endif %}
                         
-                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'address', input_value: result.address | default(address.address), input_name: 'address', input_id: 'address', input_label_text: 'Dirección' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'address', input_value: result.address | default(address.address), input_name: 'address', input_id: 'address', input_label_text: 'Dirección' | translate, input_placeholder: address_placeholder } %}
                             {% block input_form_alert %}
                                 {% if result.errors.address %}
                                     <div class="alert alert-danger">{{ 'Necesitamos saber tu dirección para actualizar tu información.' | translate }}</div>
@@ -35,7 +41,7 @@
 
                             {# Address number #}
                             
-                            {% embed "snipplets/forms/form-input.tpl" with{type_number: true, input_for: 'number', input_value: result.number | default(address.number), input_name: 'number', input_id: 'number', input_label_text: 'Número' | translate } %}
+                            {% embed "snipplets/forms/form-input.tpl" with{type_number: true, input_for: 'number', input_value: result.number | default(address.number), input_name: 'number', input_id: 'number', input_label_text: 'Número' | translate, input_placeholder: 'ej.: 1234' | translate } %}
                                 {% block input_form_alert %}
                                     {% if result.errors.number %}
                                         <div class="alert alert-danger">{{ 'Necesitamos saber tu número para actualizar tu información.' | translate }}</div>
@@ -55,7 +61,7 @@
 
                             {# Address Locality #}
                             
-                            {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'locality', input_value: result.locality | default(address.locality), input_name: 'locality', input_id: 'locality', input_label_text: 'Localidad' | translate } %}
+                            {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'locality', input_value: result.locality | default(address.locality), input_name: 'locality', input_id: 'locality', input_label_text: 'Localidad' | translate, input_placeholder: 'ej.: CABA' | translate } %}
                                 {% block input_form_alert %}
                                     {% if result.errors.locality %}
                                         <div class="alert alert-danger">{{ 'Necesitamos saber tu localidad para actualizar tu información.' | translate }}</div>
@@ -67,7 +73,7 @@
 
                         {# Address Zipcode #}
                             
-                        {% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_for: 'zipcode', input_value: result.zipcode | default(address.zipcode), input_name: 'zipcode', input_id: 'zipcode', input_label_text: 'Código Postal' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_for: 'zipcode', input_value: result.zipcode | default(address.zipcode), input_name: 'zipcode', input_id: 'zipcode', input_label_text: 'Código Postal' | translate, input_placeholder: 'ej.: 1429' | translate } %}
                             {% block input_form_alert %}
                                 {% if result.errors.zipcode %}
                                     <div class="alert alert-danger">{{ 'Debes ingresar tu código postal' | translate }}</div>
@@ -78,7 +84,7 @@
 
                        {# Address City #}
                             
-                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'city', input_value: result.city | default(address.city), input_name: 'city', input_id: 'city', input_label_text: 'Ciudad' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'city', input_value: result.city | default(address.city), input_name: 'city', input_id: 'city', input_label_text: 'Ciudad' | translate, input_placeholder: 'ej.: CABA' | translate } %}
                             {% block input_form_alert %}
                                 {% if result.errors.city %}
                                     <div class="alert alert-danger">{{ 'Necesitamos saber tu ciudad para actualizar tu información.' | translate }}</div>
@@ -88,7 +94,7 @@
 
                        {# Address Province #}
                             
-                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'province', input_value: result.province | default(address.province), input_name: 'province', input_id: 'province', input_label_text: 'Provincia' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'province', input_value: result.province | default(address.province), input_name: 'province', input_id: 'province', input_label_text: 'Provincia' | translate, input_placeholder: 'ej.: CABA' | translate } %}
                             {% block input_form_alert %}
                                 {% if result.errors.province %}
                                     <div class="alert alert-danger">{{ 'Necesitamos saber tu provincia para actualizar tu información.' | translate }}</div>
@@ -111,7 +117,7 @@
 
                         {# Phone input #}
 
-                        {% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_for: 'phone', input_value: result.phone | default(address.phone), input_name: 'phone', input_id: 'phone', input_label_text: 'Teléfono' | translate } %}
+                        {% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_for: 'phone', input_value: result.phone | default(address.phone), input_name: 'phone', input_id: 'phone', input_label_text: 'Teléfono' | translate, input_placeholder: 'ej.: 1123445567' | translate } %}
                             {% block input_form_alert %}
                                 {% if result.errors.phone %}
                                     <div class="alert alert-danger">{{ 'Necesitamos saber tu teléfono para actualizar tu información.' | translate }}</div>

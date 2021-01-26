@@ -2,27 +2,32 @@
 <div class="js-shipping-suboption {{suboptions.name}}">
     {% if suboptions.options %}
 
-        <p class="js-shipping-suboption-product mb-1" style="display: none;">{{ 'Vas a poder elegir alguna de las siguientes opciones antes de finalizar la compra:' | translate }}</p>
+        {# Read only suboptions inside popup #}
 
-        {# Read only suboptions #}
-        <ul class="js-shipping-suboption-list" name="{{suboptions.name}}" style="display: none;">
-            {% for option in suboptions.options %}
-                <li class="text-capitalize">{{ option.name | lower }}</li>
-            {% endfor %}
-        </ul>
+        {% set modal_id_val = (suboptions.name | sanitize) ~ '-pickup-modal-' ~ random() %}
 
-        {# Select suboptions for cart page #}
-
-        <div class="js-shipping-suboption-select" style="display:none;">
-        {% embed "snipplets/forms/form-select.tpl" with{ select_name: suboptions.name, select_group_custom_class: 'm-0'} %}
-            {% block select_options %}
-               <option {% if not suboptions.selected %}selected{% endif %} disabled>{{ suboptions.default_option | translate }}</option>
-                {% for option in suboptions.options %}
-                    <option value="{{option.value}}">{{ option.name | lower }}</option>
-                {% endfor %}
-            {% endblock select_options%}
-        {% endembed %}
+        <div data-toggle="#{{ modal_id_val }}" class="js-modal-open mt-2">
+            {% include "snipplets/svg/map-marker-alt.tpl" with {svg_custom_class: "icon-inline icon-lg mr-1"} %}
+            <span class="btn-link btn-link-primary align-bottom">{{ 'Ver puntos de retiro' | translate }}</span>
         </div>
+
+        {% embed "snipplets/modal.tpl" with{modal_id: modal_id_val, modal_class: 'bottom modal-centered-small js-modal-shipping-suboptions', modal_position: 'center', modal_transition: 'slide', modal_header: true, modal_footer: false, modal_width: 'centered', modal_zindex_top: true} %}
+            {% block modal_head %}
+                {{ 'Puntos de retiro' | translate }}
+            {% endblock %}
+            {% block modal_body %}
+                <ul class="list-unstyled py-2">
+                    {% for option in suboptions.options %}
+                        <li class="text-capitalize mb-3">{% include "snipplets/svg/map-marker-alt.tpl" with {svg_custom_class: "icon-inline svg-icon-primary d-flex float-left mr-2"} %} <span class="d-flex">{{ option.name | lower }}</span></li>
+                    {% endfor %}
+                </ul>
+                <div class="mt-4"><span class="opacity-50">{{ 'Cercanos al CP:'}}</span> <span class="text-primary font-weight-bold">{{cart.shipping_zipcode}}</span></div>
+                <div class="mt-2 font-small">
+                    {% include "snipplets/svg/info-circle.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
+                    <i>{{ "Vas a poder elegir estas opciones antes de finalizar tu compra" | translate }}</i>
+                </div>
+            {% endblock %}
+        {% endembed %}
 
     {% else %}
         <input type="hidden" name="{{suboptions.name}}"/>

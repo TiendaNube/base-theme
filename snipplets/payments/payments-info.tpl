@@ -134,7 +134,7 @@
 
         {# Cash flags #}
 
-        <div class="">
+        <div>
             {% for logo in installments_data['direct'] %}
                 <span>
                     <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ logo | payment_new_logo }}" class="lazyload card-img card-img-medium">
@@ -151,7 +151,7 @@
 
             <h4 class="font-weight-normal mb-3">
                 <span>{{ 'Total:' | translate }}</span>
-                <span class="price-compare">{{ product.price | money }}</span><strong class="js-installments-one-payment">{{ price_with_boleto_discount | money }}</strong> 
+                <span class="price-compare">{{ product.price | money }}</span><strong class="js-installments-one-payment">{{ price_with_boleto_discount | money }}</strong>
             </h4>
 
             <div class="font-small">{{'El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma.' | translate }}</div>
@@ -165,6 +165,33 @@
             </h4>
 
         {% endif %}
-
+        
     </div>
+{% endif %}
+
+{# Supported Payment Methods #}
+
+{% if installments_data['supported_payment_methods'] %}
+    {% for paymentMethod in installments_data['supported_payment_methods'] %}
+
+        {# Payment Method Title #}
+        <h6 class="mb-1">{{ paymentMethod.name }}</h6>
+
+        <div id="info-payment-method-{{ paymentMethod.id }}" class="box">
+
+            {# Payment Method Logos #}
+            <div>
+                {% for logo in paymentMethod.logos %}
+                    <span>
+                        <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ logo | payment_new_logo }}" class="lazyload card-img card-img-medium">
+                    </span>
+                {% endfor %}
+            </div>
+
+            {# Payment Method Total #}
+            <h4 class="font-weight-normal mb-0">
+                <span>{{ 'Total:' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
+            </h4>
+        </div>
+    {% endfor %}
 {% endif %}

@@ -47,6 +47,8 @@ critical-css.tpl
     // Labels
   #Product detail
   	// Image
+  #Cart detail
+    // Shipping Calculator
   #Contact page
     // Data contact
   #Media queries
@@ -54,6 +56,7 @@ critical-css.tpl
       //// Components
       //// Banners
       //// Home
+      //// Product detail
       //// Helper classes
   
   #Helper classes
@@ -259,13 +262,74 @@ body{
   display: none;
 }
 
+.spinner-ellipsis {
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 40px;
+}
+.spinner-ellipsis .point {
+  position: absolute;
+  top: 15px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.spinner-ellipsis .point:nth-child(1) {
+  left: 6px;
+  animation: spinner-ellipsis1 0.6s infinite;
+}
+.spinner-ellipsis .point:nth-child(2) {
+  left: 6px;
+  animation: spinner-ellipsis2 0.6s infinite;
+}
+.spinner-ellipsis .point:nth-child(3) {
+  left: 26px;
+  animation: spinner-ellipsis2 0.6s infinite;
+}
+.spinner-ellipsis .point:nth-child(4) {
+  left: 45px;
+  animation: spinner-ellipsis3 0.6s infinite;
+}
+@keyframes spinner-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes spinner-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes spinner-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+
+{# /* // Animations */ #}
+
+.transition-up {
+  opacity: 0;
+}
+
 {# /* // Buttons */ #}
 
 .btn-whatsapp {
   position: fixed;
   bottom: 10px;
   right: 10px;
-  z-index: 10;
+  z-index: 100;
   color: white;
   background-color:#4dc247;
   box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
@@ -582,6 +646,13 @@ p{
 .notification-floating .notification {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1), 0 2px 3px 0 rgba(0, 0, 0, .06);
 }
+.notification-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
 
 {# /* // Images */ #}
 
@@ -615,6 +686,25 @@ p{
 }
 .card-img-big{
   height: 50px;
+}
+.card-img-square-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+}
+.card-img-square {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-img-pill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
 }
 
 {# /* // Forms */ #}
@@ -655,6 +745,17 @@ p{
 
 .g-recaptcha > div {
   margin: 0 auto;
+}
+
+.form-toggle-eye {
+  position: absolute;
+  top: 20px;
+  right: 2px;
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  background: none;
+  border: 0;
 }
 
 {# /* // Video */ #}
@@ -1014,8 +1115,6 @@ p{
   display: block;
   width: 100%;
   height: 100%;
-  margin-top: -73px;
-  padding: 40px 0 100px 0;
 }
 .product-video {
   height: 100%;
@@ -1028,6 +1127,39 @@ p{
 }
 .product-video .embed-responsive {
   width: 100%;
+  height: 100%;
+  padding-bottom: 0;
+}
+.product-video .video-image{
+  width: auto;
+  height: 100%;
+}
+
+/*============================================================================
+  #Cart detail
+==============================================================================*/
+
+{# /* // Shipping Calculator */ #}
+
+.free-shipping-title {
+  position: relative;
+  width: 100%;
+  height: 55px;
+}
+.shipping-calculator-head.with-zip {
+  height: 65px;
+}
+.shipping-calculator-head.with-zip.with-free-shipping {
+  height: 110px;
+}
+.shipping-calculator-head.with-form {
+  height: 110px;
+}
+.shipping-calculator-head.with-form + .shipping-spinner-container {
+  margin-top: -20px;
+}
+.shipping-calculator-head.with-error {
+  height: 155px;
 }
 
 /*============================================================================
@@ -1135,6 +1267,18 @@ p{
 
   .item-colors {
     padding: 10px 0;
+  }
+
+  {# /* //// Product detail */ #}
+
+  .product-video .video-image,
+  .product-video .embed-responsive {
+    width: 100%;
+    height: auto;
+  }
+
+  .product-video .embed-responsive {
+    padding-bottom: 56.25%;
   }
 
   {# /* //// Helper classes */ #}

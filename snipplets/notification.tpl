@@ -1,12 +1,27 @@
 {# Order notification #}
 
+{% if show_order_cancellation %}
+    <div class="js-notification js-notification-order-cancellation notification notification-fixed-bottom notification-secondary" data-url="{{ status_page_url }}" style="display:none;">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <a href="{{ store.contact_url }}?order_cancellation=true"><strong class="text-primary">{{ "Botón de arrepentimiento" | translate }}</strong></a>
+                    <a class="js-notification-close js-notification-order-cancellation-close ml-3" href="#">
+                        {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-primary icon-lg"} %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 {% if order_notification and status_page_url %}
-    <div data-url="{{ status_page_url }}" class="js-notification notification notification-secondary" style="display:none;">
+    <div class="js-notification js-notification-status-page notification notification-secondary" data-url="{{ status_page_url }}" style="display:none;">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <a class="btn" href="{{ status_page_url }}"><strong>{{ "Seguí acá" | translate }}</strong> {{ "tu última compra" | translate }}</a>
-                    <a class="js-notification-close ml-3" href="#">
+                    <a class="js-notification-close js-notification-status-page-close ml-3" href="#">
                         {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-primary icon-lg"} %}
                     </a>
                 </div>

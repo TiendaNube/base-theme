@@ -20,7 +20,7 @@
     	<a href="mailto:{{ store.email }}" class="contact-link">{{ store.email }}</a>
     </li>
 {% endif %}
-{% if store.address %}
+{% if store.address and not is_order_cancellation %}
     <li class="contact-item{% if columns %} col-6 col-md{% endif %}">
 		{% include "snipplets/svg/map-marker-alt.tpl" with {svg_custom_class: "icon-inline icon-lg icon-w mx-2 svg-icon-text"} %}
     	{{ store.address }}

@@ -31,6 +31,11 @@
     {% include "snipplets/notification.tpl" with {add_to_cart: true, add_to_cart_fixed: true} %}
 {% endif %}
 
+{# Add notification for order cancellation #}
+{% if store.country == 'AR' and template == 'home' and status_page_url %}
+    {% include "snipplets/notification.tpl" with {show_order_cancellation: true} %}
+{% endif %}
+
 {# Hamburger panel #}
 
 {% embed "snipplets/modal.tpl" with{modal_id: 'nav-hamburger',modal_class: 'nav-hamburger modal-docked-small', modal_position: 'left', modal_transition: 'fade', modal_width: 'full'  } %}

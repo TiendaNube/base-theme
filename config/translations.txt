@@ -19,6 +19,7 @@
 --- Contact
 --- --- Form
 --- --- Notifications
+--- --- Order cancellation
 --- --- Newsletter
 --- Pages
 --- Accounts
@@ -78,6 +79,16 @@ es_mx "Editar"
 es "Guardar"
 pt "Salvar"
 en "Save"
+
+es "Aplicar"
+pt "Aplicar"
+en "Apply"
+es_mx "Aplicar"
+
+es "Aplicando..."
+pt "Aplicando..."
+en "Aplying..."
+es_mx "Aplicando..."
 
 es "Cancelar"
 pt "Cancelar"
@@ -346,6 +357,11 @@ pt "Ver todos os produtos"
 en "See all products"
 es_mx "Ver todos los productos"
 
+es "Ver todo en"
+pt "Ver tudo em"
+en "See all in"
+es_mx "Ver todo en"
+
 es "Ver toda esta categoría"
 pt "Ver tudo desta categoria"
 en "See all this category"
@@ -482,10 +498,25 @@ pt "Filtro aplicado:"
 en "Applied filter:"
 es_mx "Filtro aplicado:"
 
+es "Aplicando filtro..."
+pt "Aplicando filtro..."
+en "Applying filter..."
+es_mx "Aplicando filtro..."
+
+es "Borrando filtro..."
+pt "Removendo filtro..."
+en "Removing filter..."
+es_mx "Borrando filtro..."
+
 es "Filtrar"
 pt "Filtrar"
 en "Filter"
 es_mx "Filtrar"
+
+es "Ver todos"
+pt "Ver todos"
+en "View all"
+es_mx "Ver todos"
 
 es "Ver más"
 pt "Ver mais"
@@ -496,6 +527,11 @@ es "Ver menos"
 pt "Ver menos"
 en "View less"
 es_mx "Ver menos"
+
+es "Borrar filtros"
+pt "Limpar filtros"
+en "Clean filters"
+es_mx "Borrar filtros"
 
 es "No tenemos productos en esas variantes. Por favor, intentá con otros filtros."
 pt "Não temos produtos com estas variações. Por favor, tente com outros filtros"
@@ -1058,6 +1094,11 @@ pt "Telefone"
 en "Phone"
 es_mx "Teléfono"
 
+es "Teléfono (opcional)"
+pt "Telefone (opcional)"
+en "Phone (optional)"
+es_mx "Teléfono (opcional)"
+
 es "Mensaje"
 pt "Mensagem"
 en "Message"
@@ -1169,6 +1210,48 @@ es "¡Gracias por contactarnos! Vamos a responderte apenas veamos tu mensaje."
 pt "Obrigado por nos contatar! Te responderemos assim que virmos sua mensagem."
 en "Thank you for your contact! We will answer as soon as we see your message"
 es_mx "¡Gracias por contactarnos! Te responderemos en cuanto veamos tu mensaje."
+
+--- --- Order cancellation
+
+es "Ver detalle de la compra"
+pt "Ver detalhes da compra"
+en "View purchase details"
+es_mx "Ver detalle de la compra"
+
+es "Si tenés problemas con otra compra, contactanos:"
+pt "Se você tem problemas com outra compra, entre em contato:"
+en "If you’re having problems with a different purchase, contact us:"
+es_mx "Si tienes problemas con otra compra, contáctanos:"
+
+es "Botón de arrepentimiento"
+pt "Botão de arrependimento"
+en "Cancel your order"
+es_mx "Botón de arrepentimiento"
+
+es "Pedí la cancelación de tu última compra"
+pt "Pedir o cancelamento da sua ultima compra"
+en "Request the cancellation of your last order"
+es_mx "Pide la cancelación de tu última compra"
+
+es "Si te arrepentiste, podés pedir la cancelación enviando este formulario."
+pt "Se você se arrependeu, pode solicitar o cancelamento enviando este formulário."
+en "If you’re having second thoughts, you can cancel your order using this form."
+es_mx "Si te arrepentiste, puedes pedir la cancelación enviando este formulario."
+
+es "¡Tu pedido de cancelación fue enviado!"
+pt "Seu pedido de cancelamento foi enviado!"
+en "Your cancellation request was sent!"
+es_mx "¡Tu pedido de cancelación fue enviado!"
+
+es "Vamos a ponernos en contacto con vos apenas veamos tu mensaje."
+pt "Entraremos em contato assim que recebermos sua mensagem."
+en "We’ll get in touch with you as soon as we see your message."
+es_mx "Vamos a ponernos en contacto contigo apenas veamos tu mensaje."
+
+es "Tu código de trámite es"
+pt "O código da sua solicitação é"
+en "Your request number is"
+es_mx "Tu código de trámite es"
 
 --- --- Social
 
@@ -1304,6 +1387,16 @@ pt "Login"
 en "Log in"
 es_mx "Iniciar sesión"
 
+es "Iniciá sesión"
+pt "Login"
+en "Log in"
+es_mx "Inicia sesión"
+
+es "¡Hola, {1}!"
+pt "Olá, {1}!"
+en "Hi, {1}!"
+es_mx "¡Hola, {1}!"
+
 es "Contraseña de acceso"
 pt "Senha de acesso"
 en "Access password"
@@ -1319,12 +1412,22 @@ pt "Senha"
 en "Password"
 es_mx "Contraseña"
 
+es "¿No tenés cuenta aún?"
+pt "Não possui uma conta ainda?"
+en "Don’t have an account yet?"
+es_mx "¿No tienes una cuenta aún?"
+
 --- --- Register
 
 es "Crear cuenta"
 pt "Cadastre-se"
 en "Register"
 es_mx "Crear una cuenta"
+
+es "Comprá más rápido y llevá el control de tus pedidos, ¡en un solo lugar!"
+pt "Compre mais rápido e acompanhe seus pedidos em um só lugar!"
+en "Shop faster and keep track of your purchases!"
+es_mx "Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!"
 
 es "Cambiar Contraseña"
 pt "Mudar Minha Senha"
@@ -1366,6 +1469,56 @@ pt "Ocorreu um problema fazendo login com Facebook."
 en "There was a problem when login with Facebook."
 es_mx "Hubo un problema con el login de Facebook. Intenta de nuevo en unos segundos."
 
+es "¿Ya tenés una cuenta?"
+pt "Já possui uma conta?"
+en "Already have an account?"
+es_mx "¿Ya tienes una cuenta?"
+
+es "ej.: María Perez"
+pt "ex.: Maria Perez"
+en "ex.: Jane Doe"
+es_mx "ej.: María Perez"
+
+es "ej.: tunombre@email.com"
+pt "ex.: seunome@email.com.br"
+en "ex.: yourname@email.com"
+es_mx "ej.: tunombre@email.com"
+
+es "ej.: 1123445567"
+pt "ex.: 11971923030"
+en "ex.: 5385551234"
+es_mx "ej.: 5512341234"
+
+es "ej.: Trabajo"
+pt "ex.: Escritório"
+en "ex.: Work"
+es_mx "ej.: Trabajo"
+
+es "ej.: Av. Pueyrredón 1234, CABA"
+pt "ex.: Alameda Vicente Pinzon 173, São Paulo"
+en "ex.: 4750 Lynch Street, New York"
+es_mx "ej.: Av. Insurgentes Sur 600, CDMX"
+
+es "ej.: Av. Pueyrredón"
+pt "ex.: Alameda Vicente Pinzon"
+en "ex.: Lynch Street"
+es_mx "ej.: Av. Insurgentes Sur"
+
+es "ej.: 1234"
+pt "ex.: 173"
+en "ex.: 4750"
+es_mx "ej.: 600"
+
+es "ej.: 1429"
+pt "ex.: 04545011"
+en "ex.: 14846"
+es_mx "ej.: 12345"
+
+es "ej.: CABA"
+pt "ex.: São Paulo"
+en "ex.: New York"
+es_mx "ej.: CDMX"
+
 --- --- My Account
 
 es "Mi cuenta"
@@ -1398,27 +1551,37 @@ pt "Voltar para a loja"
 en "Go back to store"
 es_mx "Regresar a la tienda online"
 
-es "CPF / CNPJ"
+es "DNI"
 pt "CPF / CNPJ"
-en "CPF / CNPJ"
-es_mx "CPF / CNPJ"
+en "ID"
+es_mx "INE"
 
 es "Datos Personales"
 pt "Dados Pessoais"
 en "Personal Info"
 es_mx "Datos personales"
 
-es "Editar mis datos"
-pt "Editar meu cadastro"
+es "Mis datos"
+pt "Meu cadastro"
+en "My info"
+es_mx "Mis datos"
+
+es "Editar"
+pt "Editar"
 en "Edit"
-es_mx "Editar mis datos"
+es_mx "Editar"
+
+es "Principal"
+pt "Principal"
+en "Main"
+es_mx "Principal"
 
 --- --- Orders
 
-es "Mis Órdenes"
-pt "Meus Pedidos"
-en "My Orders"
-es_mx "Mis pedidos"
+es "Mis compras"
+pt "Minhas compras"
+en "My orders"
+es_mx "Mis compras"
 
 es "Orden"
 pt "Pedido"
@@ -1429,6 +1592,21 @@ es "Orden {1}"
 pt "Pedido {1}"
 en "Order {1}"
 es_mx "Pedido {1}"
+
+es "Ver detalle"
+pt "Ver detalhe"
+en "See detail"
+es_mx "Ver detalle"
+
+es "¡Hacé tu primera compra!"
+pt "Realize sua primeira compra!"
+en "Make your first purchase!"
+es_mx "¡Haz tu primera compra!"
+
+es "Ir a la tienda"
+pt "Ir para a loja"
+en "Go to shop"
+es_mx "Ir a la tienda"
 
 es "Fecha"
 pt "Data"
@@ -1530,10 +1708,10 @@ pt "Desconto ({1})"
 en "Discount ({1})"
 es_mx "Descuento ({1})"
 
-es "Realizar el pago >"
-pt "Realizar o pagamento >"
-en "Purchase >"
-es_mx "Pagar >"
+es "Realizar pago"
+pt "Realizar pagamento"
+en "Purchase"
+es_mx "Pagar"
 
 es "Seguí tu orden"
 pt "Acompanhar o pedido"
@@ -1553,14 +1731,14 @@ es_mx "Acceso"
 --- --- Addresses
 
 es "Mis direcciones"
-pt "Meus Endereços"
+pt "Meus endereços"
 en "My addresses"
 es_mx "Mis direcciones"
 
-es "Editar mis direcciones"
-pt "Editar meus endereços"
-en "Edit my addresses"
-es_mx "Editar mis direcciones"
+es "Otras direcciones"
+pt "Outros endereços"
+en "Other addresses"
+es_mx "Otras direcciones"
 
 es "Agregar una nueva dirección"
 pt "Adicionar um novo endereço"
@@ -1571,6 +1749,11 @@ es "Nombre"
 pt "Nome completo"
 en "Name"
 es_mx "Nombre"
+
+es "Nombre (alias)"
+pt "Nome (alias)"
+en "Name (alias)"
+es_mx "Nombre (alias)"
 
 es "Número"
 pt "Número"
@@ -1639,6 +1822,11 @@ es "La contraseña es incorrecta."
 pt "A senha esta errada."
 en "The password is incorrect."
 es_mx "La contraseña es incorrecta."
+
+es "Ver contraseña"
+pt "Ver senha"
+en "View password"
+es_mx "Ver contraseña"
 
 es "El email o la contraseña son incorrectos."
 pt "O email ou a senha estão errados. Por favor verifique."
@@ -1770,10 +1958,35 @@ pt "Não achamos nenhuma conta cadastrada com esse e-mail. Tente verificar novam
 en "We couldn&#39;t find any account registered with this e-mail. Try again checking is written right."
 es_mx "No encontramos ninguna cuenta registrada con este correo. Inténtalo nuevamente comprobando que esté bien escrito."
 
+es "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?"
+pt "Esses dados estão incorretos. Verificou se eles estão bem escritos?"
+en "The info is incorrect. Please check for any typos."
+es_mx "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?"
+
 es "¡Listo! Te enviamos un email a {1}"
 pt "Pronto! Enviamos um e-mail para {1}"
 en "Done! We send you an e-mail to {1}"
 es_mx "¡Listo! Te enviamos un correo a {1}"
+
+es "Usamos tu nombre para identificar tus pedidos."
+pt "Usamos seu nome para identificar seus pedidos."
+en "We use your name to identify your orders."
+es_mx "¡Usamos tu nombre para identificar tus pedidos."
+
+es "Encontramos otra cuenta que ya usa este email. Intentá usando otro o iniciá sesión."
+pt "Encontramos outra conta que já usa este e-mail. Tente usar outro ou inicie a sessão."
+en "We’ve found another account with this email. Try using another one or login."
+es_mx "Encontramos otra cuenta que ya usa este email. Intenta usando otro o inicia sesión."
+
+es "Necesitamos un email válido para crear tu cuenta."
+pt "Precisamos de um e-mail válido para criar sua conta."
+en "We need a valid email to create your account."
+es_mx "Necesitamos un email válido para crear tu cuenta."
+
+es "Necesitamos una contraseña para registrarte."
+pt "Precisamos de uma senha para registrá-lo."
+en "We need a password to create your account."
+es_mx "Necesitamos una contraseña para registrarte."
 
 --- Payments ---
 
@@ -2056,10 +2269,40 @@ pt "Você pode escolher uma das seguintes opções antes de finalizar a compra"
 en "You will be able to choose some of the following options before ending the purchase"
 es_mx "Podrás elegir alguna de las siguientes opciones antes de finalizar la compra:"
 
-es "No encontramos este código postal. ¿Está bien escrito?"
-pt "Não conseguimos encontrar esse CEP. Está bem escrito?"
-en "We couldn&#39;t find this zipcode. Is it written right?"
-es_mx "No encontramos este código postal. ¿Está bien escrito?"
+es "No encontramos este código postal{1}"
+pt "Não conseguimos encontrar esse CEP{1}"
+en "We couldn&#39;t find this zipcode{1}"
+es_mx "No encontramos este código postal{1}"
+
+es " para "
+pt " para "
+en " for "
+es_mx " para "
+
+es ". ¿Está bien escrito?"
+pt ". Está bem escrito?"
+en ". Is it written right?"
+es_mx ". ¿Está bien escrito?"
+
+es ". Podés intentar con otro o"
+pt ". Pode tentar outro ou"
+en ". You can try another or"
+es_mx ". Puedes intentar con otro o"
+
+es "cambiar tu país de entrega"
+pt "alterar o país de entrega"
+en "change your shipping country"
+es_mx "cambiar tu país de entrega"
+
+es "País de entrega"
+pt "Pais de entrega"
+en "Shipping country"
+es_mx "País de entrega"
+
+es "País donde entregaremos tu compra"
+pt "País onde entregaremos seu pedido"
+en "Country where we will deliver your order"
+es_mx "País donde entregaremos tu compra"
 
 es "El tiempo de entrega <strong>no considera feriados</strong>."
 pt "O prazo de entrega <strong>não contabiliza feriados</strong>."
@@ -2120,6 +2363,36 @@ es "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios 
 pt "<strong class='text-primary'>Frete grátis!</strong> com todos os meios de envio"
 en "<strong class='text-primary'>Free shipping!</strong> with all shipping options"
 es_mx "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios de envío"
+
+es "Ver puntos de retiro"
+pt "Ver pontos de retirada"
+en "See pickup points"
+es_mx "Ver puntos de retiro"
+
+es "Puntos de retiro"
+pt "Pontos de retirada"
+en "Pickup points"
+es_mx "Puntos de retiro"
+
+es "Cercanos al CP:"
+pt "Próximos ao CEP:"
+en "Near zipcode:"
+es_mx "Cercanos al CP:"
+
+es "Vas a poder elegir estas opciones antes de finalizar tu compra"
+pt "Você poderá escolher essas opções antes de finalizar sua compra"
+en "You will be able to select this options before you finish your purchase"
+es_mx "Podrás elegir estas opciones antes de finalizar tu compra"
+
+es "Entregas para el CP:"
+pt "Entregas para o CEP:"
+en "Shipping for zipcode:"
+es_mx "Entregas para el CP:"
+
+es "Cambiar CP"
+pt "Alterar CEP"
+en "Change zipcode"
+es_mx "Cambiar CP"
 
 es "Ver más opciones de entrega"
 pt "Ver mais opções de entrega"
