@@ -1,4 +1,4 @@
-{% for sn in ['instagram', 'facebook', 'youtube', 'tiktok', 'twitter', 'pinterest'] %}
+{% for sn in ['instagram', 'facebook', 'twitter', 'pinterest'] %}
     {% set sn_url = attribute(store,sn) %}
     {% if sn_url %}
         <a class="social-icon" href="{{ sn_url }}" target="_blank" aria-label="{{ sn }} {{ store.name }}">
