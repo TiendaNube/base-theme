@@ -300,6 +300,16 @@ pt "Banner de"
 en "Banner of"
 es_mx "Banner de"
 
+es "Seguinos en Instagram"
+pt "Siga-nos no Instagram"
+en "Follow us on Instagram"
+es_mx "Síguenos en Instagram"
+
+es "Ver perfil"
+pt "Ver perfil"
+en "View profile"
+es_mx "Ver perfil"
+
 es "Instagram de"
 pt "Instagram de"
 en "Instagram of"
@@ -1417,6 +1427,41 @@ pt "Não possui uma conta ainda?"
 en "Don’t have an account yet?"
 es_mx "¿No tienes una cuenta aún?"
 
+es "Validá tu email usando el link que te enviamos a <strong>{1}</strong> cuando creaste tu cuenta."
+pt "Valide seu e-mail usando o link que enviamos para <strong>{1}</strong> quando você criou sua conta."
+en "Validate your email using the link that we sent you to <strong>{1}</strong> when you created your account."
+es_mx "Valida tu correo electrónico usando el link que te enviamos a <strong>{1}</strong> cuando creaste tu cuenta."
+
+es "¿No lo encontraste?"
+pt "Não o encontrou?"
+en "Didn’t find it?"
+es_mx "¿No lo encuentras?"
+
+es "¡Tu cuenta fue creada con éxito!"
+pt "Sua conta foi criada com sucesso!"
+en "Your account was created successfully!"
+es_mx "¡Tu cuenta fue creada con éxito!"
+
+es "Tu link de validación expiró."
+pt "Seu link de validação expirou."
+en "Your validation link has expired."
+es_mx "Tu link de validación expiró."
+
+es "Enviar link de nuevo >"
+pt "Enviar o link novamente >"
+en "Send link again >"
+es_mx "Enviar link de nuevo >"
+
+es "¡El link fue enviado correctamente!"
+pt "O link foi enviado com sucesso!"
+en "The link was successfully sent!"
+es_mx "¡El link fue enviado correctamente!"
+
+es "No pudimos enviar el email, intentalo de nuevo en unos minutos."
+pt "Não foi possível enviar o e-mail, tente novamente em alguns minutos."
+en "We couldn’t send you the email, please try again in a few minutes."
+es_mx "No pudimos enviar el correo electrónico, inténtalo de nuevo en unos minutos."
+
 --- --- Register
 
 es "Crear cuenta"
@@ -1518,6 +1563,26 @@ es "ej.: CABA"
 pt "ex.: São Paulo"
 en "ex.: New York"
 es_mx "ej.: CDMX"
+
+es "¡Estás a un paso de crear tu cuenta!"
+pt "Você está a um passo de criar sua conta!"
+en "You’re one step from creating your account!"
+es_mx "¡Estás a un paso de crear tu cuenta!"
+
+es "Te enviamos un link a <strong>{1}</strong> para que valides tu email."
+pt "Enviamos um link para <strong>{1}</strong> para validar seu e-mail."
+en "We sent you a link to <strong>{1}</strong> to validate your email."
+es_mx "Te enviamos un link a <strong>{1}</strong> para que valides tu correo electrónico."
+
+es "¿Todavía no lo recibiste?"
+pt "Ainda não recebeu?"
+en "You didn’t receive it?"
+es_mx "¿Todavía no lo recibiste?"
+
+es "Enviar link de nuevo"
+pt "Enviar o link novamente"
+en "Send link again"
+es_mx "Enviar link de nuevo"
 
 --- --- My Account
 
@@ -3689,6 +3754,16 @@ es_mx "Mostrar variantes de color en listado de productos"
 
 
 --- --- Details
+
+es "Último producto en stock"
+pt "Último produto em estoque"
+en "Last product in stcok"
+es_mx "Último producto en stock"
+
+es "Mostrar un mensaje para incentivar la compra cuando quede la última unidad de un producto"
+pt "Mostrar uma mensagem para incentivar a compra quando fique a última unidade de um produto"
+en "Show a message to encourage the purchase when remain the last unit of a product"
+es_mx "Mostrar un mensaje para incentivar la compra cuando quede la última unidad de un producto"
 
 es "¿Dónde deseas mostrar la descripción del producto en la página de producto?"
 pt "Onde você deseja mostrar a descrição do produto dentro da página de produto?"

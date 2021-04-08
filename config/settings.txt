@@ -484,6 +484,14 @@ Detalle de producto
 		description = Mostrar el calculador de costos de envío y locales físicos en la página de producto
 	subtitle
 		subtitle = <a target='_blank' href='/admin/shipping/'>Agregar medios de envío o locales físicos</a>
+	title
+		title = Último producto en stock
+	checkbox
+		name = last_product
+		description = Mostrar un mensaje para incentivar la compra cuando quede la última unidad de un producto
+	i18n_input
+		description = Mensaje
+		name = last_product_text
 
 Carrito de compras
 	meta

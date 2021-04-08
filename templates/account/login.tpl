@@ -7,8 +7,39 @@
 <section class="account-page">
 	<div class="container">
 		<div class="row justify-content-md-center">
+			{# Account validation #}
+			<div class="col-md-6 offset3">
+				{% if account_validation == 'success' %}
+					<div class="js-account-validation-success alert alert-success">
+						<p class="mb-0">{{ "¡Tu cuenta fue creada con éxito!" | translate }}</p>
+					</div>
+				{% elseif account_validation == 'expired' %}
+					<div class="js-account-validation-expired alert alert-danger mb-3">
+						<p class="mb-0">{{ "Tu link de validación expiró." | translate }}</p>
+					</div>
+					<div class="text-center mb-4">
+						<span class="js-resend-validation-link btn-link">{{ "Enviar link de nuevo >" | translate }}</span>
+					</div>
+				{% elseif account_validation == 'pending' %}
+					<div class="js-account-validation-pending alert alert-danger mb-2">
+						<p class="my-2">{{ "Validá tu email usando el link que te enviamos a <strong>{1}</strong> cuando creaste tu cuenta." | t(customer_email) }}</p>
+					</div>
+					<div class="text-center mb-4 font-small">
+						<p>{{ "¿No lo encontraste?" | translate }} <span class="js-resend-validation-link btn-link">{{ "Enviar link de nuevo" | translate }}</span></p>
+					</div>
+				{% endif %}
+				<div class="js-resend-validation-success alert alert-success" style="display:none">
+					<p class="m-1">{{ "¡El link fue enviado correctamente!" | translate }}</p>
+				</div>
+				<div class="js-resend-validation-error alert alert-danger" style="display:none">
+					<p class="m-1">{{ "No pudimos enviar el email, intentalo de nuevo en unos minutos." | translate }}</p>
+				</div>
+			</div>
+		</div>
+		<div class="row justify-content-md-center">
 			<div class="col-md-8">
-				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
+				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form',submit_custom_class: 'btn-block',submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
+
 					{% block form_body %}
 
 						{# Facebook login #}

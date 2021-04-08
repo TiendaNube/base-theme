@@ -928,6 +928,14 @@ $(document).ready(function(){
 	    {% if template == 'product' %}
 	        const base_price = Number($("#price_display").attr("content"));
 	        refreshInstallmentv2(base_price);
+
+	        {% if settings.last_product and product.variations %}
+	            if(variant.stock == 1) {
+	                $('.js-last-product').show();
+	            } else {
+	                $('.js-last-product').hide();
+	            }
+	        {% endif %}
 	    {% endif %}
 
         {# Update shipping on variant change #}
@@ -1701,6 +1709,14 @@ $(document).ready(function(){
     $(".js-winnie-pooh-form").submit(function (e) {
         $(this).attr('action', '');
     });
+
+    {# Show the success or error message when resending the validation link #}
+
+    {% if template == 'account.register' or template == 'account.login' %}
+        $(".js-resend-validation-link").click(function(e){
+            LS.resendAccountValidationEmail('{{ customer_email }}');
+        });
+    {% endif %}
 
     {% if template == 'account.login' %}
         {% if not result.facebook and result.invalid %}

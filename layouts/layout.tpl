@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/" lang="{% for language in languages %}{% if language.active %}{{ language.lang }}{% endif %}{% endfor %}">
     <head>
-        <link rel="preconnect" href="https://d26lpennugtm8s.cloudfront.net" />
-        <link rel="dns-prefetch" href="https://d26lpennugtm8s.cloudfront.net" />
+        <link rel="preconnect" href="{{ store_resource_hints }}" />
+        <link rel="dns-prefetch" href="{{ store_resource_hints }}" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,7 +24,7 @@
 
         {# OG tags to control how the page appears when shared on social networks. See http://ogp.me/ #}
         {% snipplet "metas/general-og.tpl" %}
-        
+
         {# Twitter tags to control how the page appears when shared on Twitter. See https://dev.twitter.com/cards/markup #}
         {% if template == 'product' %}
             {# Twitter #}
@@ -113,7 +113,7 @@
             {% if settings.show_product_fb_comment_box %}
                 {{ fb_js }}
             {% endif %}
-            
+
             {# Pinterest share button JS #}
             {{ pin_js }}
 
@@ -143,7 +143,7 @@
                 }
             </script>
         {% endif %}
-        
+
         {# Back to admin bar #}
 
         {{back_to_admin}}
@@ -175,7 +175,7 @@
         {#/*============================================================================
             #Javascript: Needed after HTML loads
         ==============================================================================*/#}
-        
+
         {# Javascript used in the store #}
 
         <script type="text/javascript">
@@ -217,6 +217,6 @@
                 $('body').append(trackingCode);
             });
         </script>
-        
+
     </body>
 </html>

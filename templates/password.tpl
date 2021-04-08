@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
     <head>
-        <link rel="preconnect" href="https://d26lpennugtm8s.cloudfront.net" />
-        <link rel="dns-prefetch" href="https://d26lpennugtm8s.cloudfront.net" />
+        <link rel="preconnect" href="{{ store_resource_hints }}" />
+        <link rel="dns-prefetch" href="{{ store_resource_hints }}" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -94,7 +94,7 @@
 
     </head>
     <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}">
-        
+
         {# Back to admin bar #}
 
         {{back_to_admin}}
@@ -128,12 +128,12 @@
                 </div>
             </div>
         </section>
-        
+
 
         {# Footer #}
 
         {% snipplet "footer.tpl" %}
-        
+
         {# Javascript needed to footer logos lazyload #}
 
         <script type="text/javascript">

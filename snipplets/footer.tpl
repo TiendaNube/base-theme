@@ -1,4 +1,4 @@
-{% set has_social_network = store.facebook or store.twitter or store.pinterest or store.instagram %}
+{% set has_social_network = store.facebook or store.twitter or store.pinterest or store.instagram or store.tiktok or store.youtube %}
 {% set has_footer_contact_info = store.phone or store.email or store.blog or store.address %}          
 
 {% set has_footer_menu = settings.footer_menu %}
