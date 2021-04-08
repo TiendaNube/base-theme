@@ -4,21 +4,18 @@
             <div class="row">
                 {% set instuser = store.instagram|split('/')|last %}
                 <div class="col-12 text-center">
-                    {% if store.instagram %}
-                        <a target="_blank" href="{{ store.instagram }}" class="instafeed-title" aria-label="{{ 'Instagram de' | translate }} {{ store.name }}">
-                            {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-text"} %}
-                            <h3 class="instafeed-user">{{ instuser }}</h3>
-                        </a>
-                    {% else %}
-                        <div class="instafeed-title">
-                            {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-2x svg-icon-text"} %}
-                            <h3 class="instafeed-user">{{ "Instagram" | translate }}</h3>
+                    <a target="_blank" href="{{ store.instagram }}" class="instafeed-title" aria-label="{{ 'Instagram de' | translate }} {{ store.name }}">
+                        {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "icon-inline icon-3x align-top svg-icon-text"} %}
+                        <h2 class="h2 h1-md mt-2 instafeed-user">{{ instuser }}</h2>
+                        <div class="js-ig-fallback text-center mt-3">
+                            <div class="mb-3">{{ 'Seguinos en Instagram' | translate }}</div>
+                            <span class="btn btn-link">{{ 'Ver perfil' | translate }}</span>
                         </div>
-                    {% endif %}
+                    </a>
                 </div>
             </div>
         </div>
-        <div id="instafeed" class="row no-gutters">  
+        <div id="instafeed" class="js-ig-success row no-gutters" style="display: none;">  
         </div>
     </section>
 {% endif %}

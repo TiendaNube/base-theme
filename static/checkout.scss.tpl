@@ -1581,6 +1581,28 @@ a {
   fill: $foreground-color;
 }
 
+{# /* // Review Block Detailed  */ #}
+
+.price--display__free {
+  color: $accent-brand-color;
+}
+
+.review-block-detailed-item {
+  border-bottom: 1px solid rgba($foreground-color, .15);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  &:last-child{
+    border-radius: 0 0 $box-radius $box-radius;
+  }
+}
+
+.review-block-detailed {
+  box-shadow: $box-shadow;
+  border-radius: $box-radius;
+  background-color: $background-color;
+  border-color: rgba($box-border-color, 0.5);
+}
+
 {# /* // Tabs */ #}
 
 .tabs-wrapper {

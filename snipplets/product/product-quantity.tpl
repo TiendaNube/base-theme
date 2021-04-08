@@ -18,5 +18,12 @@
 {% endembed %}
 {% if not quickshop %}
         </div>
+        {% if settings.last_product %}
+            <div class="{% if product.variations %}js-last-product {% endif %}col-12 col-md-8 text-center text-md-left"{% if product.selected_or_first_available_variant.stock != 1 %} style="display: none;"{% endif %}>
+                <div class="h6 text-accent font-weight-bold my-md-2 mb-4">
+                    {{ settings.last_product_text }}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endif %}
