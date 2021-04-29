@@ -31,6 +31,9 @@
     {% include "snipplets/notification.tpl" with {add_to_cart: true, add_to_cart_fixed: true} %}
 {% endif %}
 
+{# Show cookie validation message #}
+{% include "snipplets/notification.tpl" with {show_cookie_banner: true} %}
+
 {# Add notification for order cancellation #}
 {% if store.country == 'AR' and template == 'home' and status_page_url %}
     {% include "snipplets/notification.tpl" with {show_order_cancellation: true} %}

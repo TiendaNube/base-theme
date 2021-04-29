@@ -1,5 +1,6 @@
 --- General
 --- Home
+--- --- Notifications
 --- Catalog
 --- --- Empty
 --- --- Sort By
@@ -334,6 +335,23 @@ es "Comunicate por WhatsApp"
 pt "Fale conosco pelo WhatsApp"
 en "Communicate on WhatsApp"
 es_mx "Comunicate por WhatsApp"
+
+--- --- Notifications
+
+es "Para mejorar tu experiencia de compra <strong>necesitamos usar cookies.</strong>"
+pt "Para melhorar sua experiência de compra, <strong>precisamos usar cookies.</strong>"
+en "To improve your purchase experience <strong>we need to use cookies.</strong>"
+es_mx "Para mejorar tu experiencia de compra <strong>necesitamos usar cookies.</strong>"
+
+es "No acepto"
+pt "Não aceito"
+en "I do not accept"
+es_mx "No acepto"
+
+es "OK"
+pt "OK"
+en "OK"
+es_mx "OK"
 
 --- Catalog ---
 
@@ -1223,10 +1241,10 @@ es_mx "¡Gracias por contactarnos! Te responderemos en cuanto veamos tu mensaje.
 
 --- --- Order cancellation
 
-es "Ver detalle de la compra"
-pt "Ver detalhes da compra"
-en "View purchase details"
-es_mx "Ver detalle de la compra"
+es "Ver detalle de la compra >"
+pt "Ver detalhes da compra >"
+en "View purchase details >"
+es_mx "Ver detalle de la compra >"
 
 es "Si tenés problemas con otra compra, contactanos:"
 pt "Se você tem problemas com outra compra, entre em contato:"
@@ -3989,10 +4007,6 @@ es "Permitir que tus clientes te dejen comentarios con su usuario de Facebook en
 pt "Permitir que seus clientes deixem comentários com seus respectivos usuários do Facebook na página de produto"
 es_mx "Permitir que tus clientes comenten en la página de producto con su usuario de Facebook "
 
-es "Para moderar los comentarios de Facebook necesitamos tu ID de tu perfil de Facebook (puedes obtenerlo <a target='_blank' href='http://findmyfbid.com/'>aquí</a>)"
-pt "Para moderar os comentários do Facebook necessitamos do seu ID do seu perfil do Facebook (você pode obtê-lo <a target='_blank' href='http://findmyfbid.com/'>aqui</a>)"
-es_mx "Necesitamos el ID de tu perfil de Facebook para moderar comentarios. (Obtenlo <a target='_blank' href='http://findmyfbid.com/'>aquí</a>)"
-
 es "Recuadro de 'Me gusta' de tu Página de Facebook"
 pt "Quadro de 'Curtir' em sua página do Facebook"
 es_mx "Recuadro de 'Me gusta' de tu página de Facebook"
@@ -4001,9 +4015,13 @@ es "Comentarios en el producto"
 pt "Comentário no produto"
 es_mx "Comentarios en el producto"
 
-es "Moderar comentarios de facebook"
-pt "Moderar comentários do Facebook"
-es_mx "Moderar comentarios de Facebook"
+es "ID de tu perfil de Facebook"
+pt "ID do seu perfil do Facebook"
+es_mx "ID de tu perfil de Facebook"
+
+es "Es necesario si querés moderar los comentarios. Podés obtenerlo <a target='_blank' href='https://findmyfbid.in/'>acá</a>"
+pt "É necessário caso queira moderar os comentários. Você pode obtê-lo <a target='_blank' href='https://findmyfbid.in/'>aqui</a>"
+es_mx "Es necesario si quieres moderar los comentarios. Puedes obtenerlo <a target='_blank' href='https://findmyfbid.in/'>aquí</a>"
 
 es "Mostrar tus últimos Tweets"
 pt "Mostrar seus últimos Tweets"

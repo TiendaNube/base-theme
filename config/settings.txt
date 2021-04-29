@@ -593,11 +593,11 @@ Redes sociales
 	checkbox
 		name = show_product_fb_comment_box
 		description = Permitir que tus clientes te dejen comentarios con su usuario de Facebook en la página de producto
-	subtitle
-		subtitle = Moderar comentarios de facebook
 	text
 		name = fb_admins
-		description = Para moderar los comentarios de Facebook necesitamos tu ID de tu perfil de Facebook (puedes obtenerlo <a target='_blank' href='http://findmyfbid.com/'>aquí</a>)
+		description = ID de tu perfil de Facebook
+	subtitle
+		subtitle = Es necesario si querés moderar los comentarios. Podés obtenerlo <a target='_blank' href='https://findmyfbid.in/'>acá</a>
 
 Edición avanzada de CSS
 	meta

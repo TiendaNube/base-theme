@@ -1575,6 +1575,14 @@ a {
   }
 }
 
+{# /* // Chip */ #}
+
+.chip {
+  background-color: rgba($accent-brand-color, .15);
+  color: desaturate(darken($accent-brand-color, 10%), 30%);
+  border-radius: 0;
+}
+
 {# /* // Tooltip */ #}
 
 .tooltip-icon {
@@ -1597,6 +1605,7 @@ a {
 }
 
 .review-block-detailed {
+  border: 0;
   box-shadow: $box-shadow;
   border-radius: $box-radius;
   background-color: $background-color;

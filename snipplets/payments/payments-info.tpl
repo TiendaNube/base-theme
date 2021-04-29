@@ -13,7 +13,7 @@
 
         {% if store.country == 'AR' %}
 
-            {% if installments_data['max_without_interests'] != '0' %}
+            {% if installments_data['max_without_interests'] > 1 %}
                 <h4 class="font-weight-normal mb-1">
                     {{ installments_data['max_without_interests'] }}
                     {{ 'cuotas' | translate }}
@@ -32,7 +32,7 @@
                         <span>{{ 'En 1 pago: ' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
                     </span>
                 </h6>
-            {% elseif installments_data['max_with_interests'] > 0 %}
+            {% elseif installments_data['max_with_interests'] > 1 %}
                 <h4 class="font-weight-normal mb-1">
                     {{ 'Hasta' | translate }}
                     {{ installments_data['max_with_interests'] }}
