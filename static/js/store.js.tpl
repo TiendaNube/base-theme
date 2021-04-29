@@ -82,6 +82,14 @@ $(document).ready(function(){
 	  #Notifications
 	==============================================================================*/ #}
 
+    {# Notifications variables #}
+
+    var $notification_status_page = $(".js-notification-status-page");
+    var $notification_order_cancellation = $(".js-notification-order-cancellation");
+    var $fixed_bottom_button = $(".js-btn-fixed-bottom");
+
+    {% set include_cookie_banner = store.hasCookieBannerTag() and not params.preview %}
+
     {# /* // Close notification */ #}
 
     $(".js-notification-close").on( "click", function(e) {
@@ -91,28 +99,35 @@ $(document).ready(function(){
 
     {# /* // Follow order status notification */ #}
 
-    var $js_notification_status_page = $(".js-notification-status-page");
-    if ($js_notification_status_page.size() > 0){
-        if (LS.shouldShowOrderStatusNotification($js_notification_status_page.data('url'))){
-            $js_notification_status_page.show();
+    if ($notification_status_page.size() > 0){
+        if (LS.shouldShowOrderStatusNotification($notification_status_page.data('url'))){
+            $notification_status_page.show();
         };
         $(".js-notification-status-page-close").on( "click", function(e) {
             e.preventDefault();
-            LS.dontShowOrderStatusNotificationAgain($js_notification_status_page.data('url'));
+            LS.dontShowOrderStatusNotificationAgain($notification_status_page.data('url'));
         });
     }
 
     {# /* // Follow order cancellation notification */ #}
 
-    var $js_notification_order_cancellation = $(".js-notification-order-cancellation");
-    if ($js_notification_order_cancellation.size() > 0){
-        if (LS.shouldShowOrderCancellationNotification($js_notification_order_cancellation.data('url'))){
-            $js_notification_order_cancellation.show();
-            $(".js-btn-fixed-bottom").css({"margin-bottom": "40px"});
+    if ($notification_order_cancellation.size() > 0){
+        if (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url'))){
+
+            {% if include_cookie_banner %}
+                {# Show order cancellation notification only if cookie banner is not visible #}
+
+                if (!LS.shouldShowCookiesNotification()) {
+            {% endif %}
+                    $notification_order_cancellation.show();
+            {% if include_cookie_banner %}
+                }
+            {% endif %}
+            $fixed_bottom_button.css({"margin-bottom": "40px"});
         };
         $(".js-notification-order-cancellation-close").on( "click", function(e) {
             e.preventDefault();
-            LS.dontShowOrderCancellationNotification($js_notification_order_cancellation.data('url'));
+            LS.dontShowOrderCancellationNotification($notification_order_cancellation.data('url'));
         });
     }
 
@@ -134,6 +149,56 @@ $(document).ready(function(){
                 }
             });
         })
+
+    {% endif %}
+
+    {% if include_cookie_banner %}
+        
+        {# /* // Cookie banner notification */ #}
+
+        restoreNotifications = function(){
+
+            // Whatsapp button position
+            $fixed_bottom_button.css({"margin-bottom": "10px"});
+
+            {# Restore notifications when Cookie Banner is closed #}
+
+            var show_order_cancellation = ($notification_order_cancellation.size() > 0) && (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url')));
+
+            {% if store.country == 'AR' %}
+                {# Order cancellation #}
+                if (show_order_cancellation){
+                    $notification_order_cancellation.show();
+                    $fixed_bottom_button.css({"margin-bottom": "40px"});
+                }
+            {% endif %}
+        };
+
+        if (LS.shouldShowCookiesNotification()) {
+            $(".js-notification-cookie-banner").show();
+
+            {# Whatsapp button position #}
+            if ($(window).width() < 768) {
+                $fixed_bottom_button.css({"margin-bottom": "120px"});
+            }else{
+                $fixed_bottom_button.css({"margin-bottom": "70px"});
+            }
+        }
+
+        $(".js-accept-cookies").on( "click", function(e) {
+            LS.allowCookiesUsage();
+            restoreNotifications();
+        });
+
+        $(".js-reject-cookies").on( "click", function(e) {
+            LS.denyCookiesUsage();
+            restoreNotifications();
+        });
+
+        $(".js-dismiss-cookies").on( "click", function(e) {
+            LS.dismissCookiesNotification();
+            restoreNotifications();
+        });
 
     {% endif %}
 

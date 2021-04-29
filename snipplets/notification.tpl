@@ -1,3 +1,30 @@
+{# Cookie validation #}
+
+{% if show_cookie_banner and store.hasCookieBannerTag() and not params.preview %}
+    <div class="js-notification js-notification-cookie-banner notification notification-fixed-bottom notification-above notification-secondary" style="display: none;">
+        <div class="container text-center text-md-left">
+            <div class="row align-items-md-center">
+                <div class="col p-0">
+                    <div class="row align-items-md-center">
+                        <div class="col-12 col-md-6 offset-md-3 mb-3 mb-md-0 mr-0 pr-0 text-foreground">
+                            {{ 'Para mejorar tu experiencia de compra <strong>necesitamos usar cookies.</strong>' | translate }}
+                        </div>
+                        <div class="col-md-auto pr-0 pr-md-5">
+                            <a href="#" class="js-notification-close js-reject-cookies btn-link btn-link-primary mr-3 pr-0">{{ "No acepto" | translate }}</a>
+                            <a href="#" class="js-notification-close js-accept-cookies btn btn-primary btn-medium px-4 py-2 d-inline-block">{{ "OK" | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-auto pr-0">
+                    <a class="js-notification-close js-dismiss-cookies p-1" href="#">
+                        {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-primary icon-lg"} %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
 {# Order notification #}
 
 {% if show_order_cancellation %}

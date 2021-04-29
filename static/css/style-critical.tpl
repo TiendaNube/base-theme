@@ -641,6 +641,9 @@ p{
   left: 15px;
 }
 .notification-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
   padding: 0 5px;
 }
 .notification-floating .notification {
