@@ -151,7 +151,7 @@
 
             <h4 class="font-weight-normal mb-3">
                 <span>{{ 'Total:' | translate }}</span>
-                <span class="price-compare">{{ product.price | money }}</span><strong class="js-installments-one-payment">{{ price_with_boleto_discount | money }}</strong>
+                <span class="js-installments-one-payment price-compare">{{ product.price | money }}</span><strong class="js-price-with-discount" data-payment-discount="{{ discount }}">{{ price_with_boleto_discount | money }}</strong>
             </h4>
 
             <div class="font-small">{{'El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma.' | translate }}</div>

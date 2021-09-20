@@ -105,8 +105,8 @@
                                         <span>{{ 'Total:' | translate }}</span>
                                         {% if custom_payment.discount > 0 %}
                                             {% set price_with_discount = product.price - ((product.price * custom_payment.discount) / 100) %}
-                                            <span class="price-compare">{{ product.price | money }}</span>
-                                            <strong class="js-installments-one-payment h3 text-brand">{{ price_with_discount | money }}</strong> 
+                                            <span class="js-installments-one-payment price-compare">{{ product.price | money }}</span>
+                                            <strong class="js-price-with-discount h3 text-brand" data-payment-discount="{{ custom_payment.discount }}">{{ price_with_discount | money }}</strong> 
                                         {% else %} 
                                             <strong class="js-installments-one-payment ml-3">{{ product.price | money }}</strong>
                                         {% endif %}

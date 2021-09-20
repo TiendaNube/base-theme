@@ -23,7 +23,6 @@
         type="radio" 
         value="{{option.code}}" 
         {% if checked_option %}checked="checked"{% endif %} name="option"
-        data-amplitude-event-name="cart_shipping_option_select"
         style="display:none" />
         <span class="radio-button-content">
             <div class="radio-button-icons-container">

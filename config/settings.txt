@@ -110,7 +110,7 @@ Página de inicio
 		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
 		gallery_width = 1580
 	collapse
-		title = Banners informativos
+		title = Información de envíos, pagos y compra
 	checkbox
 		name = banner_services
 		description = Mostrar los banners en la página principal
@@ -182,7 +182,7 @@ Página de inicio
 		description = Link
 
 	collapse
-		title = Mensaje de bienvenida
+		title = Mensaje institucional
 	i18n_input
 		name = welcome_message
 		description = Título
@@ -345,9 +345,9 @@ Página de inicio
 		name = home_order_position_1
 		description = Posición 1
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -357,9 +357,9 @@ Página de inicio
 		name = home_order_position_2
 		description = Posición 2
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -369,9 +369,9 @@ Página de inicio
 		name = home_order_position_3
 		description = Posición 3
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -381,9 +381,9 @@ Página de inicio
 		name = home_order_position_4
 		description = Posición 4
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -393,9 +393,9 @@ Página de inicio
 		name = home_order_position_5
 		description = Posición 5
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -405,9 +405,9 @@ Página de inicio
 		name = home_order_position_6
 		description = Posición 6
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -417,9 +417,9 @@ Página de inicio
 		name = home_order_position_7
 		description = Posición 7
 		values
-			welcome = Mensaje de bienvenida
+			welcome = Mensaje institucional
 			products = Productos destacados
-			informatives = Banners Informativos
+			informatives = Información de envíos, pagos y compra
 			categories = Banners de categorías
 			modules = Módulos de imagen y texto
 			video = Video
@@ -581,11 +581,8 @@ Redes sociales
 	checkbox
 		name = show_instafeed
 		description = Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda
-	checkbox
-		name = instafeed_like
-		description = Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación
 	subtitle
-		subtitle = Si no ingresaste tu usuario de Instagram, hacelo desde <a target='_blank' href='/admin/preferences/social_networks/'>acá</a>
+		subtitle = Para mostrar tus publicaciones necesitás generar un token, <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda'>¿cómo configurarlo?</a>
 	title
 		title = Facebook
 	subtitle
@@ -605,10 +602,8 @@ Edición avanzada de CSS
 		advanced = true
 	title
 		title = Para diseñadores web
-	subtitle
-		subtitle = Esta sección es recomendada solo para quienes tengan conocimiento de CSS
-	subtitle
-		subtitle = <a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el-codigo-css-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo edito el código CSS de mi tienda?</a>
 	css_code
 		name = css_code
-		description = Acá podés escribir código CSS para que se muestre en tu sitio web
+		description = Acá podes escribir código CSS para que se muestre en tu tienda
+	subtitle
+		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>
