@@ -57,7 +57,7 @@
 		{% endif %}
 
 		<div class="row element-footer">
-			<div class="col-md-6 text-center text-md-left">
+			<div class="col-md-3 text-center text-md-left">
                 {#
                 La leyenda que aparece debajo de esta linea de código debe mantenerse
                 con las mismas palabras y con su apropiado link a Tienda Nube;
@@ -72,8 +72,14 @@
                 #}
                 {{ new_powered_by_link }}
             </div>
-            <div class="col-md-6 copyright text-center text-md-right pt-4 pt-md-0">
+            <div class="col-md-9 copyright text-center text-md-right pt-4 pt-md-0">
                 {{ "Copyright {1} - {2}. Todos los derechos reservados." | translate( (store.business_name ? store.business_name : store.name) ~ (store.business_id ? ' - ' ~ store.business_id : ''), "now" | date('Y') ) }}
+                {% if store.country == 'AR' %}
+                    <div class="claim-link mt-2">
+                       {{ "Defensa de las y los consumidores. Para reclamos" | translate }}
+                       <a class="font-weight-bold" href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario" target="_blank">{{ "ingrese aquí" | translate }}</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
 

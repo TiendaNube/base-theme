@@ -1,13 +1,19 @@
+{% if product_detail %}
+	{% set cart_zipcode = false %}
+{% else %}
+	{% set cart_zipcode = cart.shipping_zipcode %}
+{% endif %}
+
 <div class="{% if product_detail %}product-shipping-calculator{% endif %} mb-2 w-100" data-store="shipping-calculator">
 
-	<div class="js-shipping-calculator-head shipping-calculator-head position-relative transition-soft {% if cart.shipping_zipcode %}with-zip{% else %}with-form{% endif %}">
-		<div class="js-shipping-calculator-with-zipcode {% if cart.shipping_zipcode %}js-cart-saved-zipcode transition-up-active{% endif %} mt-3 mb-4 w-100 transition-up position-absolute">
+	<div class="js-shipping-calculator-head shipping-calculator-head position-relative transition-soft {% if cart_zipcode %}with-zip{% else %}with-form{% endif %}">
+		<div class="js-shipping-calculator-with-zipcode {% if cart_zipcode %}js-cart-saved-zipcode transition-up-active{% endif %} mt-3 mb-4 w-100 transition-up position-absolute">
 			<div class="container p-0">
 				<div class="row align-items-center">
 					<span class="col pr-0">
 						<span class="font-small align-sub">
 							<span>{{ "Entregas para el CP:" | translate }}</span>
-							<strong class="js-shipping-calculator-current-zip">{{ cart.shipping_zipcode }}</strong>
+							<strong class="js-shipping-calculator-current-zip">{{ cart_zipcode }}</strong>
 						</span>
 					</span>
 					<div class="col-auto pl-0">
@@ -20,7 +26,7 @@
 
 			{# Shipping calcualtor input #}
 			
-			{% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_value: cart.shipping_zipcode, input_name: 'zipcode', input_custom_class: 'js-shipping-input', input_placeholder: "Tu código postal" | translate, input_aria_label: 'Tu código postal' | translate, input_label: false, input_append_content: true, input_group_custom_class: 'form-row align-items-center mb-3', form_control_container_custom_class: 'col-5'} %}
+			{% embed "snipplets/forms/form-input.tpl" with{type_tel: true, input_value: cart_zipcode, input_name: 'zipcode', input_custom_class: 'js-shipping-input', input_placeholder: "Tu código postal" | translate, input_aria_label: 'Tu código postal' | translate, input_label: false, input_append_content: true, input_group_custom_class: 'form-row align-items-center mb-3', form_control_container_custom_class: 'col-5'} %}
 				{% block input_prepend_content %}
 					<div class="col-12 mb-2">
 

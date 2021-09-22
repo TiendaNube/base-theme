@@ -41,9 +41,12 @@
 
 {# Hamburger panel #}
 
-{% embed "snipplets/modal.tpl" with{modal_id: 'nav-hamburger',modal_class: 'nav-hamburger modal-docked-small', modal_position: 'left', modal_transition: 'fade', modal_width: 'full'  } %}
+{% embed "snipplets/modal.tpl" with{modal_id: 'nav-hamburger',modal_class: 'nav-hamburger modal-docked-small', modal_position: 'left', modal_transition: 'fade', modal_width: 'full', modal_fixed_footer: true, modal_footer: true, modal_footer_class: 'p-0' } %}
     {% block modal_body %}
-        {% snipplet "navigation/navigation-panel.tpl" %}
+        {% include "snipplets/navigation/navigation-panel.tpl" with {primary_links: true} %}
+    {% endblock %}
+    {% block modal_foot %}
+        {% include "snipplets/navigation/navigation-panel.tpl" %}
     {% endblock %}
 {% endembed %}
 {# Notifications #}

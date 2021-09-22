@@ -18,7 +18,6 @@
 	  	// Banner services slider
 	#Social
 		// Youtube or Vimeo video
-		// Instagram feed
         // Facebook login
 	#Product grid
 		// Filters
@@ -88,8 +87,6 @@ $(document).ready(function(){
     var $notification_order_cancellation = $(".js-notification-order-cancellation");
     var $fixed_bottom_button = $(".js-btn-fixed-bottom");
 
-    {% set include_cookie_banner = store.hasCookieBannerTag() and not params.preview %}
-
     {# /* // Close notification */ #}
 
     $(".js-notification-close").on( "click", function(e) {
@@ -114,13 +111,13 @@ $(document).ready(function(){
     if ($notification_order_cancellation.size() > 0){
         if (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url'))){
 
-            {% if include_cookie_banner %}
+            {% if not params.preview %}
                 {# Show order cancellation notification only if cookie banner is not visible #}
 
-                if (!LS.shouldShowCookiesNotification()) {
+                if (window.cookieNotificationService.isAcknowledged()) {
             {% endif %}
                     $notification_order_cancellation.show();
-            {% if include_cookie_banner %}
+            {% if not params.preview %}
                 }
             {% endif %}
             $fixed_bottom_button.css({"margin-bottom": "40px"});
@@ -152,7 +149,7 @@ $(document).ready(function(){
 
     {% endif %}
 
-    {% if include_cookie_banner %}
+    {% if not params.preview %}
         
         {# /* // Cookie banner notification */ #}
 
@@ -174,7 +171,7 @@ $(document).ready(function(){
             {% endif %}
         };
 
-        if (LS.shouldShowCookiesNotification()) {
+        if (!window.cookieNotificationService.isAcknowledged()) {
             $(".js-notification-cookie-banner").show();
 
             {# Whatsapp button position #}
@@ -185,18 +182,8 @@ $(document).ready(function(){
             }
         }
 
-        $(".js-accept-cookies").on( "click", function(e) {
-            LS.allowCookiesUsage();
-            restoreNotifications();
-        });
-
-        $(".js-reject-cookies").on( "click", function(e) {
-            LS.denyCookiesUsage();
-            restoreNotifications();
-        });
-
-        $(".js-dismiss-cookies").on( "click", function(e) {
-            LS.dismissCookiesNotification();
+        $(".js-acknowledge-cookies").on( "click", function(e) {
+            window.cookieNotificationService.acknowledge();
             restoreNotifications();
         });
 
@@ -690,35 +677,8 @@ $(document).ready(function(){
         {# /* // Youtube or Vimeo video for home or each product */ #}
 
         LS.loadVideo('{{ video_url }}');
-        
+
     {% endif %}
-
-	{% if template == 'home' and settings.show_instafeed and store.instagram %}
-
-        {# /* // Instagram feed */ #}
-
-        {% set instuser = store.instagram|split('/')|last %}
-
-        var width = window.innerWidth;
-        if (width > 767) {  
-            var resolution = 640;  
-        } else {
-            var resolution = 320;
-        }
-
-        $.instagramFeed({
-            'username': '{{ instuser }}',
-            'container': '#instafeed',
-            'item_class': 'col-4',
-            'image_class': 'instafeed-img w-100 fade-in',
-            'private_class': 'col text-center',
-            'image_size': resolution,
-            'items': 9,
-            'likes': {% if settings.instafeed_like %}true{% else %}false{% endif %},
-            'like_icon': '{% include "snipplets/svg/heart.tpl" with {svg_custom_class: "icon-inline"} %}'
-        });
-
-   	{% endif %}
 
 	{#/*============================================================================
 	  #Product grid
@@ -878,6 +838,15 @@ $(document).ready(function(){
 	    });
 	}
 
+    {# Refresh price on payments popup with payment discount applied #}
+
+    function refreshPaymentDiscount(price){
+        $(".js-price-with-discount" ).each(function( index ) {
+            const payment_discount = $(this).data('payment-discount');
+            $(this).text(LS.formatToCurrency(price - ((price * payment_discount) / 100)))
+        });
+    }
+
 	{# /* // Change variant */ #}
 
 	{# Updates price, installments, labels and CTA on variant change #}
@@ -990,18 +959,19 @@ $(document).ready(function(){
 
 	    {% endif %}
 
-	    {% if template == 'product' %}
-	        const base_price = Number($("#price_display").attr("content"));
-	        refreshInstallmentv2(base_price);
+        {% if template == 'product' %}
+            const base_price = Number($("#price_display").attr("content"));
+            refreshInstallmentv2(base_price);
+            refreshPaymentDiscount(variant.price_number);
 
-	        {% if settings.last_product and product.variations %}
-	            if(variant.stock == 1) {
-	                $('.js-last-product').show();
-	            } else {
-	                $('.js-last-product').hide();
-	            }
-	        {% endif %}
-	    {% endif %}
+            {% if settings.last_product and product.variations %}
+                if(variant.stock == 1) {
+                    $('.js-last-product').show();
+                } else {
+                    $('.js-last-product').hide();
+                }
+            {% endif %}
+        {% endif %}
 
         {# Update shipping on variant change #}
 
@@ -1567,29 +1537,25 @@ $(document).ready(function(){
 
     {# Apply zipcode saved by cookie if there is no zipcode saved on cart from backend #}
 
-    {% if not cart.shipping_zipcode %}
+    if (!!$.cookie('calculator_zipcode')) {
 
-        if (!!$.cookie('calculator_zipcode')) {
+        {# If there is a cookie saved based on previous calcualtion, add it to the shipping input to triggert automatic calculation #}
 
-            {# If there is a cookie saved based on previous calcualtion, add it to the shipping input to triggert automatic calculation #}
+        var zipcode_from_cookie = $.cookie("calculator_zipcode");
+        $('#product-shipping-container .js-shipping-input').val(zipcode_from_cookie);
+        $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
 
-            var zipcode_from_cookie = $.cookie("calculator_zipcode");
-            $('#product-shipping-container .js-shipping-input').val(zipcode_from_cookie);
-            $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
+        {# Hide the shipping calculator and show spinner  #}
 
-            {# Hide the shipping calculator and show spinner  #}
+        $(".js-shipping-calculator-head").addClass("with-zip").removeClass("with-form");
+        $(".js-shipping-calculator-with-zipcode").addClass("transition-up-active");
+        $(".js-shipping-calculator-spinner").show();
+    } else {
 
-            $(".js-shipping-calculator-head").addClass("with-zip").removeClass("with-form");
-            $(".js-shipping-calculator-with-zipcode").addClass("transition-up-active");
-            $(".js-shipping-calculator-spinner").show();
-        } else {
+        {# If there is no cookie saved, show calcualtor #}
 
-            {# If there is no cookie saved, show calcualtor #}
-
-            $(".js-shipping-calculator-form").addClass("transition-up-active");
-        }            
-        
-    {% endif %}
+        $(".js-shipping-calculator-form").addClass("transition-up-active");
+    }           
 
     {# Remove shipping suboptions from DOM to avoid duplicated modals #}
 

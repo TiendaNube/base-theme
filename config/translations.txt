@@ -126,6 +126,16 @@ pt "Copyright {1} - {2}. Todos os direitos reservados."
 en "Copyright {1} - {2}. All rights reserved."
 es_mx "Copyright {1} - {2}. Todos los derechos reservados."
 
+es "Defensa de las y los consumidores. Para reclamos"
+pt "Defesa dos consumidores. Para reclamações,"
+en "Consumer defense. For claims"
+es_mx "Defensa de las y los consumidores. Para reclamos"
+
+es "ingrese aquí"
+pt "acesse aqui"
+en "enter here"
+es_mx "ingrese aquí"
+
 es "Si"
 pt "Sim"
 en "Yes"
@@ -338,20 +348,15 @@ es_mx "Comunicate por WhatsApp"
 
 --- --- Notifications
 
-es "Para mejorar tu experiencia de compra <strong>necesitamos usar cookies.</strong>"
-pt "Para melhorar sua experiência de compra, <strong>precisamos usar cookies.</strong>"
-en "To improve your purchase experience <strong>we need to use cookies.</strong>"
-es_mx "Para mejorar tu experiencia de compra <strong>necesitamos usar cookies.</strong>"
+es "Al navegar por este sitio <strong>aceptás el uso de cookies</strong> para agilizar tu experiencia de compra."
+pt "Ao navegar por este site <strong>você aceita o uso de cookies</strong> para agilizar a sua experiência de compra."
+en "While navigating this site <strong>you accept the use of cookies</strong> to improve your shopping experience."
+es_mx "Al navegar por este sitio <strong>aceptas el uso de cookies</strong> para agilizar tu experiencia de compra."
 
-es "No acepto"
-pt "Não aceito"
-en "I do not accept"
-es_mx "No acepto"
-
-es "OK"
-pt "OK"
-en "OK"
-es_mx "OK"
+es "Entendido"
+pt "Entendi"
+en "Understood"
+es_mx "Entendido"
 
 --- Catalog ---
 
@@ -2044,7 +2049,7 @@ es_mx "No encontramos ninguna cuenta registrada con este correo. Inténtalo nuev
 es "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?"
 pt "Esses dados estão incorretos. Verificou se eles estão bem escritos?"
 en "The info is incorrect. Please check for any typos."
-es_mx "Estos datos no son correctos. ¿Chequeaste que estén bien escritos?"
+es_mx "Estos datos no son correctos. ¿Checaste que estén bien escritos?"
 
 es "¡Listo! Te enviamos un email a {1}"
 pt "Pronto! Enviamos um e-mail para {1}"
@@ -2345,7 +2350,7 @@ es_mx "tu última compra"
 es "Opciones para tu compra <strong>si sumás este producto</strong>."
 pt "Opções ao <strong>adicionar este produto à sua compra</strong>."
 en "Options for your purchase <strong>if you add this product</strong>."
-es_mx "Opciones para tu compra <strong>si sumás este producto</strong>."
+es_mx "Opciones para tu compra <strong>si sumas este producto</strong>."
 
 es "Vas a poder elegir alguna de las siguientes opciones antes de finalizar la compra:"
 pt "Você pode escolher uma das seguintes opções antes de finalizar a compra"
@@ -2390,7 +2395,7 @@ es_mx "País donde entregaremos tu compra"
 es "El tiempo de entrega <strong>no considera feriados</strong>."
 pt "O prazo de entrega <strong>não contabiliza feriados</strong>."
 en "The delivery time does <strong>not consider holidays</strong>."
-es_mx "El tiempo de entrega <strong>no considera feriados</strong>."
+es_mx "El tiempo de entrega <strong>no considera días inhábiles</strong>."
 
 es "Ingresa aquí tu código postal para calcular tu costo de envío"
 pt "Digite aqui o seu CEP para calcular o frete"
@@ -3279,9 +3284,10 @@ es "Mensaje de bienvenida en la página de inicio"
 pt "Mensagem de boas vindas na página inicial"
 es_mx "Mensaje de bienvenida de la página de inicio"
 
-es "Mensaje de bienvenida"
-pt "Mensagem de boas vidas"
-es_mx "Mensaje de bienvenida"
+es "Mensaje institucional"
+pt "Mensagem institucional"
+en "Institutional message"
+es_mx "Mensaje institucional"
 
 es "Dale la bienvenida a tus clientes"
 pt "Dê as boas-vindas a seus clientes"
@@ -3427,10 +3433,10 @@ es "Imagen para la página de inicio"
 pt "Imagem para a página de início"
 es_mx "Imagen para la página de inicio"
 
-es "Banners informativos"
-pt "Banners informativos"
-en "Services banner"
-es_mx "Banners informativos"
+es "Información de envíos, pagos y compra"
+pt "Informações de frete, pagamento e compra"
+en "Shipping, payments and purchase information"
+es_mx "Información de envíos, pagos y compra"
 
 es "Ubicación de los banners"
 pt "Posicionamento dos banners"
@@ -3930,9 +3936,9 @@ es_mx "Logo de AFIP"
 
 --- --- CSS
 
-es "Acá podés escribir código CSS para que se muestre en tu sitio web"
-pt "Aqui, você poderá colocar código css para que se mostre em sua página"
-es_mx "Aquí puedes escribir código CSS para que se refleje en tu sitio"
+es "Acá podes escribir código CSS para que se muestre en tu tienda"
+pt "Aqui, você pode escrever o código CSS que será mostrado em sua loja"
+es_mx "Aquí puedes escribir código CSS para que se muestre en tu tienda"
 
 es "Edición avanzada de CSS"
 pt "Edição de css avançada"
@@ -3942,13 +3948,9 @@ es "Para diseñadores web"
 pt "Para webdesigners"
 es_mx "Para diseñadores web"
 
-es "Esta sección es recomendada solo para quienes tengan conocimiento de CSS"
-pt "Esta área é recomendada apenas para aqueles que tenham conhecimento de CSS"
-es_mx "Esta sección se recomienda sólo para quienes tienen conocimiento de CSS"
-
-es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el-codigo-css-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo edito el código CSS de mi tienda?</a>"
-pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/layout/como-editar-o-codigo-css-da-minha-loja/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como editar o código CSS da minha loja?</a>"
-es_mx "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-edito-el-codigo-css-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo edito el código CSS de mi tienda?</a>"
+es "<a target='_blank' href='https://ayuda.tiendanube.com/es_ES/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>"
+pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/12344-personalizacao-avancada-do-layout/como-editar-o-codigo-css-da-minha-loja'>Como editar o código CSS da minha loja?</a>"
+es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_ES/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>"
 
 
 --- --- Shipping and Payments
@@ -4053,17 +4055,9 @@ es "Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda"
 pt "Exibir suas postagens do Instagram na página inicial da sua loja."
 es_mx "Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda online"
 
-es "Configurar cuenta de Instagram"
-pt "Configurar conta do Instagram"
-es_mx "Configurar tu cuenta de Instagram"
-
-es "<a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>"
-pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/como-adicionar-o-feed-do-instagram'>Como obter o Access Token?</a>"
-es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda-nube'>¿Cómo obtener el Access Token?</a>"
-
-es "Access Token (Necesario para validar tu cuenta)"
-pt "Access Token (Necessário para validar sua conta)"
-es_mx "Access Token (Necesario para validar tu cuenta)"
+es "Para mostrar tus publicaciones necesitás generar un token, <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda'>¿cómo configurarlo?</a>"
+pt "Para mostrar suas postagens, você precisa gerar um token, <a target='_blank' href='https://atendimento.nuvemshop.com.br/pt_BR/969168-como-mostrar-minhas-publicacoes-do-instagram-em-minha-loja'>cómo configurá-lo?</a>"
+es_mx "Para mostrar tus publicaciones necesitas generar un token, <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda'>¿cómo configurarlo?</a>"
 
 es "Imágenes en las publicaciones de Instagram"
 pt "Imagens em posts do Instagram"
@@ -4084,14 +4078,6 @@ es_mx "4 en celular y 8 en computadora"
 es "6 en celular y 12 en computadora"
 pt "6 no celular e 12 no computador"
 es_mx "6 en celular y 12 en computadora"
-
-es "Mostrar la cantidad de <em>‘Me gusta’</em> de cada publicación"
-pt "Exibir quantidade de <em>“Likes”</em> de cada post"
-es_mx "Mostrar los <em>‘Me gusta’</em> de cada publicación"
-
-es "Mostrar la cantidad de comentarios de cada publicación"
-pt "Exibir quantidade de comentários de cada post"
-es_mx "Mostrar la cantidad de comentarios de cada publicación"
 
 es "Facebook"
 pt "Facebook"

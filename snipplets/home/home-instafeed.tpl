@@ -15,7 +15,16 @@
                 </div>
             </div>
         </div>
-        <div id="instafeed" class="js-ig-success row no-gutters" style="display: none;">  
-        </div>
+        {% if store.hasInstagramToken() %}
+            <div id="instagram-feed" class="js-ig-success row no-gutters" 
+                data-ig-feed
+                data-ig-items-count="9"
+                data-ig-item-class="col-4"
+                data-ig-link-class="instafeed-link"
+                data-ig-image-class="instafeed-img w-100 fade-in"
+                data-ig-aria-label="{{ 'Publicación de Instagram de' | translate }} {{ store.name }}"
+                style="display: none;">  
+            </div>
+        {% endif %}
     </section>
 {% endif %}

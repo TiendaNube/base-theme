@@ -201,7 +201,9 @@
         {# Google reCAPTCHA on register page #}
 
         {% if template == 'account.register' %}
-            {{ '//www.google.com/recaptcha/api.js' | script_tag(true) }}
+            {% if not store.hasContactFormsRecaptcha() %}
+                {{ '//www.google.com/recaptcha/api.js' | script_tag(true) }}
+            {% endif %}
             <script type="text/javascript">
                 var recaptchaCallback = function() {
                     $('.js-recaptcha-button').prop('disabled', false);

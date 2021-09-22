@@ -385,6 +385,15 @@ textarea{
     padding: 10px 0;
     clear: both;
   }
+  &-with-fixed-footer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .modal-scrollable-area {
+      height: 100%;
+      overflow: auto;
+    }
+  }
   &-full {
     width: 100%;
   }
@@ -584,7 +593,8 @@ textarea{
 .modal-nav-hamburger {
   text-align: center;
   .modal-header {
-      margin-top: 25px;
+      width: 100%;
+      margin: 25px 0 -10px 0;
       .modal-close {
         margin: 0;
         padding: 5px;
@@ -628,20 +638,15 @@ textarea{
 
 }
 
-.nav-secondary {
-  .nav-account {
-    position: fixed;
-    bottom: 0;
-    width: 80%;
-    margin: 10px 0 0 -15px;
-    padding: 0;
-    list-style: none;
-    .nav-accounts-item {
-      display: inline-block;
-      margin: 10px;
-      font-size: 14px;
-    } 
-  }
+.nav-account {
+  margin: 10px -15px -10px -15px;
+  padding: 0;
+  list-style: none;
+  .nav-accounts-item {
+    display: inline-block;
+    margin: 10px;
+    font-size: 14px;
+  } 
 }
 
 .hamburger-panel{
@@ -777,7 +782,8 @@ footer {
 
 .footer-payments-shipping-logos{
   img {
-    max-width: 46px;
+    width: auto;
+    max-height: 35px;
     margin: 2px;
     padding: 5px;
     border: 1px solid #eaeaea;
@@ -1114,7 +1120,7 @@ body.compensate-for-scrollbar{overflow:hidden}.fancybox-active{height:auto}.fanc
   {# /*  Navigation */ #}
 
   .nav-secondary .nav-account {
-    width: 330px;
+    margin: 10px -5px -10px -5px;
   }
 
   {# /*  Notifications */ #}
