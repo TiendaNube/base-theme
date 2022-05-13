@@ -4,10 +4,10 @@
 			{% for slide in settings.slider %}
 				<div class="swiper-slide slide-container">
 					{% if slide.link %}
-						<a href="{{ slide.link }}" aria-label="{{ 'Carrusel' | translate }} {{ loop.index }}">
+						<a href="{{ slide.link | setting_url }}" aria-label="{{ 'Carrusel' | translate }} {{ loop.index }}">
 					{% endif %}
 						<div class="slider-slide">
-							<img {% if loop.first %}src="{{ slide.image | static_url | settings_image_url('1080p') }}" class="slider-image"{% else %}src="{{ slide.image | static_url | settings_image_url('tiny') }}" data-src="{{ slide.image | static_url | settings_image_url('1080p') }}" class="slider-image blur-up-big swiper-lazy" data-sizes="auto"{% endif %} alt="{{ 'Carrusel' | translate }} {{ loop.index }}"/>
+							<img {% if loop.first %}src="{{ slide.image | static_url | settings_image_url('xlarge') }}" srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image"{% else %}src="{{ slide.image | static_url | settings_image_url('tiny') }}" data-srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image blur-up-big swiper-lazy" data-sizes="auto"{% endif %} alt="{{ 'Carrusel' | translate }} {{ loop.index }}"/>
 						</div>
 					{% if slide.link %}
 						</a>

@@ -8,8 +8,8 @@
   {% set show_labels = not product.has_stock or product.free_shipping or product.compare_at_price or product.promotional_offer %}
 {% endif %}
 
-{% if show_labels %}
-  <div class="{% if product.video_url and product %}js-labels-group{% endif %} labels">
+<div class="{% if product.video_url and product %}js-labels-group{% endif %} labels" data-store="product-item-labels">
+  {% if show_labels %}
     {% if not product.has_stock %}
       <div class="{% if product_detail %}js-stock-label {% endif %}label label-default">{{ "Sin stock" | translate }}</div>
     {% else %}
@@ -17,7 +17,7 @@
         <div class="js-stock-label label label-default" {% if product.has_stock %}style="display:none;"{% endif %}>{{ "Sin stock" | translate }}</div>
       {% endif %}
       {% if product.compare_at_price or product.promotional_offer %}
-        <div class="{% if not product.promotional_offer and product %}js-offer-label{% endif %} label label-accent" {% if (not product.compare_at_price and not product.promotional_offer) or not product.display_price %}style="display:none;"{% endif %}>
+        <div class="{% if not product.promotional_offer and product %}js-offer-label{% endif %} label label-accent" {% if (not product.compare_at_price and not product.promotional_offer) or not product.display_price %}style="display:none;"{% endif %} data-store="product-item-{% if product.compare_at_price %}offer{% else %}promotion{% endif %}-label">
           {% if product.promotional_offer.script.is_percentage_off %}
             {{ product.promotional_offer.parameters.percent * 100 }}% OFF
           {% elseif product.promotional_offer.script.is_discount_for_quantity %}
@@ -38,6 +38,6 @@
         <div class="label label-secondary">{{ "Envío gratis" | translate }}</div>
       {% endif %}
     {% endif %}
-  </div>
-{% endif %}
+  {% endif %}
+</div>
 <span class="hidden" data-store="stock-product-{{ product.id }}-{% if product.has_stock %}{% if product.stock %}{{ product.stock }}{% else %}infinite{% endif %}{% else %}0{% endif %}"></span>

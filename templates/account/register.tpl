@@ -89,7 +89,7 @@
 
 							{# Google reCAPTCHA #}
 
-							<div class="g-recaptcha mb-4" data-sitekey="{{recaptchaSiteKey}}" data-callback="recaptchaCallback"></div>
+							<div class="g-recaptcha" data-sitekey="{{recaptchaSiteKey}}" data-callback="recaptchaCallback"></div>
 							
 						{% endblock %}
 					{% endembed %}

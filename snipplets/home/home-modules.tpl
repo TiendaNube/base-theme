@@ -22,7 +22,7 @@
             {% set has_module_text =  module_title or module_description or module_button_text %}
             {% if has_module %}
                 {% if module_url %}
-                    <a class="module-with-text-link" href="{{ module_url }}"{% if module_title %} title="{{ module_title }}" aria-label="{{ module_title }}"{% else %} title="{{ 'Módulo de' | translate }} {{ store.name }}" aria-label="{{ 'Módulo de' | translate }} {{ store.name }}"{% endif %}>
+                    <a class="module-with-text-link" href="{{ module_url | setting_url }}"{% if module_title %} title="{{ module_title }}" aria-label="{{ module_title }}"{% else %} title="{{ 'Módulo de' | translate }} {{ store.name }}" aria-label="{{ 'Módulo de' | translate }} {{ store.name }}"{% endif %}>
                 {% endif %}
                 <div class="row {% if settings.modules_full %}no-gutters{% endif %} align-items-center">               
                     

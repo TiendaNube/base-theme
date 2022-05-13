@@ -20,7 +20,7 @@
         </div>
         <div class="col">
             {% if banner_services_url %}
-                <a href="{{ banner_services_url }}">
+                <a href="{{ banner_services_url | setting_url }}">
             {% endif %}
             <h3 class="service-title">{{ banner_services_title }}</h3>
             <p>{{ banner_services_description }}</p>

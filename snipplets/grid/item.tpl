@@ -29,22 +29,26 @@
 
             {# Item image will be the first avaiable variant #}
 
-            {% set item_img_spacing = product.featured_variant_image.dimensions['height'] / product.featured_variant_image.dimensions['width'] * 100 %}
+            {% set item_img_width = product.featured_variant_image.dimensions['width'] %}
+            {% set item_img_height = product.featured_variant_image.dimensions['height'] %}
             {% set item_img_srcset = product.featured_variant_image %}
             {% set item_img_alt = product.featured_variant_image.alt %}
         {% else %}
 
             {# Item image will be the first image regardless the variant #}
 
-            {% set item_img_spacing = product.featured_image.dimensions['height'] / product.featured_image.dimensions['width'] * 100 %}
+            {% set item_img_width = product.featured_image.dimensions['width'] %}
+            {% set item_img_height = product.featured_image.dimensions['height'] %}
             {% set item_img_srcset = product.featured_image %}
             {% set item_img_alt = product.featured_image.alt %}
         {% endif %}
 
+        {% set item_img_spacing = item_img_height / item_img_width * 100 %}
+
         <div class="item-image mb-2">
             <div style="padding-bottom: {{ item_img_spacing }}%;" class="p-relative" data-store="product-item-image-{{ product.id }}">
                 <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}">
-                    <img alt="{{ item_img_alt }}" data-sizes="auto" data-expand="-10" src="{{ 'images/empty-placeholder.png' | static_url }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="js-item-image lazyautosizes lazyload img-absolute img-absolute-centered fade-in" /> 
+                    <img alt="{{ item_img_alt }}" data-expand="-10" src="{{ 'images/empty-placeholder.png' | static_url }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="js-item-image lazyload img-absolute img-absolute-centered fade-in" width="{{ item_img_width }}" height="{{ item_img_height }}" /> 
                     <div class="placeholder-fade"></div>
                 </a>
                 {% if settings.product_color_variants %}
@@ -73,11 +77,11 @@
 
                     {# Add to cart CTA #}
 
-                    <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
+                    <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mx-auto {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
 
                     {# Fake add to cart CTA visible during add to cart event #}
 
-                    {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "btn-block"} %}
+                    {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "btn-block mx-auto"} %}
 
                 </form>
             </div>
@@ -121,11 +125,11 @@
 
                         <input type="number" name="quantity" value="1" class="js-quantity-input hidden" aria-label="{{ 'Cambiar cantidad' | translate }}" >
 
-                        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-small {{ state }} px-4 mb-1" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
+                        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-small {{ state }} px-4 mb-1 mx-auto" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
 
                         {# Fake add to cart CTA visible during add to cart event #}
 
-                        {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "js-addtocart-placeholder-inline btn-small mb-1"} %}
+                        {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "js-addtocart-placeholder-inline btn-small mb-1 mx-auto"} %}
 
                     </form>
                 {% endif %}

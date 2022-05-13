@@ -268,6 +268,12 @@ $(document).ready(function(){
 
                 if($(".js-fullscreen-modal").hasClass("modal-show")){
 
+                    {# Remove body lock only if a single modal is visible on screen #}
+
+                    if($(".js-modal.modal-show").length == 1){
+                        $("body").removeClass("overflow-none");
+                    }
+
                     var $opened_modal = $(".js-fullscreen-modal.modal-show");
                     var $opened_modal_overlay = $opened_modal.prev();
 
@@ -290,6 +296,12 @@ $(document).ready(function(){
         if ($(modal_id).hasClass("modal-show")) {
             $(modal_id).removeClass("modal-show").delay(500).hide(0);
         } else {
+
+            {# Lock body scroll if there is no modal visible on screen #}
+            
+            if(!$(".js-modal.modal-show").length){
+                $("body").addClass("overflow-none");
+            }
             $overlay_id.fadeIn(400);
             $(modal_id).detach().appendTo("body");
             $overlay_id.detach().insertBefore(modal_id);
@@ -299,6 +311,11 @@ $(document).ready(function(){
 
     closeModal = function(element){
 
+        {# Remove body lock only if a single modal is visible on screen #}
+
+        if($(".js-modal.modal-show").length == 1){
+            $("body").removeClass("overflow-none");
+        }
         var $modal = $('body .js-modal.modal-show:last-child');
         var $overlay = $modal.prev(".js-modal-overlay");
         $modal.removeClass("modal-show").delay(500).hide(0); 
@@ -330,11 +347,15 @@ $(document).ready(function(){
     });
 
     $(document).on("click", ".js-modal-overlay", function(e) {
-        e.preventDefault();  
+        e.preventDefault();
+        {# Remove body lock only if a single modal is visible on screen #}
+
+        if($(".js-modal.modal-show").length == 1){
+            $("body").removeClass("overflow-none");
+        }
         var modal_id = $(this).data('modal-id');
         $(modal_id).removeClass("modal-show").delay(500).hide(0);   
         $(this).fadeOut(500);   
-
         {% if settings.quick_shop %}
             restoreQuickshopForm();
         {% endif %}
@@ -1027,30 +1048,38 @@ $(document).ready(function(){
             LS.changeVariant(changeVariant, '#single-product');
         }
 
-	    var $this_compare_price =  $(this).closest(".js-product-container").find(".js-compare-price-display");
-	    var $this_price = $(this).closest(".js-product-container").find(".js-price-display");
-	    var $installment_container = $(this).closest(".js-product-container").find(".js-product-payments-container");
-	    var $installment_text = $(this).closest(".js-product-container").find(".js-max-installments-container");
-	    var $this_product_container = $(this).closest(".js-product-container");
-	    var $this_add_to_cart =  $(this).closest(".js-product-container").find(".js-prod-submit-form");
-	    // Get the current product discount percentage value
-	    var current_percentage_value = $this_product_container.find(".js-offer-percentage");
-	    // Get the current product price and promotional price
-	    var compare_price_value = $this_compare_price.html();
-	    var price_value = $this_price.html();
-	    // Filter prices to only have numbers
-	    old_price_value_filtered = parseInt(compare_price_value.replace(/[^0-9]/gi, ''), 10)/100;
-	    current_price_value_filtered = parseInt(price_value.replace(/[^0-9]/gi, ''), 10)/100;
-	    // Calculate new discount percentage based on difference between filtered old and new prices
-	    price_difference = (old_price_value_filtered-current_price_value_filtered);
-	    updated_discount_percentage = Math.round(((price_difference*100)/old_price_value_filtered));
-	    $this_product_container.find(".js-offer-percentage").html(updated_discount_percentage);
-	    if ($this_compare_price.css("display") == "none") {
+        {# Offer and discount labels update #}
+
+        var $this_product_container = $(this).closest(".js-product-container");
+
+        if($this_product_container.hasClass("js-quickshop-container")){
+            var this_quickshop_id = $this_product_container.attr("data-quickshop-id");
+            var $this_product_container = $('.js-product-container[data-quickshop-id="'+this_quickshop_id+'"]');
+        }
+        var $this_compare_price = $this_product_container.find(".js-compare-price-display");
+        var $this_price = $this_product_container.find(".js-price-display");
+        var $installment_container = $this_product_container.find(".js-product-payments-container");
+        var $installment_text = $this_product_container.find(".js-max-installments-container");
+        var $this_add_to_cart = $this_product_container.find(".js-prod-submit-form");
+
+        // Get the current product discount percentage value
+        var current_percentage_value = $this_product_container.find(".js-offer-percentage");
+
+        // Get the current product price and promotional price
+        var compare_price_value = $this_compare_price.html();
+        var price_value = $this_price.html();
+
+        // Calculate new discount percentage based on difference between filtered old and new prices
+        const percentageDifference = window.moneyDifferenceCalculator.percentageDifferenceFromString(compare_price_value, price_value);
+        if(percentageDifference){
+            $this_product_container.find(".js-offer-percentage").text(percentageDifference);
+            $this_product_container.find(".js-offer-label").css("display" , "table");
+        }
+
+	    if ($this_compare_price.css("display") == "none" || !percentageDifference) {
 	        $this_product_container.find(".js-offer-label").hide();
 	    }
-	    else {
-	        $this_product_container.find(".js-offer-label").css("display" , "table");
-	    }
+
 	    if ($this_add_to_cart.hasClass("nostock")) {
 	        $this_product_container.find(".js-stock-label").show();
 	    }
@@ -1301,7 +1330,6 @@ $(document).ready(function(){
         var $productButtonText = $productButtonPlaceholder.find(".js-addtocart-text");
         var $productButtonAdding = $productButtonPlaceholder.find(".js-addtocart-adding");
         var $productButtonSuccess = $productButtonPlaceholder.find(".js-addtocart-success");
-        var productButttonHeight = $productButton.height();
 
         {# Define if event comes from quickshop or product page #}
 
@@ -1335,7 +1363,6 @@ $(document).ready(function(){
 
             $productButton.hide();
             $productButtonPlaceholder.show().addClass("active");
-            $productButtonPlaceholder.height(productButttonHeight);
             $productButtonText.removeClass("active");
             setTimeout(function(){
                 $productButtonAdding.addClass("active");
@@ -1402,7 +1429,7 @@ $(document).ready(function(){
 
                     setTimeout(function(){
                         $productButtonPlaceholder.hide();
-                        $productButton.show();
+                        $productButton.css('display' , 'inline-block');
                     },4000);
 
                     $productContainer.find(".js-added-to-cart-product-message").slideDown();
@@ -1423,8 +1450,8 @@ $(document).ready(function(){
                             $(".js-alert-added-to-cart").show().addClass("notification-visible").removeClass("notification-hidden");
                         },500);
 
-                        if (typeof $.cookie('first_product_added_successfully') === 'undefined') {
-                            $.cookie('first_product_added_successfully', true, { path: '/', expires: 7 }); 
+                        if (!cookieService.get('first_product_added_successfully')) {
+                            cookieService.set('first_product_added_successfully', 1, 7 ); 
                         } else{
                             setTimeout(function(){
                                 $(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
@@ -1444,8 +1471,8 @@ $(document).ready(function(){
                         zipcode_on_addtocart = $("#product-shipping-container .js-shipping-input").val();
                         $("#cart-shipping-container .js-shipping-input").val(zipcode_on_addtocart);
                         $(".js-shipping-calculator-current-zip").text(zipcode_on_addtocart);
-                    } else if (!!$.cookie('calculator_zipcode')){
-                        var zipcode_from_cookie = $.cookie("calculator_zipcode");
+                    } else if (cookieService.get('calculator_zipcode')){
+                        var zipcode_from_cookie = cookieService.get('calculator_zipcode');
                         $('.js-shipping-input').val(zipcode_from_cookie);
                         $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
                     }
@@ -1458,7 +1485,7 @@ $(document).ready(function(){
                     $productButtonText.fadeIn("active");
                     $productButtonAdding.removeClass("active");
                     $productButtonPlaceholder.hide();
-                    $productButton.show();
+                    $productButton.css('display' , 'inline-block');
                 }
                 $prod_form = $(this).closest("form");
                 LS.addToCartEnhanced(
@@ -1512,7 +1539,7 @@ $(document).ready(function(){
     {# Clear cart notification cookie after consumers continues to checkout #}
 
     $('form[action="{{ store.cart_url | escape('js') }}"]').submit(function() {
-        $.removeCookie('first_product_added_successfully', { path: '/' });
+        cookieService.remove('first_product_added_successfully');
     }); 
 
 	{#/*============================================================================
@@ -1537,11 +1564,11 @@ $(document).ready(function(){
 
     {# Apply zipcode saved by cookie if there is no zipcode saved on cart from backend #}
 
-    if (!!$.cookie('calculator_zipcode')) {
+    if (cookieService.get('calculator_zipcode')) {
 
         {# If there is a cookie saved based on previous calcualtion, add it to the shipping input to triggert automatic calculation #}
 
-        var zipcode_from_cookie = $.cookie("calculator_zipcode");
+        var zipcode_from_cookie = cookieService.get('calculator_zipcode');
         $('#product-shipping-container .js-shipping-input').val(zipcode_from_cookie);
         $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
 
@@ -1745,7 +1772,7 @@ $(document).ready(function(){
 
     {% if template == 'account.register' or template == 'account.login' %}
         $(".js-resend-validation-link").click(function(e){
-            LS.resendAccountValidationEmail('{{ customer_email }}');
+            window.accountVerificationService.resendVerificationEmail('{{ customer_email }}');
         });
     {% endif %}
 

@@ -107,7 +107,7 @@
 	                    {% if "seal_img.jpg" | has_custom_image %}
 	                        <div class="footer-logo custom-seal">
 	                            {% if settings.seal_url != '' %}
-                                    <a href="{{ settings.seal_url }}" target="_blank">
+                                    <a href="{{ settings.seal_url | setting_url }}" target="_blank">
                                 {% endif %}
                                     <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ "seal_img.jpg" | static_url }}" class="custom-seal-img lazyload" alt="{{ 'Sello de' | translate }} {{ store.name }}"/>
                                 {% if settings.seal_url != '' %}

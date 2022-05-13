@@ -11,7 +11,7 @@
 
 {% if not cart_page %}
   {# Cart popup subtotal #}
-  <h5 class="js-visible-on-cart-filled {% if not cart_page %}row no-gutters{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
+  <h5 class="js-visible-on-cart-filled {% if not cart_page %}row no-gutters{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
     <span {% if not cart_page %}class="col"{% endif %}>
       {{ "Subtotal" | translate }}
       <small class="js-subtotal-shipping-wording" {% if not (cart.has_shippable_products or show_calculator_on_cart) %}style="display: none"{% endif %}>{{ " (sin envío)" | translate }}</small>
@@ -35,16 +35,20 @@
       {% endif %}
         <span class="js-total-promotions-detail-row row" id="{{ id }}">
           <span class="col">
-            {% if promotion.discount_script_type == "NAtX%off" %}
-              {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
+            {% if promotion.discount_script_type != "custom" %}
+              {% if promotion.discount_script_type == "NAtX%off" %}
+                {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
+              {% else %}
+                {{ "Promo" | translate }} {{ promotion.discount_script_type }}
+              {% endif %}
+
+              {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
+
+              {% if promotion.discount_script_type == "NAtX%off" %}
+                <span>{{ "Comprando {1} o más" | translate(promotion.selected_threshold.quantity) }}</span>
+              {% endif %}
             {% else %}
-              {{ "Promo" | translate }} {{ promotion.discount_script_type }} 
-            {% endif %}
-
-            {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
-
-            {% if promotion.discount_script_type == "NAtX%off" %}
-              <span>{{ "Comprando {1} o más" | translate(promotion.selected_threshold.quantity) }}</span>
+              {{ promotion.scope_value_name }}
             {% endif %}
             :
           </span>
@@ -115,7 +119,7 @@
           <div class="row justify-content-md-end mt-4 mt-md-0">
             <div class="col-12 col-md-auto">
               {# Cart page subtotal #}
-              <h5 class="js-visible-on-cart-filled row no-gutters justify-content-end justify-content-md-center mb-1" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>
+              <h5 class="js-visible-on-cart-filled row no-gutters justify-content-end justify-content-md-center mb-1" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
                 <span class="col col-md-auto">
                   {{ "Subtotal" | translate }}
                   {% if settings.shipping_calculator_cart_page %}
@@ -141,16 +145,20 @@
                   {% endif %}
                     <span class="js-total-promotions-detail-row row" id="{{ id }}">
                       <span class="col">
-                        {% if promotion.discount_script_type == "NAtX%off" %}
-                          {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
+                        {% if promotion.discount_script_type != "custom" %}
+                          {% if promotion.discount_script_type == "NAtX%off" %}
+                            {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
+                          {% else %}
+                            {{ "Promo" | translate }} {{ promotion.discount_script_type }}
+                          {% endif %}
+
+                          {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
+
+                          {% if promotion.discount_script_type == "NAtX%off" %}
+                            <span>{{ "Comprando {1} o más" | translate(promotion.selected_threshold.quantity) }}</span>
+                          {% endif %}
                         {% else %}
-                          {{ "Promo" | translate }} {{ promotion.discount_script_type }} 
-                        {% endif %}
-
-                        {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
-
-                        {% if promotion.discount_script_type == "NAtX%off" %}
-                          <span>{{ "Comprando {1} o más" | translate(promotion.selected_threshold.quantity) }}</span>
+                          {{ promotion.scope_value_name }}
                         {% endif %}
                         :
                       </span>
@@ -162,7 +170,7 @@
 
               {# Cart total #}
 
-              <div class="js-cart-total-container js-visible-on-cart-filled mb-3" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-total">
+              <div class="js-cart-total-container js-visible-on-cart-filled mb-3 clear-both" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-total">
                 <h2 class="row no-gutters text-primary mb-0 {% if cart_page %}justify-content-end justify-content-md-center{% endif %}">
                   <span class="col {% if cart_page %}col-md-auto{% endif %} mr-1">{{ "Total" | translate }}:</span>
                   <span class="js-cart-total {% if cart.free_shipping.cart_has_free_shipping %}js-free-shipping-achieved{% endif %} {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right">{{ cart.total | money }}</span>

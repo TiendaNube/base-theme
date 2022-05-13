@@ -58,7 +58,7 @@
             <div class="js-cart-notification-close notification-close">
                 {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-primary"} %}
             </div>
-            <div class="js-cart-notification-item row">
+            <div class="js-cart-notification-item row" data-store="cart-notification-item">
                 <div class="col-3 pr-0 notification-img">
                     <img src="" class="js-cart-notification-item-img img-fluid" />
                 </div>

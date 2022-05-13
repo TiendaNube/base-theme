@@ -18,7 +18,7 @@
 {# Promotional text #}
 
 {% if product.promotional_offer and not product.promotional_offer.script.is_percentage_off and product.display_price %}
-    <div class="js-product-promo-container text-center text-md-left">
+    <div class="js-product-promo-container text-center text-md-left" data-store="product-promotion-info">
         {% if product.promotional_offer.script.is_discount_for_quantity %}
             {% for threshold in product.promotional_offer.parameters %}
                 <h4 class="mb-2 text-accent"><strong>{{ "¡{1}% OFF comprando {2} o más!" | translate(threshold.discount_decimal_percentage * 100, threshold.quantity) }}</strong></h4>
@@ -59,7 +59,7 @@
 
     <div class="mb-4">
 
-        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mb-4 {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
+        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-block mb-4 {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} data-store="product-buy-button"/>
 
         {# Fake add to cart CTA visible during add to cart event #}
 

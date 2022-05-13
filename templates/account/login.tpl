@@ -34,11 +34,17 @@
 				<div class="js-resend-validation-error alert alert-danger" style="display:none">
 					<p class="m-1">{{ "No pudimos enviar el email, intentalo de nuevo en unos minutos." | translate }}</p>
 				</div>
+				<div class="js-too-many-attempts alert alert-danger" style="display:none">
+					<p>
+						{{ 'Superaste la cantidad de intentos permitidos. <br> Volvé a probar en' | translate }}
+						<span class="js-too-many-attempts-countdown"></span>
+					</p>
+				</div>
 			</div>
 		</div>
 		<div class="row justify-content-md-center">
 			<div class="col-md-8">
-				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form',submit_custom_class: 'btn-block',submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
+				{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', submit_custom_class: 'btn-block', submit_text: 'Iniciar sesión' | translate, data_store: 'account-login' } %}
 
 					{% block form_body %}
 
@@ -48,12 +54,12 @@
 
 						{# Name input #}
 
-						{% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_value: result.email, input_name: 'email', input_custom_class: 'js-account-input', input_label_text: 'Email' | translate } %}
+						{% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_value: result.email, input_name: 'email', input_custom_class: 'js-account-input', input_label_text: 'Email' | translate, input_required: true } %}
 						{% endembed %}
 
 						{# Password input #}
 
-						{% embed "snipplets/forms/form-input.tpl" with{input_for: 'password', type_password: true, input_name: 'password', input_custom_class: 'js-account-input', input_help: true, input_help_link: store.customer_reset_password_url, input_link_class: 'btn-link-primary font-small mb-4 mt-3n', input_label_text: 'Contraseña' | translate } %}
+						{% embed "snipplets/forms/form-input.tpl" with{input_for: 'password', type_password: true, input_name: 'password', input_custom_class: 'js-account-input', input_help: true, input_help_link: store.customer_reset_password_url, input_link_class: 'btn-link-primary font-small mb-4 mt-3n', input_label_text: 'Contraseña' | translate, input_required: true } %}
 							{% block input_help_text %}{{ '¿Olvidaste tu contraseña?' | translate }}{% endblock input_help_text %}
 						{% endembed %}
 

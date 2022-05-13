@@ -746,10 +746,6 @@ p{
   text-transform: uppercase;
 }
 
-.g-recaptcha > div {
-  margin: 0 auto;
-}
-
 .form-toggle-eye {
   position: absolute;
   top: 20px;
@@ -1317,10 +1313,10 @@ p{
 .img-fluid {max-width:100%;height:auto}
 
 {# /* // Visibility */ #}
-.hidden{display:none}
+.hidden{display:none}.overflow-none{overflow:hidden}
 
 {# /* // Float */ #}
-.float-left{float:left!important}.float-right{float:right!important}.float-none{float:none!important}
+.float-left{float:left!important}.float-right{float:right!important}.float-none{float:none!important}.clear-both{clear:both!important}
 
 {# /* // Width */ #}
 .w-100{width:100%!important}.w-auto{width:auto!important}.full-width-container{width:100%;float:left;clear:both}
