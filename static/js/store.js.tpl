@@ -531,46 +531,69 @@ $(document).ready(function(){
                     );
                 });
                 if(!slides.length){
-                    $(".js-home-slider-container").addClass("hidden");
-                    $(".js-home-empty-slider-container").removeClass("hidden")
+                    $(".js-home-main-slider-container").addClass("hidden");
+                    $(".js-home-empty-slider-container").removeClass("hidden");
+                    $(".js-home-mobile-slider-visibility").removeClass("d-md-none");
+                    {% if has_mobile_slider %}
+                        $(".js-home-main-slider-visibility").removeClass("d-none d-md-block");
+                        homeMobileSwiper.update();
+                    {% endif %}
                 }else{
-                    $(".js-home-slider-container").removeClass("hidden");
+                    $(".js-home-main-slider-container").removeClass("hidden");
                     $(".js-home-empty-slider-container").addClass("hidden");
+                    $(".js-home-mobile-slider-visibility").addClass("d-md-none");
+                    {% if has_mobile_slider %}
+                        $(".js-home-main-slider-visibility").addClass("d-none d-md-block");
+                    {% endif %}
                 }
             },
             changeAutoRotation: function(){
 
             },
         };
+
+        var preloadImagesValue = false;
+        var lazyValue = true;
+        var loopValue = true;
+        var watchOverflowValue = true;
+        var paginationClickableValue = true;
+
         var homeSwiper = new Swiper ('.js-home-slider', {
-            lazy: true,
-            preloadImages: false,
+            lazy: lazyValue,
+            preloadImages: preloadImagesValue,
             {% if settings.slider | length > 1 %}
-                loop: true,
+                loop: loopValue,
             {% endif %}
             autoplay: slider_autoplay,
-            watchOverflow: true,
+            watchOverflow: watchOverflowValue,
             pagination: {
                 el: '.js-swiper-home-pagination',
-                clickable: true,
+                clickable: paginationClickableValue,
             },
             navigation: {
                 nextEl: '.js-swiper-home-next',
                 prevEl: '.js-swiper-home-prev',
             },
-            on: {
-                init: function () {
-                  $(".js-home-slider-placeholder").hide();
-                  $(".js-home-slider").css({"visibility" : "visible" , "height" : "100%"});
-                },
-            },
         });
 
-        {% if settings.slider | length == 1 %}
-            $('.js-swiper-home .swiper-wrapper').addClass( "disabled" );
-            $('.js-swiper-home-pagination, .js-swiper-home-prev, .js-swiper-home-next').remove();
-        {% endif %}      
-
+        var homeMobileSwiper = new Swiper ('.js-home-slider-mobile', {
+            lazy: lazyValue,
+            preloadImages: preloadImagesValue,
+            {% if settings.slider_mobile | length > 1 %}
+                loop: loopValue,
+            {% endif %}
+            autoplay: slider_autoplay,
+            watchOverflow: watchOverflowValue,
+            pagination: {
+                el: '.js-swiper-home-pagination-mobile',
+                clickable: paginationClickableValue,
+            },
+            navigation: {
+                nextEl: '.js-swiper-home-next-mobile',
+                prevEl: '.js-swiper-home-prev-mobile',
+            },
+        });
+     
         {% if sections.primary.products %}
 
             {% if settings.product_color_variants or settings.quick_shop %}

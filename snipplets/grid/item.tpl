@@ -17,7 +17,7 @@
     {% endfor %}
 {% endif %}
 
-<div class="js-item-product {% if slide_item %}js-item-slide swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}">
+<div class="js-item-product {% if slide_item %}js-item-slide swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}" data-component="product-list-item" data-component-value="{{ product.id }}">
 
     {% if settings.quick_shop or settings.product_color_variants %}
         <div class="js-product-container js-quickshop-container {% if product.variations %}js-quickshop-has-variants{% endif %}" data-variants="{{ product.variants_object | json_encode }}" data-quickshop-id="quick{{ product.id }}{% if slide_item and section_name %}-{{ section_name }}{% endif %}">
@@ -114,7 +114,7 @@
 
                     {# Open quickshop popup if has variants #}
 
-                    <a data-toggle="#quickshop-modal" data-modal-url="modal-fullscreen-quickshop" class="js-quickshop-modal-open {% if slide_item %}js-quickshop-slide{% endif %} js-modal-open js-fullscreen-modal-open btn btn-primary btn-small px-4" title="{{ 'Compra rápida de' | translate }} {{ product.name }}" aria-label="{{ 'Compra rápida de' | translate }} {{ product.name }}" >{{ 'Agregar al carrito' | translate }}</a>
+                    <a data-toggle="#quickshop-modal" data-modal-url="modal-fullscreen-quickshop" class="js-quickshop-modal-open {% if slide_item %}js-quickshop-slide{% endif %} js-modal-open js-fullscreen-modal-open btn btn-primary btn-small px-4" title="{{ 'Compra rápida de' | translate }} {{ product.name }}" aria-label="{{ 'Compra rápida de' | translate }} {{ product.name }}" data-component="product-list-item.add-to-cart" data-component-value="{{product.id}}">{{ 'Agregar al carrito' | translate }}</a>
                 {% else %}
 
                     {# If not variants add directly to cart #}
@@ -125,7 +125,7 @@
 
                         <input type="number" name="quantity" value="1" class="js-quantity-input hidden" aria-label="{{ 'Cambiar cantidad' | translate }}" >
 
-                        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-small {{ state }} px-4 mb-1 mx-auto" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} />
+                        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-small {{ state }} px-4 mb-1 mx-auto" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} data-component="product-list-item.add-to-cart" data-component-value="{{ product.id }}"/>
 
                         {# Fake add to cart CTA visible during add to cart event #}
 

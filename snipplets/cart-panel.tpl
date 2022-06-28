@@ -8,7 +8,7 @@
 </div>
 <div class="js-empty-ajax-cart cart-row" {% if cart.items_count > 0 %}style="display:none;"{% endif %}>
  	{# Cart panel empty #}
-    <div class="alert alert-info">{{ "El carrito de compras está vacío." | translate }}</div>
+    <div class="alert alert-info" data-component="cart.empty-message">{{ "El carrito de compras está vacío." | translate }}</div>
 </div>
 <div id="error-ajax-stock" style="display: none;">
 	<div class="alert alert-warning">

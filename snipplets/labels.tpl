@@ -27,7 +27,7 @@
             {% if store.country == 'BR' %}
               {{ "Leve {1} Pague {2}" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}
             {% else %}
-              {{ "Promo" | translate }} {{ product.promotional_offer.script.type }} 
+              {{ product.promotional_offer.script.type }} 
             {% endif %}
           {% else %}
             <span {% if product_detail or color %}class="js-offer-percentage"{% endif %}>{{ price_discount_percentage |round }}</span>% OFF
