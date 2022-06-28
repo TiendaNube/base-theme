@@ -1,6 +1,6 @@
 {% for item in navigation %}
     {% if item.subitems %}
-        <li class="item-with-subitems">
+        <li class="item-with-subitems" data-component="menu.item">
             <div class="js-nav-list-toggle-accordion">
                 <a class="js-toggle-page-accordion nav-list-link" href="#">
                     {{ item.name }}
@@ -27,7 +27,7 @@
             </ul>
         </li>
     {% else %}
-        <li>
+        <li data-component="menu.item">
             <a class="nav-list-link" href="{{ item.url | setting_url }}">{{ item.name }}</a>
         </li>
     {% endif %}

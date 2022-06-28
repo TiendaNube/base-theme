@@ -109,11 +109,26 @@ Página de inicio
 		advanced = true
 	collapse
 		title = Carrusel de imágenes
+	subtitle
+		subtitle = <span data-toggle-info='show-on_slider_mobile-active'>Imágenes para computadoras</span>
 	gallery
 		name = slider
 		gallery_image = Agregar imagen
 		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
 		gallery_width = 1580
+	checkbox
+		name = toggle_slider_mobile
+		description = Cargar otras imágenes para celulares
+	subtitle
+		subtitle = <span data-toggle-info='show-on_slider_mobile-active'>Imágenes para celulares</span>
+	gallery
+		name = slider_mobile
+		gallery_image = Agregar imagen
+		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
+		gallery_width = 500
+		gallery_height = 890
+	subtitle
+		subtitle = <span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>
 	collapse
 		title = Información de envíos, pagos y compra
 	checkbox

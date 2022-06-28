@@ -1,5 +1,13 @@
 {#  **** Home slider ****  #}
-{% include 'snipplets/home/home-slider.tpl' %}
+
+{% set has_mobile_slider = settings.toggle_slider_mobile and settings.slider_mobile and settings.slider_mobile is not empty %}
+
+<section data-store="slider-main">
+	{% include 'snipplets/home/home-slider.tpl' %}
+	{% if has_mobile_slider %}
+		{% include 'snipplets/home/home-slider.tpl' with {mobile: true} %}
+	{% endif %}
+</section>
 
 
 {#  **** Features Order ****  #}

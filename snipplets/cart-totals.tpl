@@ -17,12 +17,11 @@
       <small class="js-subtotal-shipping-wording" {% if not (cart.has_shippable_products or show_calculator_on_cart) %}style="display: none"{% endif %}>{{ " (sin envío)" | translate }}</small>
       :
     </span>
-    <strong class="js-ajax-cart-total js-cart-subtotal {% if not cart_page %}col{% endif %} text-right" data-priceraw="{{ cart.subtotal }}">{{ cart.subtotal | money }}</strong>
+    <strong class="js-ajax-cart-total js-cart-subtotal {% if not cart_page %}col{% endif %} text-right" data-priceraw="{{ cart.subtotal }}" data-component="cart.subtotal" data-component-value={{ cart.subtotal }}>{{ cart.subtotal | money }}</strong>
   </h5>
 
   {# Cart popup promos #}
   <div class="js-total-promotions text-accent font-weight-bold">
-    <span class="js-promo-title" style="display:none;">{{ "Promo" | translate }}</span>
     <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
     <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>
     <span class="js-promo-buying" style="display:none;"> {{ "comprando" | translate }}</span>
@@ -39,7 +38,7 @@
               {% if promotion.discount_script_type == "NAtX%off" %}
                 {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
               {% else %}
-                {{ "Promo" | translate }} {{ promotion.discount_script_type }}
+                {{ promotion.discount_script_type }}
               {% endif %}
 
               {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
@@ -132,7 +131,6 @@
 
               {# Cart page promos #}
               <div class="js-total-promotions">
-                <span class="js-promo-title" style="display:none;">{{ "Promo" | translate }}</span>
                 <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
                 <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>
                 <span class="js-promo-buying" style="display:none;"> {{ "comprando" | translate }}</span>
@@ -149,7 +147,7 @@
                           {% if promotion.discount_script_type == "NAtX%off" %}
                             {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
                           {% else %}
-                            {{ "Promo" | translate }} {{ promotion.discount_script_type }}
+                            {{ promotion.discount_script_type }}
                           {% endif %}
 
                           {{ "en" | translate }} {% if id == 'all' %}{{ "todos los productos" | translate }}{% else %}{{ promotion.scope_value_name }}{% endif %}
@@ -173,7 +171,7 @@
               <div class="js-cart-total-container js-visible-on-cart-filled mb-3 clear-both" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-total">
                 <h2 class="row no-gutters text-primary mb-0 {% if cart_page %}justify-content-end justify-content-md-center{% endif %}">
                   <span class="col {% if cart_page %}col-md-auto{% endif %} mr-1">{{ "Total" | translate }}:</span>
-                  <span class="js-cart-total {% if cart.free_shipping.cart_has_free_shipping %}js-free-shipping-achieved{% endif %} {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right">{{ cart.total | money }}</span>
+                  <span class="js-cart-total {% if cart.free_shipping.cart_has_free_shipping %}js-free-shipping-achieved{% endif %} {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right" data-component="cart.total" data-component-value={{ cart.total }}>{{ cart.total | money }}</span>
                 </h2>
 
                 {# IMPORTANT Do not remove this hidden total, it is used by JS to calculate cart total #}
@@ -199,7 +197,7 @@
 
                 {% if cart_page %}
                   {% if cart.checkout_enabled %}
-                    <input id="go-to-checkout" class="btn btn-primary btn-block mb-3" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}"/>
+                    <input id="go-to-checkout" class="btn btn-primary btn-block mb-3" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}" data-component="cart.checkout-button"/>
                   {% else %}
 
                     {# Cart minium alert #}
@@ -210,7 +208,7 @@
                   {% endif %}
                 {% else %}
                   <div class="js-ajax-cart-submit row mb-3" {{ not cart.checkout_enabled ? 'style="display:none"' }} id="ajax-cart-submit-div">
-                    <input class="btn btn-primary btn-block" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}"/>
+                    <input class="btn btn-primary btn-block" type="submit" name="go_to_checkout" value="{{ 'Iniciar Compra' | translate }}" data-component="cart.checkout-button"/>
                   </div>
 
                   {# Cart minium alert #}

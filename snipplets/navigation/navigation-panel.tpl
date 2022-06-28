@@ -1,6 +1,6 @@
 {% if primary_links %}
     <div class="nav-primary">
-        <ul class="nav-list" data-store="navigation">
+        <ul class="nav-list" data-store="navigation" data-component="menu">
             {% snipplet "navigation/navigation-nav-list.tpl" %}
         </ul>
     </div>

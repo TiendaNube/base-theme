@@ -1372,7 +1372,7 @@ es_mx "¿Te gusta lo que ves? ¡Suscríbite y recibe todas nuestras novedades!
 es "Recibí todas las ofertas"
 pt "Receba todas as ofertas"
 en "Receive every offer"
-es_mx "Recibí todas las ofertas"
+es_mx "Recibe todas las ofertas"
 
 es "Suscribir"
 pt "Subscrever"
@@ -3346,7 +3346,7 @@ es_mx "Pon aquí los productos que más quieras destacar"
 
 es "Elegí el título para la sección"
 pt "Escolha o título da seção"
-es_mx "Elegí el título para la sección"
+es_mx "Elige el título para la sección"
 
 
 es "agregar tus propios productos."
@@ -3364,6 +3364,23 @@ es_mx "Carrusel de imágenes"
 es "Slider principal de tu sitio"
 pt "Slider principal de seu site"
 es_mx "Carrusel principal de tu sitio"
+
+es "Cargar otras imágenes para celulares"
+pt "Carregar outras imagens para celulares"
+es_mx "Cargar otras imágenes para celulares"
+
+es "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para computadoras</span>"
+pt "<span data-toggle-info='show-on_slider_mobile-active'>Imagens para computadores</span>"
+es_mx "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para computadoras</span>"
+
+es "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para celulares</span>"
+pt "<span data-toggle-info='show-on_slider_mobile-active'>Imagens para celulares</span>"
+es_mx "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para celulares</span>"
+
+es "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
+pt "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://atendimento.nuvemshop.com.br/pt-BR/articles/3300655-como-configurar-banners-rotativos-nos-layouts-idea-bahia-e-amazonas'>Como criar as imagens para seus banners rotativos?</a>"
+en "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>How to design the images for your carousel?</a>"
+es_mx "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
 
 es "Imágenes"
 pt "Imagens"

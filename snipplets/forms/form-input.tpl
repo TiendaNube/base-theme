@@ -41,7 +41,7 @@
     {% block input_prepend_content %}
     {% endblock input_prepend_content %}
     {% if input_append_content or input_prepend_content %}
-    <div class="form-control-container {{ form_control_container_custom_class }}">
+    <div class="form-control-container {{ form_control_container_custom_class }}" {% if form_data_component %}data-component="{{ form_data_component }}"{% endif %}>
     {% endif %}
     {% if text_area %}
         <textarea
@@ -69,6 +69,7 @@
             {% if input_data_attr %}data-{{ input_data_attr }}="{{ input_data_val }}"{% endif %}
             {% if input_aria_label %}aria-label="{{ input_aria_label }}"{% endif %}
             {% if input_required %}required{% endif %}
+            {% if data_component %}data-component="{{ data_component }}"{% endif %}
         />
             {% if type_password %} 
                 <a aria-label="{{ 'Ver contraseña' | translate }}" class="js-password-view btn form-toggle-eye">
