@@ -2669,11 +2669,6 @@ pt "Conheça a quantidade de parcelas"
 en "See our installments amount"
 es_mx "Conoce el número de mensualidades"
 
-es "Boleto Paghiper tiene un"
-pt "Boleto PagHiper oferece"
-en "Boleto Paghiper offers a"
-es_mx "Boleto Paghiper tiene un"
-
 es "de descuento"
 pt "de desconto"
 en "discount"
