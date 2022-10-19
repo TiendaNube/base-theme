@@ -20,7 +20,7 @@
                         {% set method_clean = method | replace(" ", "_") | lower %}
 
                         <li id="method_{{ method_clean }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab {% if loop.first %} active {% endif %}" data-code="{{ method }}">
-                            <a href="#installment_{{ method_clean }}_{{ installment }}" class="js-tab-link tab-link">{{ method == 'paypal_multiple' ? 'PAYPAL' : (method == 'itaushopline'? 'ITAU SHOPLINE' : method == 'boleto_paghiper'? 'BOLETO PAGHIPER' : method | upper) }}</a>
+                            <a href="#installment_{{ method_clean }}_{{ installment }}" class="js-tab-link tab-link">{{ method == 'paypal_multiple' ? 'PAYPAL' : (method == 'itaushopline'? 'ITAU SHOPLINE' : method | upper) }}</a>
                         </li>
 
                         {# Custom payment method #}
