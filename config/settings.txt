@@ -110,25 +110,29 @@ Página de inicio
 	collapse
 		title = Carrusel de imágenes
 	subtitle
-		subtitle = <span data-toggle-info='show-on_slider_mobile-active'>Imágenes para computadoras</span>
+		subtitle = Imágenes para computadoras
 	gallery
 		name = slider
 		gallery_image = Agregar imagen
 		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
 		gallery_width = 1580
+		gallery_more_info = true
+	subtitle
+		subtitle = Imágenes para celulares
+	description
+		description = Mejorá la calidad y velocidad de carga con esta opción
 	checkbox
 		name = toggle_slider_mobile
 		description = Cargar otras imágenes para celulares
-	subtitle
-		subtitle = <span data-toggle-info='show-on_slider_mobile-active'>Imágenes para celulares</span>
 	gallery
 		name = slider_mobile
 		gallery_image = Agregar imagen
 		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
-		gallery_width = 500
-		gallery_height = 890
+		gallery_width = 820
+		gallery_height = 1460
+		gallery_more_info = true
 	subtitle
-		subtitle = <span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>
+		subtitle = <a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>
 	collapse
 		title = Información de envíos, pagos y compra
 	checkbox
@@ -358,7 +362,28 @@ Página de inicio
 		description = Link (Youtube o Vimeo)
 	description
 		description = Ej: https://www.youtube.com/watch?v=dptrWehSI8c
-
+	collapse
+		title = Pop-up promocional
+	checkbox
+		name = home_promotional_popup
+		description = Mostrar pop-up
+	subtitle
+		subtitle = Imagen para el pop-up
+	image
+		original = home_popup_image.jpg
+		title = Cargar imagen (JPG, GIF, PNG)
+	subtitle
+		subtitle = Frase motivadora para el pop-up
+	i18n_input
+		name = home_popup_txt
+	i18n_input
+		name = home_popup_url
+		description = Link (Opcional)
+	subtitle
+		subtitle = Newsletter
+	checkbox
+		name = home_news_box
+		description = Permitir que tus clientes se registren para recibir novedades desde el pop-up (Opcional)
 	collapse
 		title = Orden de secciones
 	dropdown
@@ -461,9 +486,17 @@ Listado de productos
 		subtitle = Podés subir una imagen diferente para cada categoría <a target='_blank' href='/admin/categories/'>desde acá</a>
 	title
 		title = Filtros
+	description
+		description = Elegí qué filtros vas a mostrar en el listado de productos.
 	checkbox
 		name = product_filters
-		description = Mostrar filtros en el listado de productos
+		description = Variantes del producto
+	checkbox
+		name = brand_filters
+		description = Marca
+	checkbox
+		name = price_filters
+		description = Precio
 	title
 		title = Productos en el listado
 	dropdown
@@ -504,6 +537,20 @@ Detalle de producto
 		description = Mostrar el calculador de costos de envío y locales físicos en la página de producto
 	subtitle
 		subtitle = <a target='_blank' href='/admin/shipping/'>Agregar medios de envío o locales físicos</a>
+	title
+		title = Variantes del producto
+	checkbox
+		name = bullet_variants
+		description = Mostrar como botones
+	title
+		title = Guía de talles
+	subtitle
+		subtitle = Cuando un producto tenga variantes de 'Talle', podés mostrar un pop-up con las medidas. Solo necesitás <a target='_blank' href='/admin/pages/'>crear una página</a> e incluir su link debajo.
+	i18n_input
+		name = size_guide_url
+		description = Link de la página
+	description
+		description = Ej: https://tudominio.com/guia-de-talles/
 	title
 		title = Último producto en stock
 	checkbox

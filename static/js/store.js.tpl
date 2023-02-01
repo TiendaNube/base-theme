@@ -55,6 +55,11 @@
 
 ==============================================================================*/#}
 
+// Move to our_content
+window.urls = {
+    "shippingUrl": "{{ store.shipping_calculator_url | escape('js') }}"
+}
+
 {#/*============================================================================
   #Lazy load
 ==============================================================================*/ #}
@@ -75,7 +80,7 @@ window.lazySizesConfig = window.lazySizesConfig || {};
 lazySizesConfig.hFac = 0.4;
 
 
-$(document).ready(function(){
+DOMContentLoaded.addEventOrExecute(() => {
 
 	{#/*============================================================================
 	  #Notifications
@@ -83,34 +88,33 @@ $(document).ready(function(){
 
     {# Notifications variables #}
 
-    var $notification_status_page = $(".js-notification-status-page");
-    var $notification_order_cancellation = $(".js-notification-order-cancellation");
-    var $fixed_bottom_button = $(".js-btn-fixed-bottom");
+    var $notification_status_page = jQueryNuvem(".js-notification-status-page");
+    var $notification_order_cancellation = jQueryNuvem(".js-notification-order-cancellation");
+    var $fixed_bottom_button = jQueryNuvem(".js-btn-fixed-bottom");
 
     {# /* // Close notification */ #}
 
-    $(".js-notification-close").on( "click", function(e) {
+    jQueryNuvem(".js-notification-close").on( "click", function(e) {
         e.preventDefault();
-        $(this).closest(".js-notification").hide();
+        jQueryNuvem(e.currentTarget).closest(".js-notification").hide();
     });
 
     {# /* // Follow order status notification */ #}
-
-    if ($notification_status_page.size() > 0){
+    
+    if ($notification_status_page.length > 0){
         if (LS.shouldShowOrderStatusNotification($notification_status_page.data('url'))){
             $notification_status_page.show();
         };
-        $(".js-notification-status-page-close").on( "click", function(e) {
+        jQueryNuvem(".js-notification-status-page-close").on( "click", function(e) {
             e.preventDefault();
             LS.dontShowOrderStatusNotificationAgain($notification_status_page.data('url'));
         });
     }
 
     {# /* // Follow order cancellation notification */ #}
-
-    if ($notification_order_cancellation.size() > 0){
+    
+    if ($notification_order_cancellation.length > 0){
         if (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url'))){
-
             {% if not params.preview %}
                 {# Show order cancellation notification only if cookie banner is not visible #}
 
@@ -120,34 +124,23 @@ $(document).ready(function(){
             {% if not params.preview %}
                 }
             {% endif %}
-            $fixed_bottom_button.css({"margin-bottom": "40px"});
+            $fixed_bottom_button.css("marginBottom", "40px");
         };
-        $(".js-notification-order-cancellation-close").on( "click", function(e) {
+        jQueryNuvem(".js-notification-order-cancellation-close").on( "click", function(e) {
             e.preventDefault();
             LS.dontShowOrderCancellationNotification($notification_order_cancellation.data('url'));
         });
     }
 
-    {% if not settings.head_fix %}
+    {# /* // Cart notification: Dismiss notification */ #}
 
-        {# /* // Add to cart notification on non fixed header */ #}
-
-        var headHeight = $(".js-head-main").outerHeight();
-        var $addedToCartNotification = $(".js-alert-added-to-cart");
-
-        $addedToCartNotification.css("top" , headHeight);
-
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() == 0) {
-                    $addedToCartNotification.css("top" , headHeight).addClass("notification-with-arrow");
-                } else {
-                    $addedToCartNotification.css("top" , 30);
-                }
-            });
-        })
-
-    {% endif %}
+    jQueryNuvem(".js-cart-notification-close").on("click", function(){
+        jQueryNuvem(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
+        setTimeout(function(){
+            jQueryNuvem('.js-cart-notification-item-img').attr('src', '');
+            jQueryNuvem(".js-alert-added-to-cart").hide();
+        },2000);
+    });
 
     {% if not params.preview %}
         
@@ -156,33 +149,35 @@ $(document).ready(function(){
         restoreNotifications = function(){
 
             // Whatsapp button position
-            $fixed_bottom_button.css({"margin-bottom": "10px"});
+            if (window.innerWidth < 768) {
+                $fixed_bottom_button.css("marginBottom", "10px");
+            }
 
             {# Restore notifications when Cookie Banner is closed #}
 
-            var show_order_cancellation = ($notification_order_cancellation.size() > 0) && (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url')));
+            var show_order_cancellation = ($notification_order_cancellation.length > 0) && (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url')));
 
             {% if store.country == 'AR' %}
                 {# Order cancellation #}
                 if (show_order_cancellation){
                     $notification_order_cancellation.show();
-                    $fixed_bottom_button.css({"margin-bottom": "40px"});
+                    $fixed_bottom_button.css("marginBottom", "40px");
                 }
             {% endif %}
         };
 
         if (!window.cookieNotificationService.isAcknowledged()) {
-            $(".js-notification-cookie-banner").show();
+            jQueryNuvem(".js-notification-cookie-banner").show();
 
             {# Whatsapp button position #}
-            if ($(window).width() < 768) {
-                $fixed_bottom_button.css({"margin-bottom": "120px"});
+            if (window.innerWidth < 768) {
+                $fixed_bottom_button.css("marginBottom", "120px");
             }else{
-                $fixed_bottom_button.css({"margin-bottom": "70px"});
+                $fixed_bottom_button.css("marginBottom", "70px");
             }
         }
 
-        $(".js-acknowledge-cookies").on( "click", function(e) {
+        jQueryNuvem(".js-acknowledge-cookies").on( "click", function(e) {
             window.cookieNotificationService.acknowledge();
             restoreNotifications();
         });
@@ -201,18 +196,18 @@ $(document).ready(function(){
 
             {# Clean quickshop modal #}
 
-            $("#quickshop-modal .js-item-product").removeClass("js-swiper-slide-visible js-item-slide");
-            $("#quickshop-modal .js-quickshop-container").attr( { 'data-variants' : '' , 'data-quickshop-id': '' } );
-            $("#quickshop-modal .js-item-product").attr('data-product-id', '');
+            jQueryNuvem("#quickshop-modal .js-item-product").removeClass("js-swiper-slide-visible js-item-slide");
+            jQueryNuvem("#quickshop-modal .js-quickshop-container").attr( { 'data-variants' : '' , 'data-quickshop-id': '' } );
+            jQueryNuvem("#quickshop-modal .js-item-product").attr('data-product-id', '');
 
             {# Wait for modal to become invisible before removing form #}
             
             setTimeout(function(){
-                var $quickshop_form = $("#quickshop-form").find('.js-product-form');
-                var $item_form_container = $(".js-quickshop-opened").find(".js-item-variants");
+                var $quickshop_form = jQueryNuvem("#quickshop-form").find('.js-product-form');
+                var $item_form_container = jQueryNuvem(".js-quickshop-opened").find(".js-item-variants");
                 
                 $quickshop_form.detach().appendTo($item_form_container);
-                $(".js-quickshop-opened").removeClass("js-quickshop-opened");
+                jQueryNuvem(".js-quickshop-opened").removeClass("js-quickshop-opened");
             },350);
 
         };
@@ -221,7 +216,7 @@ $(document).ready(function(){
     
     {# Full screen mobile modals back events #}
 
-    if ($(window).width() < 768) {
+    if (window.innerWidth < 768) {
 
         {# Clean url hash function #}
 
@@ -246,15 +241,15 @@ $(document).ready(function(){
 
         {# Open full screen modal and url hash #}
 
-        $(document).on("click", ".js-fullscreen-modal-open", function(e) {
+        jQueryNuvem(document).on("click", ".js-fullscreen-modal-open", function(e) {
             e.preventDefault();
-            var modal_url_hash = $(this).data("modal-url");            
+            var modal_url_hash = jQueryNuvem(this).data("modalUrl");
             window.location.hash = modal_url_hash;
         });
 
         {# Close full screen modal: Remove url hash #}
 
-        $(document).on("click", ".js-fullscreen-modal-close", function(e) {
+        jQueryNuvem(document).on("click", ".js-fullscreen-modal-close", function(e) {
             e.preventDefault();
             goBackBrowser();
         });
@@ -266,18 +261,19 @@ $(document).ready(function(){
 
                 {# Close opened modal #}
 
-                if($(".js-fullscreen-modal").hasClass("modal-show")){
+                if(jQueryNuvem(".js-fullscreen-modal").hasClass("modal-show")){
 
                     {# Remove body lock only if a single modal is visible on screen #}
 
-                    if($(".js-modal.modal-show").length == 1){
-                        $("body").removeClass("overflow-none");
+                    if(jQueryNuvem(".js-modal.modal-show").length == 1){
+                        jQueryNuvem("body").removeClass("overflow-none");
                     }
 
-                    var $opened_modal = $(".js-fullscreen-modal.modal-show");
+                    var $opened_modal = jQueryNuvem(".js-fullscreen-modal.modal-show");
                     var $opened_modal_overlay = $opened_modal.prev();
 
-                    $opened_modal.removeClass("modal-show").delay(500).hide(0);
+                    $opened_modal.removeClass("modal-show");
+                    setTimeout(() => $opened_modal.hide(), 500);
                     $opened_modal_overlay.fadeOut(500);
 
                     {% if settings.quick_shop %}
@@ -289,95 +285,143 @@ $(document).ready(function(){
 
     }
     
-    $(document).on("click", ".js-modal-open", function(e) {
+    jQueryNuvem(document).on("click", ".js-modal-open", function(e) {
         e.preventDefault(); 
-        var modal_id = $(this).data('toggle');
-        var $overlay_id = $('.js-modal-overlay[data-modal-id="' + modal_id + '"]');
-        if ($(modal_id).hasClass("modal-show")) {
-            $(modal_id).removeClass("modal-show").delay(500).hide(0);
+        var modal_id = jQueryNuvem(this).data('toggle');
+        var $overlay_id = jQueryNuvem('.js-modal-overlay[data-modal-id="' + modal_id + '"]');
+        if (jQueryNuvem(modal_id).hasClass("modal-show")) {
+            let modal = jQueryNuvem(modal_id).removeClass("modal-show");
+            setTimeout(() => modal.hide(), 500);
         } else {
 
             {# Lock body scroll if there is no modal visible on screen #}
             
-            if(!$(".js-modal.modal-show").length){
-                $("body").addClass("overflow-none");
+            if(!jQueryNuvem(".js-modal.modal-show").length){
+                jQueryNuvem("body").addClass("overflow-none");
             }
             $overlay_id.fadeIn(400);
-            $(modal_id).detach().appendTo("body");
+            jQueryNuvem(modal_id).detach().appendTo("body");
             $overlay_id.detach().insertBefore(modal_id);
-            $(modal_id).show(0).addClass("modal-show");
+            jQueryNuvem(modal_id).show().addClass("modal-show");
         }             
     });
 
-    closeModal = function(element){
-
+    jQueryNuvem(document).on("click", ".js-modal-close", function(e) {
+        e.preventDefault();  
         {# Remove body lock only if a single modal is visible on screen #}
 
-        if($(".js-modal.modal-show").length == 1){
-            $("body").removeClass("overflow-none");
+        if(jQueryNuvem(".js-modal.modal-show").length == 1){
+            jQueryNuvem("body").removeClass("overflow-none");
         }
-        var $modal = $('body .js-modal.modal-show:last-child');
-        var $overlay = $modal.prev(".js-modal-overlay");
-        $modal.removeClass("modal-show").delay(500).hide(0); 
-        $overlay.fadeOut(500);
+        var $modal = jQueryNuvem(this).closest(".js-modal");
+        var modal_id = $modal.attr('id');
+        var $overlay_id = jQueryNuvem('.js-modal-overlay[data-modal-id="#' + modal_id + '"]');
+        $modal.removeClass("modal-show");
+        setTimeout(() => $modal.hide(), 500);
+        $overlay_id.fadeOut(500);
+        {% if settings.quick_shop %}
+            restoreQuickshopForm();
+        {% endif %}
 
         {# Close full screen modal: Remove url hash #}
 
-        if (($(window).width() < 768) && ($(element).hasClass(".js-fullscreen-modal-close"))) {
+        if ((window.innerWidth < 768) && (jQueryNuvem(this).hasClass(".js-fullscreen-modal-close"))) {
             goBackBrowser();
-        }
-
-        {% if settings.quick_shop %}
-            restoreQuickshopForm();
-        {% endif %}
-        
-    };
-
-    $(document).on("click", ".js-modal-close", function(e) {
-        e.preventDefault();  
-        closeModal($(this));    
+        }    
     });
 
-    {# Close modal on ESC keyboard #}
-
-    $(document).keyup(function(e) {
-        if (e.keyCode == 27) {
-            closeModal($(".js-modal-close"));    
-        }
-    });
-
-    $(document).on("click", ".js-modal-overlay", function(e) {
+    jQueryNuvem(document).on("click", ".js-modal-overlay", function(e) {
         e.preventDefault();
         {# Remove body lock only if a single modal is visible on screen #}
 
-        if($(".js-modal.modal-show").length == 1){
-            $("body").removeClass("overflow-none");
+        if(jQueryNuvem(".js-modal.modal-show").length == 1){
+            jQueryNuvem("body").removeClass("overflow-none");
         }
-        var modal_id = $(this).data('modal-id');
-        $(modal_id).removeClass("modal-show").delay(500).hide(0);   
-        $(this).fadeOut(500);   
+        var modal_id = jQueryNuvem(this).data('modalId');
+        let modal = jQueryNuvem(modal_id).removeClass("modal-show");
+        setTimeout(() => modal.hide(), 500); 
+        jQueryNuvem(this).fadeOut(500);   
         {% if settings.quick_shop %}
             restoreQuickshopForm();
         {% endif %}
 
-        if ($(this).hasClass("js-fullscreen-overlay") && $(window).width() < 768) {
+        if (jQueryNuvem(this).hasClass("js-fullscreen-overlay") && (window.innerWidth < 768)) {
             cleanURLHash();
         }
     });
+
+    {% if template == 'home' and settings.home_promotional_popup %}
+
+        {# /* // Home popup and newsletter popup */ #}
+
+        jQueryNuvem('#news-popup-form').on("submit", function () {
+            jQueryNuvem(".js-news-spinner").show();
+            jQueryNuvem(".js-news-send, .js-news-popup-submit").hide();
+            jQueryNuvem(".js-news-popup-submit").prop("disabled", true);
+        });
+
+        LS.newsletter('#news-popup-form-container', '#home-modal', '{{ store.contact_url | escape('js') }}', function (response) {
+            jQueryNuvem(".js-news-spinner").hide();
+            jQueryNuvem(".js-news-send, .js-news-popup-submit").show();
+            var selector_to_use = response.success ? '.js-news-popup-success' : '.js-news-popup-failed';
+            let newPopupAlert = jQueryNuvem(this).find(selector_to_use).fadeIn(100);
+            setTimeout(() => newPopupAlert.fadeOut(500), 4000);
+            if (jQueryNuvem(".js-news-popup-success").css("display") == "block") {
+                setTimeout(function () {
+                    jQueryNuvem('[data-modal-id="#home-modal"]').fadeOut(500);
+                    let homeModal = jQueryNuvem("#home-modal").removeClass("modal-show");
+                    setTimeout(() => homeModal.hide(), 500);
+                }, 2500);
+            }
+            jQueryNuvem(".js-news-popup-submit").prop("disabled", false);
+        });
+
+
+        var callback_show = function(){
+            jQueryNuvem('.js-modal-overlay[data-modal-id="#home-modal"]').fadeIn(500);
+            jQueryNuvem("#home-modal").detach().appendTo("body").show().addClass("modal-show");
+        }
+        var callback_hide = function(){
+            jQueryNuvem('.js-modal-overlay[data-modal-id="#home-modal"]').fadeOut(500);
+            let homeModal = jQueryNuvem("#home-modal").removeClass("modal-show");
+            setTimeout(() => homeModal.hide(), 500);
+        }
+        LS.homePopup({
+            selector: "#home-modal",
+            timeout: 10000,
+            mobile_max_pixels: 0,
+        }, callback_hide, callback_show);
+
+    {% endif %}
 
     {#/*============================================================================
       #Tabs
     ==============================================================================*/ #}
 
-    var $tab_open = $('.js-tab');
+    var $tab_open = jQueryNuvem('.js-tab');
 
-    $tab_open.click(function (e) {
+    $tab_open.on("click", function (e) {
         e.preventDefault(); 
-        var $tab_container = $(this).closest(".js-tab-container");
+        var $tab_container = jQueryNuvem(e.currentTarget).closest(".js-tab-container");
         $tab_container.find(".js-tab, .js-tab-panel").removeClass("active");
-        $(this).addClass("active");
-        var tab_to_show = $(this).find(".js-tab-link").attr("href");
+        jQueryNuvem(e.currentTarget).addClass("active");
+        var tab_to_show = jQueryNuvem(e.currentTarget).find(".js-tab-link").attr("href");
         $tab_container.find(tab_to_show).addClass("active");    
+    });
+
+    {#/*============================================================================
+      #Accordions
+    ==============================================================================*/ #}
+    
+    jQueryNuvem(document).on("click", ".js-accordion-toggle", function(e) {
+        e.preventDefault();
+        if(jQueryNuvem(this).hasClass("js-accordion-show-only")){
+            jQueryNuvem(this).hide();
+        }else{
+            jQueryNuvem(this).find(".js-accordion-toggle-inactive").toggle();
+            jQueryNuvem(this).find(".js-accordion-toggle-active").toggle();
+        }
+        jQueryNuvem(this).prev(".js-accordion-container").slideToggle();
     });
 
 	{#/*============================================================================
@@ -389,13 +433,13 @@ $(document).ready(function(){
     {% if template == 'home' and settings.head_transparent %}
         {% if settings.slider and settings.slider is not empty %}        
 
-            var $swiper_height = $(window).height() - 100;
+            var $swiper_height = window.innerHeight - 100;
             
-            $(document).scroll(function() {
-                if ($(document).scrollTop() > $swiper_height ) {
-                    $(".js-head-main").removeClass("head-transparent");
+            document.addEventListener("scroll", function() {
+                if (document.documentElement.scrollTop > $swiper_height ) {
+                    jQueryNuvem(".js-head-main").removeClass("head-transparent");
                 } else {
-                    $(".js-head-main").addClass("head-transparent");
+                    jQueryNuvem(".js-head-main").addClass("head-transparent");
                 }
             });
 
@@ -407,9 +451,9 @@ $(document).ready(function(){
     function applyOffset(selector){
 
         // Get nav height on load
-        if ($(window).width() > 768) {
-            var head_height = $(".js-head-main").height();
-            $(selector).css("padding-top", head_height); 
+        if (window.innerWidth > 768) {
+            var head_height = jQueryNuvem(".js-head-main").height();
+            jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px');
         }else{
 
             {# On mobile there is no top padding due to position sticky CSS #}
@@ -418,18 +462,18 @@ $(document).ready(function(){
 
         // Apply offset nav height on load
 
-        $(window).resize(function() {
+        window.addEventListener("resize", function() {
 
             // Get nav height on resize
-            var head_height = $(".js-head-main").height();
+            var head_height = jQueryNuvem(".js-head-main").height();
 
             // Apply offset on resize
-            if ($(window).width() > 768) {
-                $(selector).css("padding-top", head_height);
+            if (window.innerWidth > 768) {
+                jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px');
             }else{
 
                 {# On mobile there is no top padding due to position sticky CSS #}
-                $(selector).removeAttr("style");
+                jQueryNuvem(selector).css("paddingTop", "0px");
             }
         });
     }
@@ -440,65 +484,78 @@ $(document).ready(function(){
 
     {# /* // Nav */ #}
 
-        var $top_nav = $(".js-mobile-nav");
-        var $page_main_content = $(".js-main-content");
-        var $search_backdrop = $(".js-search-backdrop");
+        var $top_nav = jQueryNuvem(".js-mobile-nav");
+        var $page_main_content = jQueryNuvem(".js-main-content");
+        var $search_backdrop = jQueryNuvem(".js-search-backdrop");
 
         $top_nav.addClass("move-down").removeClass("move-up");
 
 
         {# Nav subitems #}
 
-        $(".js-toggle-page-accordion").click(function (e) {
+        jQueryNuvem(".js-toggle-page-accordion").on("click", function (e) {
             e.preventDefault();
-            $(this).toggleClass("selected").closest(".js-nav-list-toggle-accordion").next(".js-pages-accordion").slideToggle(300);
+            jQueryNuvem(e.currentTarget).toggleClass("active").closest(".js-nav-list-toggle-accordion").next(".js-pages-accordion").slideToggle(300);
         });
 
         {# Focus search #}
 
-        $(".js-toggle-search").click(function (e) {
+        jQueryNuvem(".js-toggle-search").click(function (e) {
             e.preventDefault;
-            $(".js-search-input").focus();
+            jQueryNuvem(".js-search-input").each(el => el.focus());
         });
 
 
     {# /* // Search suggestions */ #}
 
-        LS.search($(".js-search-input"), function (html, count) {
-            $search_suggests = $(this).closest(".js-search-container").next(".js-search-suggest");
+        LS.search(jQueryNuvem(".js-search-input"), function (html, count) {
+            $search_suggests = jQueryNuvem(this).closest(".js-search-container").next(".js-search-suggest");
             if (count > 0) {
                 $search_suggests.html(html).show();
             } else {
                 $search_suggests.hide();
             }
-            if ($(this).val().length == 0) {
+            if (jQueryNuvem(this).val().length == 0) {
                 $search_suggests.hide();
             }
         }, {
             snipplet: 'header/header-search-results.tpl'
         });
 
-        if ($(window).width() > 768) {
+        if (window.innerWidth > 768) {
 
             {# Hide search suggestions if user click outside results #}
 
-            $("body").click(function () {
-                $(".js-search-suggest").hide();
+            jQueryNuvem("body").on("click", function () {
+                jQueryNuvem(".js-search-suggest").hide();
             });
 
             {# Maintain search suggestions visibility if user click on links inside #}
 
-            $(document).on("click", ".js-search-suggest a", function () {
-                $(".js-search-suggest").show();
+            jQueryNuvem(document).on("click", ".js-search-suggest a", function () {
+                jQueryNuvem(".js-search-suggest").show();
             });
         }
 
-        $(".js-search-suggest").on("click", ".js-search-suggest-all-link", function (e) {
+        jQueryNuvem(".js-search-suggest").on("click", ".js-search-suggest-all-link", function (e) {
             e.preventDefault();
-            $this_closest_form = $(this).closest(".js-search-suggest").prev(".js-search-form");
+            $this_closest_form = jQueryNuvem(this).closest(".js-search-suggest").prev(".js-search-form");
             $this_closest_form.submit();
         });
 
+    {# /* // Lang select */ #}
+
+
+    changeLang = function(element) {
+        var selected_country_url = element.find("option").filter((el) => el.selected).attr("data-country-url");
+        location.href = selected_country_url;
+    };
+
+    jQueryNuvem('.js-lang-select').on("change", function (e) {
+        lang_select_option = jQueryNuvem(this);
+
+        changeLang(lang_select_option);
+    });
 
 	{#/*============================================================================
 	  #Sliders
@@ -525,25 +582,30 @@ $(document).ready(function(){
                     homeSwiper.appendSlide(
                         '<div class="swiper-slide slide-container">' +
                             (aSlide.link ? '<a href="' + aSlide.link + '">' : '' ) +
-                            '<img src="' + aSlide.src + '" class="slider-image"/>' + +
+                                '<img src="' + aSlide.src + '" class="slider-image"/>' +
+                                '<div class="swiper-text swiper-' + aSlide.color + '">' +
+                                    (aSlide.title ? '<div class="swiper-title">' + aSlide.title + '</div>' : '' ) +
+                                    (aSlide.description ? '<div class="swiper-description mb-3">' + aSlide.description + '</div>' : '' ) +
+                                    (aSlide.button && aSlide.link ? '<div class="btn btn-primary d-inline-block mt-3">' + aSlide.button + '</div>' : '' ) +
+                                '</div>' +
                             (aSlide.link ? '</a>' : '' ) +
                         '</div>'
                     );
                 });
                 if(!slides.length){
-                    $(".js-home-main-slider-container").addClass("hidden");
-                    $(".js-home-empty-slider-container").removeClass("hidden");
-                    $(".js-home-mobile-slider-visibility").removeClass("d-md-none");
+                    jQueryNuvem(".js-home-main-slider-container").addClass("hidden");
+                    jQueryNuvem(".js-home-empty-slider-container").removeClass("hidden");
+                    jQueryNuvem(".js-home-mobile-slider-visibility").removeClass("d-md-none");
                     {% if has_mobile_slider %}
-                        $(".js-home-main-slider-visibility").removeClass("d-none d-md-block");
+                        jQueryNuvem(".js-home-main-slider-visibility").removeClass("d-none d-md-block");
                         homeMobileSwiper.update();
                     {% endif %}
                 }else{
-                    $(".js-home-main-slider-container").removeClass("hidden");
-                    $(".js-home-empty-slider-container").addClass("hidden");
-                    $(".js-home-mobile-slider-visibility").addClass("d-md-none");
+                    jQueryNuvem(".js-home-main-slider-container").removeClass("hidden");
+                    jQueryNuvem(".js-home-empty-slider-container").addClass("hidden");
+                    jQueryNuvem(".js-home-mobile-slider-visibility").addClass("d-md-none");
                     {% if has_mobile_slider %}
-                        $(".js-home-main-slider-visibility").addClass("d-none d-md-block");
+                        jQueryNuvem(".js-home-main-slider-visibility").addClass("d-none d-md-block");
                     {% endif %}
                 }
             },
@@ -558,41 +620,55 @@ $(document).ready(function(){
         var watchOverflowValue = true;
         var paginationClickableValue = true;
 
-        var homeSwiper = new Swiper ('.js-home-slider', {
-            lazy: lazyValue,
-            preloadImages: preloadImagesValue,
-            {% if settings.slider | length > 1 %}
-                loop: loopValue,
-            {% endif %}
-            autoplay: slider_autoplay,
-            watchOverflow: watchOverflowValue,
-            pagination: {
-                el: '.js-swiper-home-pagination',
-                clickable: paginationClickableValue,
+        var homeSwiper = null;
+        createSwiper(
+            '.js-home-slider',
+            {
+                lazy: lazyValue,
+                preloadImages: preloadImagesValue,
+                {% if settings.slider | length > 1 %}
+                    loop: loopValue,
+                {% endif %}
+                autoplay: slider_autoplay,
+                watchOverflow: watchOverflowValue,
+                pagination: {
+                    el: '.js-swiper-home-pagination',
+                    clickable: paginationClickableValue,
+                },
+                navigation: {
+                    nextEl: '.js-swiper-home-next',
+                    prevEl: '.js-swiper-home-prev',
+                },
             },
-            navigation: {
-                nextEl: '.js-swiper-home-next',
-                prevEl: '.js-swiper-home-prev',
-            },
-        });
+            function(swiperInstance) {
+                homeSwiper = swiperInstance;
+            }
+        );
 
-        var homeMobileSwiper = new Swiper ('.js-home-slider-mobile', {
-            lazy: lazyValue,
-            preloadImages: preloadImagesValue,
-            {% if settings.slider_mobile | length > 1 %}
-                loop: loopValue,
-            {% endif %}
-            autoplay: slider_autoplay,
-            watchOverflow: watchOverflowValue,
-            pagination: {
-                el: '.js-swiper-home-pagination-mobile',
-                clickable: paginationClickableValue,
+        var homeMobileSwiper = null;
+        createSwiper(
+            '.js-home-slider-mobile',
+            {
+                lazy: lazyValue,
+                preloadImages: preloadImagesValue,
+                {% if settings.slider_mobile | length > 1 %}
+                    loop: loopValue,
+                {% endif %}
+                autoplay: slider_autoplay,
+                watchOverflow: watchOverflowValue,
+                pagination: {
+                    el: '.js-swiper-home-pagination-mobile',
+                    clickable: paginationClickableValue,
+                },
+                navigation: {
+                    nextEl: '.js-swiper-home-next-mobile',
+                    prevEl: '.js-swiper-home-prev-mobile',
+                },
             },
-            navigation: {
-                nextEl: '.js-swiper-home-next-mobile',
-                prevEl: '.js-swiper-home-prev-mobile',
-            },
-        });
+            function(swiperInstance) {
+                homeMobileSwiper = swiperInstance;
+            }
+        );
      
         {% if sections.primary.products %}
 
@@ -601,8 +677,8 @@ $(document).ready(function(){
                 {# Duplicate cloned slide elements for quickshop or colors forms #}
 
                 updateClonedItemsIDs = function(element){
-                    $(element).each(function() {
-                        var $this = $(this);
+                    jQueryNuvem(element).each(function(el) {
+                        var $this = jQueryNuvem(el);
                         var slide_index = $this.attr("data-swiper-slide-index");
                         var clone_quick_id = $this.find(".js-quickshop-container").attr("data-quickshop-id");
                         var clone_product_id = $this.attr("data-product-id");
@@ -614,10 +690,11 @@ $(document).ready(function(){
             {% endif %}
 
             {% set columns = settings.grid_columns %}
-            var featuredSwiper = new Swiper ('.js-swiper-featured', {
+            createSwiper('.js-swiper-featured', {
                 lazy: true,
                 loop: true,
                 spaceBetween: 30,
+                threshold: 5,
                 watchSlidesVisibility: true,
                 slideVisibleClass: 'js-swiper-slide-visible',
                 slidesPerView: {% if columns == 2 %}2{% else %}1{% endif %},
@@ -662,7 +739,7 @@ $(document).ready(function(){
             {% endif %}
 
             {% set columns = settings.grid_columns %}
-            var relatedSwiper = new Swiper ('.js-swiper-related', {
+            createSwiper('.js-swiper-related', {
                 lazy: true,
                 {% if related_products | length > 4 %}
                 loop: true,
@@ -696,7 +773,7 @@ $(document).ready(function(){
 
         var width = window.innerWidth;
         if (width < 767) {   
-            var swiperInformative = new Swiper ('.js-informative-banners', {
+            createSwiper('.js-informative-banners', {
                 pagination: {
                     el: '.js-informative-banners-pagination',
                     clickable: true,
@@ -728,18 +805,18 @@ $(document).ready(function(){
 	  #Product grid
 	==============================================================================*/ #}
 
-    var $category_controls = $(".js-category-controls");
-    var mobile_nav_height = $(".js-head-main").outerHeight();
+    var $category_controls = jQueryNuvem(".js-category-controls");
+    var mobile_nav_height = jQueryNuvem(".js-head-main").outerHeight();
 
 	{% if template == 'category' %}
 
         {# /* // Fixed category controls */ #}
 
-        if ($(window).width() < 768) {
+        if (window.innerWidth < 768) {
             {% if settings.head_fix %}
-                $(".js-category-controls").css("top" , mobile_nav_height);
+                $category_controls.css("top" , mobile_nav_height.toString() + 'px');
             {% else %}
-                $(".js-category-controls").css("top" , 0);
+                jQueryNuvem(".js-category-controls").css("top" , "0px");
             {% endif %}
 
             {# Detect if category controls are sticky and add css #}
@@ -757,65 +834,53 @@ $(document).ready(function(){
 
         {# /* // Filters */ #}
 
-        $(document).on("click", ".js-apply-filter, .js-remove-filter", function(e) {
+        jQueryNuvem(document).on("click", ".js-apply-filter, .js-remove-filter", function(e) {
             e.preventDefault();
-            var filter_name = $(this).data('filter-name');
-            var filter_value = $(this).data('filter-value');
-            if($(this).hasClass("js-apply-filter")){
-                $(this).find("[type=checkbox]").prop("checked", true);
+            var filter_name = jQueryNuvem(this).data('filterName');
+            var filter_value = jQueryNuvem(this).data('filterValue');
+            if(jQueryNuvem(this).hasClass("js-apply-filter")){
+                jQueryNuvem(this).find("[type=checkbox]").prop("checked", true);
                 LS.urlAddParam(
-                    filter_name, 
-                    filter_value, 
+                    filter_name,
+                    filter_value,
                     true
                 );
             }else{
-                $(this).find("[type=checkbox]").prop("checked", false);
+                jQueryNuvem(this).find("[type=checkbox]").prop("checked", false);
                 LS.urlRemoveParam(
-                    filter_name, 
+                    filter_name,
                     filter_value
-                );   
+                );
             }
+
             {# Toggle class to avoid adding double parameters in case of double click and show applying changes feedback #}
 
-            if ($(this).hasClass("js-filter-checkbox")){
-                if ($(window).width() < 768) {
-                    $(".js-filters-overlay").show();
-                    if($(this).hasClass("js-apply-filter")){
-                        $(".js-applying-filter").show();
+            if (jQueryNuvem(this).hasClass("js-filter-checkbox")){
+                if (window.innerWidth < 768) {
+                    jQueryNuvem(".js-filters-overlay").show();
+                    if(jQueryNuvem(this).hasClass("js-apply-filter")){
+                        jQueryNuvem(".js-applying-filter").show();
                     }else{
-                        $(".js-removing-filter").show();
+                        jQueryNuvem(".js-removing-filter").show();
                     }
                 }
-                $(this).toggleClass("js-apply-filter js-remove-filter");
+                jQueryNuvem(this).toggleClass("js-apply-filter js-remove-filter");
             }
         });
 
-        $(document).on("click", ".js-remove-all-filters", function(e) {
+        jQueryNuvem(document).on("click", ".js-remove-all-filters", function(e) {
             e.preventDefault();
             LS.urlRemoveAllParams();
         });
 
-		{# /* //  Accordions */ #}
-
-		$(document).on("click", ".js-accordion-toggle", function(e) {
-			e.preventDefault();
-			if($(this).hasClass("js-accordion-show-only")){
-				$(this).hide();
-			}else{
-				$(this).find(".js-accordion-toggle-inactive").toggle();
-				$(this).find(".js-accordion-toggle-active").toggle();
-			}
-			$(this).prev(".js-accordion-container").slideToggle();
-		});
-
 		{# /* // Sort by */ #}
 
-		$('.js-sort-by').change(function () {
+		jQueryNuvem('.js-sort-by').on("change", function (e) {
             var params = LS.urlParams;
-            params['sort_by'] = $(this).val();
+            params['sort_by'] = jQueryNuvem(e.currentTarget).val();
             var sort_params_array = [];
             for (var key in params) {
-                if ($.inArray(key, ['results_only', 'page']) == -1) {
+                if (!['results_only', 'page'].includes(key)) {
                     sort_params_array.push(key + '=' + params[key]);
                 }
             }
@@ -827,9 +892,9 @@ $(document).ready(function(){
 
     {% if template == 'category' or template == 'search' %}
 
-        $(function() {
+        !function() {
 
-        	{# /* // Infinite scroll */ #}
+            {# /* // Infinite scroll */ #}
 
             {% if pages.current == 1 and not pages.is_last %}
                 LS.hybridScroll({
@@ -841,7 +906,7 @@ $(document).ready(function(){
                     productsPerPage: 12
                 });
             {% endif %}
-        });
+        }();
 
 	{% endif %}
 
@@ -853,56 +918,56 @@ $(document).ready(function(){
 
 	{# Installments without interest #}
 
-	function get_max_installments_without_interests(number_of_installment, installment_data, max_installments_without_interests) {
-	    if (parseInt(number_of_installment) > parseInt(max_installments_without_interests[0])) {
-	        if (installment_data.without_interests) {
-	            return [number_of_installment, installment_data.installment_value.toFixed(2)];
-	        }
-	    }
-	    return max_installments_without_interests;
-	}
+    function get_max_installments_without_interests(number_of_installment, installment_data, max_installments_without_interests) {
+        if (parseInt(number_of_installment) > parseInt(max_installments_without_interests[0])) {
+            if (installment_data.without_interests) {
+                return [number_of_installment, installment_data.installment_value.toFixed(2)];
+            }
+        }
+        return max_installments_without_interests;
+    }
 
-	{# Installments with interest #}
+    {# Installments with interest #}
 
-	function get_max_installments_with_interests(number_of_installment, installment_data, max_installments_with_interests) {
-	    if (parseInt(number_of_installment) > parseInt(max_installments_with_interests[0])) {
-	        if (installment_data.without_interests == false) {
-	            return [number_of_installment, installment_data.installment_value.toFixed(2)];
-	        }
-	    }
-	    return max_installments_with_interests;
-	}
+    function get_max_installments_with_interests(number_of_installment, installment_data, max_installments_with_interests) {
+        if (parseInt(number_of_installment) > parseInt(max_installments_with_interests[0])) {
+            if (installment_data.without_interests == false) {
+                return [number_of_installment, installment_data.installment_value.toFixed(2)];
+            }
+        }
+        return max_installments_with_interests;
+    }
 
 	{# Refresh installments inside detail popup #}
 
-	function refreshInstallmentv2(price){
-	    $(".js-modal-installment-price" ).each(function( index ) {
-	        const installment = Number($(this).data('installment'));
-	        $(this).text(LS.currency.display_short + (price/installment).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2}));
-	    });
-	}
+    function refreshInstallmentv2(price){
+        jQueryNuvem(".js-modal-installment-price" ).each(function( el ) {
+            const installment = Number(jQueryNuvem(el).data('installment'));
+            jQueryNuvem(el).text(LS.currency.display_short + (price/installment).toLocaleString('de-DE', {maximumFractionDigits: 2, minimumFractionDigits: 2}));
+        });
+    }
 
     {# Refresh price on payments popup with payment discount applied #}
 
     function refreshPaymentDiscount(price){
-        $(".js-price-with-discount" ).each(function( index ) {
-            const payment_discount = $(this).data('payment-discount');
-            $(this).text(LS.formatToCurrency(price - ((price * payment_discount) / 100)))
+        jQueryNuvem(".js-price-with-discount" ).each(function( el ) {
+            const payment_discount = jQueryNuvem(el).data('paymentDiscount');
+            jQueryNuvem(el).text(LS.formatToCurrency(price - ((price * payment_discount) / 100)))
         });
     }
 
 	{# /* // Change variant */ #}
 
-	{# Updates price, installments, labels and CTA on variant change #}
+    {# Updates price, installments, labels and CTA on variant change #}
 
 	function changeVariant(variant){
 
-	    $(".js-product-detail .js-shipping-calculator-response").hide();
-	    $("#shipping-variant-id").val(variant.id);
+	    jQueryNuvem(".js-product-detail .js-shipping-calculator-response").hide();
+	    jQueryNuvem("#shipping-variant-id").val(variant.id);
 
-	    var parent = $("body");
+	    var parent = jQueryNuvem("body");
 	    if (variant.element){
-	        parent = $(variant.element);
+	        parent = jQueryNuvem(variant.element);
 	    }
 
 	    var sku = parent.find('#sku');
@@ -911,35 +976,37 @@ $(document).ready(function(){
 	    }
 
 	    var installment_helper = function($element, amount, price){
-	        $element.find('.js-installment-amount').text(amount);
-	        $element.find('.js-installment-price').attr("data-value", price);
-	        $element.find('.js-installment-price').text(LS.currency.display_short + parseFloat(price).toLocaleString('de-DE', { minimumFractionDigits: 2 }));
-	        if(variant.price_short && Math.abs(variant.price_number - price * amount) < 1) {
-	            $element.find('.js-installment-total-price').text((variant.price_short).toLocaleString('de-DE', { minimumFractionDigits: 2 }));
-	        } else {
-	            $element.find('.js-installment-total-price').text(LS.currency.display_short + (price * amount).toLocaleString('de-DE', { minimumFractionDigits: 2 }));
-	        }
-	    };
+            $element.find('.js-installment-amount').text(amount);
+            $element.find('.js-installment-price').attr("data-value", price);
+            $element.find('.js-installment-price').text(LS.currency.display_short + parseFloat(price).toLocaleString('de-DE', { minimumFractionDigits: 2 }));
+            if(variant.price_short && Math.abs(variant.price_number - price * amount) < 1) {
+                $element.find('.js-installment-total-price').text((variant.price_short).toLocaleString('de-DE', { minimumFractionDigits: 2 }));
+            } else {
+                $element.find('.js-installment-total-price').text(LS.currency.display_short + (price * amount).toLocaleString('de-DE', { minimumFractionDigits: 2 }));
+            }
+        };
 
-	    if (variant.installments_data) {
-	        var variant_installments = JSON.parse(variant.installments_data);
-	        var max_installments_without_interests = [0,0];
-	        var max_installments_with_interests = [0,0];
-	        $.each(variant_installments, function(payment_method, installments) {
-	            $.each(installments, function(number_of_installment, installment_data) {
-	                max_installments_without_interests = get_max_installments_without_interests(number_of_installment, installment_data, max_installments_without_interests);
-	                max_installments_with_interests = get_max_installments_with_interests(number_of_installment, installment_data, max_installments_with_interests);
-	                var installment_container_selector = '#installment_' + payment_method + '_' + number_of_installment;
+        if (variant.installments_data) {
+            var variant_installments = JSON.parse(variant.installments_data);
+            var max_installments_without_interests = [0,0];
+            var max_installments_with_interests = [0,0];
+            for (let payment_method in variant_installments) {
+                let installments = variant_installments[payment_method];
+                for (let number_of_installment in installments) {
+                    let installment_data = installments[number_of_installment];
+                    max_installments_without_interests = get_max_installments_without_interests(number_of_installment, installment_data, max_installments_without_interests);
+                    max_installments_with_interests = get_max_installments_with_interests(number_of_installment, installment_data, max_installments_with_interests);
+                    var installment_container_selector = '#installment_' + payment_method + '_' + number_of_installment;
 
-	                if(!parent.hasClass("js-quickshop-container")){
-	                    installment_helper($(installment_container_selector), number_of_installment, installment_data.installment_value.toFixed(2));
-	                }
-	            });
-	        });
-	        var $installments_container = $(variant.element + ' .js-max-installments-container .js-max-installments');
-	        var $installments_modal_link = $(variant.element + ' #btn-installments');
-	        var $payments_module = $(variant.element + ' .js-product-payments-container');
-	        var $installmens_card_icon = $(variant.element + ' .js-installments-credit-card-icon');
+                    if(!parent.hasClass("js-quickshop-container")){
+                        installment_helper(jQueryNuvem(installment_container_selector), number_of_installment, installment_data.installment_value.toFixed(2));
+                    }
+                }
+            }
+            var $installments_container = jQueryNuvem(variant.element + ' .js-max-installments-container .js-max-installments');
+            var $installments_modal_link = jQueryNuvem(variant.element + ' #btn-installments');
+            var $payments_module = jQueryNuvem(variant.element + ' .js-product-payments-container');
+            var $installmens_card_icon = jQueryNuvem(variant.element + ' .js-installments-credit-card-icon');
 
 	        {% if product.has_direct_payment_only %}
 	        var installments_to_use = max_installments_without_interests[0] >= 1 ? max_installments_without_interests : max_installments_with_interests;
@@ -964,12 +1031,15 @@ $(document).ready(function(){
 	    }
 
 	    if(!parent.hasClass("js-quickshop-container")){
-	    	$('#installments-modal .js-installments-one-payment').text(variant.price_short).attr("data-value", variant.price_number);
+	    	jQueryNuvem('#installments-modal .js-installments-one-payment').text(variant.price_short).attr("data-value", variant.price_number);
 		}
 	    
 	    if (variant.price_short){
-	        parent.find('.js-price-display').text(variant.price_short).show();
-	        parent.find('.js-price-display').attr("content", variant.price_number);
+	        var variant_price_clean = variant.price_short.replace('$', '').replace('R', '').replace(',', '').replace('.', '');
+            var variant_price_raw = parseInt(variant_price_clean, 10);
+
+            parent.find('.js-price-display').text(variant.price_short).show();
+            parent.find('.js-price-display').attr("content", variant.price_number).data('productPrice', variant_price_raw);
 	    } else {
 	        parent.find('.js-price-display').hide();
 	    }
@@ -983,36 +1053,39 @@ $(document).ready(function(){
 	    var button = parent.find('.js-addtocart');
 	    button.removeClass('cart').removeClass('contact').removeClass('nostock');
 	    var $product_shipping_calculator = parent.find("#product-shipping-container");
+
+        {# Update CTA wording and status #}
+
 	    {% if not store.is_catalog %}
 	    if (!variant.available){
 	        button.val('{{ "Sin stock" | translate }}');
-	        button.addClass('nostock');
-	        button.attr('disabled', 'disabled');
+            button.addClass('nostock');
+            button.attr('disabled', 'disabled');
 	        $product_shipping_calculator.hide();
 	    } else if (variant.contact) {
 	        button.val('{{ "Consultar precio" | translate }}');
-	        button.addClass('contact');
-	        button.removeAttr('disabled');
-	        $product_shipping_calculator.hide();
+            button.addClass('contact');
+            button.removeAttr('disabled');
+            $product_shipping_calculator.hide();
 	    } else {
 	        button.val('{{ "Agregar al carrito" | translate }}');
-	        button.addClass('cart');
-	        button.removeAttr('disabled');
-	        $product_shipping_calculator.show();
+            button.addClass('cart');
+            button.removeAttr('disabled');
+            $product_shipping_calculator.show();
 	    }
 
 	    {% endif %}
 
         {% if template == 'product' %}
-            const base_price = Number($("#price_display").attr("content"));
+            const base_price = Number(jQueryNuvem("#price_display").attr("content"));
             refreshInstallmentv2(base_price);
             refreshPaymentDiscount(variant.price_number);
 
             {% if settings.last_product and product.variations %}
                 if(variant.stock == 1) {
-                    $('.js-last-product').show();
+                    jQueryNuvem('.js-last-product').show();
                 } else {
-                    $('.js-last-product').hide();
+                    jQueryNuvem('.js-last-product').hide();
                 }
             {% endif %}
         {% endif %}
@@ -1021,27 +1094,31 @@ $(document).ready(function(){
 
         LS.updateShippingProduct();
 
-        zipcode_on_changevariant = $("#product-shipping-container .js-shipping-input").val();
-        $("#product-shipping-container .js-shipping-calculator-current-zip").text(zipcode_on_changevariant);
+        zipcode_on_changevariant = jQueryNuvem("#product-shipping-container .js-shipping-input").val();
+        jQueryNuvem("#product-shipping-container .js-shipping-calculator-current-zip").text(zipcode_on_changevariant);
 	}
 
 	{# /* // Product labels on variant change */ #}
 
 	{# Stock, Offer and discount labels update #}
 
-	$(document).on("change", ".js-variation-option", function(e) {
+	jQueryNuvem(document).on("change", ".js-variation-option", function(e) {
 
-        var $parent = $(this).closest(".js-product-variants");
-        var $variants_group = $(this).closest(".js-product-variants-group");
-        var $quickshop_parent_wrapper = $(this).closest(".js-quickshop-container");
+        var $parent = jQueryNuvem(this).closest(".js-product-variants");
+        var $variants_group = jQueryNuvem(this).closest(".js-product-variants-group");
+        var $quickshop_parent_wrapper = jQueryNuvem(this).closest(".js-quickshop-container");
 
         {# If quickshop is used from modal, use quickshop-id from the item that opened it #}
         
-        var quick_id = $quickshop_parent_wrapper.attr("data-quickshop-id");
+        if($quickshop_parent_wrapper.hasClass("js-quickshop-modal")){
+            var quick_id = jQueryNuvem(".js-quickshop-opened .js-quickshop-container").data("quickshopId");
+        }else{
+            var quick_id = $quickshop_parent_wrapper.data("quickshopId");
+        }
 
         if($parent.hasClass("js-product-quickshop-variants")){
 
-            var $quickshop_parent = $(this).closest(".js-item-product");
+            var $quickshop_parent = jQueryNuvem(this).closest(".js-item-product");
 
             {# Target visible slider item if necessary #}
             
@@ -1057,14 +1134,13 @@ $(document).ready(function(){
                 {# Match selected color variant with selected quickshop variant #}
 
                 if(($variants_group).hasClass("js-color-variants-container")){
-                    var selected_option_id = $(this).find("option:selected").val();
+                    var selected_option_id = jQueryNuvem(this).find("option").filter((el) => el.selected).val();
                     if($quickshop_parent.hasClass("js-item-slide")){
-                        var $color_parent_to_update = $('.js-swiper-slide-visible .js-quickshop-container[data-quickshop-id="'+quick_id+'"]');
+                        var $color_parent_to_update = jQueryNuvem('.js-swiper-slide-visible .js-quickshop-container[data-quickshop-id="'+quick_id+'"]');
                     }else{
-                        var $color_parent_to_update = $('.js-quickshop-container[data-quickshop-id="'+quick_id+'"]');
+                        var $color_parent_to_update = jQueryNuvem('.js-quickshop-container[data-quickshop-id="'+quick_id+'"]');
                     }
-                    $color_parent_to_update.find('.js-color-variant').removeClass("selected");
-                    $color_parent_to_update.find('.js-color-variant[data-option="'+selected_option_id+'"]').addClass("selected");
+                    $color_parent_to_update.find('.js-color-variant[data-option="'+selected_option_id+'"], .js-insta-variant[data-option="'+selected_option_id+'"]').addClass("selected").siblings().removeClass("selected");
                 }
             {% endif %} 
         } else {
@@ -1073,11 +1149,11 @@ $(document).ready(function(){
 
         {# Offer and discount labels update #}
 
-        var $this_product_container = $(this).closest(".js-product-container");
+        var $this_product_container = jQueryNuvem(this).closest(".js-product-container");
 
         if($this_product_container.hasClass("js-quickshop-container")){
             var this_quickshop_id = $this_product_container.attr("data-quickshop-id");
-            var $this_product_container = $('.js-product-container[data-quickshop-id="'+this_quickshop_id+'"]');
+            var $this_product_container = jQueryNuvem('.js-product-container[data-quickshop-id="'+this_quickshop_id+'"]');
         }
         var $this_compare_price = $this_product_container.find(".js-compare-price-display");
         var $this_price = $this_product_container.find(".js-price-display");
@@ -1121,18 +1197,19 @@ $(document).ready(function(){
 
         {# Product color variations #}
 
-        $(document).on("click", ".js-color-variant", function(e) {
+        jQueryNuvem(document).on("click", ".js-color-variant", function(e) {
             e.preventDefault();
-            $this = $(this);
+            $this = jQueryNuvem(this);
 
             var option_id = $this.data('option');
-            $selected_option = $this.closest('.js-item-product').find('.js-variation-option option').filter(function() {
-                return this.value == option_id;
+            $selected_option = $this.closest('.js-item-product').find('.js-variation-option option').filter(function(el) {
+                return el.value == option_id;
             });
+            
             $selected_option.prop('selected', true).trigger('change');
-            var available_variant = $(this).closest(".js-quickshop-container").data('variants');
+            var available_variant = jQueryNuvem(this).closest(".js-quickshop-container").data('variants');
 
-            var available_variant_color = $(this).closest('.js-color-variant-active').data('option');
+            var available_variant_color = jQueryNuvem(this).closest('.js-color-variant-active').data('option');
 
             for (var variant in available_variant) {
                 if (option_id == available_variant[variant]['option'+ available_variant_color ]) {
@@ -1144,8 +1221,8 @@ $(document).ready(function(){
                         var otherOption = available_variant[variant]['option' + otherOptions[0]];
                         var anotherOption = available_variant[variant]['option' + otherOptions[1]];
 
-                        changeSelect($(this), otherOption, otherOptions[0]);
-                        changeSelect($(this), anotherOption, otherOptions[1]);
+                        changeSelect(jQueryNuvem(this), otherOption, otherOptions[0]);
+                        changeSelect(jQueryNuvem(this), anotherOption, otherOptions[1]);
                         break;
 
                     }
@@ -1168,15 +1245,37 @@ $(document).ready(function(){
 
         function changeSelect(element, optionToSelect, optionIndex) {
             if (optionToSelect != null) {
-                var selected_option_parent_id = element.closest('.js-item-product').data("product-id");
-                var selected_option_attribute = $('.js-item-product[data-product-id="'+selected_option_parent_id+'"]').find('.js-color-variant-available-' + (optionIndex + 1)).data('value');
-                var selected_option = $('.js-item-product[data-product-id="'+selected_option_parent_id+'"]').find('.js-variation-option[data-variant-id="'+selected_option_attribute+'"] option').filter(function() {
-                    return this.value == optionToSelect;
+                var selected_option_attribute = element.closest('.js-item-product').find('.js-color-variant-available-' + (optionIndex + 1)).data('value');
+                var selected_option = element.closest('.js-item-product').find('#' + selected_option_attribute + " option").filter(function(el) {
+                    return el.value == optionToSelect;
                 });
 
                 selected_option.prop('selected', true).trigger('change');
             }
         }
+
+    {% endif %}
+
+    {% if settings.bullet_variants %}
+
+        changeVariantButton = function(selector, parentSelector) {
+            selector.siblings().removeClass("selected");
+            selector.addClass("selected");
+            var variation_id = selector.attr('data-variation-id');
+            var option_id = selector.attr('data-option');
+            var parent = selector.closest(parentSelector);
+            var variation_select = parent.find('.js-product-variants-group[data-variation-id="'+variation_id+'"] .js-variation-option');
+            var selected_option = variation_select.find('option[value="'+option_id+'"]');
+            variation_select.find("option").removeAttr("selected");
+            selected_option.attr('selected', 'selected');
+            variation_select.trigger('change');
+        }
+            
+        jQueryNuvem(document).on("click", ".js-insta-variant", function (e) {
+            e.preventDefault();
+            $this = jQueryNuvem(this);
+            changeVariantButton($this, '.js-product-variants-group');
+        });
 
     {% endif %}
 
@@ -1186,19 +1285,7 @@ $(document).ready(function(){
 
         LS.registerOnChangeVariant(function(variant){
             {# Show product image on color change #}
-            
-            var $item_to_update_image = $('.js-item-product[data-product-id^="'+variant.product_id+'"].js-swiper-slide-visible');
-            var $item_to_update_image_cloned = $('.js-item-product[data-product-id^="'+variant.product_id+'"].js-swiper-slide-visible.swiper-slide-duplicate');
-
-            {# If item is cloned from swiper change only cloned item #}
-
-            if($item_to_update_image.hasClass("swiper-slide-duplicate")){
-                var slide_item_index = $item_to_update_image_cloned.attr("data-swiper-slide-index");
-                var current_image = $('.js-item-image', '.js-item-product[data-product-id="'+variant.product_id+'-clone-'+slide_item_index+'" ]');
-            }else{
-                var slide_item_index = $item_to_update_image.attr("data-swiper-slide-index");
-                var current_image = $('.js-item-image', '.js-item-product[data-product-id="'+variant.product_id+'"]');
-            }
+            var current_image = jQueryNuvem('.js-item-product[data-product-id="'+variant.product_id+'"] .js-item-image');
             current_image.attr('srcset', variant.image_url);
         });
 
@@ -1207,35 +1294,36 @@ $(document).ready(function(){
 
     {% if settings.quick_shop %}
         
-        $(document).on("click", ".js-quickshop-modal-open", function (e) {
+        jQueryNuvem(document).on("click", ".js-quickshop-modal-open", function (e) {
             e.preventDefault();
-            var $this = $(this);
+            var $this = jQueryNuvem(this);
             if($this.hasClass("js-quickshop-slide")){
-                $("#quickshop-modal .js-item-product").addClass("js-swiper-slide-visible js-item-slide");
+                jQueryNuvem("#quickshop-modal .js-item-product").addClass("js-swiper-slide-visible js-item-slide");
             }
             LS.fillQuickshop($this);
         });
 
         {# Get width of the placeholder button #}
-        var productButttonWidth = $(".js-addtocart-placeholder-inline").prev(".js-addtocart").innerWidth();
-        $(".js-addtocart-placeholder-inline").width(productButttonWidth-20);
+
+        var productButttonWidth = jQueryNuvem(".js-addtocart-placeholder-inline").prev(".js-addtocart").innerWidth();
+        jQueryNuvem(".js-addtocart-placeholder-inline").width(productButttonWidth-20);
     {% endif %}
 
 	{# /* // Submit to contact */ #}
 
 	{# Submit to contact form when product has no price #}
 
-	$(".js-product-form").submit(function (e) {
-	    var button = $(this).find(':submit');
-	    button.attr('disabled', 'disabled');
-	    if ((button.hasClass('contact')) || (button.hasClass('catalog'))) {
-	        e.preventDefault();
-	        var product_id = $(this).find("input[name='add_to_cart']").val();
-	        window.location = "{{ store.contact_url | escape('js') }}?product=" + product_id;
-	    } else if (button.hasClass('cart')) {
-	        button.val('{{ "Agregando..." | translate }}');
-	    }
-	});
+	jQueryNuvem(".js-product-form").on("submit", function (e) {
+        var button = jQueryNuvem(e.currentTarget).find('[type="submit"]');
+        button.attr('disabled', 'disabled');
+        if ((button.hasClass('contact')) || (button.hasClass('catalog'))) {
+            e.preventDefault();
+            var product_id = jQueryNuvem(e.currentTarget).find("input[name='add_to_cart']").val();
+            window.location = "{{ store.contact_url | escape('js') }}?product=" + product_id;
+        } else if (button.hasClass('cart')) {
+            button.val('{{ "Agregando..." | translate }}');
+        }
+    });
 
 	{% if template == 'product' %}
 
@@ -1243,81 +1331,92 @@ $(document).ready(function(){
 
             {% set has_multiple_slides = product.images_count > 1 or video_url %}
 
-            var productSwiper = new Swiper ('.js-swiper-product', {
-                lazy: true,
-                loop: false,
-                pagination: {
-                    el: '.js-swiper-product-pagination',
-                    type: 'fraction',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.js-swiper-product-next',
-                    prevEl: '.js-swiper-product-prev',
-                },
-                on: {
-                    init: function () {
-                      $(".js-product-slider-placeholder").hide();
-                      $(".js-swiper-product").css({"visibility" : "visible" , "height" : "auto"});
+            var productSwiper = null;
+            createSwiper(
+                '.js-swiper-product',
+                {
+                    lazy: true,
+                    loop: false,
+                    pagination: {
+                        el: '.js-swiper-product-pagination',
+                        type: 'fraction',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.js-swiper-product-next',
+                        prevEl: '.js-swiper-product-prev',
+                    },
+                    on: {
+                        init: function () {
+                            jQueryNuvem(".js-product-slider-placeholder").hide();
+                            jQueryNuvem(".js-swiper-product").css("visibility", "visible").css("height", "auto");
+                            {% if video_url %}
+                                productSwiperHeight = jQueryNuvem(".js-swiper-product").height();
+                                jQueryNuvem(".js-product-video-slide").height(productSwiperHeight);
+                            {% endif %}
+                        },
                         {% if video_url %}
-                            productSwiperHeight = $(".js-swiper-product").height();
-                            $(".js-product-video-slide").height(productSwiperHeight);
+                            slideChangeTransitionEnd: function () {
+                                if(jQueryNuvem(".js-product-video-slide").hasClass("swiper-slide-active")){
+                                    jQueryNuvem(".js-labels-group").fadeOut(100);
+                                }else{
+                                    jQueryNuvem(".js-labels-group").fadeIn(100);
+                                }
+                                jQueryNuvem('.js-video').show();
+                                jQueryNuvem('.js-video-iframe').hide().find("iframe").remove();
+                            },
                         {% endif %}
                     },
-                    {% if video_url %}
-                        slideChangeTransitionEnd: function () {
-                            if($(".js-product-video-slide").hasClass("swiper-slide-active")){
-                                $(".js-labels-group").fadeOut(100);
-                            }else{
-                                $(".js-labels-group").fadeIn(100);
-                            }
-                            $('.js-video').show();
-                            $('.js-video-iframe').hide().find("iframe").remove();
-                        },
-                    {% endif %}
                 },
-            });
+                function(swiperInstance) {
+                    productSwiper = swiperInstance;
+                }
+            );
 
-            $().fancybox({
-                selector : '[data-fancybox="product-gallery"]',
-                toolbar  : false,
-                smallBtn : true,
-                beforeClose : function(instance) {                    
-                    // Update position of the slider
-                    productSwiper.slideTo( instance.currIndex, 0 );
-                    
-                  }
+            Fancybox.bind('[data-fancybox="product-gallery"]', {
+                Toolbar: { display: ['counter', 'close'] },
+                Thumbs: { autoStart: false },
+                on: {
+                    shouldClose: (fancybox, slide) => {
+                        if (!productSwiper) {
+                            return;
+                        }
+
+                        // Update position of the slider
+                        productSwiper.slideTo( fancybox.getSlide().index, 0 );
+                    },
+                },
             });
 
 	    {% if has_multiple_slides %}
 	        LS.registerOnChangeVariant(function(variant){
-	            var liImage = $('.js-swiper-product').find("[data-image='"+variant.image+"']");
-	            var selectedPosition = liImage.data('image-position');
-	            var slideToGo = parseInt(selectedPosition);
+                var liImage = jQueryNuvem('.js-swiper-product').find("[data-image='"+variant.image+"']");
+                var selectedPosition = liImage.data('imagePosition');
+                var slideToGo = parseInt(selectedPosition);
                 productSwiper.slideTo(slideToGo);
-                $(".js-product-slide-img").removeClass("js-active-variant");
+                jQueryNuvem(".js-product-slide-img").removeClass("js-active-variant");
                 liImage.find(".js-product-slide-img").addClass("js-active-variant");
-	        });
+            });
 	    {% endif %}
 
         {# /* // Pinterest sharing */ #}
 
-        $('.js-pinterest-share').click(function(e){
+        jQueryNuvem('.js-pinterest-share').on("click", function(e){
             e.preventDefault();
-            $(".pinterest-hidden a")[0].click();
+            jQueryNuvem(".pinterest-hidden a").get()[0].click();
         });
 
 	{% endif %}
 
     {# Product quantitiy #}
 
-    $(document).on("click", ".js-quantity-up", function () {
-        $quantity_input = $(this).closest(".js-quantity").find(".js-quantity-input");
+    jQueryNuvem('.js-quantity .js-quantity-up').on('click', function(e) {
+        $quantity_input = jQueryNuvem(e.currentTarget).closest(".js-quantity").find(".js-quantity-input");
         $quantity_input.val( parseInt($quantity_input.val(), 10) + 1);
     });
 
-    $(document).on("click", ".js-quantity-down", function () {
-        $quantity_input = $(this).closest(".js-quantity").find(".js-quantity-input");
+    jQueryNuvem('.js-quantity .js-quantity-down').on('click', function(e) {
+        $quantity_input = jQueryNuvem(e.currentTarget).closest(".js-quantity").find(".js-quantity-input");
         quantity_input_val = $quantity_input.val();
         if (quantity_input_val>1) { 
             $quantity_input.val( parseInt($quantity_input.val(), 10) - 1);
@@ -1330,23 +1429,23 @@ $(document).ready(function(){
 
     {# /* // Position of cart page summary */ #}
 
-    var head_height = $(".js-head-main").outerHeight();
+    var head_height = jQueryNuvem(".js-head-main").outerHeight();
 
-    if ($(window).width() > 768) {
+    if (window.innerWidth > 768) {
         {% if settings.head_fix %}
-            $("#cart-sticky-summary").css("top" , head_height + 10);
+            jQueryNuvem("#cart-sticky-summary").css("top" , (head_height + 10).toString() + 'px');
         {% else %}
-            $("#cart-sticky-summary").css("top" , 10);
+            jQueryNuvem("#cart-sticky-summary").css("top" , "10px");
         {% endif %}
     }
 
     {# /* // Add to cart */ #}
 
-	$(document).on("click", ".js-addtocart:not(.js-addtocart-placeholder)", function (e) {
+	jQueryNuvem(document).on("click", ".js-addtocart:not(.js-addtocart-placeholder)", function (e) {
 
         {# Button variables for transitions on add to cart #}
 
-        var $productContainer = $(this).closest('.js-product-container');
+        var $productContainer = jQueryNuvem(this).closest('.js-product-container');
         var $productVariants = $productContainer.find(".js-variation-option");
         var $productButton = $productContainer.find("input[type='submit'].js-addtocart");
         var $productButtonPlaceholder = $productContainer.find(".js-addtocart-placeholder");
@@ -1359,15 +1458,15 @@ $(document).ready(function(){
         var isQuickShop = $productContainer.hasClass('js-quickshop-container');
 
         if (!isQuickShop) {
-            if($(".js-product-slide-img.js-active-variant").length) {
-                var imageSrc = $($productContainer.find('.js-product-slide-img.js-active-variant')[0]).data('srcset').split(' ')[0];
+            if(jQueryNuvem(".js-product-slide-img.js-active-variant").length) {
+                var imageSrc = $productContainer.find('.js-product-slide-img.js-active-variant').data('srcset').split(' ')[0];
             } else {
-                var imageSrc = $($productContainer.find('.js-product-slide-img')[0]).attr('srcset').split(' ')[0];
+                var imageSrc = $productContainer.find('.js-product-slide-img').attr('srcset').split(' ')[0];
             }
             var name = $productContainer.find('.js-product-name').text();
             var price = $productContainer.find('.js-price-display').text();
         } else {
-            var imageSrc = $(this).closest('.js-quickshop-container').find('img').attr('srcset');
+            var imageSrc = jQueryNuvem(this).closest('.js-quickshop-container').find('img').attr('srcset');
             var name = $productContainer.find('.js-item-name').text();
             var price = $productContainer.find('.js-price-display').text().trim(); 
         }
@@ -1376,7 +1475,7 @@ $(document).ready(function(){
         var addedToCartCopy = "{{ 'Agregar al carrito' | translate }}";
 
 
-        if (!$(this).hasClass('contact')) {
+        if (!jQueryNuvem(this).hasClass('contact')) {
 
             {% if settings.ajax_cart %}
                 e.preventDefault();
@@ -1397,42 +1496,42 @@ $(document).ready(function(){
 
                     {# Animate cart amount #}
 
-                    $(".js-cart-widget-amount").addClass("beat");
+                    jQueryNuvem(".js-cart-widget-amount").addClass("beat");
 
                     setTimeout(function(){
-                        $(".js-cart-widget-amount").removeClass("beat");
+                        jQueryNuvem(".js-cart-widget-amount").removeClass("beat");
                     },4000);
 
                     {# Fill notification info #}
 
-                    $('.js-cart-notification-item-img').attr('srcset', imageSrc);
-                    $('.js-cart-notification-item-name').text(name);
-                    $('.js-cart-notification-item-quantity').text(quantity);
-                    $('.js-cart-notification-item-price').text(price);
+                    jQueryNuvem('.js-cart-notification-item-img').attr('srcset', imageSrc);
+                    jQueryNuvem('.js-cart-notification-item-name').text(name);
+                    jQueryNuvem('.js-cart-notification-item-quantity').text(quantity);
+                    jQueryNuvem('.js-cart-notification-item-price').text(price);
 
                     if($productVariants.length){
                         var output = [];
 
-                        $productVariants.each( function(){  
-                            var variants = $(this);
+                        $productVariants.each( function(el){
+                            var variants = jQueryNuvem(el);
                             output.push(variants.val());
                         });
-                        $(".js-cart-notification-item-variant-container").show();
-                        $(".js-cart-notification-item-variant").text(output.join(', '))
+                        jQueryNuvem(".js-cart-notification-item-variant-container").show();
+                        jQueryNuvem(".js-cart-notification-item-variant").text(output.join(', '))
                     }else{
-                        $(".js-cart-notification-item-variant-container").hide();
+                        jQueryNuvem(".js-cart-notification-item-variant-container").hide();
                     }
 
                     {# Set products amount wording visibility #}
 
-                    var cartItemsAmount = $(".js-cart-widget-amount").first().text();
+                    var cartItemsAmount = jQueryNuvem(".js-cart-widget-amount").text();
 
                     if(cartItemsAmount > 1){
-                        $(".js-cart-counts-plural").show();
-                        $(".js-cart-counts-singular").hide();
+                        jQueryNuvem(".js-cart-counts-plural").show();
+                        jQueryNuvem(".js-cart-counts-singular").hide();
                     }else{
-                        $(".js-cart-counts-singular").show();
-                        $(".js-cart-counts-plural").hide();
+                        jQueryNuvem(".js-cart-counts-singular").show();
+                        jQueryNuvem(".js-cart-counts-plural").hide();
                     }
 
                     {# Show button placeholder with transitions #}
@@ -1458,46 +1557,45 @@ $(document).ready(function(){
                     $productContainer.find(".js-added-to-cart-product-message").slideDown();
 
                     if (isQuickShop) {
-                        closeModal($(".js-addtocart:not(.js-addtocart-placeholder)"));
-                        if ($(window).width() < 768) {
+                        jQueryNuvem("#quickshop-modal").removeClass('modal-show');
+                        jQueryNuvem(".js-modal-overlay[data-modal-id='#quickshop-modal']").hide();
+                        jQueryNuvem("body").removeClass("overflow-none");
+                        restoreQuickshopForm();
+                        if (window.innerWidth < 768) {
                             cleanURLHash();
                         }
                     }
+                    
+                   {# Show notification and hide it only after second added to cart #}
 
-                    if ($(window).width() > 768) {
-                        $(".js-toggle-cart").click();
-                    }else{
-                       {# Show notification and hide it only after second added to cart #}
+                    setTimeout(function(){
+                        jQueryNuvem(".js-alert-added-to-cart").show().addClass("notification-visible").removeClass("notification-hidden");
+                    },500);
 
+                    if (!cookieService.get('first_product_added_successfully')) {
+                        cookieService.set('first_product_added_successfully', 1, 7 ); 
+                    } else{
                         setTimeout(function(){
-                            $(".js-alert-added-to-cart").show().addClass("notification-visible").removeClass("notification-hidden");
-                        },500);
-
-                        if (!cookieService.get('first_product_added_successfully')) {
-                            cookieService.set('first_product_added_successfully', 1, 7 ); 
-                        } else{
+                            jQueryNuvem(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
                             setTimeout(function(){
-                                $(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
-                                setTimeout(function(){
-                                    $('.js-cart-notification-item-img').attr('src', '');
-                                    $(".js-alert-added-to-cart").hide();
-                                },2000);
-                            },8000);
-                        }
+                                jQueryNuvem('.js-cart-notification-item-img').attr('src', '');
+                                jQueryNuvem(".js-alert-added-to-cart").hide();
+                            },2000);
+                        },8000);
                     }
 
                     {# Update shipping input zipcode on add to cart #}
 
                     {# Use zipcode from input if user is in product page, or use zipcode cookie if is not #}
 
-                    if ($("#product-shipping-container .js-shipping-input").val()) {
-                        zipcode_on_addtocart = $("#product-shipping-container .js-shipping-input").val();
-                        $("#cart-shipping-container .js-shipping-input").val(zipcode_on_addtocart);
-                        $(".js-shipping-calculator-current-zip").text(zipcode_on_addtocart);
+                    if (jQueryNuvem("#product-shipping-container .js-shipping-input").val()) {
+                        zipcode_on_addtocart = jQueryNuvem("#product-shipping-container .js-shipping-input").val();
+                        jQueryNuvem("#cart-shipping-container .js-shipping-input").val(zipcode_on_addtocart);
+                        jQueryNuvem(".js-shipping-calculator-current-zip").text(zipcode_on_addtocart);
                     } else if (cookieService.get('calculator_zipcode')){
                         var zipcode_from_cookie = cookieService.get('calculator_zipcode');
-                        $('.js-shipping-input').val(zipcode_from_cookie);
-                        $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
+                        jQueryNuvem('.js-shipping-input').val(zipcode_from_cookie);
+                        jQueryNuvem(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
                     }
                 }
                 var callback_error = function(){
@@ -1510,7 +1608,7 @@ $(document).ready(function(){
                     $productButtonPlaceholder.hide();
                     $productButton.css('display' , 'inline-block');
                 }
-                $prod_form = $(this).closest("form");
+                $prod_form = jQueryNuvem(this).closest("form");
                 LS.addToCartEnhanced(
                     $prod_form,
                     '{{ "Agregar al carrito" | translate }}',
@@ -1527,23 +1625,21 @@ $(document).ready(function(){
 
     {# /* // Cart quantitiy changes */ #}
 
-    $(document).on("keypress", ".js-cart-quantity-input", function (e) {
+    jQueryNuvem(document).on("keypress", ".js-cart-quantity-input", function (e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             return false;
         }
     });
 
-    $(document).on("focusout", ".js-cart-quantity-input", function (e) {
-        $(".js-shipping-calculator-response").hide().empty();
-        $(".js-go-checkout-btn").prop("disabled", true);
-        var itemID = $(this).attr("data-item-id");
-        var itemVAL = $(this).val();
+    jQueryNuvem(document).on("focusout", ".js-cart-quantity-input", function (e) {
+        var itemID = jQueryNuvem(this).attr("data-item-id");
+        var itemVAL = jQueryNuvem(this).val();
         if (itemVAL == 0) {
             var r = confirm("{{ '¿Seguro que quieres borrar este artículo?' | translate }}");
             if (r == true) {
                 LS.removeItem(itemID, true);
             } else {
-                $(this).val(1);
+                jQueryNuvem(this).val(1);
             }
         } else {
             LS.changeQuantity(itemID, itemVAL, true);
@@ -1552,18 +1648,19 @@ $(document).ready(function(){
 
     {# /* // Empty cart alert */ #}
 
-    $(".js-trigger-empty-cart-alert").click(function (e) {
+    jQueryNuvem(".js-trigger-empty-cart-alert").on("click", function (e) {
         e.preventDefault();
-        $(".js-mobile-nav-empty-cart-alert").fadeIn(100).delay(1500).fadeOut(500);
+        let emptyCartAlert = jQueryNuvem(".js-mobile-nav-empty-cart-alert").fadeIn(100);
+        setTimeout(() => emptyCartAlert.fadeOut(500), 1500);
     });
 
     {# /* // Go to checkout */ #}
 
     {# Clear cart notification cookie after consumers continues to checkout #}
 
-    $('form[action="{{ store.cart_url | escape('js') }}"]').submit(function() {
+    jQueryNuvem('form[action="{{ store.cart_url | escape('js') }}"]').on("submit", function() {
         cookieService.remove('first_product_added_successfully');
-    }); 
+    });
 
 	{#/*============================================================================
 	  #Shipping calculator
@@ -1572,16 +1669,23 @@ $(document).ready(function(){
 	{# /* // Select and save shipping function */ #}
 
     selectShippingOption = function(elem, save_option) {
-        $(".js-shipping-method, .js-branch-method").removeClass('js-selected-shipping-method');
-        $(elem).addClass('js-selected-shipping-method');
+        jQueryNuvem(".js-shipping-method, .js-branch-method").removeClass('js-selected-shipping-method');
+        jQueryNuvem(elem).addClass('js-selected-shipping-method');
         if (save_option) {
             LS.saveCalculatedShipping(true);
         }
-        var $closest_shipping_container = $(elem).closest(".js-shipping-calculator-container");
-        if($(elem).hasClass("js-shipping-method-hidden")){
-            $closest_shipping_container.find(".js-shipping-see-more").hide();
-            $closest_shipping_container.find(".js-shipping-see-less").show();
-            $closest_shipping_container.find(".js-other-shipping-options").show();
+        if(jQueryNuvem(elem).hasClass("js-shipping-method-hidden")){
+
+            {# Toggle other options visibility depending if they are pickup or delivery for cart and product at the same time #}
+
+            if(jQueryNuvem(elem).hasClass("js-pickup-option")){
+                jQueryNuvem(".js-other-pickup-options, .js-show-other-pickup-options .js-shipping-see-less").show();
+                jQueryNuvem(".js-show-other-pickup-options .js-shipping-see-more").hide();
+
+            }else{
+                jQueryNuvem(".js-other-shipping-options, .js-show-more-shipping-options .js-shipping-see-less").show();
+                jQueryNuvem(".js-show-more-shipping-options .js-shipping-see-more").hide()
+            }          
         }
     };
 
@@ -1592,114 +1696,121 @@ $(document).ready(function(){
         {# If there is a cookie saved based on previous calcualtion, add it to the shipping input to triggert automatic calculation #}
 
         var zipcode_from_cookie = cookieService.get('calculator_zipcode');
-        $('#product-shipping-container .js-shipping-input').val(zipcode_from_cookie);
-        $(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
+        
+        {% if settings.ajax_cart %}
+
+            {# If ajax cart is active, target only product input to avoid extra calulation on empty cart #}
+
+            jQueryNuvem('#product-shipping-container .js-shipping-input').val(zipcode_from_cookie);
+
+        {% else %}
+
+            {# If ajax cart is inactive, target the only input present on screen #}
+
+            jQueryNuvem('.js-shipping-input').val(zipcode_from_cookie);
+
+        {% endif %}
+
+        jQueryNuvem(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
 
         {# Hide the shipping calculator and show spinner  #}
 
-        $(".js-shipping-calculator-head").addClass("with-zip").removeClass("with-form");
-        $(".js-shipping-calculator-with-zipcode").addClass("transition-up-active");
-        $(".js-shipping-calculator-spinner").show();
+        jQueryNuvem(".js-shipping-calculator-head").addClass("with-zip").removeClass("with-form");
+        jQueryNuvem(".js-shipping-calculator-with-zipcode").addClass("transition-up-active");
+        jQueryNuvem(".js-shipping-calculator-spinner").show();
     } else {
 
         {# If there is no cookie saved, show calcualtor #}
 
-        $(".js-shipping-calculator-form").addClass("transition-up-active");
+        jQueryNuvem(".js-shipping-calculator-form").addClass("transition-up-active");
     }           
 
     {# Remove shipping suboptions from DOM to avoid duplicated modals #}
 
     removeShippingSuboptions = function(){
-        var shipping_suboptions_id = $(".js-modal-shipping-suboptions").attr("id");
-        $("#" + shipping_suboptions_id).remove();
-        $('.js-modal-overlay[data-modal-id="#' + shipping_suboptions_id + '"').remove();
+        var shipping_suboptions_id = jQueryNuvem(".js-modal-shipping-suboptions").attr("id");
+        jQueryNuvem("#" + shipping_suboptions_id).remove();
+        jQueryNuvem('.js-modal-overlay[data-modal-id="#' + shipping_suboptions_id + '"').remove();
     };
 
     {# /* // Calculate shipping function */ #}
 
-	$(".js-calculate-shipping").click(function (e) {
+	jQueryNuvem(".js-calculate-shipping").on("click", function (e) {
         e.preventDefault();
 
         {# Take the Zip code to all shipping calculators on screen #}
-        let shipping_input_val = $(this).closest(".js-shipping-calculator-form").find(".js-shipping-input").val();
+        let shipping_input_val = jQueryNuvem(e.currentTarget).closest(".js-shipping-calculator-form").find(".js-shipping-input").val();
 
-        $(".js-shipping-input").val(shipping_input_val);
+        jQueryNuvem(".js-shipping-input").val(shipping_input_val);
 
         {# Calculate on page load for both calculators: Product and Cart #}
 
-        {% if template == 'product' %}
+        if (jQueryNuvem(".js-cart-item").length) {
             LS.calculateShippingAjax(
-                $('#product-shipping-container').find(".js-shipping-input").val(), 
-                '{{store.shipping_calculator_url | escape('js')}}',
-                $("#product-shipping-container").closest(".js-shipping-calculator-container") );
-        {% endif %}
-
-        if ($(".js-cart-item").length) {
-            LS.calculateShippingAjax(
-                $('#cart-shipping-container').find(".js-shipping-input").val(), 
-                '{{store.shipping_calculator_url | escape('js')}}',
-                $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
+            jQueryNuvem('#cart-shipping-container').find(".js-shipping-input").val(),
+            '{{store.shipping_calculator_url | escape('js')}}',
+            jQueryNuvem("#cart-shipping-container").closest(".js-shipping-calculator-container") );
         }
 
-        $(".js-shipping-calculator-current-zip").html(shipping_input_val);
+        jQueryNuvem(".js-shipping-calculator-current-zip").html(shipping_input_val);
         removeShippingSuboptions();
 
     });
 
 	{# /* // Calculate shipping by submit */ #}
 
-	$(".js-shipping-input").keydown(function (e) {
-	    var key = e.which ? e.which : e.keyCode;
-	    var enterKey = 13;
-	    if (key === enterKey) {
-	        e.preventDefault();
-	        $(this).closest(".js-shipping-calculator-form").find(".js-calculate-shipping").click();
-	        if ($(window).width() < 768) {
-	            $(this).blur();
-	        }
-	    }
-	});
+	jQueryNuvem(".js-shipping-input").on('keydown', function (e) {
+        var key = e.which ? e.which : e.keyCode;
+        var enterKey = 13;
+        if (key === enterKey) {
+            e.preventDefault();
+            jQueryNuvem(e.currentTarget).closest(".js-shipping-calculator-form").find(".js-calculate-shipping").trigger('click');
+            if (window.innerWidth < 768) {
+                jQueryNuvem(e.currentTarget).trigger('blur');
+            }
+        }
+    });
 
     {# /* // Shipping and branch click */ #}
 
-    $(document).on("change", ".js-shipping-method, .js-branch-method", function () {
+    jQueryNuvem(document).on("change", ".js-shipping-method, .js-branch-method", function (e) {
         selectShippingOption(this, true);
-        $(".js-shipping-method-unavailable").hide();
+        jQueryNuvem(".js-shipping-method-unavailable").hide();
     });
 
     {# /* // Select shipping first option on results */ #}
 
-    $('.js-shipping-method:checked').livequery(function () {
-        let shippingPrice = $(this).attr("data-price");
+    jQueryNuvem(document).on('shipping.options.checked', '.js-shipping-method', function (e) {
+        let shippingPrice = jQueryNuvem(this).attr("data-price");
         LS.addToTotal(shippingPrice);
 
         let total = (LS.data.cart.total / 100) + parseFloat(shippingPrice);
-        $(".js-cart-widget-total").html(LS.formatToCurrency(total));
+        jQueryNuvem(".js-cart-widget-total").html(LS.formatToCurrency(total));
 
         selectShippingOption(this, false);
     });
 
     {# /* // Toggle branches link */ #}
 
-    $(document).on("click", ".js-toggle-branches", function (e) {
+    jQueryNuvem(document).on("click", ".js-toggle-branches", function (e) {
         e.preventDefault();
-        $(".js-store-branches-container").slideToggle("fast");
-        $(".js-see-branches, .js-hide-branches").toggle();
+        jQueryNuvem(".js-store-branches-container").slideToggle("fast");
+        jQueryNuvem(".js-see-branches, .js-hide-branches").toggle();
     });
 
     {# /* // Toggle more shipping options */ #}
 
-    $(document).on("click", ".js-toggle-more-shipping-options", function(e) {
+    jQueryNuvem(document).on("click", ".js-toggle-more-shipping-options", function(e) {
         e.preventDefault();
 
         {# Toggle other options depending if they are pickup or delivery for cart and product at the same time #}
 
-        if($(this).hasClass("js-show-other-pickup-options")){
-            $(".js-other-pickup-options").slideToggle(600);
-            $(".js-show-other-pickup-options .js-shipping-see-less, .js-show-other-pickup-options .js-shipping-see-more").toggle();
+        if(jQueryNuvem(this).hasClass("js-show-other-pickup-options")){
+            jQueryNuvem(".js-other-pickup-options").slideToggle(600);
+            jQueryNuvem(".js-show-other-pickup-options .js-shipping-see-less, .js-show-other-pickup-options .js-shipping-see-more").toggle();
         }else{
-            $(".js-other-shipping-options").slideToggle(600);
-            $(".js-show-more-shipping-options .js-shipping-see-less, .js-show-more-shipping-options .js-shipping-see-more").toggle();
+            jQueryNuvem(".js-other-shipping-options").slideToggle(600);
+            jQueryNuvem(".js-show-more-shipping-options .js-shipping-see-less, .js-show-more-shipping-options .js-shipping-see-more").toggle();
         }
     });
 
@@ -1708,25 +1819,24 @@ $(document).ready(function(){
     {# Only shipping input has value, cart has saved shipping and there is no branch selected #}
 
     calculateCartShippingOnLoad = function(){
-        if($("#cart-shipping-container .js-shipping-input").val()){
+        if(jQueryNuvem("#cart-shipping-container .js-shipping-input").val()){
        
             // If user already had calculated shipping: recalculate shipping
-           
-           setTimeout(function() { 
+
+            setTimeout(function() { 
                 LS.calculateShippingAjax(
-                    $('#cart-shipping-container').find(".js-shipping-input").val(), 
+                    jQueryNuvem('#cart-shipping-container').find(".js-shipping-input").val(),
                     '{{store.shipping_calculator_url | escape('js')}}',
-                    $("#cart-shipping-container").closest(".js-shipping-calculator-container") );
+                    jQueryNuvem("#cart-shipping-container").closest(".js-shipping-calculator-container") );
                     removeShippingSuboptions();
             }, 100);
-        } 
+        }
 
-        if($(".js-branch-method").hasClass('js-selected-shipping-method')){
-            
+        if(jQueryNuvem(".js-branch-method").hasClass('js-selected-shipping-method')){
             {% if store.branches|length > 1 %}
-                $(".js-store-branches-container").slideDown("fast");
-                $(".js-see-branches").hide();
-                $(".js-hide-branches").show();
+                jQueryNuvem(".js-store-branches-container").slideDown("fast");
+                jQueryNuvem(".js-see-branches").hide();
+                jQueryNuvem(".js-hide-branches").show();
             {% endif %}
         }
     };
@@ -1735,87 +1845,73 @@ $(document).ready(function(){
         calculateCartShippingOnLoad();
     {% endif %}
 
-    {# /* // Calculate product detail shipping on page load */ #}
-
-    {% if template == 'product' %}
-
-        if($('#product-shipping-container').find(".js-shipping-input").val()){
-            setTimeout(function() { 
-                LS.calculateShippingAjax(
-                    $('#product-shipping-container').find(".js-shipping-input").val(), 
-                    '{{store.shipping_calculator_url | escape('js')}}',
-                    $("#product-shipping-container").closest(".js-shipping-calculator-container") );
-                
-                removeShippingSuboptions();
-            }, 100);
-        }
-
-    {% endif %}
-
     {# /* // Change CP */ #}
 
-    $(document).on("click", ".js-shipping-calculator-change-zipcode", function(e) {
+    jQueryNuvem(document).on("click", ".js-shipping-calculator-change-zipcode", function(e) {
         e.preventDefault();
-        $(".js-shipping-calculator-response").fadeOut(100);
-        $(".js-shipping-calculator-head").addClass("with-form").removeClass("with-zip");
-        $(".js-shipping-calculator-with-zipcode").removeClass("transition-up-active");
-        $(".js-shipping-calculator-form").addClass("transition-up-active");
+        jQueryNuvem(".js-shipping-calculator-response").fadeOut(100);
+        jQueryNuvem(".js-shipping-calculator-head").addClass("with-form").removeClass("with-zip");
+        jQueryNuvem(".js-shipping-calculator-with-zipcode").removeClass("transition-up-active");
+        jQueryNuvem(".js-shipping-calculator-form").addClass("transition-up-active");
     }); 
 
-	{# /* // Shipping provinces */ #}
+    {# /* // Shipping provinces */ #}
 
-	{% if provinces_json %}
-		$('select[name="country"]').change(function () {
-		    var provinces = {{ provinces_json | default('{}') | raw }};
-		    LS.swapProvinces(provinces[$(this).val()]);
-		}).change();
-	{% endif %}
+    {% if provinces_json %}
+        jQueryNuvem('select[name="country"]').on("change", function (e) {
+            var provinces = {{ provinces_json | default('{}') | raw }};
+            LS.swapProvinces(provinces[jQueryNuvem(e.currentTarget).val()]);
+        }).trigger('change');
+    {% endif %}
 
     {# /* // Change store country: From invalid zipcode message */ #}
 
-    $(document).on("click", ".js-save-shipping-country", function(e) {
+    jQueryNuvem(document).on("click", ".js-save-shipping-country", function(e) {
+
         e.preventDefault();
+
         {# Change shipping country #}
 
-        var selected_country_url = $(this).closest(".js-modal-shipping-country").find(".js-shipping-country-select option:selected").attr("data-country-url");
-        location.href = selected_country_url; 
+        lang_select_option = jQueryNuvem(this).closest(".js-modal-shipping-country");
+        changeLang(lang_select_option);
 
-        $(this).text('{{ "Aplicando..." | translate }}').addClass("disabled");
+        jQueryNuvem(this).text('{{ "Aplicando..." | translate }}').addClass("disabled");
     });
 
     {#/*============================================================================
       #Forms
     ==============================================================================*/ #}
 
-    $(".js-winnie-pooh-form").submit(function (e) {
-        $(this).attr('action', '');
+    jQueryNuvem(".js-winnie-pooh-form").on("submit", function (e) {
+        jQueryNuvem(e.currentTarget).attr('action', '');
     });
 
     {# Show the success or error message when resending the validation link #}
 
     {% if template == 'account.register' or template == 'account.login' %}
-        $(".js-resend-validation-link").click(function(e){
+        jQueryNuvem(".js-resend-validation-link").on("click", function(e){
             window.accountVerificationService.resendVerificationEmail('{{ customer_email }}');
         });
     {% endif %}
 
     {% if template == 'account.login' %}
         {% if not result.facebook and result.invalid %}
-            $(".js-account-input").addClass("alert-danger");
-            $(".js-account-input.alert-danger").focus(function() {
-              $(".js-account-input").removeClass("alert-danger");
+            jQueryNuvem(".js-account-input").addClass("alert-danger");
+            jQueryNuvem(".js-account-input.alert-danger").on("focus", function() {
+                jQueryNuvem(".js-account-input").removeClass("alert-danger");
             });
         {% endif %}
     {% endif %}
 
-    $('.js-password-view').click(function () {
-        $(this).toggleClass('password-view');
-        if($(this).hasClass('password-view')){
-           $(this).parent().find(".js-password-input").attr('type', '');
-           $(this).find(".js-eye-open, .js-eye-closed").toggle();
+    jQueryNuvem('.js-password-view').on("click", function (e) {
+        jQueryNuvem(e.currentTarget).toggleClass('password-view');
+
+        if(jQueryNuvem(e.currentTarget).hasClass('password-view')){
+            jQueryNuvem(e.currentTarget).parent().find(".js-password-input").attr('type', '');
+            jQueryNuvem(e.currentTarget).find(".js-eye-open, .js-eye-closed").toggle();
         } else {
-           $(this).parent().find(".js-password-input").attr('type', 'password');
-           $(this).find(".js-eye-open, .js-eye-closed").toggle();
+            jQueryNuvem(e.currentTarget).parent().find(".js-password-input").attr('type', 'password');
+            jQueryNuvem(e.currentTarget).find(".js-eye-open, .js-eye-closed").toggle();
         }
     });
 
@@ -1827,7 +1923,7 @@ $(document).ready(function(){
 
         {# Add alt attribute to external AFIP logo to improve SEO #}
 
-        $('img[src*="www.afip.gob.ar"]').attr('alt', '{{ "Logo de AFIP" | translate }}');
+        jQueryNuvem('img[src*="www.afip.gob.ar"]').attr('alt', '{{ "Logo de AFIP" | translate }}');
 
     {% endif %}
 

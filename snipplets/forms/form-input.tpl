@@ -62,6 +62,7 @@
             autocorrect="off" 
             autocapitalize="off" 
             {% if type_password %}autocomplete="off"{% endif %}
+            {% if type_number %}pattern="\d*"{% endif %}
             {% if input_name %}name="{{ input_name }}"{% endif %}
             {% if input_value %}value="{{ input_value }}"{% endif %}
             {% if input_min %}min="{{ input_min }}"{% endif %}

@@ -56,7 +56,7 @@
 
         {# Colors and fonts used from settings.txt and defined on theme customization #}
 
-        {{ 'css/style-colors.scss.tpl' | static_url | css_tag }}
+        {{ 'css/style-colors.scss.tpl' | static_url | static_inline }}
 
         {# Load async styling not mandatory for first meaningfull paint #}
 
@@ -82,7 +82,11 @@
 
         {# Jquery async by adding script_tag(true) #}
 
-        {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag(true) }}
+        {% if load_jquery %}
+
+            {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag(true) }}
+
+        {% endif %}
 
         {# Loads private Tienda Nube JS #}
 

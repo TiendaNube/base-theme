@@ -67,7 +67,7 @@
 
         {# Colors and fonts used from settings.txt and defined on theme customization #}
 
-        {{ 'css/style-colors.scss.tpl' | static_url | css_tag }}
+        {{ 'css/style-colors.scss.tpl' | static_url | static_inline }}
 
         {# Load async styling not mandatory for first meaningfull paint #}
 
@@ -93,7 +93,11 @@
 
         {# Jquery async by adding script_tag(true) #}
 
-        {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag(true) }}
+        {% if load_jquery %}
+
+            {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' | script_tag(true) }}
+
+        {% endif %}
 
         {# Loads private Tiendanube JS #}
 
@@ -131,11 +135,11 @@
                                 if (hasEmail) {
                                     window.location = "{{ store.url }}/account/facebook_login/";
                                 } else {
-                                    $('#login-form').prepend(
+                                    jQueryNuvem('#login-form').prepend(
                                             "<div class=\"alert alert-danger\">{{ 'Tienes que compartír tu e-mail.' | translate }}</div>");
                                 }
                             } else {
-                                $('#login-form').prepend(
+                                jQueryNuvem('#login-form').prepend(
                                         "<div class=\"alert alert-danger\">{{ 'Debes completar el login.' | translate }}</div>");
                             }
                         });
@@ -206,19 +210,14 @@
             {% endif %}
             <script type="text/javascript">
                 var recaptchaCallback = function() {
-                    $('.js-recaptcha-button').prop('disabled', false);
+                    jQueryNuvem('.js-recaptcha-button').prop('disabled', false);
                 };
             </script>
         {% endif %}
 
         {# Store external codes added from admin #}
 
-        <script>
-            LS.ready.then(function() {
-                var trackingCode = $.parseHTML('{{ store.assorted_js| escape("js") }}', document, true);
-                $('body').append(trackingCode);
-            });
-        </script>
+        {{ component('assorted-js', {}) }}
 
     </body>
 </html>

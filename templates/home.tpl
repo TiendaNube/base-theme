@@ -59,3 +59,7 @@
    {% endif %}
 
 {% endfor %}
+
+{% if settings.home_promotional_popup %}
+    {% include 'snipplets/home/home-popup.tpl' %}
+{% endif %}

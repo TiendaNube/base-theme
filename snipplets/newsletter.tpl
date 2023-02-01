@@ -18,7 +18,7 @@
                 {% endif %}
             {% endif %}
 
-            <form method="post" action="/winnie-pooh" onsubmit="$(this).attr('action', '');" data-store="newsletter-form">
+            <form method="post" action="/winnie-pooh" onsubmit="this.setAttribute('action', '');" data-store="newsletter-form">
                 <div class="input-append">
                   
                     {% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_name: 'email', input_id: 'email', input_placeholder: 'Email' | translate, input_aria_label: 'Email' | translate } %}

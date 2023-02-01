@@ -25,11 +25,25 @@
 						{% if slide.link %}
 							<a href="{{ slide.link | setting_url }}" aria-label="{{ 'Carrusel' | translate }} {{ loop.index }}">
 						{% endif %}
+						{% set has_text =  slide.title or slide.description or slide.button %}
 							<div class="slider-slide">
 								<img 
 									{% if slide.width and slide.height %} width="{{ slide.width }}" height="{{ slide.height }}" {% endif %}
 									src="{{ slide_src }}"
 									{% if apply_lazy_load %}data-sizes="auto" data-{% endif %}srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image {% if apply_lazy_load %}swiper-lazy blur-up-big{% endif %}" alt="{{ 'Carrusel' | translate }} {{ loop.index }}"/>
+								{% if has_text %}
+		                			<div class="swiper-text swiper-{{ slide.color }}">
+			                			{% if slide.title %}
+			                				<div class="swiper-title h1">{{ slide.title }}</div>
+			                			{% endif %}
+			                			{% if slide.description %}
+			                				<div class="swiper-description h5 font-weight-normal mt-3">{{ slide.description }}</div>
+			                			{% endif %}
+			                			{% if slide.button and slide.link %}
+			                				<div class="btn btn-small swiper-btn mt-4">{{ slide.button }}</div>
+			                			{% endif %}
+			                		</div>
+		            			{% endif %}
 							</div>
 						{% if slide.link %}
 							</a>
