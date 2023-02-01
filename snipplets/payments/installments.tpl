@@ -1,5 +1,7 @@
 {% if product %}
 
+  {% set hasDiscount = product.maxPaymentDiscount.value > 0 %}
+
   {# Product installments #}
 
   {% if product.show_installments and product.display_price %}
@@ -9,15 +11,15 @@
 
     {# If product detail installments, include container with "see installments" link #}
 
-    {% if product_detail and ( installments_info or custom_payment.discount > 0 ) %}
+    {% if product_detail and ( installments_info or hasDiscount ) %}
       <div data-toggle="#installments-modal" data-modal-url="modal-fullscreen-payments" class="js-modal-open js-fullscreen-modal-open js-product-payments-container mb-2" {% if (not product.get_max_installments) and (not product.get_max_installments(false)) %}style="display: none;"{% endif %}>
     {% endif %}
 
-    {# Cash discount #}
+    {# Max Payment Discount #}
 
-    {% if product_detail and custom_payment.discount > 0 %}
+    {% if product_detail and hasDiscount %}
       <div class="text-center text-md-left mb-2">
-        <span><strong class="text-accent">{{ custom_payment.discount }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ custom_payment.name }}</span>
+        <span><strong class="text-accent">{{ product.maxPaymentDiscount.value }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ product.maxPaymentDiscount.paymentProviderName }}</span>
       </div>
     {% endif %}
 

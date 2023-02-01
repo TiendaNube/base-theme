@@ -10,7 +10,7 @@
                         <a href="{{ product_url_with_selected_variant }}" class="item-colors-bullet item-colors-bullet-text d-md-none w-auto px-2">{{ variation.options | length }} {{ 'colores' | translate }}</a>
                         <div class="d-none d-md-block">
                             {% for option in variation.options | take(5) if option.custom_data %}
-                                <span title="{{ option.name }}" data-option="{{ option.id }}" class="js-color-variant item-colors-bullet {% if product.default_options[variation.id] == option.id %}selected{% endif %}" style="background: {{ option.custom_data }}"></span>
+                                <span title="{{ option.name }}" data-option="{{ option.id }}" data-variation-id="{{ variation.id }}" class="js-color-variant item-colors-bullet {% if product.default_options[variation.id] == option.id %}selected{% endif %}" style="background: {{ option.custom_data }}"></span>
                             {% endfor %}
 
                             {% for option in variation.options %}

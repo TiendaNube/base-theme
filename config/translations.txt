@@ -566,10 +566,10 @@ pt "Limpar filtros"
 en "Clean filters"
 es_mx "Borrar filtros"
 
-es "No tenemos productos en esas variantes. Por favor, intentá con otros filtros."
-pt "Não temos produtos com estas variações. Por favor, tente com outros filtros"
-en "We don&#39;t have any product with those variants. Please, try with other filters"
-es_mx "No tenemos productos con esas variables. Intenta con otros filtros."
+es "No tenemos resultados para tu búsqueda. Por favor, intentá con otros filtros."
+pt "Não temos resultados para sua pesquisa. Por favor, tente com outros filtros."
+en "We don&#39;t have any results for your search. Please, try with other filters."
+es_mx "No tenemos resultados para tu búsqueda. Por favor, intenta con otros filtros."
 
 es "Más colores"
 pt "Mais cores"
@@ -3364,18 +3364,22 @@ es "Cargar otras imágenes para celulares"
 pt "Carregar outras imagens para celulares"
 es_mx "Cargar otras imágenes para celulares"
 
-es "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para computadoras</span>"
-pt "<span data-toggle-info='show-on_slider_mobile-active'>Imagens para computadores</span>"
-es_mx "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para computadoras</span>"
+es "Imágenes para computadoras"
+pt "Imagens para computadores"
+es_mx "Imágenes para computadoras"
 
-es "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para celulares</span>"
-pt "<span data-toggle-info='show-on_slider_mobile-active'>Imagens para celulares</span>"
-es_mx "<span data-toggle-info='show-on_slider_mobile-active'>Imágenes para celulares</span>"
+es "Imágenes para celulares"
+pt "Imagens para celulares"
+es_mx "Imágenes para celulares"
 
-es "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
-pt "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://atendimento.nuvemshop.com.br/pt-BR/articles/3300655-como-configurar-banners-rotativos-nos-layouts-idea-bahia-e-amazonas'>Como criar as imagens para seus banners rotativos?</a>"
-en "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>How to design the images for your carousel?</a>"
-es_mx "<span class='js-instatheme-carrusel-info' data-toggle-info='show-on_slider_mobile-inactive'></span><br/><a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
+es "Mejorá la calidad y velocidad de carga con esta opción"
+pt "Melhore a qualidade e velocidade de carregamento com esta opção"
+es_mx "Mejora la calidad y velocidad de carga con esta opción"
+
+es "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
+pt "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://atendimento.nuvemshop.com.br/pt-BR/articles/3300655-como-configurar-banners-rotativos-nos-layouts-idea-bahia-e-amazonas'>Como criar as imagens para seus banners rotativos?</a>"
+en "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>How to design the images for your carousel?</a>"
+es_mx "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
 
 es "Imágenes"
 pt "Imagens"
@@ -3710,9 +3714,17 @@ es "Mostrar barra lateral con filtros en listado de productos"
 pt "Mostrar barra lateral com filtros na lista de produtos"
 es_mx "Mostrar una barra lateral con filtros en el listado de productos"
 
-es "Mostrar filtros en el listado de productos"
-pt "Mostrar filtros na lista de produtos"
-es_mx "Mostrar filtros en el listado de productos"
+es "Elegí qué filtros vas a mostrar en el listado de productos."
+pt "Escolha quais filtros serão exibidos na lista de produtos."
+es_mx "Elige qué filtros vas a mostrar en el listado de productos."
+
+es "Variantes del producto"
+pt "Variações do produto"
+es_mx "Variantes del producto"
+
+es "Marca"
+pt "Marca"
+es_mx "Marca"
 
 es "¿Permitir que en el listado de productos tus clientes carguen nuevos productos cuando llegan al final de la página?"
 pt "Permitir que na apresentação dos produtos, os seus clientes carreguem novos produtos quando chegarem ao final da página?"
@@ -3803,6 +3815,34 @@ es_mx "Mostrar variantes de color en listado de productos"
 
 --- --- Details
 
+es "Variantes del producto"
+pt "Variações do produto"
+es_mx "Variantes del producto"
+
+es "Mostrar como botones"
+pt "Mostrar como botões"
+es_mx "Mostrar como botones"
+
+es "Guía de talles"
+en "Size guide"
+pt "Guia de medidas"
+es_mx "Guía de tallas"
+
+es "Cuando un producto tenga variantes de 'Talle', podés mostrar un pop-up con las medidas. Solo necesitás <a target='_blank' href='/admin/pages/'>crear una página</a> e incluir su link debajo."
+pt "Quando houver um produto com variações de 'Tamanho', você pode incluir um pop-up na sua loja com as medidas. Basta <a target='_blank' href='/admin/pages/'>criar uma página</a> e inserir o link aqui."
+en "When a product has 'Size' variants, you can show a pop-up with the measurements. You just need to <a target='_blank' href='/admin/pages/'>create a page</a> and include its link below."
+es_mx "Cuando un producto tenga variantes de 'Talla', puedes mostrar un pop-up con las medidas. Solo necesitas <a target='_blank' href='/admin/pages/'>crear una página</a> e incluir su link debajo."
+
+es "Link de la página"
+pt "Link da página"
+en "Page link"
+es_mx "Link de la página"
+
+es "Ej: https://tudominio.com/guia-de-talles/"
+pt "Ex: https://seudominio.com/guia-de-medidas/"
+en "Ej: https://yourdomain.com/size-guide/"
+es_mx "Ej: https://tudominio.com/guia-de-tallas/"
+
 es "Último producto en stock"
 pt "Último produto em estoque"
 en "Last product in stcok"
@@ -3858,7 +3898,7 @@ en "Show 'View more products' button on the shopping cart"
 es_mx "Mostrar el botón 'Ver más productos' en el carrito de compras"
 
 es "¿Cuál es el monto mínimo que tus clientes deben gastar?"
-pt "Qual o valor mínimo que seus clientes devem gastar?"
+pt "Qual o valor mínimo que seus clientes devem gastar? <div class='legend m-top'>Preencha somente se a loja for do tipo atacado.</div>"
 es_mx "¿Cuál es el monto mínimo que tus clientes deben gastar?"
 
 es "Ej.: 3000"
@@ -4159,9 +4199,21 @@ es "¡Invitá a los clientes a registrarse para recibir tus novedades!"
 pt "Escreva algo para seus clientes se inscreverem na sua newsletter!"
 es_mx "¡Invita a los clientes a registrarse para recibir tus novedades!"
 
+es "Pop-up promocional"
+pt "Popup promocional"
+es_mx "Pop-up promocional"
+
+es "Mostrar Pop-up"
+pt "Mostrar popup"
+es_mx "Mostrar Pop-up"
+
 es "Imagen para el pop-up"
 pt "Imagem para popup"
 es_mx "Imagen para el pop-up"
+
+es "Permitir que tus clientes se registren para recibir novedades desde el pop-up (Opcional)"
+pt "Permitir que seus clientes se inscrevam na newsletter (Opcional)"
+es_mx "Permitir que tus clientes se registren para recibir novedades desde el pop-up (Opcional)"
 
 es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/que-es-un-pop-up-y-como-agrego-uno-en-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Qué es un pop-up y cómo lo agrego?</a>"
 pt "<a target='_blank' href='http://atendimento.nuvemshop.com.br/layout/como-inserir-a-inscricao-para-newsletter-em-pop-up-na-minha-loja/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como inserir a inscrição para newsletter em pop-up na minha loja?</a>"

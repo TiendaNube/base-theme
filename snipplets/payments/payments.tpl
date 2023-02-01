@@ -18,9 +18,18 @@
                 <ul class="js-tab-group tab-group">
                     {% for method, installments in installments_info %}
                         {% set method_clean = method | replace(" ", "_") | lower %}
+                        {% set maxDiscount = payment_methods_config[method].max_discount %}
 
                         <li id="method_{{ method_clean }}" class="js-refresh-installment-data js-installments-gw-tab js-tab tab {% if loop.first %} active {% endif %}" data-code="{{ method }}">
-                            <a href="#installment_{{ method_clean }}_{{ installment }}" class="js-tab-link tab-link">{{ method == 'paypal_multiple' ? 'PAYPAL' : (method == 'itaushopline'? 'ITAU SHOPLINE' : method | upper) }}</a>
+                            <a href="#installment_{{ method_clean }}_{{ installment }}" class="js-tab-link tab-link">
+                                {{ payment_methods_config[method].name | upper }}
+                                {% if maxDiscount > 0 %}
+                                    {% set hasGeneralDiscount = payment_methods_config[method].has_general_discount %}
+                                    <span class="label label-accent ml-1">
+                                        <strong>{% if not hasGeneralDiscount %}{{'Hasta' | translate }} {% endif %}{{ maxDiscount }}% {{'OFF' | translate }}</strong>
+                                    </span>
+                                {% endif %}
+                            </a>
                         </li>
 
                         {# Custom payment method #}

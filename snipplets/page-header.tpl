@@ -10,7 +10,7 @@
 
 #}
 
-<section class="page-header {% if template == 'product' %}mt-md-3{% else %}mt-3{% endif %}" {% if template != 'product' %}data-store="page-title"{% endif %}>
+<section class="page-header mt-3" {% if template != 'product' %}data-store="page-title"{% endif %}>
     {% if template != 'product' %}
     <div class="container">
         <div class="row">

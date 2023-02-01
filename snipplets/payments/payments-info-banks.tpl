@@ -1,3 +1,4 @@
+{% from 'snipplets/payments/payment-methods-info.tpl' import paymentMethodsInfo %}
 {% set gateways = installmentsv2['methods'][method] %}
 
 {# Gateways with banks #}
@@ -151,3 +152,6 @@
     {% endif %}
   </div>
 {% endif %}
+
+{# Supported Payment Methods #}
+{{ paymentMethodsInfo(gateways, product) }}

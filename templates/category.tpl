@@ -1,6 +1,4 @@
-{% set has_filters = insta_colors|length > 0 or other_colors|length > 0 or size_properties_values|length > 0 or variants_properties|length > 0 %}
-
-{% set show_filters = settings.product_filters and (filter_categories or insta_colors or other_colors or size_properties_values or variants_properties) %}
+{% set has_filters_available = products and has_filters_enabled and (filter_categories is not empty or product_filters is not empty) %}
 
 {# Only remove this if you want to take away the theme onboarding advices #}
 {% set show_help = not has_products %}
@@ -29,7 +27,7 @@
 			{% if products %}
 				{% set columns = settings.grid_columns %}
 				<div class="col-6{% if columns == 2 %} col-md-9{% else %} col-md-9{% endif %}">
-				{% if show_filters %}
+				{% if has_filters_available %}
 					<a href="#" class="js-modal-open filter-link" data-toggle="#nav-filters">
 						{{ 'Filtrar' | t }} {% include "snipplets/svg/filter.tpl" with {svg_custom_class: "icon-inline icon-w-16"} %} 
 					</a>		   
@@ -38,8 +36,12 @@
 				            {{'Filtros' | translate }}
 				        {% endblock %}
 						{% block modal_body %}
-							{% snipplet "grid/categories.tpl" %}
-							{% snipplet "grid/filters.tpl" %}
+							{% if filter_categories is not empty %}
+								{% snipplet "grid/categories.tpl" %}
+							{% endif %}
+							{% if product_filters is not empty %}
+								{% snipplet "grid/filters.tpl" %}
+							{% endif %}
 							<div class="js-filters-overlay filters-overlay" style="display: none;">
 								<div class="filters-updating-message">
 									<h3 class="js-applying-filter" style="display: none;">{{ 'Aplicando filtro...' | translate }}</h3>
@@ -75,7 +77,7 @@
 	        {% endif %}
 	    {% else %}
 	        <p class="text-center">
-	            {{(has_filters ? "No tenemos productos en esas variantes. Por favor, intentá con otros filtros." : "Próximamente") | translate}}
+	            {{(has_filters_enabled ? "No tenemos resultados para tu búsqueda. Por favor, intentá con otros filtros." : "Próximamente") | translate}}
 	        </p>
 	    {% endif %}
 	</div>

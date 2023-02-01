@@ -50,8 +50,8 @@
 {# Add to cart notification #}
 
 {% if add_to_cart %}
-    <div class="js-alert-added-to-cart notification-floating notification-hidden {% if add_to_cart_fixed %}notification-fixed{% endif %}" style="display: none;">
-        <div class="notification notification-primary notification-with-arrow position-relative {% if not add_to_cart_mobile %}col-12 float-right{% endif %}">
+    <div class="js-alert-added-to-cart notification-floating notification-hidden {% if add_to_cart_fixed %}notification-fixed-bottom-right mb-md-2 mr-md-2{% endif %}" style="display: none;">
+        <div class="notification notification-primary position-relative {% if not add_to_cart_mobile %}col-12 float-right{% endif %}">
             <div class="h6 text-center mb-3 mr-3">
                 <strong>{{ '¡Ya agregamos tu producto al carrito!' | translate }}</strong>
             </div>

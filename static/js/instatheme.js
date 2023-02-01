@@ -1,4 +1,4 @@
-window.tiendaNubeInstaTheme = (function($) {
+window.tiendaNubeInstaTheme = (function(jQueryNuvem) {
 	return {
 		waitFor: function() {
 			return [window.homeSlider];
@@ -6,8 +6,8 @@ window.tiendaNubeInstaTheme = (function($) {
 		handlers: function(instaElements) {
 			return {
 				logo: new instaElements.Logo({
-					$storeName: $('#no-logo'),
-					$logo: $('#logo')
+					$storeName: jQueryNuvem('#no-logo'),
+					$logo: jQueryNuvem('#logo')
 				}),
 				slider: new instaElements.GenericSlider(window.homeSlider),
 				slider_auto: new instaElements.AutoSliderCheckbox({
@@ -16,4 +16,4 @@ window.tiendaNubeInstaTheme = (function($) {
 			};
 		}
 	};
-})(jQuery);
+})(jQueryNuvem);

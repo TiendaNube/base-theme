@@ -14,17 +14,17 @@
         {% snipplet "header/header-advertising.tpl" %}
     {% endif %}
 
-	<div class="container">
+	<div class="container position-relative">
 		<div class="row no-gutters align-items-center">
 			<div class="col">{% snipplet "navigation/navigation.tpl" %}</div>
 			<div class="col text-center">{% snipplet "header/header-logo.tpl" %}</div>
 			<div class="col text-right">{% snipplet "header/header-utilities.tpl" %}</div>
+            {% if settings.head_fix and settings.ajax_cart %}
+                {% include "snipplets/notification.tpl" with {add_to_cart: true} %}
+            {% endif %}
 		</div>
 	</div>    
     {% include "snipplets/notification.tpl" with {order_notification: true} %}
-    {% if settings.head_fix and settings.ajax_cart %}
-        {% include "snipplets/notification.tpl" with {add_to_cart: true} %}
-    {% endif %}
 </header>
 
 {% if not settings.head_fix %}

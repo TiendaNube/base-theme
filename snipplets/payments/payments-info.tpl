@@ -1,3 +1,4 @@
+{% from 'snipplets/payments/payment-methods-info.tpl' import paymentMethodsInfo %}
 {% set installments_data = installmentsv2['methods'][method] %}
 
 {# Gateways without banks: cards only #}
@@ -154,27 +155,4 @@
 
 {# Supported Payment Methods #}
 
-{% if installments_data['supported_payment_methods'] %}
-    {% for paymentMethod in installments_data['supported_payment_methods'] %}
-
-        {# Payment Method Title #}
-        <h6 class="mb-1">{{ paymentMethod.name }}</h6>
-
-        <div id="info-payment-method-{{ paymentMethod.id }}" class="box">
-
-            {# Payment Method Logos #}
-            <div>
-                {% for logo in paymentMethod.logos %}
-                    <span>
-                        <img src="{{ 'images/empty-placeholder.png' | static_url }}" data-src="{{ logo | payment_new_logo }}" class="lazyload card-img card-img-medium">
-                    </span>
-                {% endfor %}
-            </div>
-
-            {# Payment Method Total #}
-            <h4 class="font-weight-normal mb-0">
-                <span>{{ 'Total:' | translate }}</span><strong class="js-installments-one-payment">{{ product.price | money }}</strong>
-            </h4>
-        </div>
-    {% endfor %}
-{% endif %}
+{{ paymentMethodsInfo(installments_data, product) }}

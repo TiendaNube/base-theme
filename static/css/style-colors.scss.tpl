@@ -333,6 +333,29 @@ h6,.h6{
     fill: $main-foreground;
     border: 1px solid $main-foreground;
   }
+  &-variant{
+    display: inline-block;
+    font-size: 10px;
+    line-height: 10px;
+    min-width: 24px;
+    min-height: 24px;
+    margin: 0 10px 10px 0;
+    border: 1px solid rgba($main-foreground, .3);
+    color: rgba($main-foreground, .3);
+    border-radius: 2px;
+    vertical-align: top;
+    &-content{
+      display: block;
+      min-width: 12px;
+      min-height: 12px;
+      margin: 5px;
+      line-height: 12px;
+    }
+    &.selected {
+      color: $main-foreground;
+      border: 1px solid rgba($main-foreground, .8);
+    }
+  }
   &-block{
     float: left;
     width: 100%;
@@ -373,6 +396,10 @@ button{
     outline: 0;
     opacity: 0.8;
   }
+}
+
+.newsletter-btn {
+  color: $main-foreground;
 }
 
 {# /* // Texts */ #}
@@ -505,6 +532,10 @@ textarea {
   }
 }
 
+.input-clear-content:before {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="{{ settings.primary_color |replace("#","%23") }}"><path d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z"/></svg>');
+}
+
 .radio-button-container{
   .radio-button {
     &-content{
@@ -566,6 +597,12 @@ textarea {
       color: rgba($main-foreground,.8);
     }
   }
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button{
+  margin: 0;
+  -webkit-appearance: none;
 }
 
 {# /* Lists */ #}
@@ -717,6 +754,33 @@ textarea {
   background-color: $main-foreground;
 }
 
+.swiper-text {
+  opacity: 0;
+  top: 60%;
+}
+.swiper-title {
+  font-family: $heading-font;
+}
+.swiper-slide-active .swiper-text {
+  opacity: 1;
+  top: 50%;
+}
+
+.swiper-dark {
+  color: $main-foreground;
+  .swiper-btn {
+    color: $main-background;
+    background-color: $main-foreground;
+  }
+}
+
+.swiper-light {
+  color: $main-background;
+  .swiper-btn {
+    color: $main-foreground;
+    background-color: $main-background;
+  }
+}
 
 {#/*============================================================================
   #Home Page

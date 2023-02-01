@@ -210,11 +210,11 @@ body{
 .blur-up.swiper-lazy-loaded,
 .blur-up-big.swiper-lazy-loaded,
 .blur-up-huge.swiper-lazy-loaded {
-  -webkit-filter: blur(0);
-  filter: blur(0);
-  -moz-filter: blur(0);
-  -ms-filter: blur(0);
-  -o-filter: blur(0);
+  -webkit-filter: none;
+  filter: none;
+  -moz-filter: none;
+  -ms-filter: none;
+  -o-filter: none;
 }
 .preloader-bg-img,
 .product-slider-image.blur-up{
@@ -239,11 +239,11 @@ body{
 .swiper-lazy-loaded + .preloader-bg-img,
 .lazyloaded + .blur-up{
   opacity: 0;
-  -webkit-filter: blur(0);
-  filter: blur(0);
-  -moz-filter: blur(0);
-  -ms-filter: blur(0);
-  -o-filter: blur(0);
+  -webkit-filter: none;
+  filter: none;
+  -moz-filter: none;
+  -ms-filter: none;
+  -o-filter: none;
 }
 .fade-in {
   opacity: 0;
@@ -604,6 +604,20 @@ p{
   color: #ffffff85;
 }
 
+.swiper-text {
+  position: absolute;
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  width: 92%;
+  padding: 0 25px;
+  text-align: center;
+  transform: translate(-50%,-50%);
+}
+.swiper-title {
+  font-size: 36px;
+}
+
 {# /* // Lists */ #}
 
 .list {
@@ -630,10 +644,11 @@ p{
 }
 .notification-floating {
   position: absolute;
+  top: 100%;
   right: 15px;
   z-index: 2000;
   width: calc(100% - 30px);
-  margin-top: -10px;
+  margin-top: -20px;
 }
 .notification-fixed {
   position: fixed;
@@ -653,6 +668,15 @@ p{
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 999;
+  width: 100%;
+}
+
+.notification-fixed-bottom-right {
+  position: fixed;
+  top: initial;
+  bottom: 0;
+  right: 0;
   z-index: 999;
   width: 100%;
 }
