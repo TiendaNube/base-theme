@@ -58,7 +58,7 @@
 				{% if store.country == 'BR' or 'AR' or 'MX' %}
 					{% set zipcode_help_ar = 'https://www.correoargentino.com.ar/formularios/cpa' %}
 					{% set zipcode_help_br = 'http://www.buscacep.correios.com.br/sistemas/buscacep/' %}
-					{% set zipcode_help_mx = 'https://www.correosdemexico.gob.mx/datosabiertos/gobmx/gobmx_Descarga.html' %}
+					{% set zipcode_help_mx = 'https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/Descarga.aspx' %}
 					<div class="col-12">
 						<a class="font-small text-primary mt-3 mb-2 d-block" href="{% if store.country == 'AR' %}{{ zipcode_help_ar }}{% elseif store.country == 'BR' %}{{ zipcode_help_br }}{% elseif store.country == 'MX' %}{{ zipcode_help_mx }}{% endif %}" target="_blank">{{ "No sé mi código postal" | translate }}</a>
 					</div>

@@ -106,7 +106,9 @@ $body-font: {{ settings.font_rest | raw }};
   color: $main-background;
 }
 
-.text-accent {
+.text-accent,
+.product-detail-installments .installment-no-interest,
+.cart-installments.installment-no-interest {
   color: $accent-color;
 }
 
@@ -605,6 +607,10 @@ input::-webkit-outer-spin-button{
   -webkit-appearance: none;
 }
 
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
 {# /* Lists */ #}
 
 .list-readonly {
@@ -948,7 +954,8 @@ input::-webkit-outer-spin-button{
   background-color: $main-background;
   @extend %simplefade;
   .cart-widget-amount,
-  .svg-icon-text {
+  .svg-icon-text,
+  .logo-text {
     color: $main-foreground;
     fill: $main-foreground;
   }
@@ -958,7 +965,8 @@ input::-webkit-outer-spin-button{
   background-color: $main-foreground;
   @extend %simplefade;
   .cart-widget-amount,
-  .svg-icon-text {
+  .svg-icon-text,
+  .logo-text {
     color: $main-background;
     fill: $main-background;
   }

@@ -39,7 +39,65 @@
 
 {# Product installments #}
 
-{% include "snipplets/payments/installments.tpl" with {'product_detail' : true} %}
+{% set installments_info = product.installments_info_from_any_variant %}
+{% set hasDiscount = product.maxPaymentDiscount.value > 0 %}
+{% set show_payments_info = product.show_installments and product.display_price and installments_info %}
+
+{% if show_payments_info or hasDiscount %}
+
+    <div data-toggle="#installments-modal" data-modal-url="modal-fullscreen-payments" class="js-modal-open js-fullscreen-modal-open js-product-payments-container mb-2" {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
+
+        {# Max Payment Discount #}
+
+        {% if hasDiscount %}
+            <div class="text-center text-md-left mb-2">
+                <span><strong class="text-accent">{{ product.maxPaymentDiscount.value }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ product.maxPaymentDiscount.paymentProviderName }}</span>
+            </div>
+        {% endif %}
+
+        {# Installments #}
+
+        {% if show_payments_info %}
+            {% set max_installments_without_interests = product.get_max_installments(false) %}
+            {% set installments_without_interests = max_installments_without_interests and max_installments_without_interests.installment > 1 %}
+            {% set installment_text_weigth = installments_without_interests ? 'font-weight-bold' : '' %}
+            {{ component('installments', {'location' : 'product_detail', container_classes: { installment: "product-detail-installments text-center text-md-left mb-2 " ~ installment_text_weigth}}) }}
+        {% endif %}
+
+        <div class="form-row align-items-center align-items-start-md mb-4">
+            {% set has_payment_logos = settings.payments %}
+            {% if has_payment_logos %}
+              <ul class="list-inline col col-md-auto text-center text-md-left">
+                {% for payment in settings.payments %}
+                    {# Payment methods flags #}
+                    {% if store.country == 'BR' %}
+                      {% if payment in ['visa', 'mastercard'] %}
+                        <li>     
+                          {{ payment | payment_new_logo | img_tag('',{class: 'card-img card-img-small lazyload'}) }}
+                        </li>
+                      {% endif %}
+                    {% else %}
+                        {% if payment in ['visa', 'amex', 'mastercard'] %}
+                          <li>
+                            {{ payment | payment_new_logo | img_tag('',{class: 'card-img card-img-small lazyload'}) }}
+                          </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                  <li>
+                    {% include "snipplets/svg/credit-card-blank.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-2x " ~ card_icon_color ~ ""} %}
+                  </li>
+              </ul>
+            {% endif %}
+            <div class="col-12 col-md-auto text-center">
+                <a id="btn-installments" class="btn-link" {% if not (product.get_max_installments and product.get_max_installments(false)) %}style="display: none;"{% endif %}>
+                    {{ "Ver medios de pago" | translate }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
 
 {# Product form, includes: Variants, CTA and Shipping calculator #}
 
@@ -101,7 +159,7 @@
 
 {# Product payments details #}
 
-{% include 'snipplets/payments/payments.tpl' %}
+{% include 'snipplets/product/product-payment-details.tpl' %}
 
 {# Product share #}
 

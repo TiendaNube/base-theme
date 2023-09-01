@@ -178,7 +178,7 @@
                 <div class='total-price hidden'>
                   {{ "Total" | translate }}: {{ cart.total | money }}
                 </div>
-                {% include "snipplets/payments/installments.tpl" with {'product': false} %}
+                {{ component('installments', {'location': 'cart', container_classes: { installment: "mt-1 font-weight-bold text-right"}}) }}
               </div>
 
               <div class="js-visible-on-cart-filled {% if not cart_page %}container-fluid{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>

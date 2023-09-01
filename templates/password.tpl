@@ -8,17 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ page_title }}</title>
         <meta name="description" content="{{ page_description }}" />
-        {% if settings.fb_admins %}
-            <meta property="fb:admins" content="{{ settings.fb_admins }}" />
-        {% endif %}
-        {% if store_fb_app_id %}
-        <meta property="fb:app_id" content="{{ store_fb_app_id }}" />
-        {% elseif not store.has_custom_domain %}
-        <meta property="fb:app_id" content="{{ fb_app.id }}" />
-        {% endif %}
-
-        {# OG tags to control how the page appears when shared on social networks. See http://ogp.me/ #}
-        {% snipplet "metas/general-og.tpl" %}
+        
+        {{ component('social-meta') }}
 
         {#/*============================================================================
             #CSS and fonts
@@ -60,7 +51,7 @@
 
         {# Load async styling not mandatory for first meaningfull paint #}
 
-        {% include "static/js/load-css-async.tpl" %}
+        <link rel="stylesheet" href="{{ 'css/style-async.scss.tpl' | static_url }}" media="print" onload="this.media='all'">
 
         {# Loads custom CSS added from Advanced Settings on the admin´s theme customization screen #}
 
@@ -94,10 +85,10 @@
 
         {# Structured data to provide information for Google about the page content #}
 
-        {% include 'snipplets/structured_data/webpage-structured-data.tpl' %}
+        {{ component('structured-data') }}
 
     </head>
-    <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }} {% if settings.head_fix %}js-head-offset head-offset{% endif %}">
+    <body class="{% if settings.head_fix %}js-head-offset head-offset{% endif %} {% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }}">
 
         {# Back to admin bar #}
 
@@ -110,7 +101,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-8 text-center">
                         <div class="my-5">
-                            {% snipplet "header/header-logo.tpl" %}
+                            {{ component('logos/logo', {logo_img_classes: 'transition-soft-slow', logo_text_classes: 'h1 m-0'}) }}
                         </div>
 
                         <h2 class="mb-5">{{ message }}</h2>

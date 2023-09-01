@@ -14,16 +14,18 @@
         {% snipplet "header/header-advertising.tpl" %}
     {% endif %}
 
-	<div class="container position-relative">
-		<div class="row no-gutters align-items-center">
-			<div class="col">{% snipplet "navigation/navigation.tpl" %}</div>
-			<div class="col text-center">{% snipplet "header/header-logo.tpl" %}</div>
-			<div class="col text-right">{% snipplet "header/header-utilities.tpl" %}</div>
+    <div class="container position-relative">
+        <div class="row no-gutters align-items-center">
+            <div class="col">{% snipplet "navigation/navigation.tpl" %}</div>
+            <div class="col text-center">
+                {{ component('logos/logo', {logo_img_classes: 'transition-soft-slow', logo_text_classes: 'h1 m-0'}) }}
+            </div>
+            <div class="col text-right">{% snipplet "header/header-utilities.tpl" %}</div>
             {% if settings.head_fix and settings.ajax_cart %}
                 {% include "snipplets/notification.tpl" with {add_to_cart: true} %}
             {% endif %}
-		</div>
-	</div>    
+        </div>
+    </div>    
     {% include "snipplets/notification.tpl" with {order_notification: true} %}
 </header>
 
