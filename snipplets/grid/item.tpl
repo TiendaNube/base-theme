@@ -10,12 +10,6 @@
 
 {% set slide_item = slide_item | default(false) %}
 {% set columns = settings.grid_columns %}
-{% set has_color_variant = false %}
-{% if settings.product_color_variants %}
-    {% for variation in product.variations if variation.name in ['Color', 'Cor'] and variation.options | length > 1 %}
-        {% set has_color_variant = true %}
-    {% endfor %}
-{% endif %}
 
 <div class="js-item-product {% if slide_item %}js-item-slide swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %}" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}" data-component="product-list-item" data-component-value="{{ product.id }}">
 
@@ -25,24 +19,10 @@
 
         {% set product_url_with_selected_variant = has_filters ?  ( product.url | add_param('variant', product.selected_or_first_available_variant.id)) : product.url  %}
 
-        {% if has_color_variant %}
-
-            {# Item image will be the first avaiable variant #}
-
-            {% set item_img_width = product.featured_variant_image.dimensions['width'] %}
-            {% set item_img_height = product.featured_variant_image.dimensions['height'] %}
-            {% set item_img_srcset = product.featured_variant_image %}
-            {% set item_img_alt = product.featured_variant_image.alt %}
-        {% else %}
-
-            {# Item image will be the first image regardless the variant #}
-
-            {% set item_img_width = product.featured_image.dimensions['width'] %}
-            {% set item_img_height = product.featured_image.dimensions['height'] %}
-            {% set item_img_srcset = product.featured_image %}
-            {% set item_img_alt = product.featured_image.alt %}
-        {% endif %}
-
+        {% set item_img_width = product.featured_image.dimensions['width'] %}
+        {% set item_img_height = product.featured_image.dimensions['height'] %}
+        {% set item_img_srcset = product.featured_image %}
+        {% set item_img_alt = product.featured_image.alt %}
         {% set item_img_spacing = item_img_height / item_img_width * 100 %}
 
         <div class="item-image mb-2">
@@ -59,7 +39,7 @@
                 {% endif %}
             </div>
         </div>
-        {% if (settings.quick_shop or settings.product_color_variants) and product.variations %}
+        {% if (settings.quick_shop or settings.product_color_variants) and product.available and product.display_price and product.variations %}
 
             {# Hidden product form to update item image and variants: Also this is used for quickshop popup #}
             
@@ -103,7 +83,7 @@
                 {% endif %}
             </a>
         </div>
-        {% include 'snipplets/payments/installments.tpl' %}
+        {{ component('installments', {'location' : 'product_item', container_classes: { installment: "item-installments"}}) }}
 
         {% if settings.quick_shop and product.available and product.display_price %}
 
@@ -137,7 +117,7 @@
         {% endif %}
 
         {# Structured data to provide information for Google about the product content #}
-        {% include 'snipplets/structured_data/item-structured-data.tpl' %}
+        {{ component('structured-data', {'item': true}) }}
     {% if settings.quick_shop or settings.product_color_variants %}
         </div>
     {% endif %}

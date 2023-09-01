@@ -429,6 +429,10 @@ p{
   font-size: 11px!important;
 }
 
+.font-big{
+  font-size: 16px;
+}
+
 {# /* // Icons */ #}
 
 .icon-inline {
@@ -886,6 +890,8 @@ p{
   text-align: center;
 }
 .logo-img{
+  width: auto;
+  height: auto;
   margin: 15px 0;
   vertical-align: middle;
   max-width: 40vw;

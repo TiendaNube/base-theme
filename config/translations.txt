@@ -1059,9 +1059,9 @@ en "Update quantity"
 es_mx "Cambiar cantidad"
 
 es "Iniciar Compra"
-pt "Finalizar Compra"
+pt "Iniciar Compra"
 en "Go to Checkout"
-es_mx "Comprar"
+es_mx "Iniciar Compra"
 
 es "Ver más productos"
 pt "Ver mais produtos"
@@ -2084,67 +2084,76 @@ es_mx "Necesitamos una contraseña para registrarte."
 --- Payments ---
 
 es "Medios de pago"
-pt "Formas de pagamento"
+pt "Meios de pagamento"
 en "Payment methods"
 es_mx "Métodos de pago"
-
-es "MEDIOS DE PAGO"
-pt "MEIOS DE PAGAMENTO"
-en "MEANS OF PAYMENT"
-es_mx "MÉTODOS DE PAGO"
-
-es "Ejemplos de medios de pago"
-pt "Exemplos de formas de pagamento"
-en "Payment methods examples"
-es_mx "Ejemplos de métodos de pago"
 
 es "Medio de pago"
 pt "Meio de pagamento"
 en "Payment method"
 es_mx "Método de pago"
 
-es "Tarjeta de crédito"
-pt "Cartão de crédito"
-en "Credit card"
-es_mx "Tarjeta de crédito"
+es "de descuento"
+pt "de desconto"
+en "discount"
+es_mx "de descuento"
 
-es "Tarjeta de débito y efectivo"
-pt "Cartão de débito e à vista"
-en "Debit card and cash"
-es_mx "Tarjeta de débito y efectivo"
+es "pagando con"
+pt "pagando com"
+en "paying with"
+es_mx "pagando con"
 
-es "Efectivo / Débito online"
-pt "À vista / Débito online"
-en "Cash / Online debit"
-es_mx "Efectivo / Débito en línea"
+es "Ver medios de pago"
+pt "Ver meios de pagamento"
+en "See payment options"
+es_mx "Ver métodos de pago"
 
-es "Efectivo"
-pt "À vista"
-en "Cash"
-es_mx "Efectivo"
+es "Volver al producto"
+pt "Voltar ao produto"
+en "Back to product"
+es_mx "Regresar al producto"
 
-es "Débito online"
-pt "Débito online"
-en "Online debit"
-es_mx "Débito en línea"
+es "A convenir"
+pt "A combinar"
+en "To be defined"
+es_mx "A convenir"
 
-es "Bancos con"
-pt "Bancos com"
-en "Banks with"
-es_mx "Bancos con"
-
-es "Otros bancos"
-pt "Outros bancos"
-en "Other banks"
-es_mx "Otros bancos"
-
-es "Pagás"
-pt "Você paga"
-en "You pay"
-es_mx "Pagas"
-
+es "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
+pt "Até <strong class='installment-amount'>{1}</strong>x sem juros"
+en "In up to <strong class='installment-amount'>{1}</strong> installments without interest"
+es_mx "Hasta <strong class='installment-amount'>{1}</strong> meses sin intereses"
 
 --- Shipping ---
+
+es "Ver más opciones"
+pt "Ver mais opções"
+en "See more options"
+es_mx "Ver más opciones"
+
+es "Ver menos opciones"
+pt "Ver menos opções"
+en "See less options"
+es_mx "Ver menos opciones"
+
+es "Ver más opciones de envío"
+pt "Ver mais opções de envio"
+en "See more delivery options"
+es_mx "Ver más opciones de envío"
+
+es "Ver menos opciones de envío"
+pt "Ver menos opções de envio"
+en "See less delivery options"
+es_mx "Ver menos opciones de envío"
+
+es "Ver más opciones de retiro"
+pt "Ver mais opções de retirada"
+en "See more pickup options"
+es_mx "Ver más opciones de retiro"
+
+es "Ver menos opciones de retiro"
+pt "Ver menos opções de retirada"
+en "See less pickup options"
+es_mx "Ver menos opciones de retiro"
 
 es "Formas de envío"
 pt "Formas de envio"
@@ -2516,384 +2525,6 @@ es "Entrega a domicilio"
 pt "Entrega a domicílio"
 en "Delivery"
 es_mx "Entrega a domicilio"
-
---- Installments ---
-
-es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas de <strong class='js-installment-price installment-price'>{2}</strong>"
-pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong>"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong>"
-es_mx "<strong class='js-installment-amount installment-amount'>{1}</strong> meses de <strong class='js-installment-price installment-price'>{2}</strong>"
-
-es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>"
-pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
-es_mx "<strong class='js-installment-amount installment-amount'>{1}</strong> meses sin intereses de <strong class='js-installment-price installment-price'>{2}</strong>"
-
-es "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span> cuotas sin interés</span> de <span class='js-installment-price installment-price'>{2}</span>"
-pt "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span>x de <span class='js-installment-price installment-price'>{2}</span> sem juros</span>"
-en "In up to <span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span></span> installments of <span class='js-installment-price installment-price'>{2}</span> <span class='text-accent font-weight-bold'>without interest</span>"
-es_mx "<span class='text-accent font-weight-bold'><span class='js-installment-amount installment-amount'>{1}</span> meses sin intereses</span> de <span class='js-installment-price installment-price'>{2}</span>"
-
-es "En hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas"
-pt "Em até <strong class='js-installment-amount installment-amount'>{1}</strong>x"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments"
-es_mx "En hasta <strong class='js-installment-amount installment-amount'>{1}</strong> meses"
-
-es "<strong class='js-installment-amount installment-amount'>{1}</strong> cuotas sin interés de <strong class='js-installment-price installment-price'>{2}</strong>"
-pt "<strong class='js-installment-amount installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments of <strong class='js-installment-price installment-price'>{2}</strong> without interest"
-es_mx "<strong class='js-installment-amount installment-amount'>{1}</strong> meses sin intereses de <strong class='js-installment-price installment-price'>{2}</strong>"
-
-es "<strong class='installment-amount'>{1}</strong> cuotas de <strong class='installment-price'>{2}</strong>"
-pt "<strong class='installment-amount'>{1}</strong>x de <strong class='installment-price'>{2}</strong>"
-en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong>"
-es_mx "<strong class='installment-amount'>{1}</strong> meses de <strong class='installment-price'>{2}</strong>"
-
-es "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>"
-pt "<strong class='installment-amount'>{1}</strong>x de <strong class='installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
-es_mx "<strong class='installment-amount'>{1}</strong> meses sin intereses de <strong class='installment-price'>{2}</strong>"
-
-es "En hasta <strong class='installment-amount'>{1}</strong> cuotas"
-pt "Em até <strong class='installment-amount'>{1}</strong>x"
-en "In up to <strong class='installment-amount'>{1}</strong> installments"
-es_mx "En hasta <strong class='installment-amount'>{1}</strong> meses"
-
-es "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
-pt "Até <strong class='installment-amount'>{1}</strong>x sem juros"
-en "In up to <strong class='installment-amount'>{1}</strong> installments without interest"
-es_mx "Hasta <strong class='installment-amount'>{1}</strong> meses sin intereses"
-
-es "<strong class='installment-amount'>{1}</strong> cuotas sin interés de <strong class='installment-price'>{2}</strong>"
-pt "<strong class='installment-amount'>{1}</strong>x de <strong class='js-installment-price installment-price'>{2}</strong> sem juros"
-en "In up to <strong class='installment-amount'>{1}</strong> installments of <strong class='installment-price'>{2}</strong> without interest"
-es_mx "<strong class='installment-amount'>{1}</strong> meses sin intereses de <strong class='installment-price'>{2}</strong>"
-
-es "<strong class='js-cart-installments-amount'>{1}</strong> cuotas de <strong class='js-cart-installments installment-price'>{2}</strong>"
-pt "<strong class='js-cart-installments-amount'>{1}</strong>x de <strong class='js-cart-installments installment-price'>{2}</strong>"
-en "<strong class='js-cart-installments-amount'>{1}</strong> installments of <strong class='js-cart-installments installment-price'>{2}</strong>"
-es_mx "<strong class='js-cart-installments-amount'>{1}</strong> meses de <strong class='js-cart-installments installment-price'>{2}</strong>"
-
-es "<span class='js-cart-installments-amount'>{1}</span> cuotas sin interés de <span class='js-cart-installments installment-price'>{2}</span>"
-pt "<span class='js-cart-installments-amount'>{1}</span>x de <span class='js-cart-installments installment-price'>{2}</span> sem juros"
-en "<span class='js-cart-installments-amount'>{1}</span> installments of <span class='js-cart-installments installment-price'>{2}</span> without interest"
-es_mx "<span class='js-cart-installments-amount'>{1}</span> meses sin intereses de <span class='js-cart-installments installment-price'>{2}</span>"
-
-es "{1} cuotas en tarjeta de crédito"
-pt "{1}x no cartão"
-en "In up to {1} installments"
-es_mx "{1} meses con tarjeta de crédito"
-
-es "¡{1} cuotas sin interés!"
-pt "{1} x sem juros!"
-en "{1} installments without interest!"
-es_mx "¡{1} meses sin intereses!"
-
-es "Ver el detalle de las cuotas"
-pt "Ver detalhes das parcelas"
-en "See installments details"
-es_mx "Ver el detalle de las mensualidades"
-
-es "Ver financiación y medios de pago"
-pt "Ver financiación y medios de pago"
-en "Ver financiación y medios de pago"
-es_mx "Ver financiamiento y formas de pago"
-
-es "Financiación y medios de pago"
-pt "Financiación y medios de pago"
-en "Financiación y medios de pago"
-es_mx "financiamiento y formas de pago"
-
-es "Detalles de las cuotas"
-pt "Detalhes das parcelas"
-en "Installments details"
-es_mx "Detalle de las mensualidades"
-
-es "sin interés"
-pt "sem juros"
-en "without interests"
-es_mx "sin intereses"
-
-es "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> cuotas"
-pt "Até <strong class='js-installment-amount installment-amount'>{1}</strong>x"
-en "Up to <strong class='js-installment-amount installment-amount'>{1}</strong> installments"
-es_mx "Hasta <strong class='js-installment-amount installment-amount'>{1}</strong> meses"
-
-es "CFT:"
-pt "CFT:"
-en "CFT:"
-es_mx "CFT:"
-
-es "Precio en 1 pago:"
-pt "Preço em 1 parcela:"
-en "1 payment price:"
-es_mx "Precio en 1 mensualidad:"
-
-es "PTF:"
-pt "PTF:"
-en "PTF:"
-es_mx "PTF:"
-
-es "TEA:"
-pt "TEA:"
-en "TEA:"
-es_mx "TEA:"
-
-es "Total:"
-pt "Total:"
-en "Total:"
-es_mx "Total:"
-
-es "Sin interés"
-pt "Sem juros"
-en "Without interest"
-es_mx "Sin intereses"
-
-es "sin interés"
-pt "sem juros"
-en "without interest"
-es_mx "sin intereses"
-
-es "cuotas sin interés"
-pt "x sem juros"
-en "installments without interest"
-es_mx "meses sin intereses"
-
-es "Conocé las opciones de pago con"
-pt "Conheça as opções de pagamento com"
-en "See the payment options with"
-es_mx "Conoce las opciones de pago con"
-
-es "Conocé la cantidad de cuotas"
-pt "Conheça a quantidade de parcelas"
-en "See our installments amount"
-es_mx "Conoce el número de mensualidades"
-
-es "de descuento"
-pt "de desconto"
-en "discount"
-es_mx "de descuento"
-
-es "pagando con"
-pt "pagando com"
-en "paying with"
-es_mx "pagando con"
-
-es "que será aplicado sobre el costo total de la compra al finalizar la misma."
-pt "a ser aplicado sobre o custo total da compra ao finalizá-la."
-en "that will be applied over the total cost of the order when the checkout process is finished."
-es_mx "que será aplicado sobre el costo total de la compra al finalizar la misma."
-
-es "El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma."
-pt "O desconto será aplicado sobre o custo total da compra (sem frete) ao finalizá-la."
-en "The discount will be applied over the total cost of the order (without shipping) when the checkout process is finished."
-es_mx "El descuento será aplicado sobre el costo total de la compra (sin envío) al finalizar la misma."
-
-es "Cantidad de cuotas"
-pt "Quantidade de parcelas"
-en "Installments amount"
-es_mx "Número de meses"
-
-es "Ver medios de pago y financiación"
-pt "Ver meios de pagamento e parcelamento"
-en "See payment options and installments"
-es_mx "Ver formas de pago y financiamiento"
-
-es "Ver medios de pago"
-pt "Ver meios de pagamento"
-en "See payment options"
-es_mx "Ver métodos de pago"
-
-es "Ver más medios de pago y financiación"
-pt "Ver mais meios de pagamento e parcelamento"
-en "See more payment options and installments"
-es_mx "Ver más métodos de pago y financiamiento"
-
-es "Ver más medios de pago"
-pt "Ver mais meios de pagamento"
-en "See payment options"
-es_mx "Ver más métodos de pago"
-
-es "Medios de pago y financiación"
-pt "Meios de pagamento e parcelamento"
-en "Payment options and installments"
-es_mx "Formas de pago y financiamiento"
-
-es "Detalles de las cuotas"
-pt "Detalhes das parcelas"
-en "Installments details"
-es_mx "Detalle de las mensualidades"
-
-es "Opciones de pago y financiación que vas a poder elegir a la hora de pagar por tu compra"
-pt "Estas são as opções de pagamento e parcelamento que poderá escolher na hora de pagar por sua compra"
-en "Payment options and installments that you will choose when you finish your purchase"
-es_mx "Opciones de pago y financiamiento que podrás elegir al pagar tu compra"
-
-es "Medio de pago elegido:"
-pt "Meio de pagamento escolhido:"
-en "Payment method chosen:"
-es_mx "Método de pago elegido:"
-
-es "de"
-pt "x"
-en "of"
-es_mx "de"
-
-es "x de"
-pt "x de"
-en "x of"
-es_mx "x de"
-
-es "cuotas"
-pt "x"
-en "installments"
-es_mx "meses"
-
-es "cuota"
-pt "x"
-en "installment"
-es_mx "mensualidad"
-
-es "Elegí un banco para poder elegir las cuotas"
-pt "Escolha um banco para definir suas parcelas"
-en "Choose a bank so you can choose the installments"
-es_mx "Selecciona un banco para las mensualidades"
-
-es "de "
-pt "de "
-en "of "
-es_mx "de "
-
-es "Cerrar"
-pt "Fechar"
-en "Close"
-es_mx "Cerrar"
-
-es "12 cuotas con otras tarjetas"
-pt "12x com outros cartões"
-en "12 installments with other cards"
-es_mx "12 meses con otras tarjetas"
-
-es "Cuotas"
-pt "x"
-en "Installments"
-es_mx "Meses"
-
-es "sin interés de"
-pt "sem juros de"
-en "without interest of"
-es_mx "sin intereses de"
-
-es "Precio:"
-pt "Preço:"
-en "Price:"
-es_mx "Precio:"
-
-es "Volver al producto"
-pt "Voltar ao produto"
-en "Back to product"
-es_mx "Regresar al producto"
-
-es "Volver al carrito"
-pt "Voltar ao carrinho"
-en "Back to cart"
-es_mx "Regresar al carrito"
-
-es "Hasta"
-pt "Até"
-en "Up to"
-es_mx "Hasta"
-
-es "Tarjetas de crédito"
-pt "Cartões de crédito"
-en "Credit cards"
-es_mx "Tarjetas de crédito"
-
-es "Tarjetas de débito y efectivo"
-pt "Cartões de débito e à vista"
-en "Debit cards and cash"
-es_mx "Tarjetas de débito y efectivo"
-
-es "Transferencia o depósito"
-pt "Transferência bancária ou depósito"
-en "Wire transfer o deposit"
-es_mx "Transferencia o depósito"
-
-es "En 1 pago:"
-pt "Em 1 parcela:"
-en "1 payment price:"
-es_mx "En 1 mensualidad:"
-
-es "O en 1 pago de:"
-pt "Ou em 1 parcela de:"
-en "Or in 1 payment of:"
-es_mx "O en 1 mensualidad de:"
-
-es "tiene un"
-pt "oferece"
-en "offers a"
-es_mx "tiene un"
-
-es "Cuando termines la compra vas a ver la información de pago en relación a esta opción."
-pt "Efetuada a compra, você verá as informações de pagamento em relação a esta opção."
-en "When you finish the purchase you will se the payment information related to this option."
-es_mx "Verás la información de pago de esta opción al finalizar la compra."
-
-es "de "
-pt "de "
-en "of "
-es_mx "de "
-
-es "O hasta"
-pt "Ou até"
-en "Or up to"
-es_mx "O hasta"
-
-es "cuotas de"
-pt "x de"
-en "x of"
-es_mx "meses de"
-
-es "sin interés"
-pt "sem juros"
-en "without interest"
-es_mx "sin intereses"
-
-es "Cuotas "
-pt "Parcelas"
-en "Installments"
-es_mx "Meses "
-
-es "A convenir"
-pt "A combinar"
-en "To be defined"
-es_mx "A convenir"
-
-es "Ver más opciones"
-pt "Ver mais opções"
-en "See more options"
-es_mx "Ver más opciones"
-
-es "Ver menos opciones"
-pt "Ver menos opções"
-en "See less options"
-es_mx "Ver menos opciones"
-
-es "Hasta <strong class='installment-amount'>{1}</strong> cuotas"
-pt "Até <strong class='installment-amount'>{1}</strong>x"
-en "Up to <strong class='installment-amount'>{1}</strong> installments"
-es_mx "Hasta <strong class='installment-amount'>{1}</strong> cuotas"
-
-es "Tarjeta de débito / Efectivo / Depósito o transferencia"
-pt "Cartão de débito / Dinheiro / Depósito ou transferência"
-en "Debit card / Cash / Deposit or wire transfer"
-es_mx "Tarjeta de débito / Efectivo / Depósito o transferencia"
-
-
-es "Conocé las opciones de pago"
-pt "Conheça as opções de pagamento"
-en "See the payment options"
-es_mx "Conocé las opciones de pago"
 
 --- Instatheme ---
 
@@ -3710,21 +3341,13 @@ es_mx "Ver video"
 
 --- --- List
 
+es "<span class='js-description-html'><strong>Configurá los filtros</strong> de tu tienda desde <a target='_blank' href='/admin/v2/filters' class='font-bold'>el administrador</a></span>"
+pt "<span class='js-description-html'><strong>Configure os filtros</strong> da sua loja <a target='_blank' href='/admin/v2/filters' class='font-bold'>no administrador</a></span>"
+es_mx "<span class='js-description-html'><strong>Configura los filtros</strong> de tu tienda desde <a target='_blank' href='/admin/v2/filters' class='font-bold'>el administrador</a></span>"
+
 es "Mostrar barra lateral con filtros en listado de productos"
 pt "Mostrar barra lateral com filtros na lista de produtos"
 es_mx "Mostrar una barra lateral con filtros en el listado de productos"
-
-es "Elegí qué filtros vas a mostrar en el listado de productos."
-pt "Escolha quais filtros serão exibidos na lista de produtos."
-es_mx "Elige qué filtros vas a mostrar en el listado de productos."
-
-es "Variantes del producto"
-pt "Variações do produto"
-es_mx "Variantes del producto"
-
-es "Marca"
-pt "Marca"
-es_mx "Marca"
 
 es "¿Permitir que en el listado de productos tus clientes carguen nuevos productos cuando llegan al final de la página?"
 pt "Permitir que na apresentação dos produtos, os seus clientes carreguem novos produtos quando chegarem ao final da página?"
@@ -3930,9 +3553,9 @@ es "Elegí el menú para el final de la página (footer). Si aún no configurast
 pt "Escolher menu para o final da página (rodapé). Caso não tenha nenhum configurado, pode fazê-lo <a target='_blank' href='/admin/navigation/?ref=submenu'>aqui</a>"
 es_mx "Elige el menú para el final de la página (footer). Si aún no has configurado ninguno, hazlo <a target='_blank' href='/admin/navigation/?ref=submenu'>aquí</a>"
 
-es "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-el-menu-inferior-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio el menú inferior de mi tienda?</a>"
+es "<a target='_blank' href='https://ayuda.tiendanube.com/es_AR/123259-menues/como-cambiar-el-menu-inferior-de-mi-tienda'>¿Cómo cambio el menú inferior de mi tienda?</a>"
 pt "<a target='_blank' href='http://atendimento.nuvemshop.com.br/layout/como-adicionar-um-menu-no-rodape-da-home/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como inserir um novo menu na minha loja?</a>"
-es_mx "<a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-el-menu-inferior-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio el menú inferior de mi tienda?</a>"
+es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_MX/123259-menues/como-cambiar-el-menu-inferior-de-mi-tienda'>¿Cómo cambio el menú inferior de mi tienda?</a>"
 
 es "¿Qué menú deseas mostrar al final de la página?"
 pt "Escolher menu para o final da página (rodapé)"

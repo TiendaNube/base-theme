@@ -21,6 +21,5 @@ Clothing
 	home_order_position_5 = instafeed
 	home_order_position_6 = modules
 	home_order_position_7 = informatives
-	product_filters = 1
 	grid_columns = 1
 	news_show = 1

@@ -143,6 +143,8 @@ DOMContentLoaded.addEventOrExecute(() => {
     });
 
     {% if not params.preview %}
+
+        const footer = jQueryNuvem(".js-footer");
         
         {# /* // Cookie banner notification */ #}
 
@@ -154,6 +156,8 @@ DOMContentLoaded.addEventOrExecute(() => {
             }
 
             {# Restore notifications when Cookie Banner is closed #}
+
+            footer.removeAttr("style");
 
             var show_order_cancellation = ($notification_order_cancellation.length > 0) && (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url')));
 
@@ -168,6 +172,11 @@ DOMContentLoaded.addEventOrExecute(() => {
 
         if (!window.cookieNotificationService.isAcknowledged()) {
             jQueryNuvem(".js-notification-cookie-banner").show();
+
+            {# Offset to show legal footer #}
+
+            const cookieBannerHeight = jQueryNuvem(".js-notification-cookie-banner").outerHeight();
+            footer.css("paddingBottom", cookieBannerHeight + 10 + "px");
 
             {# Whatsapp button position #}
             if (window.innerWidth < 768) {
@@ -393,21 +402,6 @@ DOMContentLoaded.addEventOrExecute(() => {
         }, callback_hide, callback_show);
 
     {% endif %}
-
-    {#/*============================================================================
-      #Tabs
-    ==============================================================================*/ #}
-
-    var $tab_open = jQueryNuvem('.js-tab');
-
-    $tab_open.on("click", function (e) {
-        e.preventDefault(); 
-        var $tab_container = jQueryNuvem(e.currentTarget).closest(".js-tab-container");
-        $tab_container.find(".js-tab, .js-tab-panel").removeClass("active");
-        jQueryNuvem(e.currentTarget).addClass("active");
-        var tab_to_show = jQueryNuvem(e.currentTarget).find(".js-tab-link").attr("href");
-        $tab_container.find(tab_to_show).addClass("active");    
-    });
 
     {#/*============================================================================
       #Accordions
@@ -938,7 +932,7 @@ DOMContentLoaded.addEventOrExecute(() => {
         return max_installments_with_interests;
     }
 
-	{# Refresh installments inside detail popup #}
+	{# Updates installments on payment popup for native integrations #}
 
     function refreshInstallmentv2(price){
         jQueryNuvem(".js-modal-installment-price" ).each(function( el ) {
@@ -975,6 +969,8 @@ DOMContentLoaded.addEventOrExecute(() => {
 	        sku.text(variant.sku).show();
 	    }
 
+        {# Updates installments on list item and inside payment popup for Payments Apps #}
+
 	    var installment_helper = function($element, amount, price){
             $element.find('.js-installment-amount').text(amount);
             $element.find('.js-installment-price').attr("data-value", price);
@@ -996,7 +992,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                     let installment_data = installments[number_of_installment];
                     max_installments_without_interests = get_max_installments_without_interests(number_of_installment, installment_data, max_installments_without_interests);
                     max_installments_with_interests = get_max_installments_with_interests(number_of_installment, installment_data, max_installments_with_interests);
-                    var installment_container_selector = '#installment_' + payment_method + '_' + number_of_installment;
+                    var installment_container_selector = '#installment_' + payment_method.replace(" ", "_") + '_' + number_of_installment;
 
                     if(!parent.hasClass("js-quickshop-container")){
                         installment_helper(jQueryNuvem(installment_container_selector), number_of_installment, installment_data.installment_value.toFixed(2));

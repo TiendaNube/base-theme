@@ -486,17 +486,8 @@ Listado de productos
 		subtitle = Podés subir una imagen diferente para cada categoría <a target='_blank' href='/admin/categories/'>desde acá</a>
 	title
 		title = Filtros
-	description
-		description = Elegí qué filtros vas a mostrar en el listado de productos.
-	checkbox
-		name = product_filters
-		description = Variantes del producto
-	checkbox
-		name = brand_filters
-		description = Marca
-	checkbox
-		name = price_filters
-		description = Precio
+	subtitle
+		subtitle = <span class='js-description-html'><strong>Configurá los filtros</strong> de tu tienda desde <a target='_blank' href='/admin/v2/filters' class='font-bold'>el administrador</a></span>
 	title
 		title = Productos en el listado
 	dropdown
@@ -597,7 +588,7 @@ Pie de página
 	subtitle
 		subtitle = Elegí el menú para el final de la página (footer). Si aún no configuraste ninguno, podés hacerlo <a target='_blank' href='/admin/navigation/?ref=submenu'>desde acá</a>
 	subtitle
-		subtitle = <a target='_blank' href='http://ayuda.tiendanube.com/diseno/como-cambio-el-menu-inferior-de-mi-tienda/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio el menú inferior de mi tienda?</a>
+		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/es_AR/123259-menues/como-cambiar-el-menu-inferior-de-mi-tienda'>¿Cómo cambio el menú inferior de mi tienda?</a>
 	menu
 		name = footer_menu
 		description = ¿Qué menú vas a mostrar al final de la página?

@@ -546,6 +546,7 @@ textarea{
       float: left;
       padding: 10px;
       text-align: center;
+      text-transform: uppercase;
     }
   }
 }
