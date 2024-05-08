@@ -6,6 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="facebook-domain-verification" content="u71o10m8h8uusjqsxrbj8p7mc5nsjr" />
+
         <title>{{ page_title }}</title>
         <meta name="description" content="{{ page_description }}" />
 
