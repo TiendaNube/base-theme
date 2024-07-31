@@ -498,16 +498,16 @@ textarea {
 }
 
 .form-control::-webkit-input-placeholder { 
-  color: rgba($main-foreground, .5);
+  color: rgba($main-foreground, .3);
 }
 .form-control:-moz-placeholder {
-  color: rgba($main-foreground, .5);
+  color: rgba($main-foreground, .3);
 }
 .form-control::-moz-placeholder {
-  color: rgba($main-foreground, .5);
+  color: rgba($main-foreground, .3);
 }
 .form-control:-ms-input-placeholder {
-  color: rgba($main-foreground, .5);
+  color: rgba($main-foreground, .3);
 }
 
 .form-control.alert-danger {

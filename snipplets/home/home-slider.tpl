@@ -30,7 +30,7 @@
 								<img 
 									{% if slide.width and slide.height %} width="{{ slide.width }}" height="{{ slide.height }}" {% endif %}
 									src="{{ slide_src }}"
-									{% if apply_lazy_load %}data-sizes="auto" data-{% endif %}srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image {% if apply_lazy_load %}swiper-lazy blur-up-big{% endif %}" alt="{{ 'Carrusel' | translate }} {{ loop.index }}"/>
+									{% if apply_lazy_load %}data-{% endif %}srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image {% if apply_lazy_load %}swiper-lazy blur-up-big{% endif %}" alt="{{ 'Carrusel' | translate }} {{ loop.index }}"/>
 								{% if has_text %}
 		                			<div class="swiper-text swiper-{{ slide.color }}">
 			                			{% if slide.title %}

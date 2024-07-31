@@ -747,7 +747,8 @@ a {
 
 {# /* // Modal */ #}
 
-.modal-dialog {
+.modal-dialog,
+.modal .modal-dialog {
   background: $background-color;
 }
 

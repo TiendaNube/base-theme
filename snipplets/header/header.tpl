@@ -36,11 +36,6 @@
 {# Show cookie validation message #}
 {% include "snipplets/notification.tpl" with {show_cookie_banner: true} %}
 
-{# Add notification for order cancellation #}
-{% if store.country == 'AR' and template == 'home' and status_page_url %}
-    {% include "snipplets/notification.tpl" with {show_order_cancellation: true} %}
-{% endif %}
-
 {# Hamburger panel #}
 
 {% embed "snipplets/modal.tpl" with{modal_id: 'nav-hamburger',modal_class: 'nav-hamburger modal-docked-small', modal_position: 'left', modal_transition: 'fade', modal_width: 'full', modal_fixed_footer: true, modal_footer: true, modal_footer_class: 'p-0' } %}

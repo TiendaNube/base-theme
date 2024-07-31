@@ -36,10 +36,6 @@
 					{% embed "snipplets/forms/form.tpl" with{form_id: 'login-form', submit_custom_class: 'js-recaptcha-button btn-block', submit_prop: 'disabled', submit_text: 'Crear cuenta' | translate, data_store: 'account-register' } %}
 						{% block form_body %}
 
-							{# Facebook login #}
-
-							{% include 'snipplets/facebook-login.tpl' %}
-
 							{# Name input #}
 							
 							{% embed "snipplets/forms/form-input.tpl" with{type_text: true, input_for: 'name', input_value: result.name, input_name: 'name', input_id: 'name', input_label_text: 'Nombre' | translate, input_placeholder: 'ej.: María Perez' | translate} %}

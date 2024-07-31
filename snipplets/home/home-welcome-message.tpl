@@ -1,5 +1,5 @@
 {% if settings.welcome_message %}
-    <section class="section-welcome-home">
+    <section class="section-welcome-home" data-store="home-welcome-message">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 offset-md-2">

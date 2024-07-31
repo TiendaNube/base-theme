@@ -178,7 +178,17 @@
                 <div class='total-price hidden'>
                   {{ "Total" | translate }}: {{ cart.total | money }}
                 </div>
-                {{ component('installments', {'location': 'cart', container_classes: { installment: "mt-1 font-weight-bold text-right"}}) }}
+
+                {% set cart_page_align_classes = cart_page ? 'text-md-center' %}
+                {{ component('payment-discount-price', {
+                    visibility_condition: settings.payment_discount_price,
+                    location: 'cart',
+                    container_classes: 'mt-1 font-weight-bold text-right text-accent ' ~ cart_page_align_classes,
+                  }) 
+                }}
+                {% if not settings.payment_discount_price %}
+                  {{ component('installments', {'location': 'cart', container_classes: { installment: "mt-1 font-weight-bold text-right"}}) }}
+                {% endif %}
               </div>
 
               <div class="js-visible-on-cart-filled {% if not cart_page %}container-fluid{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %}>

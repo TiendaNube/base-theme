@@ -7,13 +7,14 @@
 	{% block page_header_text %}{{ form_title }}{% endblock page_header_text %}
 {% endembed %}
 
-{% set has_contact_info = store.whatsapp or store.phone or store.email or store.address or store.blog %} 
+{% set has_contact_info = store.whatsapp or store.phone or store.email or store.address or store.blog %}
+{% set is_order_cancellation_without_id = params.order_cancellation_without_id == 'true' %}
 <section class="contact-page">
 	<div class="container">
 		<div class="row justify-content-md-center">
 			<div class="col-md-8 text-center">
 				{% if is_order_cancellation %}
-					<p>{{ "Si te arrepentiste, podés pedir la cancelación enviando este formulario." | translate }} </p>
+					<p data-component="order-cancellation-disclaimer">{{ "Si te arrepentiste, podés pedir la cancelación enviando este formulario. Tenés como máximo hasta 10 días corridos desde que recibiste el producto." | translate }} </p>
 					<a class="btn-link" href="{{ status_page_url }}">{{'Ver detalle de la compra >' | translate}}</a>
 					{% if has_contact_info %}
 						<p class="mt-4 mb-3">{{ 'Si tenés problemas con otra compra, contactanos:' | translate }}</p>
@@ -38,7 +39,7 @@
 				{% if contact %}
 					{% if contact.success %}
 						{% if is_order_cancellation %}
-							<div class="alert alert-success">
+							<div class="alert alert-success" data-component="order-cancellation-success-message">
 								{{ "¡Tu pedido de cancelación fue enviado!" | translate }} 
 								<br>
 								{{ "Vamos a ponernos en contacto con vos apenas veamos tu mensaje." | translate }}
@@ -46,12 +47,16 @@
 								<strong>{{ "Tu código de trámite es" | translate }} #{{ last_order_id }}</strong>
 							</div>
 						{% else %}
-							<div class="alert alert-success">{{ "¡Gracias por contactarnos! Vamos a responderte apenas veamos tu mensaje." | translate }}</div>
+							<div class="alert alert-success" data-component="contact-success-message">{{ "¡Gracias por contactarnos! Vamos a responderte apenas veamos tu mensaje." | translate }}</div>
 						{% endif %}
 					{% else %}
 						<div class="alert alert-danger">{{ "Necesitamos tu nombre y un email para poder responderte." | translate }}</div>
 					{% endif %}
 				{% endif %}	
+
+				{% if is_order_cancellation_without_id %}
+					<p class="mb-3" data-component="order-cancellation-disclaimer">{{ "Si te arrepentiste de una compra, podés pedir la cancelación enviando este formulario <strong>con tu número de orden.</strong> Tenés como máximo hasta 10 días corridos desde que recibiste el producto." | translate }}</p>
+				{% endif %}
 				
 				{% embed "snipplets/forms/form.tpl" with{form_id: 'contact-form', form_custom_class: 'js-winnie-pooh-form', form_action: '/winnie-pooh', submit_name: 'contact', submit_text: 'Enviar' | translate, data_store: 'contact-form' } %}
 					{% block form_body %}
@@ -63,7 +68,7 @@
 							<input type="text" id="winnie-pooh" name="winnie-pooh">
 						</div>
 						<input type="hidden" value="{{ product.id }}" name="product"/>
-						{% if is_order_cancellation %}
+						{% if is_order_cancellation or is_order_cancellation_without_id %}
 							<input type="hidden" name="type" value="order_cancellation" />
 						{% else %}
 							<input type="hidden" name="type" value="contact" />

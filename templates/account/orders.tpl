@@ -17,9 +17,26 @@
                     </span>
                     {% if customer.cpf_cnpj %}
                         <span class="d-block">
-                            <strong>{{ 'DNI' | translate }}:</strong> {{ customer.cpf_cnpj | format_cpf_cnpj }}
+                            <strong>{{ 'DNI / CUIT' | translate }}:</strong> {{ customer.cpf_cnpj | format_id_number(customer.billing_country) }}
                         </span>
                     {% endif %}
+
+                    {% if customer.business_name %}
+                        <span class="d-block">
+                            <strong>{{ 'Razón social' | translate }}:</strong> {{ customer.business_name }}
+                        </span>
+                    {% endif %}
+                    {% if customer.trade_name %}
+                        <span class="d-block">
+                            <strong>{{ 'Nombre comercial' | translate }}:</strong> {{ customer.trade_name }}
+                        </span>
+                    {% endif %}
+                    {% if customer.state_registration %}
+                        <span class="d-block">
+                            <strong>{{ 'Inscripción estatal' | translate }}:</strong> {{ customer.state_registration }}
+                        </span>
+                    {% endif %}
+
                     {% if customer.phone %}
                         <span class="d-block">
                             <strong>{{ 'Teléfono' | translate }}:</strong> {{ customer.phone }}
@@ -46,7 +63,10 @@
                 {% endif %}
             </div>
             <div class="col-md-8 text-center">
-                <h4 class="h5 mb-0">{{ 'Mis compras' | translate }}</h4>
+                <span class="h5 mb-0">{{ 'Mis compras' | translate }}</span>
+                {% if customer.ordersCount > 50 %}
+                    <span class="font-small ml-1">({{ 'últimas 50 órdenes' | translate }})</span>
+                {% endif %}
                 <div class="row mt-3" data-store="account-orders">
                     {% if customer.orders %}
                         <div class="col-12 d-none d-md-block">

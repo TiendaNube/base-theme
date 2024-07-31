@@ -48,10 +48,6 @@
 
 					{% block form_body %}
 
-						{# Facebook login #}
-
-						{% include 'snipplets/facebook-login.tpl' %}
-
 						{# Name input #}
 
 						{% embed "snipplets/forms/form-input.tpl" with{input_for: 'email', type_email: true, input_value: result.email, input_name: 'email', input_custom_class: 'js-account-input', input_label_text: 'Email' | translate, input_required: true } %}
@@ -63,7 +59,7 @@
 							{% block input_help_text %}{{ '¿Olvidaste tu contraseña?' | translate }}{% endblock input_help_text %}
 						{% endembed %}
 
-						{% if not result.facebook and result.invalid %}
+						{% if result.invalid %}
 						    <div class="alert alert-danger">{{ 'Estos datos no son correctos. ¿Chequeaste que estén bien escritos?' | translate }}</div>
 						{% endif %}
 

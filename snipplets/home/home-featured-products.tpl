@@ -10,7 +10,7 @@
 
 
 {% if sections.primary.products %}
-    <section class="section-featured-home" data-store="products-home-featured">
+    <section class="section-featured-home" data-store="home-products-featured">
         <div class="container">
             <div class="row">
                 {% if settings.featured_products_title %}

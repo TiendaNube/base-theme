@@ -28,7 +28,7 @@
         </li>
     {% else %}
         <li data-component="menu.item">
-            <a class="nav-list-link" href="{{ item.url | setting_url }}">{{ item.name }}</a>
+            <a class="nav-list-link" href="{% if item.url %}{{ item.url | setting_url }}{% else %}#{% endif %}">{{ item.name }}</a>
         </li>
     {% endif %}
 {% endfor %}

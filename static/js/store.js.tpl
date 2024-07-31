@@ -89,7 +89,6 @@ DOMContentLoaded.addEventOrExecute(() => {
     {# Notifications variables #}
 
     var $notification_status_page = jQueryNuvem(".js-notification-status-page");
-    var $notification_order_cancellation = jQueryNuvem(".js-notification-order-cancellation");
     var $fixed_bottom_button = jQueryNuvem(".js-btn-fixed-bottom");
 
     {# /* // Close notification */ #}
@@ -108,27 +107,6 @@ DOMContentLoaded.addEventOrExecute(() => {
         jQueryNuvem(".js-notification-status-page-close").on( "click", function(e) {
             e.preventDefault();
             LS.dontShowOrderStatusNotificationAgain($notification_status_page.data('url'));
-        });
-    }
-
-    {# /* // Follow order cancellation notification */ #}
-    
-    if ($notification_order_cancellation.length > 0){
-        if (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url'))){
-            {% if not params.preview %}
-                {# Show order cancellation notification only if cookie banner is not visible #}
-
-                if (window.cookieNotificationService.isAcknowledged()) {
-            {% endif %}
-                    $notification_order_cancellation.show();
-            {% if not params.preview %}
-                }
-            {% endif %}
-            $fixed_bottom_button.css("marginBottom", "40px");
-        };
-        jQueryNuvem(".js-notification-order-cancellation-close").on( "click", function(e) {
-            e.preventDefault();
-            LS.dontShowOrderCancellationNotification($notification_order_cancellation.data('url'));
         });
     }
 
@@ -158,16 +136,6 @@ DOMContentLoaded.addEventOrExecute(() => {
             {# Restore notifications when Cookie Banner is closed #}
 
             footer.removeAttr("style");
-
-            var show_order_cancellation = ($notification_order_cancellation.length > 0) && (LS.shouldShowOrderCancellationNotification($notification_order_cancellation.data('url')));
-
-            {% if store.country == 'AR' %}
-                {# Order cancellation #}
-                if (show_order_cancellation){
-                    $notification_order_cancellation.show();
-                    $fixed_bottom_button.css("marginBottom", "40px");
-                }
-            {% endif %}
         };
 
         if (!window.cookieNotificationService.isAcknowledged()) {
@@ -722,24 +690,36 @@ DOMContentLoaded.addEventOrExecute(() => {
 
         {# /* // Product Related */ #}
 
-            {% set related_products_ids = product.metafields.related_products.related_products_ids %}
-            {% if related_products_ids %}
-                {% set related_products = related_products_ids | get_products %}
-                {% set show = (related_products | length > 0) %}
-            {% endif %}
-            {% if not show %}
-                {% set related_products = category.products | shuffle | take(8) %}
-                {% set show = (related_products | length > 1) %}
-            {% endif %}
+            
+            // Set loop for related products products sliders
 
             {% set columns = settings.grid_columns %}
+            const desktopColumns = {% if columns == 1 %}3{% else %}4{% endif %};
+
+            function calculateRelatedLoopVal(sectionSelector) {                
+                let productsAmount = jQueryNuvem(sectionSelector).attr("data-related-amount");
+                let loopVal = false;
+                const applyLoop = (window.innerWidth < 768 && productsAmount > {{ columns }}) || (window.innerWidth > 768 && productsAmount > desktopColumns);
+                
+                if (applyLoop) {
+                    loopVal = true;
+                }
+
+                return loopVal;
+            }
+
+            let alternativeLoopVal = calculateRelatedLoopVal(".js-related-products");
+            let complementaryLoopVal = calculateRelatedLoopVal(".js-complementary-products");
+
+            {# Alternative products #}
+
             createSwiper('.js-swiper-related', {
                 lazy: true,
-                {% if related_products | length > 4 %}
-                loop: true,
-                {% endif %}
+                watchOverflow: true,
+                loop: alternativeLoopVal,
+                centerInsufficientSlides: true,
                 spaceBetween: 30,
-                slidesPerView: {% if columns == 2 %}2{% else %}1{% endif %},
+                slidesPerView: {{ columns }},
                 pagination: {
                     el: '.js-swiper-related-pagination',
                     clickable: true,
@@ -750,7 +730,31 @@ DOMContentLoaded.addEventOrExecute(() => {
                 },
                 breakpoints: {
                     767: {
-                        slidesPerView: {% if columns == 2 %}4{% else %}3{% endif %},
+                        slidesPerView: desktopColumns,
+                    }
+                }
+            });
+
+            {# Complementary products #}
+
+            createSwiper('.js-swiper-complementary', {
+                lazy: true,
+                watchOverflow: true,
+                loop: complementaryLoopVal,
+                centerInsufficientSlides: true,
+                spaceBetween: 30,
+                slidesPerView: {{ columns }},
+                pagination: {
+                    el: '.js-swiper-complementary-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.js-swiper-complementary-next',
+                    prevEl: '.js-swiper-complementary-prev',
+                },
+                breakpoints: {
+                    767: {
+                        slidesPerView: desktopColumns,
                     }
                 }
             });
@@ -950,6 +954,117 @@ DOMContentLoaded.addEventOrExecute(() => {
         });
     }
 
+    {% set should_show_discount = product.maxPaymentDiscount.value > 0 %}
+    {% if should_show_discount %}
+
+        {# Shows/hides price with discount and strikethrough original price for every payment method #}
+
+        function togglePaymentDiscounts(variant){
+            jQueryNuvem(".js-payment-method-total").each(function( paymentMethodTotalElement ){
+                const priceComparerElement = jQueryNuvem(paymentMethodTotalElement).find(".js-compare-price-display");
+                const installmentsOnePaymentElement = jQueryNuvem(paymentMethodTotalElement).find('.js-installments-no-discount');
+                const priceWithDiscountElement = jQueryNuvem(paymentMethodTotalElement).find('.js-price-with-discount');
+
+                priceComparerElement.hide();
+                installmentsOnePaymentElement.hide();
+                priceWithDiscountElement.hide();
+
+                const discount = priceWithDiscountElement.data('paymentDiscount');
+
+                if (discount > 0 && showMaxPaymentDiscount(variant)){
+                    priceComparerElement.show();
+                    priceWithDiscountElement.show()
+                } else {
+                    installmentsOnePaymentElement.show();
+                }
+            })
+        }
+
+        {# Toggle discount and discount disclaimer both on product details and popup #}
+
+        function updateDiscountDisclaimers(variant){
+            updateProductDiscountDisclaimer(variant);
+            updatePopupDiscountDisclaimers(variant);
+        }
+
+        {# Toggle discount and discount disclaimer in product details #}
+
+        function updateProductDiscountDisclaimer(variant){
+            jQueryNuvem(".js-product-discount-container, .js-product-discount-disclaimer").hide();
+
+            if (showMaxPaymentDiscount(variant)){
+                jQueryNuvem(".js-product-discount-container").show();
+            }
+
+            if (showMaxPaymentDiscountNotCombinableDisclaimer(variant)){
+                jQueryNuvem(".js-product-discount-disclaimer").show();
+            }
+        }
+
+        {# Shows/hides discount message for payment method and discount disclaimer in popup, for every payment method #}
+
+        function updatePopupDiscountDisclaimers(variant){
+            jQueryNuvem(".js-modal-tab-discount, .js-payment-method-discount").hide();
+
+            {% if product.maxPaymentDiscount.value > 0 %}
+                if (showMaxPaymentDiscount(variant)){
+                    {% for key, method in product.payment_methods_config %}
+                        {% if method.max_discount > 0 %}
+                            {% if method.allows_discount_combination %}
+                                jQueryNuvem("#method_{{ key | sanitize }} .js-modal-tab-discount").show();
+                            {% elseif not product.free_shipping %}
+                                if (!variantHasPromotionalPrice(variant)){
+                                    jQueryNuvem("#method_{{ key | sanitize }} .js-modal-tab-discount").show();
+                                }
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                }
+            {% endif %}
+
+            jQueryNuvem(".js-info-payment-method-container").each(function(infoPaymentMethodElement){
+                {# For each payment method this will show the payment method discount and discount explanation #}
+
+                const infoPaymentMethod = jQueryNuvem(infoPaymentMethodElement)
+                infoPaymentMethod.find(".js-discount-explanation").hide();
+                infoPaymentMethod.find(".js-discount-disclaimer").hide();
+
+                const priceWithDiscountElement = infoPaymentMethod.find('.js-price-with-discount');
+                const discount = priceWithDiscountElement.data('paymentDiscount');
+
+                if (discount > 0 && showMaxPaymentDiscount(variant)){
+                    infoPaymentMethod.find(".js-discount-explanation").show();
+                    infoPaymentMethod.find(".js-payment-method-discount").show();
+                }
+
+                if (discount > 0 && showMaxPaymentDiscountNotCombinableDisclaimer(variant)){
+                    infoPaymentMethod.find(".js-discount-disclaimer").show();
+                }
+            })
+        }
+
+        function variantHasPromotionalPrice(variant) { return variant.compare_at_price_number > variant.price_number }
+
+        function showMaxPaymentDiscount(variant) {
+            {% if product.maxPaymentDiscount()["allowsDiscountCombination"] %}
+                return true;
+            {% elseif product.free_shipping %}
+                return false;
+            {% else %}
+                return !variantHasPromotionalPrice(variant);
+            {% endif %}
+        }
+
+        function showMaxPaymentDiscountNotCombinableDisclaimer(variant) {
+            {% if product.maxPaymentDiscount()["allowsDiscountCombination"] or product.free_shipping %}
+                return false
+            {% else %}
+                return !variantHasPromotionalPrice(variant)
+            {% endif %}
+        }
+
+    {% endif %}
+
 	{# /* // Change variant */ #}
 
     {# Updates price, installments, labels and CTA on variant change #}
@@ -986,13 +1101,27 @@ DOMContentLoaded.addEventOrExecute(() => {
             var variant_installments = JSON.parse(variant.installments_data);
             var max_installments_without_interests = [0,0];
             var max_installments_with_interests = [0,0];
+
+            {# Hide all installments rows on payments modal #}
+            jQueryNuvem('.js-payment-provider-installments-row').hide();
+
             for (let payment_method in variant_installments) {
+
+                {# Identifies the minimum installment value #}
+                var paymentMethodId = '#installment_' + payment_method.replace(" ", "_") + '_1';
+                var minimumInstallmentValue = jQueryNuvem(paymentMethodId).closest('.js-info-payment-method').attr("data-minimum-installment-value");
+
                 let installments = variant_installments[payment_method];
                 for (let number_of_installment in installments) {
                     let installment_data = installments[number_of_installment];
                     max_installments_without_interests = get_max_installments_without_interests(number_of_installment, installment_data, max_installments_without_interests);
                     max_installments_with_interests = get_max_installments_with_interests(number_of_installment, installment_data, max_installments_with_interests);
                     var installment_container_selector = '#installment_' + payment_method.replace(" ", "_") + '_' + number_of_installment;
+
+                    {# Shows installments rows on payments modal according to the minimum value #}
+                    if(minimumInstallmentValue <= installment_data.installment_value) {
+                        jQueryNuvem(installment_container_selector).show();
+                    }
 
                     if(!parent.hasClass("js-quickshop-container")){
                         installment_helper(jQueryNuvem(installment_container_selector), number_of_installment, installment_data.installment_value.toFixed(2));
@@ -1036,8 +1165,11 @@ DOMContentLoaded.addEventOrExecute(() => {
 
             parent.find('.js-price-display').text(variant.price_short).show();
             parent.find('.js-price-display').attr("content", variant.price_number).data('productPrice', variant_price_raw);
+
+            parent.find('.js-payment-discount-price-product').text(variant.price_with_payment_discount_short);
+            parent.find('.js-payment-discount-price-product-container').show();
 	    } else {
-	        parent.find('.js-price-display').hide();
+	        parent.find('.js-price-display, .js-payment-discount-price-product-container').hide();
 	    }
 
 	    if ((variant.compare_at_price_short) && !(parent.find(".js-price-display").css("display") == "none")) {
@@ -1076,6 +1208,10 @@ DOMContentLoaded.addEventOrExecute(() => {
             const base_price = Number(jQueryNuvem("#price_display").attr("content"));
             refreshInstallmentv2(base_price);
             refreshPaymentDiscount(variant.price_number);
+            {% if should_show_discount %}
+                togglePaymentDiscounts(variant);
+                updateDiscountDisclaimers(variant);
+            {% endif %}
 
             {% if settings.last_product and product.variations %}
                 if(variant.stock == 1) {
@@ -1257,14 +1393,12 @@ DOMContentLoaded.addEventOrExecute(() => {
         changeVariantButton = function(selector, parentSelector) {
             selector.siblings().removeClass("selected");
             selector.addClass("selected");
-            var variation_id = selector.attr('data-variation-id');
             var option_id = selector.attr('data-option');
             var parent = selector.closest(parentSelector);
-            var variation_select = parent.find('.js-product-variants-group[data-variation-id="'+variation_id+'"] .js-variation-option');
-            var selected_option = variation_select.find('option[value="'+option_id+'"]');
-            variation_select.find("option").removeAttr("selected");
-            selected_option.attr('selected', 'selected');
-            variation_select.trigger('change');
+            var selected_option = parent.find('.js-variation-option option').filter(function (el) {
+                return el.value == option_id;
+            });
+            selected_option.prop('selected', true).trigger('change');
         }
             
         jQueryNuvem(document).on("click", ".js-insta-variant", function (e) {
@@ -1891,7 +2025,7 @@ DOMContentLoaded.addEventOrExecute(() => {
     {% endif %}
 
     {% if template == 'account.login' %}
-        {% if not result.facebook and result.invalid %}
+        {% if result.invalid %}
             jQueryNuvem(".js-account-input").addClass("alert-danger");
             jQueryNuvem(".js-account-input.alert-danger").on("focus", function() {
                 jQueryNuvem(".js-account-input").removeClass("alert-danger");

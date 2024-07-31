@@ -74,12 +74,16 @@
             </div>
             <div class="col-md-9 copyright text-center text-md-right pt-4 pt-md-0">
                 {{ "Copyright {1} - {2}. Todos los derechos reservados." | translate( (store.business_name ? store.business_name : store.name) ~ (store.business_id ? ' - ' ~ store.business_id : ''), "now" | date('Y') ) }}
-                {% if store.country == 'AR' %}
-                    <div class="claim-link mt-2">
-                       {{ "Defensa de las y los consumidores. Para reclamos" | translate }}
-                       <a class="font-weight-bold" href="https://www.argentina.gob.ar/produccion/defensadelconsumidor/formulario" target="_blank">{{ "ingrese aquí" | translate }}</a>
-                    </div>
-                {% endif %}
+                {{ component('claim-info', {
+						container_classes: "mt-2",
+						divider_classes: "mx-1 d-none d-md-inline-block",
+						text_classes: {text_consumer_defense: 'd-inline-block mb-1'},
+						link_classes: {
+							link_consumer_defense: "font-weight-bold",
+							link_order_cancellation: "font-weight-bold d-md-inline-block d-block mt-3 mt-md-0 mb-2",
+						},
+					}) 
+				}}
             </div>
         </div>
 

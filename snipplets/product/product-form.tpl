@@ -7,12 +7,18 @@
 {# Product price #}
 
 <div class="price-container text-center text-md-left" data-store="product-price-{{ product.id }}">
-    <span class="d-inline-block">
-	   <h4 id="compare_price_display" class="js-compare-price-display price-compare {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
+    <span class="d-inline-block mb-2">
+	   <h4 id="compare_price_display" class="js-compare-price-display price-compare mb-0" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
     </span>
     <span class="d-inline-block">
-    	<h4 class="js-price-display {% if product_can_show_installments or (product.promotional_offer and not product.promotional_offer.script.is_percentage_off) %}mb-2{% endif %}" id="price_display" {% if not product.display_price %}style="display:none;"{% endif %}>{% if product.display_price %}{{ product.price | money }}{% endif %}</h4>
+    	<h4 class="js-price-display mb-0" id="price_display" {% if not product.display_price %}style="display:none;"{% endif %}>{% if product.display_price %}{{ product.price | money }}{% endif %}</h4>
     </span>
+    {{ component('payment-discount-price', {
+            visibility_condition: settings.payment_discount_price,
+            location: 'product',
+            container_classes: "h6 text-accent mb-3",
+        }) 
+    }}
 </div>
 
 {# Promotional text #}
@@ -49,11 +55,15 @@
 
         {# Max Payment Discount #}
 
-        {% if hasDiscount %}
-            <div class="text-center text-md-left mb-2">
-                <span><strong class="text-accent">{{ product.maxPaymentDiscount.value }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ product.maxPaymentDiscount.paymentProviderName }}</span>
+        {% set hideDiscountContainer = not (hasDiscount and product.showMaxPaymentDiscount) %}
+        {% set hideDiscountDisclaimer = not product.showMaxPaymentDiscountNotCombinableDisclaimer %}
+
+        <div class="js-product-discount-container text-center text-md-left mb-2" {% if hideDiscountContainer %}style="display: none;"{% endif %}>
+            <span><strong class="text-accent">{{ product.maxPaymentDiscount.value }}% {{'de descuento' | translate }}</strong> {{'pagando con' | translate }} {{ product.maxPaymentDiscount.paymentProviderName }}</span>
+            <div class="js-product-discount-disclaimer font-small mt-1" {% if hideDiscountDisclaimer %}style="display: none;"{% endif %}>
+                {{ "No acumulable con otras promociones" | translate }}
             </div>
-        {% endif %}
+        </div>
 
         {# Installments #}
 
