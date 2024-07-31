@@ -1,4 +1,4 @@
-<section class="section-banners-home" data-store="banner-home-categories">
+<section class="section-banners-home" data-store="home-banner-categories">
     <div class="container{% if settings.banners_full %}-fluid p-0{% endif %}">
         <div class="row {% if settings.banners_full %}no-gutters{% endif %} align-items-center">
             {% set num_banners = 0 %}

@@ -21,10 +21,11 @@
                 {
                     text_classes: {
                         text_accent: "label label-accent ml-1",
-                        subtitles: "mb-3",
+                        subtitles: "h6 mb-3",
                         text_big: "font-big",
                         text_small: "font-small",
-                        align_right: "text-right"
+                        align_right: "text-right",
+                        opacity: "opacity-60"
                     },
                     spacing_classes: {
                         top_1x: "mt-1",
@@ -40,7 +41,8 @@
                     },
                     container_classes : {
                         payment_method: "card p-3"
-                    }
+                    },
+                    discounts_conditional_visibility: true
                 })
             }}
         {% endblock %}

@@ -15,6 +15,7 @@
         {% endif %}
 
         {{ component('social-meta') }}
+        {{ component('canary') }}
 
         {#/*============================================================================
             #CSS and fonts
@@ -101,31 +102,6 @@
             {# Pinterest share button JS #}
             {{ pin_js }}
 
-        {% endif %}
-
-        {# Facebook account login and register #}
-
-        {% if template == 'account.login' or template == 'account.register' %}
-            {{ fb_js }}
-            <script>
-                function loginFacebook() {
-                    LS.ready.then(function(){
-                        LS.facebookLogin(FB, function(status, hasEmail) {
-                            if (status === 'connected') {
-                                if (hasEmail) {
-                                    window.location = "{{ store.url }}/account/facebook_login/";
-                                } else {
-                                    jQueryNuvem('#login-form').prepend(
-                                            "<div class=\"alert alert-danger\">{{ 'Tienes que compartír tu e-mail.' | translate }}</div>");
-                                }
-                            } else {
-                                jQueryNuvem('#login-form').prepend(
-                                        "<div class=\"alert alert-danger\">{{ 'Debes completar el login.' | translate }}</div>");
-                            }
-                        });
-                    });
-                }
-            </script>
         {% endif %}
 
         {# Back to admin bar #}

@@ -55,7 +55,8 @@
 					</div>
 				{% endblock input_prepend_content %}
 				{% block input_form_alert %}
-				{% if store.country == 'BR' or 'AR' or 'MX' %}
+				{% set zipcode_help_countries = ['BR', 'AR', 'MX'] %}
+				{% if store.country in zipcode_help_countries %}
 					{% set zipcode_help_ar = 'https://www.correoargentino.com.ar/formularios/cpa' %}
 					{% set zipcode_help_br = 'http://www.buscacep.correios.com.br/sistemas/buscacep/' %}
 					{% set zipcode_help_mx = 'https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/Descarga.aspx' %}

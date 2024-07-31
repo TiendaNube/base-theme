@@ -1,4 +1,4 @@
-<section class="section-home-modules">
+<section class="section-home-modules" data-store="home-image-text-module">
     <div class="container{% if settings.modules_full %}-fluid p-0{% endif %}">
         {% set num_modules = 0 %}
         {% for module in ['module_01', 'module_02'] %}

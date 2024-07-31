@@ -1,5 +1,5 @@
 {# Payments details #}
-<div id="single-product" class="js-has-new-shipping js-product-detail js-product-container js-shipping-calculator-container" data-variants="{{product.variants_object | json_encode }}">
+<div id="single-product" class="js-has-new-shipping js-product-detail js-product-container js-shipping-calculator-container" data-variants="{{product.variants_object | json_encode }}" data-store="product-detail">
     <div class="container">
         <div class="row section-single-product">
             <div class="col-12 col-md-7 px-0 px-md-3" data-store="product-image-{{ product.id }}">

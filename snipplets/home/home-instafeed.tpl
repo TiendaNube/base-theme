@@ -1,5 +1,5 @@
 {% if settings.show_instafeed and store.instagram %}
-    <section class="section-instafeed-home" data-store="instagram-feed">
+    <section class="section-instafeed-home" data-store="home-instagram-feed">
         <div class="container">
             <div class="row">
                 {% set instuser = store.instagram|split('/')|last %}

@@ -83,6 +83,14 @@
                 {% endif %}
             </a>
         </div>
+
+        {{ component('payment-discount-price', {
+                visibility_condition: settings.payment_discount_price,
+                location: 'product',
+                container_classes: "text-accent mb-2",
+            }) 
+        }}
+
         {{ component('installments', {'location' : 'product_item', container_classes: { installment: "item-installments"}}) }}
 
         {% if settings.quick_shop and product.available and product.display_price %}

@@ -8,6 +8,12 @@
                     <div class="item-price-container mb-4" data-store="product-item-price-{{ product.id }}">
                         <span class="js-compare-price-display h4 price-compare"></span>
                         <span class="js-price-display h4"></span>
+                        {{ component('payment-discount-price', {
+                                visibility_condition: settings.payment_discount_price,
+                                location: 'product',
+                                container_classes: "h6 mt-1 text-accent mb-3",
+                            }) 
+                        }}
                     </div>
                     {# Image is hidden but present so it can be used on cart notifiaction #}
                     <img srcset="" class="js-quickshop-img hidden"/>

@@ -287,7 +287,13 @@ Página de inicio
 	i18n_input
 		name = banner_03_url
 		description = Link
-
+	collapse
+		title = Productos destacados
+	description
+		description = Podés destacar los productos que quieras en la página de inicio.
+		name = featured_products_description
+	subtitle
+		subtitle = <a target='_blank' href='/admin/themes/settings/product_order/'>Elegí cuáles vas a destacar</a>
 	collapse
 		title = Módulos de imagen y texto
 	description
@@ -502,11 +508,6 @@ Listado de productos
 		description = Título
 		name = featured_products_title
 	title
-		title = Título para productos relacionados
-	i18n_input
-		description = Título
-		name = products_related_title
-	title
 		title = Variantes de color
 	checkbox
 		name = product_color_variants
@@ -521,6 +522,13 @@ Detalle de producto
 	meta
 		icon = cube
 		advanced = true
+	title
+		title = Descuento por medio de pago
+	checkbox
+		name = payment_discount_price
+		description = Mostrar el precio con mayor descuento en los listados, el detalle de producto y el carrito de compras
+	subtitle
+		subtitle = <a target='_blank' href='/admin/payments/'>Configurá descuentos para tus medios de pago.</a>
 	title
 		title = Formas de entrega
 	checkbox_global
@@ -550,6 +558,11 @@ Detalle de producto
 	i18n_input
 		description = Mensaje
 		name = last_product_text
+	title
+		title = Productos relacionados
+	i18n_input
+		description = Título para los productos alternativos
+		name = products_related_title
 
 Carrito de compras
 	meta

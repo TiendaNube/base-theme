@@ -126,16 +126,6 @@ pt "Copyright {1} - {2}. Todos os direitos reservados."
 en "Copyright {1} - {2}. All rights reserved."
 es_mx "Copyright {1} - {2}. Todos los derechos reservados."
 
-es "Defensa de las y los consumidores. Para reclamos"
-pt "Defesa dos consumidores. Para reclamações,"
-en "Consumer defense. For claims"
-es_mx "Defensa de las y los consumidores. Para reclamos"
-
-es "ingrese aquí"
-pt "acesse aqui"
-en "enter here"
-es_mx "ingrese aquí"
-
 es "Si"
 pt "Sim"
 en "Yes"
@@ -310,6 +300,15 @@ es "Banner de"
 pt "Banner de"
 en "Banner of"
 es_mx "Banner de"
+
+es "Podés destacar los productos que quieras en la página de inicio."
+pt "Você pode destacar os produtos que deseja na página inicial."
+es_mx "Puedes destacar los productos que quieras en la página de inicio."
+
+es "<a target='_blank' href='/admin/themes/settings/product_order/'>Elegí cuáles vas a destacar</a>"
+pt "<a target='_blank' href='/admin/themes/settings/product_order/'>Escolha os produtos em destaques</a>"
+en "<a target='_blank' href='/admin/themes/settings/product_order/'>Choose your featured products</a>"
+es_mx "<a target='_blank' href='/admin/themes/settings/product_order/'>Elige cuáles destacarás</a>"
 
 es "Seguinos en Instagram"
 pt "Siga-nos no Instagram"
@@ -723,6 +722,11 @@ pt "Compartilhar pelo Pinterest"
 en "Share on Pinterest"
 es_mx "Compartir en Pinterest"
 
+es "Para comprar con este producto"
+pt "Para comprar com esse produto"
+en "To buy with this product"
+es_mx "Para comprar con este producto"
+
 --- --- Labels
 
 es "Sin stock"
@@ -874,11 +878,6 @@ es "Consulta por:"
 pt "Consulta por:"
 en "Consult for:"
 es_mx Consulta por:"
-
-es "Productos Relacionados"
-pt "Produtos Relacionados"
-en "Related Products"
-es_mx "Productos relacionados"
 
 es "Detalles"
 pt "Detalhes do Pedido"
@@ -1256,20 +1255,20 @@ pt "Se você tem problemas com outra compra, entre em contato:"
 en "If you’re having problems with a different purchase, contact us:"
 es_mx "Si tienes problemas con otra compra, contáctanos:"
 
-es "Botón de arrepentimiento"
-pt "Botão de arrependimento"
-en "Cancel your order"
-es_mx "Botón de arrepentimiento"
-
 es "Pedí la cancelación de tu última compra"
 pt "Pedir o cancelamento da sua ultima compra"
 en "Request the cancellation of your last order"
 es_mx "Pide la cancelación de tu última compra"
 
-es "Si te arrepentiste, podés pedir la cancelación enviando este formulario."
-pt "Se você se arrependeu, pode solicitar o cancelamento enviando este formulário."
-en "If you’re having second thoughts, you can cancel your order using this form."
-es_mx "Si te arrepentiste, puedes pedir la cancelación enviando este formulario."
+es "Si te arrepentiste, podés pedir la cancelación enviando este formulario. Tenés como máximo hasta 10 días corridos desde que recibiste el producto."
+pt "Se você se arrependeu, pode solicitar o cancelamento enviando este formulário. Tem no máximo 10 dias corridos a partir do recebimento do produto."
+en "If you’re having second thoughts, you can cancel your order using this form. You have a maximum of 10 calendar days from when you received the product."
+es_mx "Si te arrepentiste, puedes pedir la cancelación enviando este formulario. Tienes como máximo hasta 10 días corridos desde que recibiste el producto."
+
+es "Si te arrepentiste de una compra, podés pedir la cancelación enviando este formulario <strong>con tu número de orden.</strong> Tenés como máximo hasta 10 días corridos desde que recibiste el producto."
+pt "Se você se arrependeu de uma compra, pode solicitar o cancelamento enviando este formulário <strong>com o número do seu pedido.</strong> Tem no máximo 10 dias corridos a partir do recebimento do produto."
+en "If you’re having second thoughts on your order, you can cancel it by sending this form <strong>with your order number.</strong> You have a maximum of 10 calendar days from when you received the product."
+es_mx "Si te arrepentiste de una compra, puedes pedir la cancelación enviando este formulario <strong>con tu número de orden.</strong> Tienes como máximo hasta 10 días corridos desde que recibiste el producto."
 
 es "¡Tu pedido de cancelación fue enviado!"
 pt "Seu pedido de cancelamento foi enviado!"
@@ -1624,6 +1623,31 @@ pt "Ativar Conta"
 en "Activate account"
 es_mx "Activar cuenta"
 
+es "El link para cambiar tu contraseña expiró"
+pt "O link para alterar sua senha expirou"
+en "The link to change your password has expired"
+es_mx "El link para cambiar tu contraseña expiró"
+
+es "Ingresá tu email para recibir uno nuevo."
+pt "Insira seu email para receber um novo."
+en "Enter your email to receive a new one."
+es_mx "Ingresa tu email para recibir uno nuevo."
+
+es "Ingresar email"
+pt "Inserir e-mail"
+en "Enter email"
+es_mx "Ingresar email"
+
+es "El link para activar tu cuenta expiró"
+pt "O link para ativar sua conta expirou"
+en "The link to activate your account has expired"
+es_mx "El link para activar tu cuenta expiró"
+
+es "Contactanos para que te enviemos uno nuevo."
+pt "Entre em contato com a gente para que te enviemos um novo."
+en "Contact us so we can send you a new one."
+es_mx "Contáctanos para que te enviemos uno nuevo."
+
 es "Cerrar sesión"
 pt "Sair"
 en "Log out"
@@ -1644,7 +1668,7 @@ pt "Voltar para a loja"
 en "Go back to store"
 es_mx "Regresar a la tienda online"
 
-es "DNI"
+es "DNI / CUIT"
 pt "CPF / CNPJ"
 en "ID"
 es_mx "INE"
@@ -1671,10 +1695,30 @@ es_mx "Principal"
 
 --- --- Orders
 
+es "Razón social"
+pt "Razão Social"
+en "Business name"
+es_mx "Razón social"
+
+es "Nombre comercial"
+pt "Nome fantasia"
+en "Trade name"
+es_mx "Nombre comercial"
+
+es "Inscripción estatal"
+pt "Inscrição estadual"
+en "State registration"
+es_mx "Inscripción estatal"
+
 es "Mis compras"
 pt "Minhas compras"
 en "My orders"
 es_mx "Mis compras"
+
+es "últimas 50 órdenes"
+pt "últimos 50 pedidos"
+en "last 50 orders"
+es_mx "últimos 50 pedidos"
 
 es "Orden"
 pt "Pedido"
@@ -2122,6 +2166,11 @@ es "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
 pt "Até <strong class='installment-amount'>{1}</strong>x sem juros"
 en "In up to <strong class='installment-amount'>{1}</strong> installments without interest"
 es_mx "Hasta <strong class='installment-amount'>{1}</strong> meses sin intereses"
+
+es "No acumulable con otras promociones"
+pt "Não acumulável com outras promoções"
+en "Not combinable with other promotions"
+es_mx "No acumulable con otras promociones"
 
 --- Shipping ---
 
@@ -3421,10 +3470,6 @@ es "Título para productos destacados"
 pt "Título para produtos em destaque"
 es_mx "Título para productos destacados"
 
-es "Título para productos relacionados"
-pt "Título para produtos relacionados"
-es_mx "Título para productos relacionados"
-
 es "Variantes de color"
 pt "Variações de cor"
 en "Color variants"
@@ -3503,6 +3548,15 @@ es_mx "Texto de rebaja"
 es "Texto para los productos sin stock"
 pt "Texto para Sem Estoque"
 es_mx "Texto para los productos agotados"
+
+es "Productos relacionados"
+pt "Produtos relacionados"
+en "Related products"
+es_mx "Productos relacionados"
+
+es "Título para los productos alternativos"
+pt "Título para os produtos alternativos"
+es_mx "Título para los productos alternativos"
 
 
 --- --- Cart
@@ -3677,6 +3731,20 @@ pt "Mostrar as opções de pagamento na sua loja"
 en "Show payment methods in your store"
 es_mx "Mostrar los métodos de pago en tu sitio"
 
+es "Descuento por medio de pago"
+pt "Desconto por meio de pagamento"
+en "Payment method discount"
+es_mx "Descuento por medio de pago"
+
+es "Mostrar el precio con mayor descuento en los listados, el detalle de producto y el carrito de compras"
+pt "Mostrar o preço com maior desconto nas listas, no detalhe do produto e carrinho de compras"
+en "Show the highest discount price in product list, product details and shopping cart"
+es_mx "Mostrar el precio con mayor descuento en los listados, el detalle de producto y el carrito de compras"
+
+es "<a target='_blank' href='/admin/payments/'>Configurá descuentos para tus medios de pago.</a>"
+pt "<a target='_blank' href='/admin/payments/'>Configure descontos para seus meios de pagamento.</a>"
+en "<a target='_blank' href='/admin/payments/'>Configure discounts for your payment methods.</a>"
+es_mx "<a target='_blank' href='/admin/payments/'>Configura descuentos para tus medios de pago.</a>"
 
 --- --- Social
 

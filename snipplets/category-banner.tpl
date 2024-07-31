@@ -14,6 +14,6 @@
 
 {% set category_image_url = 'banner-products.jpg' | static_url %}
 
-<section class="category-banner mb-2">
+<section class="category-banner position-relative mb-2" data-store="category-banner">
     <img class="lazyautosizes lazyload blur-up position-relative w-100" src="{{ category_images['small'] }}" data-srcset="{{ category_images['large'] }} 480w, {{ category_images['huge'] }} 640w, {{ category_images['original'] }} 1024w, {{ category_images['1080p'] }} 1920w" data-sizes="auto" alt="{{ 'Banner de la categoría' | translate }} {{ category.name }}" />
 </section>

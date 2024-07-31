@@ -8,7 +8,7 @@
 			{% embed "snipplets/forms/form-select.tpl" with{select_label: true, select_label_name: '' ~ variation.name ~ '', select_for: 'variation_' ~ loop.index , select_id: 'variation_' ~ loop.index, select_data_value: 'variation_' ~ loop.index, select_name: 'variation' ~ '[' ~ variation.id ~ ']', select_group_custom_class:hidden_variant_select, select_custom_class: 'js-variation-option js-refresh-installment-data'} %}
 				{% block select_options %}
 					{% for option in variation.options %}
-						<option value="{{ option.id }}" {% if product.default_options[variation.id] == option.id %}selected="selected"{% endif %}>{{ option.name }}</option>
+						<option value="{{ option.id }}" {% if product.default_options[variation.id] is same as(option.id) %}selected="selected"{% endif %}>{{ option.name }}</option>
 					{% endfor %}
 				{% endblock select_options%}
 			{% endembed %}
@@ -18,7 +18,7 @@
 					</div>
 					<div class="text-center {% if not quickshop %}text-md-left{% endif %}">
 						{% for option in variation.options if option.custom_data %}
-							<a data-option="{{ option.id }}" class="js-insta-variant btn btn-variant{% if product.default_options[variation.id] == option.id %} selected{% endif %}" title="{{ option.name }}" data-option="{{ option.id }}" data-variation-id="{{ variation.id }}">
+							<a data-option="{{ option.id }}" class="js-insta-variant btn btn-variant{% if product.default_options[variation.id] is same as(option.id) %} selected{% endif %}" title="{{ option.name }}" data-option="{{ option.id }}" data-variation-id="{{ variation.id }}">
 								<span class="btn-variant-content"{% if variation.name in ['Color', 'Cor'] %} style="background: {{ option.custom_data }}; border: 1px solid #eee"{% endif %} data-name="{{ option.name }}">
 								{% if not(variation.name in ['Color', 'Cor']) %}
 									{{ option.name }}
@@ -27,7 +27,7 @@
 							</a>
 						{% endfor %}
 						{% for option in variation.options if not option.custom_data %}
-							<a data-option="{{ option.id }}" class="js-insta-variant btn btn-variant{% if product.default_options[variation.id] == option.id %} selected{% endif %}" data-variation-id="{{ variation.id }}">
+							<a data-option="{{ option.id }}" class="js-insta-variant btn btn-variant{% if product.default_options[variation.id] is same as(option.id) %} selected{% endif %}" data-variation-id="{{ variation.id }}">
 								<span class="btn-variant-content" data-name="{{ option.name }}">{{ option.name }}</span>
 							</a>
 						{% endfor %}
