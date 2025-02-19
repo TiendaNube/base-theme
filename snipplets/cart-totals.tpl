@@ -22,6 +22,7 @@
 
   {# Cart popup promos #}
   <div class="js-total-promotions text-accent font-weight-bold">
+    <span class="js-promo-discount" style="display:none;"> {{ "Descuento" | translate }}</span>
     <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
     <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>
     <span class="js-promo-buying" style="display:none;"> {{ "comprando" | translate }}</span>
@@ -37,6 +38,10 @@
             {% if promotion.discount_script_type != "custom" %}
               {% if promotion.discount_script_type == "NAtX%off" %}
                 {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
+              {% elseif promotion.isBuyXPayY %}
+                {{ promotion.buy }}x{{ promotion.pay }}
+              {% elseif promotion.isCrossSelling %}
+                {{ "Descuento" | translate }}    
               {% else %}
                 {{ promotion.discount_script_type }}
               {% endif %}
@@ -131,6 +136,7 @@
 
               {# Cart page promos #}
               <div class="js-total-promotions">
+                <span class="js-promo-discount" style="display:none;">{{ "Descuento" | translate }}</span>
                 <span class="js-promo-in" style="display:none;">{{ "en" | translate }}</span>
                 <span class="js-promo-all" style="display:none;">{{ "todos los productos" | translate }}</span>
                 <span class="js-promo-buying" style="display:none;"> {{ "comprando" | translate }}</span>
@@ -146,6 +152,10 @@
                         {% if promotion.discount_script_type != "custom" %}
                           {% if promotion.discount_script_type == "NAtX%off" %}
                             {{ promotion.selected_threshold.discount_decimal_percentage * 100 }}% OFF
+                          {% elseif promotion.isBuyXPayY %}
+                            {{ promotion.buy }}x{{ promotion.pay }}
+                          {% elseif promotion.isCrossSelling %}
+                            {{ "Descuento" | translate }}  
                           {% else %}
                             {{ promotion.discount_script_type }}
                           {% endif %}

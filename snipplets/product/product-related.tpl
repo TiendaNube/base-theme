@@ -82,7 +82,6 @@
                 slider_wrapper: swiper_wrapper_class,
                 slider_control_pagination: 'js-swiper-related-pagination ' ~ slider_control_pagination_class,
                 slider_control_prev_container: 'js-swiper-related-prev ' ~ slider_control_prev_class,
-                slider_control_prev: 'icon-flip-horizontal',
                 slider_control_next_container: 'js-swiper-related-next ' ~ slider_control_next_class,
             },
             custom_control_prev: control_prev,
@@ -98,7 +97,7 @@
 {% if complementary_products %}
     {{ component(
         'products-section',{
-            title: 'Para comprar con este producto' | translate,
+            title: settings.products_complementary_title,
             id: complementary_section_id,
             data_component: complementary_section_id,
             products_amount: complementary_product_list | length,
@@ -117,7 +116,6 @@
                 slider_wrapper: swiper_wrapper_class,
                 slider_control_pagination: 'js-swiper-complementary-pagination ' ~ slider_control_pagination_class,
                 slider_control_prev_container: 'js-swiper-complementary-prev ' ~ slider_control_prev_class,
-                slider_control_prev: 'icon-flip-horizontal',
                 slider_control_next_container: 'js-swiper-complementary-next ' ~ slider_control_next_class,
             },
             custom_control_prev: control_prev,

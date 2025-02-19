@@ -143,6 +143,51 @@ pt "Seja bem vindo a sua loja!"
 en "Welcome to your store!"
 es_mx "¡Bienvenido a tu tienda en línea!"
 
+es "Categoría"
+pt "Categoria"
+en "Category"
+es_mx "Categoría"
+
+es "Tarjetas de crédito"
+pt "Cartões de crédito"
+en "Credit cards"
+es_mx "Tarjetas de crédito"
+
+es "Sitio seguro"
+pt "Site seguro"
+en "Secure site"
+es_mx "Sitio seguro"
+
+es "Podés subir imágenes principales desde"
+pt "Você pode subir as imagens principais desde"
+en "You can upload main images from"
+es_mx "Puedes subir imágenes principales desde"
+
+es "Podés destacar categorías de tu tienda desde"
+pt "Você pode destacar categorias da sua loja desde"
+en "You can highlight a categories of your store from"
+es_mx "Puedes destacar categorías de tu tienda desde"
+
+es "Podés subir tu video de YouTube o Vimeo desde"
+pt "Você pode subir seu vídeo de YouTube ou Vimeo desde"
+en "You can upload your Youtube or Vimeo video from"
+es_mx "Puedes subir tu video de YouTube o Vimeo desde"
+
+es "Podés mostrar tus últimas novedades desde"
+pt "Você pode mostrar suas últimas novidades desde"
+en "You can show your latest news from"
+es_mx "Puedes mostrar tus últimas novedades desde"
+
+es "Podés mostrar tu información para la compra desde"
+pt "Você pode mostrar suas informações para a compra desde"
+en "You can show your purchase information from"
+es_mx "Puedes mostrar tu información para la compra desde"
+
+es "Usá este texto para compartir información de tu negocio, dar la bienvenida a tus clientes o para contar lo increíble que son tus productos."
+pt "Use este texto para compartilhar informações da sua loja, dar boas vindas aos clientes ou para dizer o quão incrível são os seus produtos."
+en "Use this text to share information about your business, welcome your customers or tell how amazing your products are."
+es_mx "Usa este texto para compartir información de tu negocio, dar la bienvenida a tus clientes o para contar lo increíble que son tus productos."
+
 es "Todavía no tienes ningún producto, ¿deseas"
 pt "Você ainda não tem nenhum produto, deseja"
 en "It looks like you don&#39;t have any products yet, would you like to"
@@ -177,11 +222,6 @@ es "CATEGORÍA DE EJEMPLO"
 pt "CATEGORIA DE EXEMPLO"
 en "CATEGORY EXAMPLE"
 es_mx "CATEGORÍA DE EJEMPLO"
-
-es "En hasta 12 cuotas con tarjeta de crédito"
-pt "Em até 12x sem juros"
-en "Upto 12x without interests"
-es_mx "En hasta 12 meses con tarjeta de crédito"
 
 es "Hasta 12 cuotas"
 pt "Até 12x sem juros"
@@ -356,6 +396,21 @@ es "Entendido"
 pt "Entendi"
 en "Understood"
 es_mx "Entendido"
+
+es "¡Agregado al carrito!"
+pt "Adicionado ao carrinho!"
+en "Added to cart!"
+es_mx "¡Agregado al carrito!"
+
+es "Sumá a tu compra"
+pt "Compre também"
+en "Buy also"
+es_mx "Suma a tu compra"
+
+es "¡Descuento exclusivo!"
+pt "Desconto exclusivo!"
+en "Exclusive discount!"
+es_mx "¡Descuento exclusivo!"
 
 --- Catalog ---
 
@@ -722,11 +777,6 @@ pt "Compartilhar pelo Pinterest"
 en "Share on Pinterest"
 es_mx "Compartir en Pinterest"
 
-es "Para comprar con este producto"
-pt "Para comprar com esse produto"
-en "To buy with this product"
-es_mx "Para comprar con este producto"
-
 --- --- Labels
 
 es "Sin stock"
@@ -759,23 +809,10 @@ pt "Promoção"
 en "Promo"
 es_mx "Promo"
 
-es "¡Llevá {1} y pagá {2}!"
-pt "Leve {1} e pague {2}!"
-en "Buy {1} and only pay for {2}"
-es_mx "¡Lleva {1} y paga {2}!"
-
+es "{1}x{2}"
 pt "Leve {1} Pague {2}"
-es_mx "Lleva {1} y paga {2}"
-
-es "Válido para"
-pt "Válido para"
-en "Available for"
-es_mx "Válido para"
-
-es "este producto y todos los de la categoría"
-pt "este produto e todos da categoria"
-en "this product and all of the products of category: "
-es_mx "este producto y todos los de la categoría"
+en "{1}x{2}"
+es_mx "{1}x{2}"
 
 es "todos los productos"
 pt "todos os produtos"
@@ -787,25 +824,20 @@ pt "em"
 en "on"
 es_mx "en"
 
-es "Vas a poder aprovechar esta promoción en cualquier producto de la tienda."
-pt "Você pode aproveitar esta promoção em qualquer produto da loja."
-en "You will be able to use this promotion on any product of the shop"
-es_mx "Aprovecha esta promoción en cualquier producto del sitio."
-
-es "Podés combinar esta promoción con otros productos de la misma categoría."
-pt "Nesta promoção você pode combinar este produto com outros da mesma categoria."
-en "You can combine this offer with other products of the same category"
-es_mx "Combina esta promoción con otros productos de la misma categoría."
-
 es "Comprando {1} o más"
 pt "Comprando {1} ou mais"
 en "Buying {1} or more"
 es_mx "Comprando {1} o más"
 
-es "¡{1}% OFF comprando {2} o más!"
-pt "{1}% OFF comprando {2} ou mais!"
-en "{1}% OFF buying {2} or more!"
-es_mx "¡{1}% OFF comprando {2} o más!"
+es "Hasta {1}% OFF"
+pt "Até {1}% OFF"
+en "Up to {1}% OFF"
+es_mx "Hasta {1}% OFF"
+
+es "Comprando en cantidad"
+pt "Comprando em quantidade"
+en "Buying in quantity"
+es_mx "Comprando en cantidad"
 
 es "comprando"
 pt "comprando"
@@ -2166,6 +2198,8 @@ es "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
 pt "Até <strong class='installment-amount'>{1}</strong>x sem juros"
 en "In up to <strong class='installment-amount'>{1}</strong> installments without interest"
 es_mx "Hasta <strong class='installment-amount'>{1}</strong> meses sin intereses"
+es_co "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
+es_cl "Hasta <strong class='installment-amount'>{1}</strong> cuotas sin interés"
 
 es "No acumulable con otras promociones"
 pt "Não acumulável com outras promoções"
@@ -2268,6 +2302,11 @@ es " (sin envío)"
 pt " (sem frete)"
 en " (without shipping cost)"
 es_mx " (sin envío)"
+
+es "Descuento"
+pt "Desconto"
+en "Discount"
+es_mx "Descuento"
 
 es "El código postal es inválido. Por favor intentá de nuevo usando otro."
 pt "CEP inválido. Por favor, digite novamente ou informe outro."
@@ -2515,6 +2554,36 @@ pt "<strong class='text-primary'>Frete grátis!</strong> com todos os meios de e
 en "<strong class='text-primary'>Free shipping!</strong> with all shipping options"
 es_mx "<strong class='text-primary'>¡Envío gratis!</strong> con todos los medios de envío"
 
+es "superando los"
+pt "a partir de"
+en "buying more than"
+es_mx "superando los"
+
+es "¡Genial! Tenés envío gratis"
+pt "Sucesso! Você tem frete grátis"
+en "You have free shipping"
+es_mx "¡Genial! Tienes envío gratis"
+
+es "tenés envío gratis!"
+pt "tenha frete grátis!"
+en "you have free shipping!"
+es_mx "tienes envío gratis!"
+
+es "¡Agregá este producto y "
+pt "Adicione este produto e "
+en "Add this product and "
+es_mx "¡Agrega este producto y "
+
+es "¡Agregá uno más y "
+pt "Adicione mais um e "
+en "Add one more and "
+es_mx "¡Agrega uno más y "
+
+es "¡Estás a <strong class='js-ship-free-dif h5'></strong> de tener <strong class='text-accent'>envío gratis</strong>!"
+pt "<strong class='text-accent'>Ganhe frete grátis</strong> com mais <strong class='js-ship-free-dif h5'></strong>"
+en "You need <strong class='js-ship-free-dif h5'></strong> to have <strong class='text-accent'>free shipping</strong>"
+es_mx "¡Estás a <strong class='js-ship-free-dif h5'></strong> de tener <strong class='text-accent'>envío gratis</strong>!"
+
 es "Ver puntos de retiro"
 pt "Ver pontos de retirada"
 en "See pickup points"
@@ -2601,7 +2670,7 @@ es_mx "Colores de contraste"
 es "Para facilitar la lectura, asegurate de que los colores contrasten entre sí."
 pt "Para facilitar a leitura, certifique-se de que as cores contrastem entre si."
 en "To make it easier to read, make sure the colors contrast with each other."
-es_mx "Para facilitar la lectura, asegurate de que los colores contrasten entre sí."
+es_mx "Para facilitar la lectura, asegúrate de que los colores contrasten entre sí."
 
 es "Color de acento"
 pt "Cor de destaque"
@@ -2611,7 +2680,9 @@ es_mx "Color de acento"
 es "<div class='js-color-description'>Aplica a promociones y a mensajes de descuento, envío gratis y cuotas sin interés.</div>"
 pt "<div class='js-color-description'>Aparece nas promoções e nas mensagens de desconto, frete grátis e parcelamento sem juros.</div>"
 en "<div class='js-color-description'>Applies to promotions, discount messages, free shipping and installments without interest.</div>"
-es_mx "<div class='js-color-description'>Aplica a promociones y a mensajes de descuento, envío gratis y meses sin intereses.</div>"
+es_mx "<div class='js-color-description'>Aplica a promociones, mensajes de descuento, envío gratis y a meses sin intereses.</div>"
+es_co "<div class='js-color-description'>Aplica a promociones, mensajes de descuento, envío gratis y a cuotas sin interés.</div>"
+es_cl "<div class='js-color-description'>Aplica a promociones, mensajes de descuento, envío gratis y a cuotas sin interés.</div>"
 
 es "Combinaciones predeterminadas"
 pt "Combinações pré-definidas"
@@ -2625,7 +2696,7 @@ es_mx "Ideales para restablecer los colores por defecto del diseño."
 
 es "<a target='_blank' href='https://ayuda.tiendanube.com/es_ES/124497-colores-de-tu-marca/como-cambiar-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>"
 pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/layout/personalizacao-basica-do-layout/como-alterar-as-cores-do-meu-layout/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>Como alterar as cores do meu layout?</a>"
-es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_ES/124497-colores-de-tu-marca/como-cambiar-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>"
+es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_MX/124497-colores-de-tu-marca/como-cambiar-los-colores-de-mi-diseno/?utm_source=admin-desktop&utm_medium=feature-page&utm_campaign=help'>¿Cómo cambio los colores de mi diseño?</a>"
 
 es "Configuración avanzada"
 pt "Configuração avançada"
@@ -2818,6 +2889,10 @@ es_mx "El fondo transparente sólo está habilitado para el ancho de columna com
 es "Encabezado siempre visible al navegar la tienda"
 pt "Cabeçalho sempre visível ao navegar pela loja"
 es_mx "Encabezado siempre visible al navegar el sitio"
+
+es "Mostrar idiomas y monedas en el encabezado"
+pt "Mostrar idiomas e moedas no cabeçalho"
+es_mx "Mostrar idiomas y monedas en el encabezado"
 
 es "Menú de solapas visible en celulares"
 pt "Aba de menu visível em celulares"
@@ -3059,7 +3134,7 @@ es_mx "Mejora la calidad y velocidad de carga con esta opción"
 es "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
 pt "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://atendimento.nuvemshop.com.br/pt-BR/articles/3300655-como-configurar-banners-rotativos-nos-layouts-idea-bahia-e-amazonas'>Como criar as imagens para seus banners rotativos?</a>"
 en "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>How to design the images for your carousel?</a>"
-es_mx "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
+es_mx "<a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es_MX/122998-carrusel-de-imagenes/como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-cubo-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>"
 
 es "Imágenes"
 pt "Imagens"
@@ -3264,6 +3339,11 @@ es "Módulos de imagen y texto"
 pt "Módulos de imagem e texto"
 en "Modules with image and text"
 es_mx "Módulos de imagen y texto"
+
+es "Módulo de imagen y texto"
+pt "Módulo de imagem e texto"
+en "Module with image and text"
+es_mx "Módulo de imagen y texto"
 
 es "MÓDULO 1"
 pt "MÓDULO 1"
@@ -3558,6 +3638,10 @@ es "Título para los productos alternativos"
 pt "Título para os produtos alternativos"
 es_mx "Título para los productos alternativos"
 
+es "Título para los productos complementarios"
+pt "Título para os produtos complementares"
+es_mx "Título para los productos complementarios"
+
 
 --- --- Cart
 
@@ -3595,10 +3679,22 @@ pt "Carrinho de compra rápida"
 en "AJAX Shopping Cart"
 es_mx "Carrito de compras rápidas"
 
-es "Tus clientes pueden agregar y ver los productos que van a comprar sin necesidad de ir a otra página, ya que la información está siempre visible."
-pt "Seus clientes podem escolher produtos e conferir o que vão comprar sem a necessidade abrir outra página, já que a informação está sempre visível."
-en "Tus clientes pueden agregar y ver los productos que van a comprar sin necesidad de ir a otra página, porque la información está siempre visible."
-es_mx "Tus clientes pueden agregar y ver los artículos que comprarán sin necesidad de ir a otra página, ya que la información está siempre visible."
+es "Permitir que tus clientes agreguen productos al carrito sin necesidad de ir a otra página"
+pt "Permitir que seus clientes adicionem produtos sem precisar ir a outra página"
+en "Allow your customers to add products to the cart without having to go to another page"
+es_mx "Permitir que tus clientes agreguen productos al carrito sin necesidad de ir a otra página"
+
+es "Recomendaciones de productos"
+pt "Recomendações de produtos"
+es_mx "Recomendaciones de productos"
+
+es "Sugerir productos complementarios al agregar uno al carrito de compras rápidas"
+pt "Sugerir produtos complementares ao adicionar um ao carrinho de compra rápida"
+es_mx "Sugerir productos complementarios al agregar uno al carrito de compras rápidas"
+
+es "<a target='_blank' href='https://ayuda.tiendanube.com/es_AR/123159-detalle-del-producto/como-seleccionar-los-productos-relacionados-en-tiendanube' class='js-checkbox-help-link'>Más sobre productos relacionados</a>"
+pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/pt_BR/pagina-do-produto/como-selecionar-os-produtos-relacionados-na-nuvemshop' class='js-checkbox-help-link'>Mais sobre produtos relacionados</a>"
+es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_MX/123159-detalle-del-producto/como-seleccionar-los-productos-relacionados-en-tiendanube' class='js-checkbox-help-link'>Más sobre productos relacionados</a>"
 
 
 --- --- Footer
@@ -3691,7 +3787,7 @@ es_mx "Para diseñadores web"
 
 es "<a target='_blank' href='https://ayuda.tiendanube.com/es_ES/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>"
 pt "<a target='_blank' href='https://atendimento.nuvemshop.com.br/personalizacao-avancada-do-layout/como-inserir-um-codigo-css'>Como editar o código CSS da minha loja?</a>"
-es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_ES/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>"
+es_mx "<a target='_blank' href='https://ayuda.tiendanube.com/es_MX/123225-edicion-avanzada-de-css/como-editar-el-diseno-con-codigo-css'>¿Cómo edito el código CSS de mi tienda?</a>"
 
 
 --- --- Shipping and Payments

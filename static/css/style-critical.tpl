@@ -28,6 +28,7 @@ critical-css.tpl
     // Icons
     // Sliders
     // Lists
+    // Tables
     // Notifications
     // Images
     // Forms
@@ -51,6 +52,7 @@ critical-css.tpl
     // Shipping Calculator
   #Contact page
     // Data contact
+  #Blog
   #Media queries
     // Min width 768px
       //// Components
@@ -424,7 +426,9 @@ p{
   margin-right: 5px;
   opacity: 0.5;
 }
-
+.font-small {
+  font-size: 12px!important;
+}
 .font-smallest {
   font-size: 11px!important;
 }
@@ -638,6 +642,24 @@ p{
 
 .list-inline li{
   display: inline-flex;
+}
+
+{# /* // Tables */ #}
+
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.table thead th{
+  padding: 8px;
+}
+.table thead th:first-of-type{
+  padding-left: 0;
+}
+.table td{
+  padding: 8px;
+  text-align: left;
 }
 
 {# /* // Notifications */ #}
@@ -869,6 +891,12 @@ p{
   width: 100%;
 }
 
+.nav-dropdown-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear .3s, opacity .3s linear;
+}
+
 {# /* // Ad Bar */ #}
 
 .section-advertising {
@@ -961,6 +989,13 @@ p{
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.textbanner-image-empty:after {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
 }
 .textbanner-text {  
   position: relative;
@@ -1105,6 +1140,14 @@ p{
 .item-installments { 
   font-size: 10px;
 }
+.item-product-reduced .item-image {
+  height: 145px;
+}
+.item-product-reduced .item-image img {
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+}
 
 {# /* // Labels */ #}
 
@@ -1216,6 +1259,79 @@ p{
 }
 
 /*============================================================================
+#Blog
+==============================================================================*/
+
+.post-item-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.post-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-item-title,
+.post-item-summary {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5em;
+}
+
+.post-content,
+.post-content p {
+  font-size: 16px;
+  line-height: 1.8rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  margin: 2rem 0 1rem 0;
+  line-height: initial;
+}
+
+.post-content h1,
+.post-content .h1 {
+  font-size: 28px;
+}
+
+.post-content h2,
+.post-content .h2 {
+  font-size: 24px;
+}
+
+.post-content h3,
+.post-content .h3 {
+  font-size: 20px;
+}
+
+.post-content h4,
+.post-content .h4 {
+  font-size: 18px;
+}
+
+.post-content h5,
+.post-content .h5 {
+  font-size: 16px;
+}
+
+.post-content h6,
+.post-content .h6 {
+  font-size: 14px;
+}
+
+
+/*============================================================================
   #Media queries
 ==============================================================================*/
 
@@ -1241,6 +1357,10 @@ p{
   }
 
   {# /* //// Components */ #}
+
+  .container-narrow {
+    max-width: 680px;
+  }
   
   .h1-md {
     font-size: 28px;
@@ -1296,6 +1416,11 @@ p{
 
   .item-colors {
     padding: 10px 0;
+  }
+
+  .item-product-reduced .item-image,
+  .item-product-reduced .item-image img {
+    height: 180px;
   }
 
   {# /* //// Product detail */ #}

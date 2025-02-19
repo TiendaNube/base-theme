@@ -30,7 +30,7 @@
         <div class="modal-with-fixed-footer">
             <div class="modal-scrollable-area">
     {% endif %}
-                <div class="js-modal-close {% if modal_mobile_full_screen %}js-fullscreen-modal-close{% endif %} modal-header">
+                <div class="js-modal-close {% if modal_mobile_full_screen %}js-fullscreen-modal-close{% endif %} modal-header {{ modal_header_class }}">
                     <span class="modal-close">
                         {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-text"} %}
                     </span>

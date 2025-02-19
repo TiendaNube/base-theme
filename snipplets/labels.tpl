@@ -2,10 +2,16 @@
 {% set price_discount_percentage = ((product.compare_at_price) - (product.price)) * 100 / (product.compare_at_price) %}
 {% endif %}
 
+{% set has_product_available = product.available and product.display_price %}
+
+{% set store_has_free_shipping = not product.is_non_shippable and (product.free_shipping or (has_product_available and (cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price))) %}
+
+{% set product_price_above_free_shipping_minimum = cart.free_shipping.min_price_free_shipping and (product.price >= cart.free_shipping.min_price_free_shipping.min_price_raw) %}
+
 {% if color %}
   {% set show_labels = settings.product_color_variants %}
 {% else %}
-  {% set show_labels = not product.has_stock or product.free_shipping or product.compare_at_price or product.promotional_offer %}
+  {% set show_labels = not product.has_stock or store_has_free_shipping or product.compare_at_price or product.promotional_offer %}
 {% endif %}
 
 <div class="{% if product.video_url and product %}js-labels-group{% endif %} labels" data-store="product-item-labels">
@@ -21,21 +27,22 @@
           {% if product.promotional_offer.script.is_percentage_off %}
             {{ product.promotional_offer.parameters.percent * 100 }}% OFF
           {% elseif product.promotional_offer.script.is_discount_for_quantity %}
-            <div>{{ product.promotional_offer.selected_threshold.discount_decimal_percentage * 100 }}% OFF</div>
-            <div class="label-small p-right-quarter p-left-quarter">{{ "Comprando {1} o más" | translate(product.promotional_offer.selected_threshold.quantity) }}</div>
-          {% elseif product.promotional_offer %}
-            {% if store.country == 'BR' %}
-              {{ "Leve {1} Pague {2}" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}
+            {% if product.promotional_offer.parameters | length > 1 %}
+              <div>{{ "Hasta {1}% OFF" | translate(product.promotional_offer.selected_threshold.discount_decimal_percentage * 100) }}</div>
+              <div class="label-small p-right-quarter p-left-quarter">{{ "Comprando en cantidad" | translate }}</div>
             {% else %}
-              {{ product.promotional_offer.script.type }} 
+              <div>{{ product.promotional_offer.selected_threshold.discount_decimal_percentage * 100 }}% OFF</div>
+              <div class="label-small p-right-quarter p-left-quarter">{{ "Comprando {1} o más" | translate(product.promotional_offer.selected_threshold.quantity) }}</div>
             {% endif %}
+          {% elseif product.promotional_offer %}
+            {{ "{1}x{2}" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}
           {% else %}
             <span {% if product_detail or color %}class="js-offer-percentage"{% endif %}>{{ price_discount_percentage |round }}</span>% OFF
           {% endif %}
         </div>
       {% endif %}
-      {% if product.free_shipping %}
-        <div class="label label-secondary">{{ "Envío gratis" | translate }}</div>
+      {% if store_has_free_shipping %}
+        <div class="{% if not product.free_shipping %}js-free-shipping-minimum-label {% endif %}label label-secondary" {% if not (product.free_shipping or product_price_above_free_shipping_minimum) %}style="display: none;"{% endif %}>{{ "Envío gratis" | translate }}</div>
       {% endif %}
     {% endif %}
   {% endif %}
