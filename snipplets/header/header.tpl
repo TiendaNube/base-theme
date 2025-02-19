@@ -69,4 +69,48 @@
         {% endblock %}
     {% endembed %}
 
+    {% if settings.add_to_cart_recommendations %}
+
+        {# Recommended products on add to cart #}
+
+        {% embed "snipplets/modal.tpl" with{modal_id: 'related-products-notification', modal_class: 'bottom modal-overflow-none modal-bottom-sheet h-auto', modal_header_class: 'px-0 pt-0 mb-2 m-0 w-100', modal_position: 'bottom', modal_transition: 'slide', modal_width: 'centered modal-centered-md-600px p-3'} %}
+            {% block modal_head %}
+                {% block page_header_text %}{{ '¡Agregado al carrito!' | translate }}{% endblock page_header_text %}
+            {% endblock %}
+            {% block modal_body %}
+
+                {# Product added info #}
+
+                {% include "snipplets/notification-cart.tpl" with {related_products: true} %}
+
+                {# Product added recommendations #}
+
+                <div class="js-related-products-notification-container" style="display: none"></div>
+
+            {% endblock %}
+        {% endembed %}
+    {% endif %}
 {% endif %}
+
+{# Cross selling promotion notification on add to cart #}
+
+{% embed "snipplets/modal.tpl" with {
+    modal_id: 'js-cross-selling-modal',
+    modal_class: 'bottom modal-bottom-sheet h-auto overflow-none modal-body-scrollable-auto',
+    modal_header: true,
+    modal_header_class: 'm-0 w-100',
+    modal_position: 'bottom',
+    modal_transition: 'slide',
+    modal_footer: true,
+    modal_width: 'centered-md m-0 p-0 modal-full-width modal-md-width-400px'
+} %}
+    {% block modal_head %}
+        {{ '¡Descuento exclusivo!' | translate }}
+    {% endblock %}
+
+    {% block modal_body %}
+        {# Promotion info and actions #}
+
+        <div class="js-cross-selling-modal-body" style="display: none"></div>
+    {% endblock %}
+{% endembed %}

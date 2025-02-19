@@ -10,10 +10,10 @@ Clothing
 	head_background = dark
 	head_transparent = 1
 	head_fix = 1
-	banner_services = 1
 	banners_full = 0
 	modules_full = 1
 	video_full = 1
+	home_order_position_0 = slider
 	home_order_position_1 = welcome
 	home_order_position_2 = categories
 	home_order_position_3 = video

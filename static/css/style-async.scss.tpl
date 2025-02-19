@@ -20,7 +20,6 @@ style.css
     // Icons
     // Alerts and Notifications
     // Modals
-    // Tables
     // Tabs
     // Cards
     // Captcha
@@ -33,12 +32,14 @@ style.css
   #Home page
     // Instafeed
     // Banners
+    // Placeholder
   #Product grid
     // Filters
   #Product detail
   	// Image
   	// Form and info
   #Media queries
+
     // Min width 768px
       //// Components
       //// Footer
@@ -389,6 +390,36 @@ textarea{
   cursor: pointer;
 }
 
+/* // Progress bar */
+
+.bar-progress {
+  position: relative;
+  height: 7px;
+  .bar-progress-active {
+    width: 0%;
+    height: 7px;
+  }
+}
+
+.ship-free-rest-message {
+  position: relative;
+  height: 45px;
+  .ship-free-rest-text {
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    text-align: center;  
+    line-height: 36px;
+    opacity: 0;
+  }
+  &.success .bar-progress-success,
+  &.amount .bar-progress-amount,
+  &.condition .bar-progress-condition {
+    top: 0;
+    opacity: 1;
+  }
+}
+
 {# /* // Modals */ #}
 
 .modal {
@@ -462,6 +493,18 @@ textarea{
         overflow: auto;
       }
     }
+    &-md.modal-show {
+        left: 50%;
+        transform: translateX(-50%);
+        &.modal-bottom-md,
+        &.modal-bottom {
+          top: 50%;
+          bottom: auto;
+          left: 50%;
+          height: fit-content;
+          transform: translate(-50%, -50%);
+        }
+      }
   }
   &-top.modal-show,
   &-bottom.modal-show {
@@ -508,26 +551,6 @@ textarea{
   z-index: 10000;
   &.modal-zindex-top{
     z-index: 20000;
-  }
-}
-
-{# /* // Tables */ #}
-
-.table{
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
-  thead{
-    th{
-      padding: 8px;
-      &:first-of-type{
-        padding-left: 0;
-      }
-    }
-  }
-  td{
-    padding: 8px;
-    text-align: left;
   }
 }
 
@@ -606,6 +629,15 @@ textarea{
 ==============================================================================*/#}
 
 {# /* // Nav */ #}
+
+.modal-full-width {
+  width: 100%;
+  max-width: 100%;
+}
+.modal-body-scrollable-auto .modal-body {
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
 
 .modal-nav-hamburger {
   text-align: center;
@@ -725,6 +757,21 @@ textarea{
       -o-transform: rotate(180deg);
     }
   }
+}
+
+.nav-dropdown-content:hover,
+.nav-dropdown:hover .nav-dropdown-content {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.desktop-dropdown-small {
+  top: calc(100% - 10px);
+  left: -10px;
+  z-index: 9;
+  width: 150px;
+  padding: 15px;
 }
 
 {# /* // Search */ #}
@@ -896,6 +943,32 @@ footer {
   }
 }
 
+{# /* // Placeholder */ #}
+
+.placeholder-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100%;  
+}
+
+.placeholder-info {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 330px;
+  padding: 30px 25px;
+  text-align: center;
+  line-height: 18px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  .placeholder-description {
+    margin: 20px 0;
+  }
+}
+
 {#/*============================================================================
   #Product grid
 ==============================================================================*/#}
@@ -993,6 +1066,18 @@ footer {
 .section-fb-comments,
 .section-products-related {
   @extend %section-margin;
+}
+
+.label-top-left {
+  top: 25px;
+  left: 25px;
+  z-index: 2;
+}
+
+.product-image-limited {
+  max-height: 320px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 {#/*============================================================================
@@ -1126,11 +1211,27 @@ footer {
   #Media queries
 ==============================================================================*/ #}
 
+{# /* // Max width 767px */ #}
+@media (max-width: 767px) {
+  .product-image-limited {
+    max-height: 210px;
+  }
+}
+
 {# /* // Min width 768px */ #}
 
 @media (min-width: 768px) { 
 
   {# /* //// Components */ #}
+
+  {# /* Header */ #}
+
+  .desktop-dropdown-small {
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  }
 
   {# /* Modals */ #}
 
@@ -1146,6 +1247,18 @@ footer {
         height: auto;
         max-height: 80%;
         margin: 0;
+      }
+      &-md-600px {
+        left: 50%;
+        width: 600px;
+        transform: translateX(-50%);
+      }
+    }
+    &-centered-md.modal-show {
+      left: initial;
+      transform: none;
+      &.modal-bottom {
+        top: 50%;
       }
     }
     &-docked-md{
@@ -1166,6 +1279,10 @@ footer {
     }
     &-docked-small{
       width: 350px;
+    }
+    &-md-width-400px {
+      width: 400px;
+      max-width: 90vw;
     }
   }
 

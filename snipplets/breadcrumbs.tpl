@@ -19,6 +19,12 @@
             <span class="crumb active">{{ "Resultados de búsqueda" | translate }}</span>
         {% elseif template == 'account.order' %}
              <span class="crumb active">{{ 'Orden {1}' | translate(order.number) }}</span>
+        {% elseif template == 'blog' %}
+             <span class="crumb active">{{ 'Blog' | translate }}</span>
+        {% elseif template == 'blog-post' %}
+             <a href="{{ store.blog_url }}" class="crumb">{{ 'Blog' | translate }}</a>
+             <span class="divider">></span>
+             <span class="crumb active">{{ post.title }}</span>
         {% else %}
             {% for crumb in breadcrumbs %}
                 {% if crumb.last %}

@@ -10,7 +10,6 @@
         <meta name="description" content="{{ page_description }}" />
         
         {{ component('social-meta') }}
-        {{ component('canary') }}
 
         {#/*============================================================================
             #CSS and fonts

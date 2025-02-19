@@ -15,7 +15,6 @@
         {% endif %}
 
         {{ component('social-meta') }}
-        {{ component('canary') }}
 
         {#/*============================================================================
             #CSS and fonts
@@ -131,6 +130,16 @@
         {# Footer #}
 
         {% snipplet "footer.tpl" %}
+
+        {% if cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price %}
+
+            {# Minimum used for free shipping progress messages. Located on header so it can be accesed everywhere with shipping calculator active or inactive #}
+
+            <span class="js-ship-free-min hidden" data-pricemin="{{ cart.free_shipping.min_price_free_shipping.min_price_raw }}"></span>
+            <span class="js-free-shipping-config hidden" data-config="{{ cart.free_shipping.allFreeConfigurations }}"></span>
+            <span class="js-cart-subtotal hidden" data-priceraw="{{ cart.subtotal }}"></span>
+            <span class="js-cart-discount hidden" data-priceraw="{{ cart.promotional_discount_amount }}"></span>
+        {% endif %}
 
         {#/*============================================================================
             #Javascript: Needed after HTML loads

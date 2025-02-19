@@ -32,26 +32,7 @@
 
 						{% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-lg svg-icon-text mr-2"} %}
 
-						{# Free shipping achieved label #}
-
-						<span class="js-free-shipping-message font-weight-bold text-accent" {% if not cart.free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
-							{{ "¡Genial! Tenés envío gratis" | translate }}
-						</span>
-
-						{# Free shipping with min price label #}
-
-						<span class="js-shipping-calculator-label font-weight-bold" {% if cart.free_shipping.cart_has_free_shipping or not cart.free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
-							{{ "<strong class='text-accent'>Envío gratis</strong> superando los" | translate }} <span>{{ cart.free_shipping.min_price_free_shipping.min_price }}</span>
-						</span>
-
-						{# Shipping default label #}
-
-						<span class="js-shipping-calculator-label-default" {% if cart.free_shipping.cart_has_free_shipping or cart.free_shipping.min_price_free_shipping.min_price %}style="display: none;"{% endif %}>
-
-							{# Regular shipping calculator label #}
-							
-							{{ 'Medios de envío' | translate }}
-						</span>
+						<span>{{ 'Medios de envío' | translate }}</span>
 					</div>
 				{% endblock input_prepend_content %}
 				{% block input_form_alert %}

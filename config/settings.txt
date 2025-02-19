@@ -73,7 +73,6 @@ Tipo de letra
 			"Lora", serif = Lora			
 			"Droid Sans", Sans-serif = Droid Sans
 
-
 Encabezado
 	meta
 		icon = arrow-up
@@ -90,6 +89,9 @@ Encabezado
 	checkbox
 		name = head_fix
 		description = Encabezado siempre visible al navegar la tienda
+	checkbox
+		name = languages_header
+		description = Mostrar idiomas y monedas en el encabezado
 	title
 		title = Barra de anuncio
 	checkbox
@@ -107,8 +109,10 @@ Página de inicio
 	meta
 		icon = home
 		advanced = true
+		default = home_order_position
 	collapse
 		title = Carrusel de imágenes
+		backto = home_order_position
 	subtitle
 		subtitle = Imágenes para computadoras
 	gallery
@@ -135,6 +139,7 @@ Página de inicio
 		subtitle = <a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>
 	collapse
 		title = Información de envíos, pagos y compra
+		backto = home_order_position
 	checkbox
 		name = banner_services
 		description = Mostrar los banners en la página principal
@@ -207,6 +212,7 @@ Página de inicio
 
 	collapse
 		title = Mensaje institucional
+		backto = home_order_position
 	i18n_input
 		name = welcome_message
 		description = Título
@@ -216,6 +222,7 @@ Página de inicio
 
 	collapse
 		title = Banners de categorías
+		backto = home_order_position
 	description
 		description = Los banners se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares
 	checkbox
@@ -289,6 +296,7 @@ Página de inicio
 		description = Link
 	collapse
 		title = Productos destacados
+		backto = home_order_position
 	description
 		description = Podés destacar los productos que quieras en la página de inicio.
 		name = featured_products_description
@@ -296,6 +304,7 @@ Página de inicio
 		subtitle = <a target='_blank' href='/admin/themes/settings/product_order/'>Elegí cuáles vas a destacar</a>
 	collapse
 		title = Módulos de imagen y texto
+		backto = home_order_position
 	description
 		description = Los módulos se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares
 	checkbox
@@ -357,9 +366,19 @@ Página de inicio
 	i18n_input
 		name = module_02_url
 		description = Link
-
+	collapse
+		title = Publicaciones de Instagram
+		backto = home_order_position
+	description
+		description = El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda. Tu perfil debe ser público.
+	checkbox
+		name = show_instafeed
+		description = Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda
+	subtitle
+		subtitle = Para mostrar tus publicaciones necesitás generar un token, <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda'>¿cómo configurarlo?</a>
 	collapse
 		title = Video
+		backto = home_order_position
 	checkbox
 		name = video_full
 		description = Mostrar video a todo el ancho de la pantalla en computadoras
@@ -370,6 +389,7 @@ Página de inicio
 		description = Ej: https://www.youtube.com/watch?v=dptrWehSI8c
 	collapse
 		title = Pop-up promocional
+		backto = home_order_position
 	checkbox
 		name = home_promotional_popup
 		description = Mostrar pop-up
@@ -391,11 +411,13 @@ Página de inicio
 		name = home_news_box
 		description = Permitir que tus clientes se registren para recibir novedades desde el pop-up (Opcional)
 	collapse
-		title = Orden de secciones
-	dropdown
-		name = home_order_position_1
-		description = Posición 1
-		values
+		title = Página de inicio
+		backto = _top
+	section_order
+		name = home_order_position
+		start_index = 0
+		sections
+			slider = Carrusel de imágenes
 			welcome = Mensaje institucional
 			products = Productos destacados
 			informatives = Información de envíos, pagos y compra
@@ -403,79 +425,9 @@ Página de inicio
 			modules = Módulos de imagen y texto
 			video = Video
 			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_2
-		description = Posición 2
-		values
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_3
-		description = Posición 3
-		values
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_4
-		description = Posición 4
-		values
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_5
-		description = Posición 5
-		values
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_6
-		description = Posición 6
-		values
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
-	dropdown
-		name = home_order_position_7
-		description = Posición 7
-		values
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
-			instafeed = Publicaciones de Instagram
-			empty = Ninguno
+	link
+		text = Pop-up promocional
+		linkto = home_promotional_popup
 
 Listado de productos
 	meta
@@ -559,10 +511,25 @@ Detalle de producto
 		description = Mensaje
 		name = last_product_text
 	title
+		title = Facebook
+	subtitle
+		subtitle = Comentarios en el producto
+	checkbox
+		name = show_product_fb_comment_box
+		description = Permitir que tus clientes te dejen comentarios con su usuario de Facebook en la página de producto
+	text
+		name = fb_admins
+		description = ID de tu perfil de Facebook
+	subtitle
+		subtitle = Es necesario si querés moderar los comentarios. Podés obtenerlo <a target='_blank' href='https://findmyfbid.in/'>acá</a>
+	title
 		title = Productos relacionados
 	i18n_input
 		description = Título para los productos alternativos
 		name = products_related_title
+	i18n_input
+		description = Título para los productos complementarios
+		name = products_complementary_title
 
 Carrito de compras
 	meta
@@ -575,7 +542,14 @@ Carrito de compras
 		title = Carrito de compras rápidas
 	checkbox
 		name = ajax_cart
-		description = Tus clientes pueden agregar y ver los productos que van a comprar sin necesidad de ir a otra página, ya que la información está siempre visible.
+		description = Permitir que tus clientes agreguen productos al carrito sin necesidad de ir a otra página
+	title
+		title = Recomendaciones de productos
+	checkbox
+		name = add_to_cart_recommendations
+		description = Sugerir productos complementarios al agregar uno al carrito de compras rápidas
+	subtitle
+		subtitle = <a target='_blank' href='https://ayuda.tiendanube.com/es_AR/123159-detalle-del-producto/como-seleccionar-los-productos-relacionados-en-tiendanube' class='js-checkbox-help-link'>Más sobre productos relacionados</a>
 	title
 		title = Monto mínimo de compra
 	text
@@ -641,32 +615,6 @@ Pie de página
 		subtitle = Código Javascript o HTML del sello
 	textarea
 		name = custom_seal_code
-	
-Redes sociales
-	meta
-		icon = share-alt
-		advanced = true
-	title
-		title = Publicaciones de Instagram
-	description
-		description = El Feed de Instagram muestra automáticamente tus últimas publicaciones en la página de inicio de tu tienda. Tu perfil debe ser público.
-	checkbox
-		name = show_instafeed
-		description = Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda
-	subtitle
-		subtitle = Para mostrar tus publicaciones necesitás generar un token, <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda'>¿cómo configurarlo?</a>
-	title
-		title = Facebook
-	subtitle
-		subtitle = Comentarios en el producto
-	checkbox
-		name = show_product_fb_comment_box
-		description = Permitir que tus clientes te dejen comentarios con su usuario de Facebook en la página de producto
-	text
-		name = fb_admins
-		description = ID de tu perfil de Facebook
-	subtitle
-		subtitle = Es necesario si querés moderar los comentarios. Podés obtenerlo <a target='_blank' href='https://findmyfbid.in/'>acá</a>
 
 Edición avanzada de CSS
 	meta

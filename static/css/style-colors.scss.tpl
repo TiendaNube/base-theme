@@ -30,6 +30,7 @@ style.scss.tpl
     // Buttons
     // Links
     // Chips
+    // Progress bar
     // Modals
     // Forms
     // Tabs
@@ -245,6 +246,23 @@ body{
   background-color:rgba($main-foreground, 0.2);
 }
 
+.placeholder-overlay {
+  background-color:rgba($main-foreground, 0.3);
+  opacity: 0;
+  &:hover,
+  &:active,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.placeholder-info {
+  color: $main-foreground;
+  fill: $main-foreground;
+  background-color: $main-background;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
 .spinner-ellipsis .point {
   background-color: rgba($main-foreground, 0.2);
 }
@@ -357,6 +375,34 @@ h6,.h6{
       color: $main-foreground;
       border: 1px solid rgba($main-foreground, .8);
     }
+    &-no-stock {
+      position: relative;
+      background: transparent;
+      color: rgba($main-foreground, 0.5);
+      overflow: hidden;
+      &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top left,transparent 49%,rgba($main-foreground, 0.5) ,transparent 52%);
+        content:'';
+      }
+
+      &.selected:after {
+        background: linear-gradient(to top left,transparent 49%,$main-foreground ,transparent 52%);
+      }
+
+      &.btn-variant-color:after {
+        background: linear-gradient(-45deg,rgba($main-background, 0.3) calc(50% - .7px),rgba($main-foreground, 0.5) calc(50% - .7px),rgba($main-foreground, 0.5) 50%,rgba($main-foreground, 0.5) calc(50% + .7px),rgba($main-background, 0.3) calc(50% + .7px));
+      }
+
+      &.btn-variant-color.selected:after {
+        background: linear-gradient(-45deg,rgba($main-background, 0.3) calc(50% - .7px),$main-foreground calc(50% - .7px),$main-foreground 50%,$main-foreground calc(50% + .7px),rgba($main-background, 0.3) calc(50% + .7px));
+      }
+    }
   }
   &-block{
     float: left;
@@ -460,6 +506,15 @@ a {
 
   &-remove-icon {
     fill: $main-foreground;
+  }
+}
+
+/* // Progress bar */
+
+.bar-progress {
+  background: rgba($accent-color, 0.1);
+  &-active {
+    background: $accent-color;
   }
 }
 
@@ -708,6 +763,12 @@ input[type=number] {
   border-width: 9px;
 }
 
+{# /* // Banners */ #}
+
+.textbanner-image-empty:after {
+  background-color: rgba($main-foreground, 0.3);
+}
+
 {# /* // Informative banners */ #}
 
 .service-icon {
@@ -722,6 +783,14 @@ input[type=number] {
   tbody{
     tr:nth-child(odd){
       background-color: rgba($main-foreground, .05);
+    }
+    &.table-body-inverted{
+      tr:nth-child(even){
+        background-color: rgba($main-foreground, .05);
+      }
+      tr:nth-child(odd){
+        background-color: $main-background;
+      }
     }
   }
   th{
@@ -979,6 +1048,10 @@ input[type=number] {
 .nav-account{
   background: $main-background;
   border-top: 1px solid rgba($main-foreground, .5);
+}
+
+.desktop-dropdown-small {
+  background-color: $main-background;
 }
 
 {# /* // Search */ #}
