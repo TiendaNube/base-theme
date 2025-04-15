@@ -809,11 +809,6 @@ pt "Promoção"
 en "Promo"
 es_mx "Promo"
 
-es "{1}x{2}"
-pt "Leve {1} Pague {2}"
-en "{1}x{2}"
-es_mx "{1}x{2}"
-
 es "todos los productos"
 pt "todos os produtos"
 en "all products"
@@ -828,16 +823,6 @@ es "Comprando {1} o más"
 pt "Comprando {1} ou mais"
 en "Buying {1} or more"
 es_mx "Comprando {1} o más"
-
-es "Hasta {1}% OFF"
-pt "Até {1}% OFF"
-en "Up to {1}% OFF"
-es_mx "Hasta {1}% OFF"
-
-es "Comprando en cantidad"
-pt "Comprando em quantidade"
-en "Buying in quantity"
-es_mx "Comprando en cantidad"
 
 es "comprando"
 pt "comprando"

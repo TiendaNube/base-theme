@@ -1468,7 +1468,7 @@ p{
 .img-fluid {max-width:100%;height:auto}
 
 {# /* // Visibility */ #}
-.hidden{display:none}.overflow-none{overflow:hidden}
+.hidden{display:none}.overflow-none{overflow:hidden}.opacity-50{opacity: .5}.opacity-40{opacity:.4}.opacity-60{opacity:.6}.opacity-80{opacity:.8}.opacity-90{opacity:.9}
 
 {# /* // Float */ #}
 .float-left{float:left!important}.float-right{float:right!important}.float-none{float:none!important}.clear-both{clear:both!important}

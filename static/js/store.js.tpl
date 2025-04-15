@@ -1130,7 +1130,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                 variationGroup.find(config.variantButton).each((variantOption, item) => {
                     const options = getOptions(productVariationId, variantOption);
                     const itemsAvailable = filterVariants(options);
-                    const button = wrapper.find(`${config.variantButton}[${config.dataOption}="${options[`option${productVariationId}`].replace(/"/g, '\\"')}"]`);
+                    const button = wrapper.find(`${config.variantsGroup}[${config.dataVariationId}="${productVariationId}"] ${config.variantButton}[${config.dataOption}="${options[`option${productVariationId}`].replace(/"/g, '\\"')}"]`);
                     
                     if (!itemsAvailable.length) {
                         button.addClass(config.noStockClass);
@@ -1283,8 +1283,11 @@ DOMContentLoaded.addEventOrExecute(() => {
 
             parent.find('.js-payment-discount-price-product').text(variant.price_with_payment_discount_short);
             parent.find('.js-payment-discount-price-product-container').show();
+
+            parent.find('.js-price-without-taxes').text(variant.price_without_taxes);
+            parent.find('.js-price-without-taxes-container').show();
 	    } else {
-	        parent.find('.js-price-display, .js-payment-discount-price-product-container').hide();
+	        parent.find('.js-price-display, .js-payment-discount-price-product-container, .js-price-without-taxes-container').hide();
 	    }
 
 	    if ((variant.compare_at_price_short) && !(parent.find(".js-price-display").css("display") == "none")) {
@@ -1702,11 +1705,20 @@ DOMContentLoaded.addEventOrExecute(() => {
         var $productButtonAdding = $productButtonPlaceholder.find(".js-addtocart-adding");
         var $productButtonSuccess = $productButtonPlaceholder.find(".js-addtocart-success");
 
-        {# Define if event comes from quickshop or product page #}
+        {# Define if event comes from quickshop, product page or cross selling #}
 
         var isQuickShop = $productContainer.hasClass('js-quickshop-container');
+        var isCrossSelling = $productContainer.hasClass('js-cross-selling-container');
 
-        if (!isQuickShop) {
+        {# Add item information for notification #}
+
+        if (isCrossSelling) {
+            var imageSrc = $productContainer.find('.js-cross-selling-product-image').attr('src');
+            var quantity = $productContainer.data('quantity')
+            var name = $productContainer.find('.js-cross-selling-product-name').text();
+            var price = $productContainer.find('.js-cross-selling-promo-price').text();
+            var addedToCartCopy = $productContainer.data('add-to-cart-translation');
+        } else if (!isQuickShop) {
             if(jQueryNuvem(".js-product-slide-img.js-active-variant").length) {
                 var imageSrc = $productContainer.find('.js-product-slide-img.js-active-variant').data('srcset').split(' ')[0];
             } else {
@@ -1912,9 +1924,7 @@ DOMContentLoaded.addEventOrExecute(() => {
 
                     {# Display cross-selling promotion modal #}
 
-                    let shouldDisplayCrossSellingNotification = html_notification_cross_selling != null;
-
-                    if (shouldDisplayCrossSellingNotification) {
+                    if (html_notification_cross_selling != null) {
                         jQueryNuvem('.js-cross-selling-modal-body').html("");
                         modalOpen('#js-cross-selling-modal');
                         jQueryNuvem('.js-cross-selling-modal-body').html(html_notification_cross_selling).show();
@@ -1925,85 +1935,7 @@ DOMContentLoaded.addEventOrExecute(() => {
                     const crossSellingContainer = document.querySelector('.js-cross-selling-container');
 
                     if (crossSellingContainer) {
-                        const variants = JSON.parse(crossSellingContainer.dataset.variants || '[]');
-                        const addToCartText = crossSellingContainer.dataset.addToCartTranslation;
-                        const notAvailableText = crossSellingContainer.dataset.notAvailableTranslation;
-                        const pricesContainer = crossSellingContainer.querySelector('.js-cross-selling-prices-container');
-                        const originalPriceElem = crossSellingContainer.querySelector('.js-cross-selling-original-price');
-                        const promoPriceElem = crossSellingContainer.querySelector('.js-cross-selling-promo-price');
-                        const addToCartButton = crossSellingContainer.querySelector('.js-cross-selling-add-to-cart');
-                        const variantOptionSelectors = [
-                            '#js-cross-selling-option-value-1',
-                            '#js-cross-selling-option-value-2',
-                            '#js-cross-selling-option-value-3'
-                        ];
-                        function formatPrice(cents) {
-                            return LS.currency.display_short
-                                + parseFloat(cents / 100).toLocaleString('de-DE', { minimumFractionDigits: 2 });
-                        }
-
-                        function updatePrice() {
-                            const selectedValues = variantOptionSelectors.map(selector =>
-                                document.querySelector(selector)?.value || null
-                            );
-                            let currentVariant = null;
-                            if (variants.length === 1) {
-                                currentVariant = variants[0];
-                            } else {
-                                currentVariant = variants.find(variant =>
-                                    (!variant.optionValue1 || variant.optionValue1 === selectedValues[0])
-                                        && (!variant.optionValue2 || variant.optionValue2 === selectedValues[1])
-                                        && (!variant.optionValue3 || variant.optionValue3 === selectedValues[2])
-                                    );
-                            }
-
-                            if (currentVariant) {
-                                originalPriceElem.textContent = formatPrice(currentVariant.originalPriceInCents);
-                                promoPriceElem.textContent = formatPrice(currentVariant.promotionalPriceInCents);
-                                if (currentVariant.isAvailable) {
-                                    pricesContainer.style.display = 'block';
-                                    addToCartButton.disabled = false;
-                                    addToCartButton.value = addToCartText;
-                                } else {
-                                    pricesContainer.style.display = 'none';
-                                    addToCartButton.disabled = true;
-                                    addToCartButton.value = notAvailableText;
-                                }
-                            } else {
-                                originalPriceElem.textContent = '';
-                                promoPriceElem.textContent = '';
-                                pricesContainer.style.display = 'none';
-                                addToCartButton.disabled = true;
-                                addToCartButton.value = notAvailableText;
-                            }
-                        }
-
-                        variantOptionSelectors.forEach(selector => {
-                            const selectElem = document.querySelector(selector);
-                            if (selectElem) {
-                                selectElem.addEventListener('change', updatePrice);
-                            }
-                        });
-
-                        function selectFirstAvailableVariant() {
-                            const firstAvailable = variants.find(v => v.isAvailable);
-                            const select1 = crossSellingContainer.querySelector('#js-cross-selling-option-value-1');
-                            const select2 = crossSellingContainer.querySelector('#js-cross-selling-option-value-2');
-                            const select3 = crossSellingContainer.querySelector('#js-cross-selling-option-value-3');
-                            if (select1 && firstAvailable.optionValue1) {
-                                select1.value = firstAvailable.optionValue1;
-                            }
-                            if (select2 && firstAvailable.optionValue2) {
-                                select2.value = firstAvailable.optionValue2;
-                            }
-                            if (select3 && firstAvailable.optionValue3) {
-                                select3.value = firstAvailable.optionValue3;
-                            }
-                        }
-
-                        selectFirstAvailableVariant();
-
-                        updatePrice();
+                        LS.fillCrossSelling(crossSellingContainer);
                     }
 
                     {# Update shipping input zipcode on add to cart #}
@@ -2018,6 +1950,12 @@ DOMContentLoaded.addEventOrExecute(() => {
                         var zipcode_from_cookie = cookieService.get('calculator_zipcode');
                         jQueryNuvem('.js-shipping-input').val(zipcode_from_cookie);
                         jQueryNuvem(".js-shipping-calculator-current-zip").text(zipcode_from_cookie);
+                    }
+
+                    {# Automatically close the cross-selling modal by triggering its close button #}
+
+                    if (isCrossSelling) {
+                        jQueryNuvem('#js-cross-selling-modal .js-modal-close').trigger('click');
                     }
                 }
                 var callback_error = function(){

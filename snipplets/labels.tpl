@@ -24,18 +24,13 @@
       {% endif %}
       {% if product.compare_at_price or product.promotional_offer %}
         <div class="{% if not product.promotional_offer and product %}js-offer-label{% endif %} label label-accent" {% if (not product.compare_at_price and not product.promotional_offer) or not product.display_price %}style="display:none;"{% endif %} data-store="product-item-{% if product.compare_at_price %}offer{% else %}promotion{% endif %}-label">
-          {% if product.promotional_offer.script.is_percentage_off %}
-            {{ product.promotional_offer.parameters.percent * 100 }}% OFF
-          {% elseif product.promotional_offer.script.is_discount_for_quantity %}
-            {% if product.promotional_offer.parameters | length > 1 %}
-              <div>{{ "Hasta {1}% OFF" | translate(product.promotional_offer.selected_threshold.discount_decimal_percentage * 100) }}</div>
-              <div class="label-small p-right-quarter p-left-quarter">{{ "Comprando en cantidad" | translate }}</div>
-            {% else %}
-              <div>{{ product.promotional_offer.selected_threshold.discount_decimal_percentage * 100 }}% OFF</div>
-              <div class="label-small p-right-quarter p-left-quarter">{{ "Comprando {1} o más" | translate(product.promotional_offer.selected_threshold.quantity) }}</div>
-            {% endif %}
-          {% elseif product.promotional_offer %}
-            {{ "{1}x{2}" | translate(product.promotional_offer.script.quantity_to_take, product.promotional_offer.script.quantity_to_pay) }}
+          {% if product.promotional_offer %}
+            {{ component('promotion-label-text', {
+              promotion_label_text_classes: {
+                primary_text: 'd-block',
+              },
+              quantity_long_wording: true,
+            }) }}
           {% else %}
             <span {% if product_detail or color %}class="js-offer-percentage"{% endif %}>{{ price_discount_percentage |round }}</span>% OFF
           {% endif %}
