@@ -41,7 +41,7 @@
               {% elseif promotion.isBuyXPayY %}
                 {{ promotion.buy }}x{{ promotion.pay }}
               {% elseif promotion.isCrossSelling %}
-                {{ "Descuento" | translate }}    
+                {{ "Descuento" | translate }}
               {% else %}
                 {{ promotion.discount_script_type }}
               {% endif %}
@@ -155,7 +155,7 @@
                           {% elseif promotion.isBuyXPayY %}
                             {{ promotion.buy }}x{{ promotion.pay }}
                           {% elseif promotion.isCrossSelling %}
-                            {{ "Descuento" | translate }}  
+                            {{ "Descuento" | translate }}
                           {% else %}
                             {{ promotion.discount_script_type }}
                           {% endif %}

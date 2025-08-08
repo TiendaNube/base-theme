@@ -11,6 +11,28 @@
 {% set slide_item = slide_item | default(false) %}
 {% set columns = settings.grid_columns %}
 
+{# Item image slider #}
+
+{% set show_image_slider = 
+    (template == 'category' or template == 'search')
+    and settings.product_item_slider 
+    and not reduced_item
+    and not slide_item
+    and not has_filters
+    and product.other_images
+%}
+
+{% if show_image_slider %}
+    {% set slider_controls_container_class = 'item-slider-controls-container d-none d-md-block' %}
+    {% set slider_control_class = 'icon-inline icon-w-8 icon-2x svg-icon-text' %}
+    {% set control_prev = include ('snipplets/svg/chevron-left.tpl', {svg_custom_class: slider_control_class}) %}
+    {% set control_next = include ('snipplets/svg/chevron-right.tpl', {svg_custom_class: slider_control_class}) %}
+{% endif %}
+
+{# Secondary images #}
+
+{% set show_secondary_image = settings.product_hover %}
+
 <div class="js-item-product {% if slide_item %}js-item-slide swiper-slide{% else %}col{% if columns == 2 %}-6 col-md-3{% else %}-12 col-md-4{% endif %}{% endif %} item item-product{% if not product.display_price %} no-price{% endif %} {% if reduced_item %}item-product-reduced{% endif %}" data-product-type="list" data-product-id="{{ product.id }}" data-store="product-item-{{ product.id }}" data-component="product-list-item" data-component-value="{{ product.id }}">
 
     {% if (settings.quick_shop or settings.product_color_variants) and not reduced_item %}
@@ -19,28 +41,52 @@
 
         {% set product_url_with_selected_variant = has_filters ?  ( product.url | add_param('variant', product.selected_or_first_available_variant.id)) : product.url  %}
 
-        {% set item_img_width = product.featured_image.dimensions['width'] %}
-        {% set item_img_height = product.featured_image.dimensions['height'] %}
-        {% set item_img_srcset = product.featured_image %}
-        {% set item_img_alt = product.featured_image.alt %}
-        {% set item_img_spacing = item_img_height / item_img_width * 100 %}
+        {% set image_classes = 'js-item-image lazyload img-absolute img-absolute-centered fade-in' %}
+        {% set data_expand = show_image_slider ? '50' : '-10' %}
 
-        <div class="item-image mb-2">
-            <div style="padding-bottom: {{ item_img_spacing }}%;" class="p-relative" data-store="product-item-image-{{ product.id }}">
-                <a href="{{ product_url_with_selected_variant }}" title="{{ product.name }}">
-                    <img alt="{{ item_img_alt }}" data-expand="-10" src="{{ 'images/empty-placeholder.png' | static_url }}" data-srcset="{{ item_img_srcset | product_image_url('small')}} 240w, {{ item_img_srcset | product_image_url('medium')}} 320w, {{ item_img_srcset | product_image_url('large')}} 480w" class="js-item-image lazyload img-absolute img-absolute-centered fade-in" width="{{ item_img_width }}" height="{{ item_img_height }}" /> 
-                    <div class="placeholder-fade"></div>
-                </a>
-                {% if not reduced_item %}
-                    {% if settings.product_color_variants %}
-                        {% include 'snipplets/labels.tpl' with {color: true} %}
-                        {% include 'snipplets/grid/item-colors.tpl' %}
-                    {% else %}
-                        {% include 'snipplets/labels.tpl' %}
-                    {% endif %}
+        {% set floating_elements %}
+            {% if not reduced_item %}
+                {% if settings.product_color_variants %}
+                    {% include 'snipplets/labels.tpl' with {color: true} %}
+                    {% include 'snipplets/grid/item-colors.tpl' %}
+                {% else %}
+                    {% include 'snipplets/labels.tpl' %}
                 {% endif %}
-            </div>
-        </div>
+            {% endif %}
+        {% endset %}
+
+        {{ component(
+            'product-item-image', {
+                image_lazy: true,
+                image_lazy_js: true,
+                image_thumbs: ['small', 'medium', 'large', 'huge', 'original'],
+                image_data_expand: data_expand,
+                image_secondary_data_sizes: 'auto',
+                secondary_image: show_secondary_image,
+                slider: show_image_slider,
+                placeholder: true,
+                svg_sprites: false,
+                custom_content: floating_elements,
+                product_item_image_classes: {
+                    image_container: 'item-image mb-2',
+                    image_padding_container: 'p-relative',
+                    image: image_classes,
+                    image_featured: 'item-image-featured',
+                    image_secondary: 'item-image-secondary',
+                    slider_container: 'swiper-container position-absolute h-100 w-100',
+                    slider_wrapper: 'swiper-wrapper',
+                    slider_slide: 'swiper-slide item-image-slide',
+                    slider_control_pagination: 'swiper-pagination item-slider-pagination font-small d-md-none',
+                    slider_control: 'fa-lg svg-icon-primary',
+                    slider_control_prev_container: 'swiper-button-prev ' ~ slider_controls_container_class,
+                    slider_control_next_container: 'swiper-button-next ' ~ slider_controls_container_class,
+                    more_images_message: 'item-more-images-message font-small',
+                    placeholder: 'placeholder-fade',
+                },
+                custom_control_prev: control_prev,
+                custom_control_next: control_next,
+            })
+        }}
         {% if (settings.quick_shop or settings.product_color_variants) and product.available and product.display_price and product.variations and not reduced_item %}
 
             {# Hidden product form to update item image and variants: Also this is used for quickshop popup #}

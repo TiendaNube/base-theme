@@ -22,6 +22,7 @@
     #Product grid
         // Filters
         // Sort by
+        // Product item slider
         // Infinite scroll
     #Product detail functions
         // Installments
@@ -894,7 +895,31 @@ DOMContentLoaded.addEventOrExecute(() => {
 
 	{% endif %}
 
+    {% set has_item_slider = settings.product_item_slider %}
+
     {% if template == 'category' or template == 'search' %}
+
+        {# /* // Product item slider */ #}
+
+        function updateItemSliderElementsPosition(selector){
+            const $productContainer = selector.closest('.js-product-container');
+            const $itemColors = $productContainer.find('.js-item-colors');
+            const $itemPagination = $productContainer.find('.js-product-item-slider-pagination-private');
+            if($itemColors.length){
+                $itemPagination.addClass('mb-4');
+            }
+        }
+
+        {% if has_item_slider %}
+
+            LS.productItemSlider({ 
+                pagination_type: 'fraction',
+                onInit: function(){
+                    updateItemSliderElementsPosition(jQueryNuvem(this.el));
+                }
+            });
+
+        {% endif %}
 
         !function() {
 
@@ -907,7 +932,17 @@ DOMContentLoaded.addEventOrExecute(() => {
                     loadMoreButtonSelector: '.js-load-more',
                     hideWhileScrollingSelector: ".js-hide-footer-while-scrolling",
                     productsBeforeLoadMoreButton: 50,
-                    productsPerPage: 12
+                    productsPerPage: 12,
+                    {% if has_item_slider %}
+                        afterLoaded: function(){
+                            LS.productItemSlider({ 
+                                pagination_type: 'fraction',
+                                onInit: function(){
+                                    updateItemSliderElementsPosition(jQueryNuvem(this.el));
+                                }
+                            });
+                        },
+                    {% endif %}
                 });
             {% endif %}
         }();
@@ -1544,8 +1579,43 @@ DOMContentLoaded.addEventOrExecute(() => {
 
         LS.registerOnChangeVariant(function(variant){
             {# Show product image on color change #}
-            var current_image = jQueryNuvem('.js-item-product[data-product-id="'+variant.product_id+'"] .js-item-image');
+            
+            const productContainer = jQueryNuvem('.js-item-product[data-product-id="'+variant.product_id+'"]');
+            const current_image = productContainer.find('.js-item-image');
             current_image.attr('srcset', variant.image_url);
+
+            {% if has_item_slider %}
+
+                {# Remove slider when variant changes #}
+
+                const swiperElement = productContainer.find('.js-product-item-slider-container-private.swiper-container-initialized');
+
+                if(swiperElement.length){
+                    productContainer.find('.js-product-item-slider-slide-private').removeClass('item-image-slide');
+                    setTimeout(function(){
+                        const productImageLink = productContainer.find('.js-product-item-image-link-private');
+                        const imageToKeep = productContainer.find('.js-swiper-slide-visible img').clone();
+                        
+                        // Destroy the Swiper instance
+                        if (itemProductSliders[variant.product_id]) {
+                            itemProductSliders[variant.product_id].destroy(true, true);
+                            delete itemProductSliders[variant.product_id];
+                        }
+                         // Remove the Swiper elements
+                         swiperElement.remove();
+                         productContainer.find('.js-product-item-slider-pagination-container').remove();
+
+                        // Insert the cloned image into the link
+                        productImageLink.append(imageToKeep);
+
+                    },300);
+                }
+            {% endif %}
+
+            {% if settings.product_hover %}
+                {# Remove secondary feature on image updated from changeVariant #}
+                productContainer.find(".js-product-item-private-with-secondary-images").addClass("product-item-secondary-images-disabled");
+            {% endif %}
         });
 
         
@@ -1599,10 +1669,12 @@ DOMContentLoaded.addEventOrExecute(() => {
                         },
                         {% if video_url %}
                             slideChangeTransitionEnd: function () {
+                                const $parent = jQueryNuvem(this.el).closest(".js-product-detail");
+                                const $labelsFloatingGroup = $parent.find(".js-labels-floating-group");
                                 if(jQueryNuvem(".js-product-video-slide").hasClass("swiper-slide-active")){
-                                    jQueryNuvem(".js-labels-group").fadeOut(100);
+                                    $labelsFloatingGroup.fadeOut(100);
                                 }else{
-                                    jQueryNuvem(".js-labels-group").fadeIn(100);
+                                    $labelsFloatingGroup.fadeIn(100);
                                 }
                                 jQueryNuvem('.js-video').show();
                                 jQueryNuvem('.js-video-iframe').hide().find("iframe").remove();

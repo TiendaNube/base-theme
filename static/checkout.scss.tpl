@@ -82,6 +82,97 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 
+{#/*============================================================================
+  # Checkout tokens
+==============================================================================*/#}
+:root {
+  {#### Color tokens #}
+
+  {% set accent_color = settings.primary_color %}
+  {% set main_foreground = settings.text_color %}
+  {% set main_background = settings.background_color %}
+
+  {# Auxiliar opacity hex levels #}
+  {% set opacity_05 = '0D' %}
+  {% set opacity_10 = '1A' %}
+  {% set opacity_20 = '33' %}
+  {% set opacity_30 = '4D' %}
+  {% set opacity_50 = '80' %}
+  {% set opacity_60 = '99' %}
+  {% set opacity_80 = 'CC' %}
+
+  {# Accent color #}
+  --accent-color: {{ accent_color }};
+  --accent-color-opacity-05: {{ accent_color }}{{ opacity_05 }};
+  --accent-color-opacity-10: {{ accent_color }}{{ opacity_10 }};
+  --accent-color-opacity-20: {{ accent_color }}{{ opacity_20 }};
+  --accent-color-opacity-30: {{ accent_color }}{{ opacity_30 }};
+  --accent-color-opacity-50: {{ accent_color }}{{ opacity_50 }};
+  --accent-color-opacity-60: {{ accent_color }}{{ opacity_60 }};
+  --accent-color-opacity-80: {{ accent_color }}{{ opacity_80 }};
+
+  {# Foreground color #}
+  --main-foreground: {{ main_foreground }};
+  --main-foreground-opacity-05: {{ main_foreground }}{{ opacity_05 }};
+  --main-foreground-opacity-10: {{ main_foreground }}{{ opacity_10 }};
+  --main-foreground-opacity-20: {{ main_foreground }}{{ opacity_20 }};
+  --main-foreground-opacity-30: {{ main_foreground }}{{ opacity_30 }};
+  --main-foreground-opacity-50: {{ main_foreground }}{{ opacity_50 }};
+  --main-foreground-opacity-60: {{ main_foreground }}{{ opacity_60 }};
+  --main-foreground-opacity-80: {{ main_foreground }}{{ opacity_80 }};
+
+  {# Background color #}
+  --main-background: {{ main_background }};
+  --main-background-opacity-05: {{ main_background }}{{ opacity_05 }};
+  --main-background-opacity-10: {{ main_background }}{{ opacity_10 }};
+  --main-background-opacity-20: {{ main_background }}{{ opacity_20 }};
+  --main-background-opacity-30: {{ main_background }}{{ opacity_30 }};
+  --main-background-opacity-50: {{ main_background }}{{ opacity_50 }};
+  --main-background-opacity-60: {{ main_background }}{{ opacity_60 }};
+  --main-background-opacity-80: {{ main_background }}{{ opacity_80 }};
+
+  {#### Component tokens #}
+
+  {# General #}
+  --border-radius: 0;
+  --box-border-radius: var(--border-radius);
+  --border-color: #{$box-border-color}; {# Relies on Sass darken/lighten functions #}
+  --box-border-color: var(--main-foreground-opacity-10);
+
+  {# Buttons #}
+  --button-foreground: var(--main-background);
+  --button-background: var(--accent-color);
+  --button-border-color: var(--accent-color);
+  --button-border-radius: var(--border-radius);
+
+  {# Labels #}
+  --label-foreground: var(--main-background);
+  --label-background: var(--accent-color);
+
+  {# Header #}
+  --header-foreground: var(--main-foreground);
+  --header-background: var(--main-background);
+
+  {# Footer #}
+  --footer-foreground: var(--main-foreground);
+  --footer-background: var(--main-background);
+
+  {#### Typography #}
+
+  {# Headings #}
+  --heading-font: {{ settings.font_headings | default('Muli') | raw }};
+  --heading-font-weight: bold;
+  --heading-text-transform: none;
+  --heading-letter-spacing: normal;
+
+  {# Header #}
+  --header-logo-font: {{ settings.font_headings | default('Muli') | raw }};
+  --header-logo-font-size: 20px;
+  --header-logo-font-weight: bold;
+  --header-logo-text-transform: none;
+  --header-logo-letter-spacing: normal;
+}
+
 body {
   font-family: $body-font;
   color: $foreground-color;

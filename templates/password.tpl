@@ -16,24 +16,15 @@
         ==============================================================================*/#}
 
         <style>
+        
             {# Font families #}
 
-            {% if params.preview %}
-
-                {# If page is loaded from customization page on the admin, load all fonts #}
-
-                @import url('https://fonts.googleapis.com/css?family=Muli:400,700|Lato:400,700|Open+Sans:400,700|Lora:400,700|Slabo+27px|Playfair+Display:400,700|Droid+Sans:400,700|Poppins:400,700,900|Niramit:400,700&display=swap');
-
-            {% else %}
-
-                {# If page is NOT loaded from customization only load saved fonts #}
-
-                {# Get only the saved fonts on settings #}
-
-                @import url('{{ [settings.font_headings, settings.font_rest] | google_fonts_url('300, 400, 700') | raw }}');
-
-            {% endif %}
-
+            {{ component(
+                'fonts',{
+                    font_weights: '300, 400, 700',
+                    font_settings: 'settings.font_headings, settings.font_rest'
+                })
+            }}
 
             {% include "static/css/style-critical.tpl" %}
         </style>
@@ -101,7 +92,7 @@
                 <div class="row justify-content-md-center">
                     <div class="col-md-8 text-center">
                         <div class="my-5">
-                            {{ component('logos/logo', {logo_img_classes: 'transition-soft-slow', logo_text_classes: 'h1 m-0'}) }}
+                            {{ component('logos/logo', {logo_size: 'large', logo_img_classes: 'transition-soft-slow', logo_text_classes: 'h1 m-0'}) }}
                         </div>
 
                         <h2 class="mb-5">{{ message }}</h2>
