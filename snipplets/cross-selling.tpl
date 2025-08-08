@@ -18,12 +18,15 @@
                 variant_selection_label: 'form-label',
                 variant_select: 'form-select',
                 variant_select_icon_container: 'form-select-icon',
-                add_to_cart_button: 'btn btn-primary btn-block mt-3 mb-1 cart'
+                add_to_cart_button: 'btn btn-primary btn-block mt-3 mb-1'
             },
             icon_config: {
                 use_svg_icon: false,
                 use_custom_icon: true,
                 custom_icon_markup: include("snipplets/svg/chevron-down.tpl", { svg_custom_class: "icon-inline icon-w-12 icon-md mr-3" })
+            },
+            content: {
+                button_placeholder: include('snipplets/placeholders/button-placeholder.tpl', { custom_class: 'btn-block mt-3 mb-1' })
             }
         })
     }}

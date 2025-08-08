@@ -13,6 +13,10 @@
     <span class="d-inline-block">
     	<h4 class="js-price-display mb-0" id="price_display" {% if not product.display_price %}style="display:none;"{% endif %} data-product-price="{{ product.price }}">{% if product.display_price %}{{ product.price | money }}{% endif %}</h4>
     </span>
+    {{ component('price-without-taxes', {
+            container_classes: "mb-2 font-small opacity-60",
+        })
+    }}
     {{ component('payment-discount-price', {
             visibility_condition: settings.payment_discount_price,
             location: 'product',
