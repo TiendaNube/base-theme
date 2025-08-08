@@ -260,7 +260,8 @@ body{
 }
 
 .lazyloaded + .placeholder-shine,
-.lazyloaded + .placeholder-fade{
+.lazyloaded + .placeholder-fade,
+.lazyloaded + .item-image-secondary + .placeholder-fade{
   display: none;
 }
 
@@ -1089,9 +1090,30 @@ p{
   width: auto;
   max-height: 500px;
 }
+.item-image-slide img{
+  max-width: 100%;
+  object-fit: contain;
+  object-position: top;
+}
 .item-thumbnail {
   display: block;
   width: 100%;
+}
+.item-image:not(.product-item-image-secondary).lazyloaded {
+  z-index: 9;
+  opacity: 1;
+}
+.item-image-secondary,
+.item-image-secondary.fade-in.lazyloaded  {
+  display: none;
+  opacity: 0;
+}
+.product-item-secondary-images-loaded:not(.product-item-secondary-images-disabled):hover .item-image-featured{
+  opacity: 0;
+  transition-delay: .05s;
+}
+.product-item-secondary-images-loaded:not(.product-item-secondary-images-disabled):hover .item-image-featured ~ .item-image-secondary {
+  opacity: 1;
 }
 .item-colors {
   position: absolute;
@@ -1147,6 +1169,17 @@ p{
   width: 100%;
   height: 145px;
   object-fit: cover;
+}
+
+.item-more-images-message {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 1;
+  opacity: 0;
+  text-transform: uppercase;
+  transform: initial;
+  transition: all 0.2s ease;
 }
 
 {# /* // Labels */ #}
@@ -1290,6 +1323,11 @@ p{
   line-height: 1.8rem;
 }
 
+.post-content img {
+  max-width: 100%;
+  height: auto;
+}
+
 .post-content h1,
 .post-content h2,
 .post-content h3,
@@ -1343,6 +1381,10 @@ p{
 
   .head-fix { 
     position: fixed;
+  }
+
+  .logo-img {
+    max-width: 320px;
   }
 
   {# /* //// Placeholders */ #}
@@ -1423,6 +1465,19 @@ p{
     height: 180px;
   }
 
+  .item-slider-controls-container {
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+  .item-slider-controls-container.swiper-button-disabled {
+    opacity: 0;
+    cursor: auto;
+  }
+  .item-image:hover .item-slider-controls-container:not(.swiper-button-disabled) {
+    opacity: 1;
+  }
+
+
   {# /* //// Product detail */ #}
 
   .product-video .video-image,
@@ -1475,5 +1530,8 @@ p{
 
 {# /* // Width */ #}
 .w-100{width:100%!important}.w-auto{width:auto!important}.full-width-container{width:100%;float:left;clear:both}
+
+{# /* // Height */ #}
+.h-100{height:100%!important}
 
 {% endraw %}

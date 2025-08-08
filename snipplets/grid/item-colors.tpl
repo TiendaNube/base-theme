@@ -6,7 +6,7 @@
         <div class="js-color-variant-available-{{ loop.index }} {% if variation.name in ['Color', 'Cor'] %}js-color-variant-active{% endif %}" data-value="variation_{{ loop.index }}" data-option="{{ loop.index0 }}" >
             {% if variation.name in ['Color', 'Cor'] %}
                 {% if variation.options | length > 1 %}
-                    <div class="item-colors">
+                    <div class="js-item-colors item-colors">
                         <a href="{{ product_url_with_selected_variant }}" class="item-colors-bullet item-colors-bullet-text d-md-none w-auto px-2">{{ variation.options | length }} {{ 'colores' | translate }}</a>
                         <div class="d-none d-md-block">
                             {% for option in variation.options | take(5) if option.custom_data %}

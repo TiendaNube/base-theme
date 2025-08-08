@@ -23,24 +23,15 @@
         {# Critical CSS needed to show first elements of store while CSS async is loading #}
 
         <style>
+
             {# Font families #}
 
-            {% if params.preview %}
-
-                {# If page is loaded from customization page on the admin, load all fonts #}
-
-                @import url('https://fonts.googleapis.com/css?family=Muli:400,700|Lato:400,700|Open+Sans:400,700|Lora:400,700|Slabo+27px|Playfair+Display:400,700|Droid+Sans:400,700|Poppins:400,700,900|Niramit:400,700&display=swap');
-
-            {% else %}
-
-                {# If page is NOT loaded from customization only load saved fonts #}
-
-                {# Get only the saved fonts on settings #}
-
-                @import url('{{ [settings.font_headings, settings.font_rest] | google_fonts_url('300, 400, 700') | raw }}');
-
-            {% endif %}
-
+            {{ component(
+                'fonts',{
+                    font_weights: '300, 400, 700',
+                    font_settings: 'settings.font_headings, settings.font_rest'
+                })
+            }}
 
             {% include "static/css/style-critical.tpl" %}
         </style>

@@ -3501,6 +3501,25 @@ es "Permitir que tus clientes puedan agregar productos a su carrito rápidamente
 pt "Permitir que seus clientes possam agregar produtos ao seu carrinho rapidamente na lista de produtos"
 es_mx "Permitir que tus clientes puedan agregar productos a su carrito rápidamente desde el listado de productos"
 
+es "Fotos del producto"
+pt "Fotos do produto"
+en "Product photos"
+es_mx "Fotos del producto"
+
+es "Mostrar la segunda foto al posar el mouse"
+pt "Mostrar a segunda foto ao colocar o mouse"
+en "Show the second photo on mouseover"
+es_mx "Mostrar la segunda foto al posar el mouse"
+
+es "Mostrar las fotos en un carrusel para cada producto"
+pt "Exibir fotos em um carrossel para cada produto"
+en "Show photos in a carousel for each product"
+es_mx "Mostrar las fotos en un carrusel para cada producto"
+
+es "<span class='js-description-html legend d-block p-top-half'>El carrusel aplica sólo a listados de categorías y resultados de búsqueda</span>"
+pt "<span class='js-description-html legend d-block p-top-half'>O carrossel se aplica somente a listagens de categorias e resultados de pesquisa</span>"
+es_mx "<span class='js-description-html legend d-block p-top-half'>El carrusel aplica sólo a listados de categorías y resultados de búsqueda</span>"
+
 es "Botón para seguir cargando productos"
 pt "Botão para seguir carregando produtos"
 es_mx "Botón para seguir cargando productos"
