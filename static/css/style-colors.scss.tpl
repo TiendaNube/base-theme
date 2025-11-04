@@ -490,6 +490,11 @@ a {
   border-bottom: 1px solid;
   font-weight: bold;
   cursor: pointer;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
   &:hover,
   &:focus{
     color: rgba($primary-color, .5);
@@ -544,6 +549,33 @@ textarea {
   appearance: none;
   color: $main-foreground;
   background-color: $main-background;
+}
+
+.form-select-options {
+  background-color: $main-background;
+  border: 1px solid rgba($main-foreground, .1);
+}
+
+.form-select-options::-webkit-scrollbar {
+  width: 7px;
+}
+.form-select-options::-webkit-scrollbar-track {
+  background: rgba($main-background, .5);
+  border-radius: 6px;
+}
+
+.form-select-options::-webkit-scrollbar-thumb {
+  background: rgba($main-foreground, .5);
+  border-radius: 6px;
+}
+
+.form-select-option:hover,
+.form-select-option:active {
+  background-color: rgba($main-foreground, .05);
+}
+
+.form-select-option.selected {
+  background-color: rgba($main-foreground, .08);
   &:focus{
     outline: 0;
   }
@@ -575,6 +607,7 @@ textarea {
   padding: 10px 0;
   width: 100%;
   font-size: 16px; /* Hack to avoid autozoom on IOS */
+  text-align: left;
   border: 0;
   border-bottom: 1px solid rgba($main-foreground, .5);
   border-radius: 0;

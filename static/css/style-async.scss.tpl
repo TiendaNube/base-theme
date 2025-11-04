@@ -167,74 +167,6 @@ style.css
   }
 }
 
-.radio-button{
-  margin-bottom: 0;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  cursor: pointer;
-  &.disabled{
-    opacity: 0.6;
-    cursor: not-allowed;
-    input[type="radio"] {
-      cursor: not-allowed;
-    }
-  }
-  &-content{
-    position: relative;
-    width: 100%;
-    float: left;
-    padding: 15px; 
-    clear: both;
-    box-sizing: border-box;
-  }
-  &-icons-container{
-    position: absolute;
-    top: 14px;
-    left: 10px;
-  }
-  &-icons{
-    position: relative;
-    float: left;
-  }
-  &-icon{
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-  }
-  input[type="radio"]{
-    display: none;
-    & +  .radio-button-content .unchecked{
-      float: left;
-    }
-    & +  .radio-button-content .checked{
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      width:0;
-      height: 0;      
-      @include prefix(transform, translate(-50%,-50%), webkit ms moz o);
-      @include prefix(transition, all 0.2s , webkit ms moz o);
-    }
-    &:checked {
-      .shipping-method-name{
-        font-weight: bold;
-      } 
-      + .radio-button-content .checked{
-        width: 8px;
-        height: 8px;
-      }  
-    } 
-  }
-  &-label{
-    width: 100%;
-    float: left;
-    padding-left: 30px;
-  }
-}
-
-.radio-button-item:last-of-type .radio-button{
-  margin-bottom: 0;
-}
-
 .checkbox-container{
   .checkbox {
     position: relative;
@@ -305,6 +237,37 @@ style.css
   &::-ms-expand {
     display: none;
   }
+  .form-select-icon {
+    @include prefix(transition, all 0.2s ease, webkit ms moz o);
+  }
+
+  &.open .form-select-icon {
+    @include prefix(transform, translateY(-50%) rotate(180deg), webkit ms moz o);
+  }
+}
+
+.form-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 200;
+  width: 100%;
+  max-height: 200px;
+  margin-top: 5px;
+  list-style: none;
+  overflow-y: auto;
+  @include prefix(transition, all 0.2s ease, webkit ms moz o);
+  opacity: 0;
+  &.open {
+    opacity: 1;
+  }
+}
+
+.form-select-option {
+  padding: 12px;
+  font-size: var(--font-small);
+  @include prefix(transition, all 0.4s ease, webkit ms moz o);
+  cursor: pointer;
 }
 
 {# /* // Newsletter */ #}
@@ -370,6 +333,10 @@ textarea{
   border: 1px solid;
   text-align: center;
   @extend %element-margin;
+}
+
+.subscription-btn-alert {
+  margin-top: -15px;
 }
 
 .notification-hidden{
@@ -486,7 +453,7 @@ textarea{
       left: 50%;
       width: 80%;
       height: auto;
-      @include prefix(transform, translate(-50%, -50%), webkit ms moz o);
+      @include prefix(transform, translate(-50%, 0), webkit ms moz o);
       .modal-body{
         min-height: 150px;
         max-height: 400px;
@@ -511,6 +478,7 @@ textarea{
     top: 0;
     &.modal-centered-small{
       top: 50%;
+      @include prefix(transform, translate(-50%, -50%), webkit ms moz o);
     }
   }
   &-bottom-sheet {
@@ -533,8 +501,14 @@ textarea{
     display: inline-block;
     padding: 1px 5px 5px 0;
     margin-right: 5px;
+    font-size: 20px;
     vertical-align: middle;
     cursor: pointer;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: none;
   }
   .tab-group{
     margin:  0 -10px 20px -10px;

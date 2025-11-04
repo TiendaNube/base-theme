@@ -697,6 +697,12 @@ Carrito de compras
 	checkbox
 		name = ajax_cart
 		description = Permitir que tus clientes agreguen productos al carrito sin necesidad de ir a otra página
+	dropdown
+		name = cart_open_type
+		description = Acción al agregar un producto al carrito:
+		values
+			show_notification = Mostrar una notificación
+			show_cart = Abrir el carrito
 	title
 		title = Recomendaciones de productos
 	checkbox

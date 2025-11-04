@@ -6,13 +6,16 @@
 
 {# Product price #}
 
-<div class="price-container text-center text-md-left" data-store="product-price-{{ product.id }}">
+<div class="js-price-container price-container text-center text-md-left" data-store="product-price-{{ product.id }}">
     <span class="d-inline-block mb-2">
 	   <h4 id="compare_price_display" class="js-compare-price-display price-compare mb-0" {% if not product.compare_at_price or not product.display_price %}style="display:none;"{% else %} style="display:block;"{% endif %}>{% if product.compare_at_price and product.display_price %}{{ product.compare_at_price | money }}{% endif %}</h4>
     </span>
     <span class="d-inline-block">
     	<h4 class="js-price-display mb-0" id="price_display" {% if not product.display_price %}style="display:none;"{% endif %} data-product-price="{{ product.price }}">{% if product.display_price %}{{ product.price | money }}{% endif %}</h4>
     </span>
+    {{ component('price-discount-disclaimer', {
+        container_classes: 'font-small opacity-60 mb-2',
+    }) }}
     {{ component('price-without-taxes', {
             container_classes: "mb-2 font-small opacity-60",
         })
@@ -24,6 +27,17 @@
         })
     }}
 </div>
+
+{{ component('subscriptions/subscription-price', {
+    subscription_classes: {
+        container: 'text-center text-md-left mb-3',
+        prices_container: 'mb-1',
+        price_compare: 'h4 price-compare mb-0',
+        price_with_subscription: 'h4 mb-0',
+        discount_container: 'h6 text-accent mb-1',
+        price_without_taxes_container: 'mb-2 font-small opacity-60',
+    },
+}) }}
 
 {{ component('promotions-details', {
     promotions_details_classes: {
@@ -120,7 +134,7 @@
 {% set has_product_free_shipping = product.free_shipping %}
 
 {% if not product.is_non_shippable and show_product_quantity and (has_free_shipping or has_product_free_shipping) %}
-    <div class="free-shipping-message text-center text-md-left mb-4 pb-2">
+    <div class="js-free-shipping-minimum-message free-shipping-message text-center text-md-left mb-4 pb-2">
         <span class="d-inline-block">
             {% include "snipplets/svg/truck.tpl" with {svg_custom_class: "icon-inline icon-w-18 icon-lg svg-icon-accent mr-2"} %}
         </span>
@@ -149,6 +163,55 @@
     {% if product.available and product.display_price %}
         {% include "snipplets/product/product-quantity.tpl" %}
     {% endif %}
+
+    {{ component('subscriptions/subscription-selector', {
+        subscription_classes: {
+            container: 'radio-button-container box p-0 mb-3',
+
+            radio_button: 'radio-button-item',
+            radio_button_text: 'row',
+            radio_button_icon: 'radio-button-icons',
+            purchase_option_info_container: 'col pr-0',
+            purchase_option_price: 'col-auto text-right font-weight-bold',
+            purchase_option_single_frequency: 'mt-2 pt-1 font-small opacity-80',
+            purchase_option_discount: 'label label-accent font-smallest px-2 py-1 ml-1',
+
+            dropdown_container: 'form-group font-small mt-2 mb-0',
+            dropdown_button: 'form-select position-relative',
+            dropdown_icon: 'form-select-icon icon-inline icon-w-14',
+            dropdown_options: 'form-select-options',
+            dropdown_option: 'form-select-option row no-gutters',
+            dropdown_option_info: 'col pr-4',
+            dropdown_option_price: 'col-auto font-weight-bold',
+            dropdown_option_discount: 'text-accent mt-1 font-weight-bold',
+
+            cart_alert: 'text-center subscription-btn-alert full-width-container mb-4 pb-2',
+            shipping_message: 'mt-2 mb-4',
+            shipping_message_title: 'font-weight-bold ml-1',
+            shipping_message_text: 'font-small mt-2 ml-4',
+
+            legal_message: 'font-smallest text-center mb-3',
+            legal_link: 'font-smallest d-inline-block btn-link btn-link-primary p-0',
+            legal_modal: 'bottom modal-centered-small modal-centered transition-soft',
+            legal_modal_header: 'modal-header row no-gutters align-items-center',
+            legal_modal_title: 'col',
+            legal_modal_close_button: 'col-auto mr-3 pb-0 order-first',
+            legal_modal_body: 'mb-4',
+            legal_modal_details_title: 'h6 mb-2',
+            legal_modal_details_paragraph: 'font-small pb-4 mb-0',
+            legal_modal_details_link: 'font-small d-inline-block btn-link btn-link-primary p-0'
+        },
+        svg_sprites: false,
+
+        dropdown_icon: true,
+        dropdown_custom_icon: include("snipplets/svg/chevron-down.tpl", { svg_custom_class: "icon-inline icon-sm svg-icon-text" }),
+
+        shipping_message_icon: true,
+        shipping_message_custom_icon: include("snipplets/svg/truck.tpl", { svg_custom_class: "icon-inline icon-lg icon-w-18 svg-icon-text" }),
+
+        legal_modal_close_custom_icon: include("snipplets/svg/times.tpl", { svg_custom_class: "icon-inline svg-icon-text" }),
+    }) }}
+
     {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
     {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}
 
@@ -186,7 +249,7 @@
 
         {# Free shipping achieved message #}
 
-        <div class="{% if free_shipping_minimum_label_changes_visibility %}js-free-shipping-message{% endif %} text-accent font-weight-bold mb-4 text-center text-md-left h6" {% if not cart.free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
+        <div class="js-product-form-free-shipping-message {% if free_shipping_minimum_label_changes_visibility %}js-free-shipping-message{% endif %} text-accent font-weight-bold mb-4 text-center text-md-left h6" {% if not cart.free_shipping.cart_has_free_shipping %}style="display: none;"{% endif %}>
             {{ "¡Genial! Tenés envío gratis" | translate }}
         </div>
 
@@ -198,11 +261,11 @@
 
     {% if show_product_fulfillment %}
 
-        <div class="divider"></div>
-
         {# Shipping calculator and branch link #}
 
         <div id="product-shipping-container" class="product-shipping-calculator list" {% if not product.display_price or not product.has_stock %}style="display:none;"{% endif %} data-shipping-url="{{ store.shipping_calculator_url }}">
+
+            <div class="divider"></div>
 
             {# Shipping Calculator #}
 
