@@ -14,12 +14,20 @@
 				{% endif %}
 				{% for slide in slider %}
 					<div class="swiper-slide slide-container">
-						{% set apply_lazy_load = not (loop.first and ((has_main_slider and not has_mobile_slider) or (has_mobile_slider and mobile))) %}
+						{% set apply_lazy_load = 
+							settings.home_order_position_0 != 'slider' 
+							or not (
+								loop.first and (
+									(has_main_slider and not has_mobile_slider) or 
+									(has_mobile_slider and mobile)
+								)
+							) 
+						%}
 
 						{% if apply_lazy_load %}
-							{% set slide_src = slide.image | static_url | settings_image_url('tiny') %}
+							{% set slide_src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' %}
 						{% else %}
-							{% set slide_src = slide.image | static_url | settings_image_url('xlarge') %}
+							{% set slide_src = slide.image | static_url | settings_image_url('large') %}
 						{% endif %}
 
 						{% if slide.link %}
@@ -28,9 +36,15 @@
 						{% set has_text =  slide.title or slide.description or slide.button %}
 							<div class="slider-slide">
 								<img 
+									{% if not apply_lazy_load %}fetchpriority="high"{% endif %}
 									{% if slide.width and slide.height %} width="{{ slide.width }}" height="{{ slide.height }}" {% endif %}
-									src="{{ slide_src }}"
-									{% if apply_lazy_load %}data-{% endif %}srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" class="slider-image {% if apply_lazy_load %}swiper-lazy blur-up-big{% endif %}" alt="{{ 'Carrusel' | translate }} {{ loop.index }}"/>
+									{% if apply_lazy_load %}data-{% endif %}src="{{ slide_src }}"
+									{% if apply_lazy_load %}data-{% endif %}srcset="{{ slide.image | static_url | settings_image_url('xlarge') }} 1400w, {{ slide.image | static_url | settings_image_url('1080p') }} 1920w" 
+									class="slider-image {% if apply_lazy_load %}swiper-lazy fade-in{% endif %}" 
+									alt="{{ 'Carrusel' | translate }} {{ loop.index }}"
+								/>
+								<div class="placeholder-fade"></div>
+								
 								{% if has_text %}
 		                			<div class="swiper-text swiper-{{ slide.color }}">
 			                			{% if slide.title %}

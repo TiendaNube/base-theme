@@ -1,5 +1,5 @@
 {# IMPORTANT Do not remove this hidden subtotal, it is used by JS to calculate cart total #}
-<div class="subtotal-price hidden" data-priceraw="{{ cart.total }}"></div>
+<div class="js-subtotal-price subtotal-price hidden" data-priceraw="{{ cart.total }}"></div>
 
 {# Define contitions to show shipping calculator and store branches on cart #}
 
@@ -11,14 +11,14 @@
 
 {% if not cart_page %}
   {# Cart popup subtotal #}
-  <h5 class="js-visible-on-cart-filled {% if not cart_page %}row no-gutters{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
+  <div class="js-visible-on-cart-filled h5 {% if not cart_page %}row no-gutters{% else %}text-right{% endif %} mb-1 {% if cart_page %}text-center-xs{% endif %}" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
     <span {% if not cart_page %}class="col"{% endif %}>
       {{ "Subtotal" | translate }}
       <small class="js-subtotal-shipping-wording" {% if not (cart.has_shippable_products or show_calculator_on_cart) %}style="display: none"{% endif %}>{{ " (sin envío)" | translate }}</small>
       :
     </span>
     <strong class="js-ajax-cart-total js-cart-subtotal {% if not cart_page %}col{% endif %} text-right" data-priceraw="{{ cart.subtotal }}" data-component="cart.subtotal" data-component-value={{ cart.subtotal }}>{{ cart.subtotal | money }}</strong>
-  </h5>
+  </div>
 
   {# Cart popup promos #}
   <div class="js-total-promotions text-accent font-weight-bold">
@@ -123,7 +123,7 @@
           <div class="row justify-content-md-end mt-4 mt-md-0">
             <div class="col-12 col-md-auto">
               {# Cart page subtotal #}
-              <h5 class="js-visible-on-cart-filled row no-gutters justify-content-end justify-content-md-center mb-1" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
+              <div class="js-visible-on-cart-filled h5 row no-gutters justify-content-end justify-content-md-center mb-1" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-subtotal">
                 <span class="col col-md-auto">
                   {{ "Subtotal" | translate }}
                   {% if settings.shipping_calculator_cart_page %}
@@ -132,7 +132,7 @@
                   :
                 </span>
                 <strong class="js-cart-subtotal col col-md-auto text-right" data-priceraw="{{ cart.subtotal }}">{{ cart.subtotal | money }}</strong>
-              </h5>
+              </div>
 
               {# Cart page promos #}
               <div class="js-total-promotions">
@@ -179,10 +179,10 @@
               {# Cart total #}
 
               <div class="js-cart-total-container js-visible-on-cart-filled mb-3 clear-both" {% if cart.items_count == 0 %}style="display:none;"{% endif %} data-store="cart-total">
-                <h2 class="row no-gutters text-primary mb-0 {% if cart_page %}justify-content-end justify-content-md-center{% endif %}">
+                <div class="h2 row no-gutters text-primary mb-0 {% if cart_page %}justify-content-end justify-content-md-center{% endif %}">
                   <span class="col {% if cart_page %}col-md-auto{% endif %} mr-1">{{ "Total" | translate }}:</span>
                   <span class="js-cart-total {% if cart.free_shipping.cart_has_free_shipping %}js-free-shipping-achieved{% endif %} {% if cart.shipping_data.selected %}js-cart-saved-shipping{% endif %} col {% if cart_page %}col-md-auto{% endif %} text-right" data-component="cart.total" data-component-value={{ cart.total }}>{{ cart.total | money }}</span>
-                </h2>
+                </div>
 
                 {# IMPORTANT Do not remove this hidden total, it is used by JS to calculate cart total #}
                 <div class='total-price hidden'>

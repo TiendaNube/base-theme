@@ -15,7 +15,7 @@
 			<div class="col-md-8 text-center">
 				{% if is_order_cancellation %}
 					<p data-component="order-cancellation-disclaimer">{{ "Si te arrepentiste, podés pedir la cancelación enviando este formulario. Tenés como máximo hasta 10 días corridos desde que recibiste el producto." | translate }} </p>
-					<a class="btn-link" href="{{ status_page_url }}">{{'Ver detalle de la compra >' | translate}}</a>
+					<a class="btn-link" href="{{ status_page_url_regret }}">{{'Ver detalle de la compra >' | translate}}</a>
 					{% if has_contact_info %}
 						<p class="mt-4 mb-3">{{ 'Si tenés problemas con otra compra, contactanos:' | translate }}</p>
 					{% endif %}

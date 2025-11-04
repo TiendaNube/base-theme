@@ -54,7 +54,16 @@
 					{% endif %}
 					</div>
 					<div class="col-6{% if columns == 2 %} col-md-3{% else %} col-md-3{% endif %} text-right">
-						{% include 'snipplets/grid/sort-by.tpl' %}
+						{{ component(
+							'sort-by',{
+								label: false,
+								sort_by_classes: {
+									select_group: "form-group mb-0",
+									select_svg: "icon-inline icon-w-14 icon-lg svg-icon-text",
+									},
+								select_custom_icon: include("snipplets/svg/chevron-down.tpl", {svg_custom_class: "icon-inline icon-w-14 icon-lg svg-icon-text"}),
+							}) 
+						}}
 					</div>
 				{% endif %}
 			</div>

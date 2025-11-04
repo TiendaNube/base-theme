@@ -21,7 +21,6 @@
         // Facebook login
     #Product grid
         // Filters
-        // Sort by
         // Product item slider
         // Infinite scroll
     #Product detail functions
@@ -265,7 +264,7 @@ DOMContentLoaded.addEventOrExecute(() => {
 
     }
 
-    modalOpen = function(modal_id){
+    modalOpen = function(modal_id, openType){
         var $overlay_id = jQueryNuvem('.js-modal-overlay[data-modal-id="' + modal_id + '"]');
         if (jQueryNuvem(modal_id).hasClass("modal-show")) {
             let modal = jQueryNuvem(modal_id).removeClass("modal-show");
@@ -281,6 +280,13 @@ DOMContentLoaded.addEventOrExecute(() => {
             jQueryNuvem(modal_id).detach().appendTo("body");
             $overlay_id.detach().insertBefore(modal_id);
             jQueryNuvem(modal_id).show().addClass("modal-show");
+        }
+
+        {# Add url hash to full screen modal if it is opened without click #}
+
+        if(openType == 'openFullScreenWithoutClick' && window.innerWidth < 768 && jQueryNuvem(modal_id).hasClass("js-fullscreen-modal")){
+            var modal_url_hash = jQueryNuvem(modal_id).data("modalUrl");
+            window.location.hash = modal_url_hash;
         }
     };
     
@@ -413,42 +419,6 @@ DOMContentLoaded.addEventOrExecute(() => {
             });
 
         {% endif %}
-    {% endif %}
-
-    {# /* // Nav offset */ #}
-
-    function applyOffset(selector){
-
-        // Get nav height on load
-        if (window.innerWidth > 768) {
-            var head_height = jQueryNuvem(".js-head-main").height();
-            jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px');
-        }else{
-
-            {# On mobile there is no top padding due to position sticky CSS #}
-            var head_height = 0;
-        }
-
-        // Apply offset nav height on load
-
-        window.addEventListener("resize", function() {
-
-            // Get nav height on resize
-            var head_height = jQueryNuvem(".js-head-main").height();
-
-            // Apply offset on resize
-            if (window.innerWidth > 768) {
-                jQueryNuvem(selector).css("paddingTop", head_height.toString() + 'px');
-            }else{
-
-                {# On mobile there is no top padding due to position sticky CSS #}
-                jQueryNuvem(selector).css("paddingTop", "0px");
-            }
-        });
-    }
-
-    {% if settings.head_fix and ((settings.head_transparent and template != 'home') or (not settings.head_transparent)) %}
-        applyOffset(".js-head-offset");
     {% endif %}
 
     {# /* // Nav */ #}
@@ -876,21 +846,6 @@ DOMContentLoaded.addEventOrExecute(() => {
         jQueryNuvem(document).on("click", ".js-remove-all-filters", function(e) {
             e.preventDefault();
             LS.urlRemoveAllParams();
-        });
-
-		{# /* // Sort by */ #}
-
-		jQueryNuvem('.js-sort-by').on("change", function (e) {
-            var params = LS.urlParams;
-            params['sort_by'] = jQueryNuvem(e.currentTarget).val();
-            var sort_params_array = [];
-            for (var key in params) {
-                if (!['results_only', 'page'].includes(key)) {
-                    sort_params_array.push(key + '=' + params[key]);
-                }
-            }
-            var sort_params = sort_params_array.join('&');
-            window.location = window.location.pathname + '?' + sort_params;
         });
 
 	{% endif %}
@@ -1388,6 +1343,8 @@ DOMContentLoaded.addEventOrExecute(() => {
             LS.freeShippingProgress(true, parent);
 
         {% endif %}
+
+        LS.subscriptionChangeVariant(variant);
 	}
 
 	{# /* // Product labels on variant change */ #}
@@ -1792,10 +1749,14 @@ DOMContentLoaded.addEventOrExecute(() => {
             var addedToCartCopy = $productContainer.data('add-to-cart-translation');
         } else if (!isQuickShop) {
             if(jQueryNuvem(".js-product-slide-img.js-active-variant").length) {
-                var imageSrc = $productContainer.find('.js-product-slide-img.js-active-variant').data('srcset').split(' ')[0];
+                var $activeVariantImg = $productContainer.find('.js-product-slide-img.js-active-variant');
+                var imageSrc = $activeVariantImg.attr('srcset') || $activeVariantImg.data('srcset');
             } else {
-                var imageSrc = $productContainer.find('.js-product-slide-img').attr('srcset').split(' ')[0];
+                var $defaultImg = $productContainer.find('.js-product-slide-img');
+                var imageSrc = $defaultImg.attr('srcset') || $defaultImg.data('srcset');
             }
+            
+            imageSrc = imageSrc ? imageSrc.split(' ')[0] : '';
             var name = $productContainer.find('.js-product-name').text();
             var price = $productContainer.find('.js-price-display').text();
         } else {
@@ -1810,10 +1771,6 @@ DOMContentLoaded.addEventOrExecute(() => {
 
         if (!jQueryNuvem(this).hasClass('contact')) {
 
-            {% if settings.ajax_cart %}
-                e.preventDefault();
-            {% endif %}
-
             {# Hide real button and show button placeholder during event #}
 
             $productButton.hide();
@@ -1823,7 +1780,34 @@ DOMContentLoaded.addEventOrExecute(() => {
                 $productButtonAdding.addClass("active");
             },300);
 
+            {# Restore button state in case of error #}
+
+            function restore_button_initial_state(){
+                $productButtonPlaceholder.removeClass("active");
+                $productButtonText.fadeIn();
+                $productButtonAdding.removeClass("active");
+                $productButtonPlaceholder.hide();
+                $productButton.css('display' , 'inline-block');
+            }
+
+            {# Restore button state for subscriptions stock error #}
+
+            var subscription_callback_error = function() {
+                setTimeout(function() {
+                    restore_button_initial_state();
+                }, 500);
+            }
+
+            {# Handle subscribable product submit #}
+
+            const subscriptionValidResult = LS.subscriptionSubmit($productContainer, subscription_callback_error, e);
+            if (subscriptionValidResult && subscriptionValidResult.changeCartSubmit) {
+                return;
+            }
+
             {% if settings.ajax_cart %}
+
+                e.preventDefault();
 
                 var callback_add_to_cart = function(html_notification_related_products, html_notification_cross_selling) {
 
@@ -1973,30 +1957,42 @@ DOMContentLoaded.addEventOrExecute(() => {
 
                     {% endif %}
 
+                    let shouldShowCrossSellingModal = html_notification_cross_selling != null;
+
                     if(!notificationWithRelatedProducts){
-                    
-                        {# Show notification and hide it only after second added to cart #}
 
-                        setTimeout(function(){
-                            jQueryNuvem(".js-alert-added-to-cart").show().addClass("notification-visible").removeClass("notification-hidden");
-                        },500);
+                        const cartOpenType = jQueryNuvem("#modal-cart").attr('data-cart-open-type');
 
-                        if (!cookieService.get('first_product_added_successfully')) {
-                            cookieService.set('first_product_added_successfully', 1, 7 ); 
-                        } else{
+                        if((cartOpenType === 'show_cart') && !shouldShowCrossSellingModal){
+
+                            {# Open cart on add to cart #}
+    
+                            modalOpen('#modal-cart', 'openFullScreenWithoutClick');
+    
+                        }else{
+                            {# Show notification and hide it only after second added to cart #}
+
                             setTimeout(function(){
-                                jQueryNuvem(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
+                                jQueryNuvem(".js-alert-added-to-cart").show().addClass("notification-visible").removeClass("notification-hidden");
+                            },500);
+
+                            if (!cookieService.get('first_product_added_successfully')) {
+                                cookieService.set('first_product_added_successfully', 1, 7 ); 
+                            } else{
                                 setTimeout(function(){
-                                    jQueryNuvem('.js-cart-notification-item-img').attr('src', '');
-                                    jQueryNuvem(".js-alert-added-to-cart").hide();
-                                },2000);
-                            },8000);
+                                    jQueryNuvem(".js-alert-added-to-cart").removeClass("notification-visible").addClass("notification-hidden");
+                                    setTimeout(function(){
+                                        jQueryNuvem('.js-cart-notification-item-img').attr('src', '');
+                                        jQueryNuvem(".js-alert-added-to-cart").hide();
+                                    },2000);
+                                },8000);
+                            }
                         }
                     }
 
                     {# Display cross-selling promotion modal #}
 
-                    if (html_notification_cross_selling != null) {
+                    if (shouldShowCrossSellingModal) {
                         jQueryNuvem('.js-cross-selling-modal-body').html("");
                         modalOpen('#js-cross-selling-modal');
                         jQueryNuvem('.js-cross-selling-modal-body').html(html_notification_cross_selling).show();
@@ -2031,14 +2027,8 @@ DOMContentLoaded.addEventOrExecute(() => {
                     }
                 }
                 var callback_error = function(){
-
                     {# Restore real button visibility in case of error #}
-
-                    $productButtonPlaceholder.removeClass("active");
-                    $productButtonText.fadeIn("active");
-                    $productButtonAdding.removeClass("active");
-                    $productButtonPlaceholder.hide();
-                    $productButton.css('display' , 'inline-block');
+                    restore_button_initial_state();
                 }
                 $prod_form = jQueryNuvem(this).closest("form");
                 LS.addToCartEnhanced(

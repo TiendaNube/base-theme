@@ -3688,6 +3688,21 @@ pt "Permitir que seus clientes adicionem produtos sem precisar ir a outra págin
 en "Allow your customers to add products to the cart without having to go to another page"
 es_mx "Permitir que tus clientes agreguen productos al carrito sin necesidad de ir a otra página"
 
+es "Acción al agregar un producto al carrito:"
+pt "Ação ao adicionar um produto ao carrinho:"
+en "Action when adding a product to the cart:"
+es_mx "Acción al agregar un producto al carrito:"
+
+es "Mostrar una notificación"
+pt "Mostrar uma notificação"
+en "Show a notification"
+es_mx "Mostrar una notificación"
+
+es "Abrir el carrito"
+pt "Abrir o carrinho"
+en "Open cart"
+es_mx "Abrir el carrito"
+
 es "Recomendaciones de productos"
 pt "Recomendações de produtos"
 es_mx "Recomendaciones de productos"

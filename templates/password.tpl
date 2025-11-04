@@ -3,11 +3,15 @@
     <head>
         <link rel="preconnect" href="{{ store_resource_hints }}" />
         <link rel="dns-prefetch" href="{{ store_resource_hints }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{{ page_title }}</title>
         <meta name="description" content="{{ page_description }}" />
+        <link rel="preload" as="style" href="{{ [settings.font_headings, settings.font_rest] | google_fonts_url('300, 400, 700') }}" />
+        <link rel="preload" href="{{ 'css/style-colors.scss.tpl' | static_url }}" as="style" />
         
         {{ component('social-meta') }}
 
@@ -79,7 +83,7 @@
         {{ component('structured-data') }}
 
     </head>
-    <body class="{% if settings.head_fix %}js-head-offset head-offset{% endif %} {% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }}">
+    <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace('.', '-') }}">
 
         {# Back to admin bar #}
 

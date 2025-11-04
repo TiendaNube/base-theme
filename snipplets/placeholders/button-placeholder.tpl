@@ -6,7 +6,7 @@
         <span class="js-addtocart-success transition-container btn-transition-success">
             {{ '¡Listo!' | translate }}
         </span>
-        <div class="js-addtocart-adding transition-container btn-transition-progress">
+        <div class="js-addtocart-adding js-addtocart-adding-text transition-container btn-transition-progress">
             {{ 'Agregando...' | translate }}
         </div>
     </div>

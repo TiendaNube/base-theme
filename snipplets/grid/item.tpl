@@ -87,7 +87,13 @@
                 custom_control_next: control_next,
             })
         }}
-        {% if (settings.quick_shop or settings.product_color_variants) and product.available and product.display_price and product.variations and not reduced_item %}
+
+        {% if 
+            ((settings.quick_shop and not product.isSubscribable()) or settings.product_color_variants)
+            and product.available 
+            and product.display_price 
+            and product.variations and not reduced_item 
+        %}
 
             {# Hidden product form to update item image and variants: Also this is used for quickshop popup #}
             
@@ -145,33 +151,52 @@
             {{ component('installments', {'location' : 'product_item', container_classes: { installment: "item-installments"}}) }}
         {% endif %}
 
+        {{ component('subscriptions/subscription-message', {
+            subscription_classes: {
+                container: 'text-accent mt-2',
+            },
+        }) }}
+
         {% if settings.quick_shop and product.available and product.display_price and not reduced_item %}
 
             {# Trigger quickshop actions #}
+
+            {% set quickshop_button_classes = 'btn btn-primary btn-small px-4 mb-1 mx-auto' %}
+
+            {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
+            {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}
             
             <div class="item-actions mt-2">
-                {% if product.variations %}
 
-                    {# Open quickshop popup if has variants #}
+                {% if product.isSubscribable() %}
 
-                    <a data-toggle="#quickshop-modal" data-modal-url="modal-fullscreen-quickshop" class="js-quickshop-modal-open {% if slide_item %}js-quickshop-slide{% endif %} js-modal-open js-fullscreen-modal-open btn btn-primary btn-small px-4" title="{{ 'Compra rápida de' | translate }} {{ product.name }}" aria-label="{{ 'Compra rápida de' | translate }} {{ product.name }}" data-component="product-list-item.add-to-cart" data-component-value="{{product.id}}">{{ 'Agregar al carrito' | translate }}</a>
+                    {# Product with subscription will link to the product page #}
+
+                    <a href="{{ product_url_with_selected_variant }}" class="{{ quickshop_button_classes }}" title="{{ 'Compra rápida de' | translate }} {{ product.name }}" aria-label="{{ 'Compra rápida de' | translate }} {{ product.name }}">{{ texts[state] | translate }}</a>
                 {% else %}
 
-                    {# If not variants add directly to cart #}
-                    <form class="js-product-form" method="post" action="{{ store.cart_url }}">
-                        <input type="hidden" name="add_to_cart" value="{{product.id}}" />
-                        {% set state = store.is_catalog ? 'catalog' : (product.available ? product.display_price ? 'cart' : 'contact' : 'nostock') %}
-                        {% set texts = {'cart': "Agregar al carrito", 'contact': "Consultar precio", 'nostock': "Sin stock", 'catalog': "Consultar"} %}
+                    {% if product.variations %}
 
-                        <input type="number" name="quantity" value="1" class="js-quantity-input hidden" aria-label="{{ 'Cambiar cantidad' | translate }}" >
+                        {# Open quickshop popup if has variants #}
 
-                        <input type="submit" class="js-addtocart js-prod-submit-form btn btn-primary btn-small {{ state }} px-4 mb-1 mx-auto" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} data-component="product-list-item.add-to-cart" data-component-value="{{ product.id }}"/>
+                        <a data-toggle="#quickshop-modal" data-modal-url="modal-fullscreen-quickshop" class="js-quickshop-modal-open {% if slide_item %}js-quickshop-slide{% endif %} js-modal-open js-fullscreen-modal-open {{ quickshop_button_classes }}" title="{{ 'Compra rápida de' | translate }} {{ product.name }}" aria-label="{{ 'Compra rápida de' | translate }} {{ product.name }}" data-component="product-list-item.add-to-cart" data-component-value="{{product.id}}">{{ 'Agregar al carrito' | translate }}</a>
+                    {% else %}
 
-                        {# Fake add to cart CTA visible during add to cart event #}
+                        {# If not variants add directly to cart #}
+                        <form class="js-product-form" method="post" action="{{ store.cart_url }}">
+                            <input type="hidden" name="add_to_cart" value="{{product.id}}" />
+                            
 
-                        {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "js-addtocart-placeholder-inline btn-small mb-1 mx-auto"} %}
+                            <input type="number" name="quantity" value="1" class="js-quantity-input hidden" aria-label="{{ 'Cambiar cantidad' | translate }}" >
 
-                    </form>
+                            <input type="submit" class="js-addtocart js-prod-submit-form {{ quickshop_button_classes }} {{ state }}" value="{{ texts[state] | translate }}" {% if state == 'nostock' %}disabled{% endif %} data-component="product-list-item.add-to-cart" data-component-value="{{ product.id }}"/>
+
+                            {# Fake add to cart CTA visible during add to cart event #}
+
+                            {% include 'snipplets/placeholders/button-placeholder.tpl' with {custom_class: "js-addtocart-placeholder-inline btn-small mb-1 mx-auto"} %}
+
+                        </form>
+                    {% endif %}
                 {% endif %}
             </div>
         {% endif %}

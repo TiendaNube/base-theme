@@ -17,12 +17,12 @@
 
 {# Order notification #}
 
-{% if order_notification and status_page_url %}
-    <div class="js-notification js-notification-status-page notification notification-secondary" data-url="{{ status_page_url }}" style="display:none;">
+{% if order_notification and status_page_url_notification %}
+    <div class="js-notification js-notification-status-page notification notification-secondary" data-url="{{ status_page_url_notification }}" style="display:none;">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <a class="btn" href="{{ status_page_url }}"><strong>{{ "Seguí acá" | translate }}</strong> {{ "tu última compra" | translate }}</a>
+                    <a class="btn" href="{{ status_page_url_notification }}"><strong>{{ "Seguí acá" | translate }}</strong> {{ "tu última compra" | translate }}</a>
                     <a class="js-notification-close js-notification-status-page-close ml-3" href="#">
                         {% include "snipplets/svg/times.tpl" with {svg_custom_class: "icon-inline svg-icon-primary icon-lg"} %}
                     </a>
