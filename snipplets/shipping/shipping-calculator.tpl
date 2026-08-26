@@ -1,10 +1,6 @@
-{% if product_detail %}
-	{% set cart_zipcode = false %}
-{% else %}
-	{% set cart_zipcode = cart.shipping_zipcode %}
-{% endif %}
+{% set cart_zipcode = cart.shipping_zipcode %}
 
-<div class="{% if product_detail %}product-shipping-calculator{% endif %} mb-2 w-100" data-store="shipping-calculator">
+<div class="mb-2 w-100" data-store="shipping-calculator">
 
 	<div class="js-shipping-calculator-head shipping-calculator-head position-relative transition-soft {% if cart_zipcode %}with-zip{% else %}with-form{% endif %}">
 		<div class="js-shipping-calculator-with-zipcode {% if cart_zipcode %}js-cart-saved-zipcode transition-up-active{% endif %} mt-3 mb-4 w-100 transition-up position-absolute">
@@ -59,7 +55,7 @@
 								{{ "No encontramos este código postal{1}" | translate(wrong_zipcode_wording) }}
 
 								{% if languages | length > 1 %}
-									<a href="#" data-toggle="#{% if product_detail %}product{% else %}cart{% endif %}-shipping-country" class="js-modal-open btn-link btn-link-primary text-lowercase">
+									<a href="#" data-toggle="#cart-shipping-country" class="js-modal-open btn-link btn-link-primary text-lowercase">
 										{{ 'cambiar tu país de entrega' | translate }}
 									</a>
 								{% endif %}
@@ -92,20 +88,14 @@
 			<div class="point"></div>
 		</div>
 	</div>
-	<div class="js-shipping-calculator-response mb-3 float-left w-100 {% if product_detail %}list list-readonly{% endif %}" style="display: none;"></div>
+	<div class="js-shipping-calculator-response mb-3 float-left w-100" style="display: none;"></div>
 </div>
 
 {# Shipping country modal #}
 
 {% if languages | length > 1 %}
 
-	{% if product_detail %}
-		{% set country_modal_id = 'product-shipping-country' %}
-	{% else %}
-		{% set country_modal_id = 'cart-shipping-country' %}
-	{% endif %}
-
-	{% embed "snipplets/modal.tpl" with{modal_id: country_modal_id, modal_class: 'bottom modal-centered-small js-modal-shipping-country', modal_position: 'center', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered', modal_zindex_top: true, modal_mobile_full_screen: false} %}
+	{% embed "snipplets/modal.tpl" with{modal_id: 'cart-shipping-country', modal_class: 'bottom modal-centered-small js-modal-shipping-country', modal_position: 'center', modal_transition: 'slide', modal_header: true, modal_footer: true, modal_width: 'centered', modal_zindex_top: true, modal_mobile_full_screen: false} %}
 		{% block modal_head %}
 		    {{ 'País de entrega' | translate }}
 		{% endblock %}

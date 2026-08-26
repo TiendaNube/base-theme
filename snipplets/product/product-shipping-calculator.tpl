@@ -92,7 +92,7 @@
             {% endembed %}
         {% endblock %}
         {% block modal_foot %}
-            <a href="#" class="js-save-shipping-country btn btn-primary float-right">{{ 'Aplicar' | translate }}</a>
+            <a href="#" class="js-save-shipping-country float-right inline-flex items-center justify-center h-10 px-4 rounded-lg bg-secondary text-bg font-sans text-sm font-semibold cursor-pointer">{{ 'Aplicar' | translate }}</a>
         {% endblock %}
     {% endembed %}
 {% endif %}
