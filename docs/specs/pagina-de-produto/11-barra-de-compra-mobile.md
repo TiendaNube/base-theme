@@ -1,7 +1,7 @@
 ---
 feature: pagina-de-produto
 spec: 11-barra-de-compra-mobile
-status: pending
+status: done
 depends_on: ["07-barra-fixa-de-compra"]
 ---
 
@@ -12,13 +12,11 @@ problema em si — o `addCartContainer` real tem 116px e a implementação da
 spec 07 desviou do layout desenhado. Esta spec traz a barra mobile de volta
 para o Figma.
 
-IMPLEMENTADA em 2026-08-18, `npm run build` ok. Status segue `pending`
-(mesma convenção das specs 02-07 desta feature): os critérios de código
-foram conferidos por leitura, mas os visuais só fecham no preview real da
-Nuvemshop. Falta validar: encaixe da barra de 116px no mobile, badges
-verdes com bolinha, label do progresso centralizado sem ícone, o espaçador
-de 11rem no rodapé, e que o desktop continua idêntico exceto pela cor do
-botão. Marcar `done` depois disso. -->
+VALIDADA no preview real da Nuvemshop em 2026-08-20 (deploy manual via
+FTP a partir da branch `feat/pdp-barra-mobile-e-fundo`): o usuário aprovou
+a barra mobile. Os critérios visuais abaixo seguem com as caixas
+desmarcadas, mesma convenção das outras specs `done` desta feature — o
+`status` é o registro da aprovação. -->
 
 ## Objetivo
 

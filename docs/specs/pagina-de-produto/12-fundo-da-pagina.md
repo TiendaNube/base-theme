@@ -1,17 +1,19 @@
 ---
 feature: pagina-de-produto
 spec: 12-fundo-da-pagina
-status: pending
+status: done
 depends_on: ["01-fundacao-layout-e-preco"]
 ---
 
 <!-- Pedido do usuário em 2026-08-18, durante a validação da PDP no preview:
 "a página de produto pode pegar a cor de fundo principal também".
 
-IMPLEMENTADA em 2026-08-18. Status segue `pending` (mesma convenção das
-outras specs desta feature): o código foi conferido, mas o critério de
-"nenhuma faixa branca visível" só fecha olhando o preview real. Não exigiu
-build — o utilitário `bg-bg` já estava em `static/css/app.tpl:1762`. -->
+Marcada `done` em 2026-08-20 por decisão do usuário, junto com a spec 11,
+depois do deploy manual via FTP para o preview real. A confirmação
+explícita dele foi sobre a barra mobile (spec 11); o fundo da página subiu
+no mesmo deploy e foi aceito na mesma rodada. Se aparecer faixa branca em
+produção, tratar como bug novo, não reabrindo esta spec. Não exigiu build —
+o utilitário `bg-bg` já estava em `static/css/app.tpl:1762`. -->
 
 ## Objetivo
 

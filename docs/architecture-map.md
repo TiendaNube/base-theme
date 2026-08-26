@@ -13,6 +13,7 @@ Roma Theme V2 is a custom Nuvemshop e-commerce storefront theme. It operates as 
 - **`__src/js/modules/system/`**: Global modules loaded on every page (header, menu, search, toast, modal, item-card-quickbuy). Each module MUST guard execution with DOM element existence checks.
 - **`__src/js/modules/home/`**: Homepage-specific modules (hero carousel, product carousel). Each module MUST guard execution with DOM element existence checks internally — they are loaded globally but execute conditionally.
 - **`__src/js/modules/category/`**: Category page modules (dropdown, infinite scroll, filters, sorting). Each module MUST guard execution with DOM element existence checks internally — they are loaded globally but execute conditionally.
+- **`__src/js/modules/product/`**: Product detail page modules (gallery, gallery zoom, variants, add-to-cart, accordion). Each module MUST guard execution with DOM element existence checks internally — they are loaded globally but execute conditionally.
 - **`__src/css/app.css`**: Tailwind v4 entry point with `@theme` design tokens and custom CSS for behaviors Tailwind cannot express (animations, scrollbar hacks, state-driven styling via `data-*` attributes).
 
 ### Build Layer
@@ -46,7 +47,7 @@ Roma Theme V2 is a custom Nuvemshop e-commerce storefront theme. It operates as 
 
 ## 3. Core Architectural Invariants
 
-**A1** — Custom JavaScript MUST be written in `__src/js/modules/` organized by context subdirectory. The permitted context directories are: `system/` (global modules loaded on every page), `home/` (homepage-specific modules), `category/` (category page modules). NEVER write custom JS directly in `static/`. New contexts (e.g., `product/`, `cart/`) MUST be created as new subdirectories under `modules/` and follow the same pattern: named exports, DOM guards, invocation from `index.js`.
+**A1** — Custom JavaScript MUST be written in `__src/js/modules/` organized by context subdirectory. The permitted context directories are: `system/` (global modules loaded on every page), `home/` (homepage-specific modules), `category/` (category page modules), `product/` (product detail page modules). NEVER write custom JS directly in `static/`. New contexts (e.g., `cart/`) MUST be created as new subdirectories under `modules/` and follow the same pattern: named exports, DOM guards, invocation from `index.js`.
 
 **A2** — Every JS module MUST check for the existence of its root DOM element as the FIRST executable statement, using the exact pattern `if (!element) return;`. Verified guard selectors by module:
 - `header.js/headerAnimations`: `.js-new-header`
@@ -63,14 +64,19 @@ Roma Theme V2 is a custom Nuvemshop e-commerce storefront theme. It operates as 
 - `category-infinite-scroll.js`: `.js-category-grid`
 - `category-filters.js`: `.js-category-filter-trigger`
 - `category-sorting.js`: `.js-category-sorting`
+- `product-gallery.js`: `.js-product-gallery`
+- `product-gallery-zoom.js`: `.js-product-gallery-zoom`
+- `product-variants.js`: `.js-product-variants` (plus a second guard on `.js-product-variants-data`, the `<script type="application/json">` payload the module cannot run without)
+- `product-add-to-cart.js`: `#product_form` — the ONLY module guarding on an ID instead of a `js-*` class, because the form id is rendered by the platform's `product-form.tpl` and is also what the legacy `store.js.tpl` binds to. Not a precedent for new modules.
+- `product-accordion.js`: `.js-accordion-item` — NodeList guard (`if (!items.length) return;`), the permitted variation of the pattern when a module owns N sibling components instead of a single root element
 
 A module with multiple independent features (like `header.js` exporting `headerAnimations` and `advertisingCarousel`) MUST guard EACH exported function independently.
 
-**A3** — All modules MUST be imported and invoked in `__src/js/index.js`. No module may self-execute on import. The pattern is strictly `import { fn } from "./modules/context/file"` followed by `fn();`. NEVER use default exports. NEVER use side-effectful imports (`import "./module"`). Imports MUST be grouped by context with a comment header (`//System`, `//Category`, `//Home`). Current import count: 15 named exports across 3 contexts (system: 8 — `headerAnimations`, `advertisingCarousel`, `menuSystem`, `searchSystem`, `toastSystem`, `modalSystem`, `itemCardQuickbuy`, `cartDrawerSystem`; category: 4 — `categoryDropdown`, `categoryInfiniteScroll`, `categoryFilters`, `categorySorting`; home: 2 — `productCarousel`, `heroBanner2Carousel`). When adding a new module, this count MUST be updated.
+**A3** — All modules MUST be imported and invoked in `__src/js/index.js`. No module may self-execute on import. The pattern is strictly `import { fn } from "./modules/context/file"` followed by `fn();`. NEVER use default exports. NEVER use side-effectful imports (`import "./module"`). Imports MUST be grouped by context with a comment header (`//System`, `//Category`, `//Home`, `//Product`). Current import count: 20 named exports across 4 contexts (system: 8 — `headerAnimations`, `advertisingCarousel`, `menuSystem`, `searchSystem`, `toastSystem`, `modalSystem`, `itemCardQuickbuy`, `cartDrawerSystem`; category: 4 — `categoryDropdown`, `categoryInfiniteScroll`, `categoryFilters`, `categorySorting`; home: 2 — `productCarousel`, `heroBanner2Carousel`; product: 5 — `productGallery`, `productGalleryZoom`, `productVariants`, `productAddToCart`, `productAccordion`). When adding a new module, this count MUST be updated.
 
 **A4** — The `static/` directory contains ONLY build outputs and platform-managed files. Files in `static/js/gaius-v*.js` and `static/css/app.tpl` MUST NOT be manually edited. Platform-managed files (`store.js.tpl`, `external.js.tpl`, `external-no-dependencies.js.tpl`, `lucide.min.js`, `instatheme.js`, all `static/css/*.tpl` except `app.tpl`) are NOT build outputs — they are vendored or platform files that MAY be edited when upgrading dependencies.
 
-**A5** — Cross-module communication MUST use `window.*` function assignments. The complete registry of `window.*` globals (11 total):
+**A5** — Cross-module communication MUST use `window.*` function assignments. The complete registry of `window.*` globals (12 total):
 - `window.setHeaderMenuActive(boolean)` — defined in `header.js`, consumed by `menu.js` and `cart-drawer.js` via optional chaining
 - `window.openModal({title?, content?, contentSelector?, size?, mode?})` — defined in `modal.js`, consumed by `category-filters.js`
 - `window.closeModal()` — defined in `modal.js`
@@ -82,10 +88,11 @@ A module with multiple independent features (like `header.js` exporting `headerA
 - `window.closeCartDrawer()` — defined in `cart-drawer.js`
 - `window.onCartUpdate()` — defined in `cart-drawer.js`, consumed by `item-card-quickbuy.js` (refreshes cart drawer after quickbuy add-to-cart)
 - `window.initQuickbuyDropdowns()` — defined in `item-card-quickbuy.js`, consumed by `category-infinite-scroll.js` (reinitializes quickbuy stock status after new product cards are injected via infinite scroll)
+- `window.setProductGalleryImage(imagePosition)` — defined in `product-gallery.js`, consumed by `product-variants.js` (slides the PDP gallery to the photo of the newly selected variant; `imagePosition` is the 1-based `variant.image` index coming from `variants_object`)
 
 Modules MUST NOT import from sibling modules. Any new `window.*` global MUST be documented in this registry. Consumers MUST use optional chaining: `window.functionName?.(args)`. Modules communicate with the DOM layer via `js-*` class selectors (read) and `data-*` attribute manipulation (read/write). These are NOT "cross-layer communication" — they are the standard DOM interface.
 
-**A6** — After dynamically inserting HTML containing `<i data-lucide="...">` markup, the module MUST call `lucide.createIcons()` to render icons. The call MUST be guarded with `typeof lucide !== "undefined"`. Modules that currently call `lucide.createIcons()`: `menu.js` (via `reinitIcons` helper with 50ms delay and in `initMenuCarousel`), `hero-banner-2-carousel.js`, `product-carousel.js` (two call sites), `modal.js`, `toast.js`, `category-infinite-scroll.js`. All use the `typeof` guard pattern.
+**A6** — After dynamically inserting HTML containing `<i data-lucide="...">` markup, the module MUST call `lucide.createIcons()` to render icons. The call MUST be guarded with `typeof lucide !== "undefined"`. Modules that currently call `lucide.createIcons()`: `menu.js` (via `reinitIcons` helper with 50ms delay and in `initMenuCarousel`), `hero-banner-2-carousel.js`, `product-carousel.js` (two call sites), `modal.js`, `toast.js`, `category-infinite-scroll.js`, `product-accordion.js` (after swapping the `plus`/`minus` icon on toggle), `product-gallery-zoom.js` (after rendering the pagination seeds). All use the `typeof` guard pattern.
 
 **A7** — The bundle filename MUST follow the pattern `gaius-v{epoch}.js` where `{epoch}` is `Date.now()` at build time. The `pre-build.js` script updates this in exactly two files: `esbuild.config.mjs` (line containing `outfile:`) and `layouts/layout.tpl` (the `script_tag` reference), using the regex `/gaius-v\d+\.js/g`. Both files MUST contain exactly one match for this regex at all times.
 
@@ -101,12 +108,16 @@ Modules MUST NOT import from sibling modules. Any new `window.*` global MUST be 
 
 **NOT bugs**: `hero-banner-2-carousel.js:25,30` — `#FFFFFF` in colorMap for "white" setting is an explicit admin-selected color value, not a theme color. The "white" option in settings intentionally maps to white.
 
-**A9** — Interactive overlay state MUST be managed via `data-state` attributes with CSS selectors `[data-state="..."]`. Five components currently use this pattern:
+**A9** — Interactive overlay state MUST be managed via `data-state` attributes with CSS selectors `[data-state="..."]`. Seven components currently use this pattern:
 1. **Header**: `.js-new-header[data-state="transparent"|"active"]` — controlled by `header.js`, styled in `app.css:69-103`
 2. **Search overlay**: `.js-search-overlay[data-state="open"|"closed"]` — controlled by `search.js`, styled in `app.css:107-113`
 3. **Toast notifications**: `.js-toast-container [data-state="entering"|"visible"|"exiting"]` — controlled by `toast.js`, styled in `app.css:139-157`
 4. **Modal container**: `.js-gaius-modal-container[data-state="open"|"closed"]` — controlled by `modal.js`, styled in `app.css:161-228`
 5. **Cart drawer**: `.js-cart-drawer[data-state="open"|"closed"]` — controlled by `cart-drawer.js`, styled in `app.css:368-402`
+6. **Product gallery zoom**: `.js-product-gallery-zoom[data-state="open"|"closed"]` — controlled by `product-gallery-zoom.js`, styled in the `PRODUCT GALLERY ZOOM STYLES` section of `app.css`
+7. **Product accordion items**: `.js-accordion-item[data-state="open"|"closed"]` — controlled by `product-accordion.js`, one instance per accordion section
+
+`.js-product-sticky-buy-btn[data-state="cart"|"contact"|"catalog"|"nostock"]` is NOT part of this pattern: it carries the platform's buy-button mode (rendered server-side in `product-sticky-buy-bar.tpl`, re-evaluated per variant by `product-add-to-cart.js`) and drives behaviour, not CSS. Reading a `data-state` value as data is permitted; only state that also drives styling MUST follow the numbered pattern above.
 
 Any new full-page overlay or state-driven component MUST use this same `data-state` pattern. Atomic state changes (show/hide a single element) MUST use the `hidden` attribute instead.
 
@@ -154,11 +165,16 @@ store.js.tpl (jQuery, LS.*) ←→ window.* globals ←→ __src/js/modules/
 Templates render data-* attributes → Custom JS reads them
 Custom JS manipulates DOM → Legacy JS (store.js.tpl) observes via jQuery selectors
 search.js delegates search AJAX to LS.search() by NOT reimplementing it
+product-variants.js OWNS variant selection outright — it does NOT call LS.changeVariant()
 ```
+
+**Note (PDP variant selection)** — The product detail page is the one place where the custom layer replaces a legacy platform flow instead of delegating to it. `product-variants.js` reads `variants_object` from `#single-product[data-variants]` / `.js-product-variants-data` and updates price, gallery and buy button itself; `LS.changeVariant()` and `LS.registerOnChangeVariant()` are never called, and the legacy `<select>`-based variant markup is not rendered. The accepted trade-off: platform `component('installments')` / `component('promotions-details')` blocks stay rendered server-side for the default variant and are NOT recalculated on variant change. This is a deliberate decision from the `pagina-de-produto` feature, not drift — do not "fix" it by reintroducing `LS.changeVariant`.
 
 **D1** — JS reads data from templates via THREE channels: (1) `data-*` attributes on template-rendered HTML, (2) DOM structure and content (e.g., counting `.swiper-slide` elements), (3) CSS custom properties via `getComputedStyle(document.documentElement).getPropertyValue()` (e.g., `--text-color` in `product-carousel.js` and `menu.js`). JS NEVER writes template variables. JS MUST NOT call `LS.*` platform APIs directly, with ONE exception: `LS.removeItem(itemId, silent)` and `LS.addItem()` MAY be called from cart-related modules (`cart-drawer.js`, `item-card-quickbuy.js`) because these are stateful platform APIs with no delegation alternative via legacy jQuery bindings.
 
-JS MAY use `fetch()` to load server-rendered pages for pagination/infinite-scroll purposes (as in `category-infinite-scroll.js`). This is permitted because it fetches the same template-rendered HTML from the server — it does NOT call a platform AJAX API. Fetched HTML MUST be parsed with `DOMParser` and data MUST be extracted from DOM structure, not from a JSON API.
+JS MAY use `fetch()` in exactly two shapes:
+1. **GET of a server-rendered page** for pagination/infinite-scroll purposes (as in `category-infinite-scroll.js`). This is permitted because it fetches the same template-rendered HTML from the server — it does NOT call a platform AJAX API. Fetched HTML MUST be parsed with `DOMParser` and data MUST be extracted from DOM structure, not from a JSON API.
+2. **POST of a form's own `action`** to submit a platform form without a page reload (as in `product-add-to-cart.js`, which posts the `#product_form` `FormData` to `form.action` with `X-Requested-With: XMLHttpRequest`). This is permitted because the target URL and payload come from the template-rendered form itself — no platform endpoint or payload shape is hardcoded in JS. The response body MUST NOT be parsed as an API contract; success/failure is taken from `res.ok`, and cart state is refreshed through `window.onCartUpdate?.()`.
 
 **D2** — The search system bridges legacy and custom code: `search.js` manages the overlay UI (open/close, focus trap, loading state icon swap), but the actual AJAX search is handled by `LS.search()` in `store.js.tpl` which independently binds to the `.js-search-input` element. The debounce in `search.js:82-92` tracks `lastValue` but does NOT actually prevent `LS.search()` from firing (it is effectively a no-op). Custom JS MUST NOT duplicate legacy AJAX functionality — it MUST delegate to legacy when the platform API is jQuery-dependent.
 
@@ -183,10 +199,15 @@ JS MAY use `fetch()` to load server-rendered pages for pagination/infinite-scrol
 - `category-sorting.js`: stateless (state is in DOM via `hidden` and `aria-expanded`)
 - `item-card-quickbuy.js`: `currentOpen` (HTMLElement|null)
 - `cart-drawer.js`: `pendingRemovals` (number), `removeSyncTimer` (timeout|null), `badgeObserver` (MutationObserver|null), `quantitySyncTimer` (timeout|null — debounces `refreshCart()` 2s after a `.js-cart-quantity-btn` click, so progress bars re-render with updated cart totals)
+- `product-gallery.js`: `swiper` (Swiper|null)
+- `product-gallery-zoom.js`: `swiper` (Swiper|null), `isOpen` (boolean), `savedOverflow` (string)
+- `product-variants.js`: `variants` (Array — parsed once from `.js-product-variants-data`; selection state itself lives in the DOM via `[data-selected]`)
+- `product-add-to-cart.js`: stateless at module scope — only `const` DOM references plus `initialBuyState` (string|null), a snapshot of the server-rendered `data-state` used to restore the button after an AJAX submit
+- `product-accordion.js`: `controllers` (Map — accordion item → its `setState` function, so the "Tabela de Medidas" anchor can open a section from outside its own toggle)
 
 No module persists state to `localStorage`, `sessionStorage`, or cookies.
 
-**S2** — Cross-module state signaling MUST use `window.*` function assignments. Complete registry (11 globals):
+**S2** — Cross-module state signaling MUST use `window.*` function assignments. Complete registry (12 globals):
 - `window.setHeaderMenuActive(boolean)` — defined in `header.js`, consumed by `menu.js` and `cart-drawer.js`
 - `window.openModal(options)` — defined in `modal.js`, consumed by `category-filters.js`
 - `window.closeModal()` — defined in `modal.js`
@@ -198,6 +219,7 @@ No module persists state to `localStorage`, `sessionStorage`, or cookies.
 - `window.closeCartDrawer()` — defined in `cart-drawer.js`
 - `window.onCartUpdate()` — defined in `cart-drawer.js`, consumed by `item-card-quickbuy.js`
 - `window.initQuickbuyDropdowns()` — defined in `item-card-quickbuy.js`, consumed by `category-infinite-scroll.js`
+- `window.setProductGalleryImage(imagePosition)` — defined in `product-gallery.js`, consumed by `product-variants.js`
 
 Any new cross-module signal MUST: (1) be defined as `window.functionName = function(args) {...}` in the providing module, (2) be consumed via optional chaining `window.functionName?.(args)` in the consuming module, (3) be documented in this contract in both A5 and S2.
 
@@ -284,13 +306,18 @@ Any new cross-module signal MUST: (1) be defined as `window.functionName = funct
 - `category-infinite-scroll.js`: `.js-category-grid`, `.js-category-load-more`, `.js-category-load-more-btn`, `.js-category-scroll-spinner`, `[data-product-id]`, `[data-is-last]`, `[data-next-url]`
 - `category-filters.js`: `.js-category-filter-trigger`, `.js-category-filter-content`, `[data-filter-title]`
 - `category-sorting.js`: `.js-category-sorting`, `.js-category-sorting-trigger`, `.js-category-sorting-list`, `.js-category-sorting-icon`, `.js-category-sorting-option`
+- `product-gallery.js`: `.js-product-gallery`, `.js-product-gallery-pagination`, `.js-product-gallery-prev`, `.js-product-gallery-next`, `.js-product-gallery-seed`, `.swiper-slide`, `[data-image-position]`, `[data-index]`
+- `product-gallery-zoom.js`: `.js-product-gallery-zoom`, `.js-product-gallery-zoom-close`, `.js-product-gallery-zoom-backdrop`, `.js-product-gallery-zoom-swiper`, `.js-product-gallery-zoom-pagination`, `.js-product-gallery-zoom-seed`, `.js-product-gallery` (cross-reference — reads the main gallery's active slide to open on the same photo), `[data-open-gallery-zoom]`, `[data-image-position]`, `[data-index]`
+- `product-variants.js`: `.js-product-variants`, `.js-product-variants-data`, `.js-product-variant-group`, `.js-product-variant-option`, `.js-product-variant-swatch`, `.js-price-display`, `.js-compare-price-display`, `[data-selected]`
+- `product-add-to-cart.js`: `#product_form` (id, see A2), `.js-product-form`, `.js-product-sticky-buy-btn`, `.js-product-variants`, `.js-product-variants-data`, `.js-product-variant-group`, `.js-product-variant-option`, `.js-quantity-input`, `.js-quantity-up`, `.js-quantity-down`, `.js-price-display`, `.js-compare-price-display`, `.js-sticky-price-display`, `.js-sticky-compare-price-display`, `.js-product-name`, `.js-product-gallery` (cross-reference — reads the active photo for the toast), `.js-shipping-input`, `.js-addtocart` (legacy cross-reference — the class this flow deliberately does NOT use, so `store.js.tpl:1724` never double-fires), `[data-variants]`, `[data-selected]`, `[data-max-stock]`, `[data-stock-limit-label]`, `[data-text-cart]`, `[data-text-nostock]`
+- `product-accordion.js`: `.js-accordion-item`, `.js-accordion-toggle`, `.js-accordion-content`, `.js-accordion-icon`, `a[href="#tabela-de-medidas"]` (cross-reference — any link on the page may open the size-guide section)
 - `item-card-quickbuy.js`: `.js-quickbuy-container`, `.js-quickbuy-dropdown`, `.js-quickbuy-dropdown-trigger`, `.js-quickbuy-dropdown-list`, `.js-quickbuy-dropdown-icon`, `.js-quickbuy-dropdown-label`, `.js-quickbuy-dropdown-option`, `.js-quickbuy-pill`, `.js-quickbuy-add-btn`, `.js-quickbuy-variants-data`, `[data-product-id]`, `[data-product-name]`, `[data-product-price]`, `[data-product-image]`, `[data-option-name]`, `[data-selected]`
 
 Removing or renaming ANY `js-*` class from a template REQUIRES updating the corresponding JS module.
 
-**R4** — CSS in `app.css` targets `js-*` prefixed classes for state-driven styling. These selectors are: `.js-new-header[data-state=...]`, `.js-search-overlay[data-state=...]`, `.js-search-panel`, `.js-search-input`, `.js-menu-accordion-toggle[aria-expanded=...]`, `.js-menu-carousel-track`, `.js-menu-carousel`, `.js-menu-carousel-scrollbar`, `.js-menu-carousel-scrollbar-thumb`, `.js-toast-container [data-state=...]`, `.js-gaius-modal-container[data-state=...]`, `.js-gaius-modal-overlay`, `.js-gaius-modal-content`, `.js-gaius-modal-drawer`, `.js-gaius-modal-body`, `.js-cart-drawer[data-state=...]`, `.js-cart-drawer-backdrop`, `.js-cart-drawer-panel`, `.js-cart-progress-complete` (triggers `@keyframes progress-complete` one-shot animation, `app.css:431-439`; class is applied by the template, not by JS), `.js-price-filter-wrapper *`, `.js-category-filter-content *`. Renaming ANY of these classes REQUIRES updating BOTH `app.css` AND the corresponding JS module AND the template that renders the element.
+**R4** — CSS in `app.css` targets `js-*` prefixed classes for state-driven styling. These selectors are: `.js-new-header[data-state=...]`, `.js-search-overlay[data-state=...]`, `.js-search-panel`, `.js-search-input`, `.js-menu-accordion-toggle[aria-expanded=...]`, `.js-menu-carousel-track`, `.js-menu-carousel`, `.js-menu-carousel-scrollbar`, `.js-menu-carousel-scrollbar-thumb`, `.js-toast-container [data-state=...]`, `.js-gaius-modal-container[data-state=...]`, `.js-gaius-modal-overlay`, `.js-gaius-modal-content`, `.js-gaius-modal-drawer`, `.js-gaius-modal-body`, `.js-cart-drawer[data-state=...]`, `.js-cart-drawer-backdrop`, `.js-cart-drawer-panel`, `.js-cart-progress-complete` (triggers `@keyframes progress-complete` one-shot animation, `app.css:431-439`; class is applied by the template, not by JS), `.js-price-filter-wrapper *`, `.js-category-filter-content *`, `.js-product-gallery-zoom[data-state=...]`, `.js-product-gallery-zoom-backdrop`, `.js-product-gallery-zoom-content`, `.js-product-gallery-zoom-swiper`, `.js-product-sticky-buy-bar`, `.js-product-variant-swatch[data-selected=...]`. The mobile-only block under `.js-product-sticky-buy-bar` additionally restyles `.js-cart-progress-bar` / `.js-cart-progress-label` (owned by `snipplets/cart/cart-drawer-progress-bars.tpl`, shared with the cart drawer) and adds `body.template-product .js-footer` bottom padding so the fixed bar never covers the end of the page — those three selectors are styled from the PDP context but MUST NOT be renamed without checking the cart drawer and footer as well. Renaming ANY of these classes REQUIRES updating BOTH `app.css` AND the corresponding JS module AND the template that renders the element.
 
-**R5** — The custom bundle (`gaius-v*.js`) loads AFTER `lucide.min.js` (both are sync `<script>` tags in `layout.tpl`). This is a hard dependency: `hero-banner-2-carousel.js`, `product-carousel.js`, `menu.js`, `modal.js`, `toast.js`, `cart-drawer.js`, and `category-infinite-scroll.js` all call `lucide.createIcons()`.
+**R5** — The custom bundle (`gaius-v*.js`) loads AFTER `lucide.min.js` (both are sync `<script>` tags in `layout.tpl`). This is a hard dependency: `hero-banner-2-carousel.js`, `product-carousel.js`, `menu.js`, `modal.js`, `toast.js`, `cart-drawer.js`, `category-infinite-scroll.js`, `product-accordion.js`, and `product-gallery-zoom.js` all call `lucide.createIcons()`.
 
 **R6** — Production build order: `pre-build.js` MUST run BEFORE `esbuild.config.mjs`. The `build:js` npm script enforces this: `"node pre-build.js && node esbuild.config.mjs"`. The `watch:js` script skips `pre-build.js` (acceptable because dev mode does not need cache-busting). NEVER run `node esbuild.config.mjs` alone for production — the filename will be stale.
 
@@ -338,7 +365,7 @@ The toast and modal systems are active and functional:
 Four hardcoded theme-dependent color values exist (enumerated in A8). These are implementation errors, not design decisions. The `rgba(255,255,246,0.7)` pattern is used in `home-product-carousel.tpl:50` and `category.tpl:91` for dropdown backgrounds. The `#410911` fallback and `#C4C4C0` hardcoded color in `product-carousel.js` control pagination dot colors. All 4 MUST be replaced with CSS custom property equivalents (see A8 for full list).
 
 ### RISK 3: No Existence Guard for Swiper Global (LOW)
-`product-carousel.js` and `menu.js` both call `new Swiper()` without checking `typeof Swiper !== "undefined"`. However, based on the script loading order in `layout.tpl` (Swiper loads inside `LS.ready.then()` which is a sync `<script>` block before the gaius bundle), Swiper WILL be available under normal conditions. Risk is LOW but exists if a CDN or network failure prevents external.js.tpl from loading.
+`product-carousel.js`, `menu.js`, `product-gallery.js` and `product-gallery-zoom.js` all call `new Swiper()` without checking `typeof Swiper !== "undefined"`. However, based on the script loading order in `layout.tpl` (Swiper loads inside `LS.ready.then()` which is a sync `<script>` block before the gaius bundle), Swiper WILL be available under normal conditions. Risk is LOW but exists if a CDN or network failure prevents external.js.tpl from loading.
 
 ### RISK 4: Bundle Version Filename Sync (LOW — operational)
 `pre-build.js` uses `/gaius-v\d+\.js/g` to update filenames in `esbuild.config.mjs` and `layout.tpl`. If either file is reformatted (e.g., line breaks inside the string, or comments containing `gaius-v`) the regex may match incorrectly. Currently `esbuild.config.mjs` references `gaius-v1773358273814.js`.
@@ -360,23 +387,23 @@ Zero test coverage. `package.json` `test` script outputs an error. No testing fr
 # ARCHITECTURE INVARIANTS (COMPACT)
 
 ```
-A1  — Custom JS ONLY in __src/js/modules/{system,home,category,...}/, NEVER in static/
+A1  — Custom JS ONLY in __src/js/modules/{system,home,category,product,...}/, NEVER in static/
 A2  — Every exported module function MUST guard with root DOM element check as first statement
-A3  — All modules: named exports, import+invoke in index.js, grouped by context comment. NEVER self-execute. 15 exports: system(8), category(4), home(2)
+A3  — All modules: named exports, import+invoke in index.js, grouped by context comment. NEVER self-execute. 20 exports: system(8), category(4), home(2), product(5)
 A4  — static/ = build outputs + vendored files. NEVER edit gaius-v*.js or app.tpl
-A5  — Cross-module communication ONLY via window.* (11 globals: setHeaderMenuActive, openModal, closeModal, showToast, showProductToast, closeToast, closeAllToasts, openCartDrawer, closeCartDrawer, onCartUpdate, initQuickbuyDropdowns)
+A5  — Cross-module communication ONLY via window.* (12 globals: setHeaderMenuActive, openModal, closeModal, showToast, showProductToast, closeToast, closeAllToasts, openCartDrawer, closeCartDrawer, onCartUpdate, initQuickbuyDropdowns, setProductGalleryImage)
 A6  — Call lucide.createIcons() after any innerHTML with <i data-lucide="..."> markup
 A7  — Bundle filename: gaius-v{Date.now()}.js, synced by pre-build.js in esbuild.config.mjs + layout.tpl
 A8  — Theme-dependent colors NEVER hardcoded. Platform vars: --background-color, --primary-color, --text-color, --accent-color. rgba(0,0,0,*) and rgba(255,255,255,*) overlays permitted. 4 bugs pending fix
-A9  — data-state pattern: header (transparent|active), search (open|closed), toast (entering|visible|exiting), modal (open|closed), cart-drawer (open|closed)
+A9  — data-state pattern: header (transparent|active), search (open|closed), toast (entering|visible|exiting), modal (open|closed), cart-drawer (open|closed), product-gallery-zoom (open|closed), product accordion item (open|closed)
 A10 — Template includes via {% snipplet %} or {% include %}, organized by domain folder. New snipplets MUST NEVER be placed at snipplets/ root
 A11 — Home sections: router in home-section-switch.tpl, keyed by settings.home_order_position_0..12
 A12 — Load order: external.js→store.js→lucide.min.js→gaius bundle. Bundle assumes Swiper+lucide exist
 A13 — Settings in config/settings.txt: snake_case names, grouped by category with meta/title/field blocks
 A14 — Icons: Lucide is canonical. Migrating SVG snipplets → Lucide. SVG only if icon missing in Lucide
-D1  — JS reads from DOM via: data-* attrs, element queries, getComputedStyle(). fetch() permitted for pagination only. LS.removeItem/LS.addItem permitted in cart modules ONLY
+D1  — JS reads from DOM via: data-* attrs, element queries, getComputedStyle(). fetch() permitted for pagination GET + POST of a form's own action (product-add-to-cart.js) ONLY. LS.removeItem/LS.addItem permitted in cart modules ONLY. PDP owns variant selection: no LS.changeVariant
 D2  — Search UI in search.js, search AJAX delegated to legacy LS.search(). No AJAX duplication
-S2  — Cross-module signals: window.fn = ... (provider), window.fn?.() (consumer). 11 globals registered
+S2  — Cross-module signals: window.fn = ... (provider), window.fn?.() (consumer). 12 globals registered
 S3  — UI state: hidden attr > data-state attr > aria-expanded > classList toggle > element.style
 L5  — Custom JS: vanilla JS ONLY. Zero jQuery ($, jQueryNuvem) in __src/js/
 L6  — LS.* APIs: ONLY from store.js.tpl, template <script> blocks, or cart modules (LS.removeItem/LS.addItem only)
