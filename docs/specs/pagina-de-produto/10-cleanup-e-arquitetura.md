@@ -1,7 +1,7 @@
 ---
 feature: pagina-de-produto
 spec: 10-cleanup-e-arquitetura
-status: pending
+status: done
 depends_on:
   [
     "02-galeria-de-fotos",
@@ -15,6 +15,24 @@ depends_on:
     "12-fundo-da-pagina",
   ]
 ---
+
+<!-- Implementada em 2026-08-26. Duas ressalvas registradas aqui em vez de
+silenciadas:
+
+1. O primeiro critério de aceite (comparação visual do desktop com o Figma
+   `131:1503`) é uma checagem de regressão da feature inteira e só existe no
+   preview real da Nuvemshop — segue com a caixa desmarcada, mesma convenção
+   das specs 03/04/07/11/12 desta feature. Esta spec não alterou nenhum
+   layout de desktop: as únicas mudanças de template foram código morto no
+   calculador de frete do carrinho e um botão dentro de um modal que só
+   renderiza em loja multi-idioma.
+2. `snipplets/product/product-payment-details.tpl` ainda tem
+   `btn-link pull-right text-right`. Ele não foi tocado por nenhuma spec
+   01-08 (o plan.md o declara intocado, e a spec 07 o listou como proibido),
+   e é um modal de plataforma inteiramente legado — essas classes são o
+   único estilo que aqueles elementos têm, então não são resíduo órfão:
+   removê-las seria uma mudança visual nova, proibida nesta spec. Fica como
+   dívida declarada para uma futura migração desse modal. -->
 
 **Nota**: `09-carrossel-relacionados` foi adiada (`status: blocked`, ver o
 próprio arquivo) e não é uma dependência desta spec. `product-related.tpl`
