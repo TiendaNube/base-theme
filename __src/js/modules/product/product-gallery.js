@@ -31,7 +31,7 @@ export const productGallery = () => {
 
     let html = "";
     slides.forEach((_, index) => {
-      html += `<span class="cursor-pointer js-product-gallery-seed" data-index="${index}">${seedSVG(index === activeIndex)}</span>`;
+      html += `<span class="inline-flex items-center justify-center w-6 h-6 cursor-pointer js-product-gallery-seed" data-index="${index}">${seedSVG(index === activeIndex)}</span>`;
     });
     paginationContainer.innerHTML = html;
 

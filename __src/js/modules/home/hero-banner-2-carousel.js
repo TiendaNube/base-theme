@@ -83,7 +83,7 @@ export const heroBanner2Carousel = () => {
 
     let html = "";
     for (let i = 0; i < slides.length; i++) {
-      html += `<span class="cursor-pointer js-hero2-seed" data-index="${i}">${seedSVG(i === currentIndex, activeColor, inactiveColor)}</span>`;
+      html += `<span class="inline-flex items-center justify-center w-6 h-6 cursor-pointer js-hero2-seed" data-index="${i}">${seedSVG(i === currentIndex, activeColor, inactiveColor)}</span>`;
     }
     paginationContainer.innerHTML = html;
 

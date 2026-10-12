@@ -93,7 +93,7 @@ export const menuSystem = () => {
     const current = swiper.realIndex;
     let html = "";
     for (let i = 0; i < realCount; i++) {
-      html += `<span class="cursor-pointer js-menu-carousel-seed" data-index="${i}">${menuSeedSVG(i === current)}</span>`;
+      html += `<span class="inline-flex items-center justify-center w-6 h-6 cursor-pointer js-menu-carousel-seed" data-index="${i}">${menuSeedSVG(i === current)}</span>`;
     }
     paginationEl.innerHTML = html;
     paginationEl.querySelectorAll(".js-menu-carousel-seed").forEach((seed) => {

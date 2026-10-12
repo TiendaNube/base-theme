@@ -44,7 +44,7 @@
 
         {% if has_multiple_slides %}
             <div class="js-product-gallery-controls flex items-center justify-between mt-4 px-4 lg:hidden">
-                <div class="js-product-gallery-pagination flex items-center gap-2"></div>
+                <div class="js-product-gallery-pagination flex items-center gap-0"></div>
                 <div class="flex items-center gap-2">
                     <button type="button" class="js-product-gallery-prev flex w-8 h-8 justify-center items-center cursor-pointer" aria-label="{{ 'Anterior' | translate }}">
                         <i data-lucide="arrow-left" class="w-5 h-5 text-secondary"></i>

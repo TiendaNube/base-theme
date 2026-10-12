@@ -63,7 +63,7 @@
         {% if slide_count > 1 %}
             <div class="js-hero2-controls absolute bottom-6 left-0 right-0 flex items-center justify-between px-4 md:px-16 z-20 transition-colors duration-500">
                 {# Seed pagination indicators #}
-                <div class="js-hero2-pagination flex items-center gap-2">
+                <div class="js-hero2-pagination flex items-center gap-0">
                     {# Seeds will be rendered here by JS #}
                 </div>
 

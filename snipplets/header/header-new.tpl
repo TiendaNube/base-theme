@@ -21,7 +21,7 @@
             {# Hamburger - Mobile only (just opens menu, X is inside mobile menu) #}
             <button
               type="button"
-              class="js-menu-mobile-toggle nav-link md:hidden p-1 cursor-pointer bg-transparent border-0"
+              class="js-menu-mobile-toggle nav-link md:hidden p-2.5 -ml-2.5 cursor-pointer bg-transparent border-0"
               aria-label="{{ 'Menu' | translate }}"
             >
               <i data-lucide="menu" class="w-5 h-5"></i>
@@ -107,7 +107,7 @@
             {# Buscar #}
             <button
               type="button"
-              class="js-search-toggle nav-link text-sm font-medium transition-colors duration-300 flex items-center gap-1 cursor-pointer bg-transparent border-0"
+              class="js-search-toggle nav-link text-sm font-medium transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0 cursor-pointer bg-transparent border-0"
               aria-label="{{ 'Abrir busca' | translate }}"
             >
                 <i data-lucide="search" class="w-5 h-5 md:hidden"></i>
@@ -121,7 +121,7 @@
             {# Carrinho #}
             <button
               type="button"
-              class="js-cart-drawer-toggle nav-link text-sm font-medium transition-colors duration-300 flex items-center gap-1 cursor-pointer bg-transparent border-0"
+              class="js-cart-drawer-toggle nav-link text-sm font-medium transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0 cursor-pointer bg-transparent border-0"
               aria-label="{{ 'Carrinho' | translate }}"
             >
                 <span class="relative md:hidden">
