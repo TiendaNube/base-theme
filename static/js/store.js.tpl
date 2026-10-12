@@ -691,6 +691,7 @@ DOMContentLoaded.addEventOrExecute(() => {
 
             createSwiper('.js-swiper-related', {
                 lazy: true,
+                threshold: 10,
                 watchOverflow: true,
                 loop: alternativeLoopVal,
                 centerInsufficientSlides: true,
@@ -715,6 +716,7 @@ DOMContentLoaded.addEventOrExecute(() => {
 
             createSwiper('.js-swiper-complementary', {
                 lazy: true,
+                threshold: 10,
                 watchOverflow: true,
                 loop: complementaryLoopVal,
                 centerInsufficientSlides: true,
