@@ -53,17 +53,25 @@ jobs:
           exclude: |
             **/.DS_Store
 
-      - name: Deploy static/
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+      # static/ não usa a FTP-Deploy-Action: a sincronização dela apaga o
+      # gaius-v{epoch}.js antigo a cada build novo (ADR-0007) e o FTP da
+      # Nuvemshop recusa o DELE, derrubando o job. O script só sobe e
+      # sobrescreve, nunca apaga — bundles antigos ficam órfãos no FTP.
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./static/
-          server-dir: /static/
-          exclude: |
-            **/.DS_Store
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Deploy static/
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: node scripts/ftp-deploy.mjs static
 
       - name: Deploy templates/
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0

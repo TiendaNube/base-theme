@@ -6,3 +6,4 @@ base-theme
 .preview/
 test-results/
 playwright-report/
+.DS_Store
