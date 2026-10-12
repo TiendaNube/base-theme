@@ -67,16 +67,20 @@ o desenvolvimento acontecendo na máquina do owner, fidelidade ganha.
 
 ## Pendências para fechar este ADR (viram tarefas)
 
-- [ ] `.env` nesta máquina com `FTP_*` (não existe ainda) e com
-      `ROMA_STORE_URL`, `ROMA_PRODUCT_PATH`, `ROMA_CATEGORY_PATH`.
-- [ ] Confirmar que o Playwright passa o Cloudflare a partir de uma sessão do
-      agente nesta máquina (headless e/ou headed) — o owner já viu passar em
-      execução manual.
-- [ ] `playwright.config.mjs`: `real-*` como projetos padrão; `preview-*`
-      removidos junto com `tools/preview/`.
+- [x] `.env` nesta máquina com `FTP_*` e `ROMA_STORE_URL`, `ROMA_PRODUCT_PATH`,
+      `ROMA_CATEGORY_PATH` (2026-10-12; a config usa a loja de dev como padrão
+      mesmo sem `.env`).
+- [x] Confirmar que o Playwright passa o Cloudflare a partir de uma sessão do
+      agente nesta máquina: headless passa nos GETs e recebe 403 no
+      `POST /comprar/`; headed passa em tudo (2026-10-12). A suíte roda headed
+      por padrão (`PW_HEADLESS=1` só para leitura).
+- [x] `playwright.config.mjs`: projetos `desktop` e `mobile` contra a loja de
+      dev; `preview-*` e o `webServer` removidos (2026-10-12).
+- [x] `tests/preview.helpers.mjs` → `tests/helpers.mjs` sem o modo offline;
+      suíte reorganizada por contexto (`tests/README.md`), 2026-10-12.
 - [ ] `/implement-spec`, `/pr` e `/ftp-deploy`: texto alinhado ao loop deste ADR.
-- [ ] Remover `tools/preview/`, `tests/preview.helpers.mjs` → renomear para
-      `tests/helpers.mjs` sem o modo offline, e o `twig` das devDependencies.
+- [ ] Remover `tools/preview/`, os scripts `preview*` do `package.json` e o
+      `twig` das devDependencies (nada mais depende deles).
 
 ## Referências
 

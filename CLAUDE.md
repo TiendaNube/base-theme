@@ -20,7 +20,7 @@ próprio). Contém só:
 npm run dev            # watch CSS + JS
 npm run build          # produção: Tailwind + pre-build (cache-busting) + esbuild — SEMPRE este após mudar __src/
 npm run ftp:deploy     # sobe o disco para o FTP da loja de dev (via /ftp-deploy)
-npm test               # Playwright contra a loja de dev (ROMA_STORE_URL no .env; headed por causa do Cloudflare)
+npm test               # Playwright contra a loja de dev, headed (Cloudflare) — ver tests/README.md
 npm run lint:styles    # guard de cores hardcoded (ADR-0003)
 ```
 
@@ -48,7 +48,7 @@ gera `gaius-v{epoch}.js` e reescreve `esbuild.config.mjs` + `layouts/layout.tpl`
 | Figma | Design → tokens, nunca hex verbatim; breakpoints são decisão nossa; valida com screenshot | 0011 |
 | Deploy | Merge em `master` = deploy via FTPS na loja Nuvemshop (hoje só existe a loja de dev `democamisetasromadev`; produção ainda não subiu); `/ftp-deploy` só a pedido explícito | 0012 |
 | Workflow | plan.md + specs em `docs/specs/<slug>/`; `/implement-spec` uma spec por vez; `/pr` abre PR e para | 0013 |
-| Testes | Desenvolve na máquina, valida na loja de dev `democamisetasromadev` (Playwright `real-*` + screenshots) + `lint:styles`; o renderer local do 0014 foi descontinuado | 0015 |
+| Testes | Desenvolve na máquina, valida na loja de dev `democamisetasromadev` (Playwright `desktop`/`mobile` em `tests/` + screenshots) + `lint:styles`; o renderer local do 0014 foi descontinuado | 0015 |
 
 ## Fluxo de uma feature
 

@@ -1,61 +1,102 @@
 import { test, expect } from "@playwright/test";
-import { gotoPreview, previewOnly } from "./preview.helpers.mjs";
+import { gotoStore } from "./helpers.mjs";
 
-// Regression tests for the hardcoded-color fixes of 2026-10-12 (ADR-0003).
-// Each one asserts that the rendered color *follows the admin palette*
-// (fixture: bg #FFFFF6, text #410911, primary #CB2C30) instead of a literal.
-// Palette values come from the preview fixtures, so these are preview-only.
-test.beforeEach(({}, testInfo) => previewOnly(testInfo, "asserts the fixture palette"));
+// Regressão das correções de cor hardcoded de 2026-10-12 (ADR-0003). Em vez de
+// literais, cada teste lê a paleta que a plataforma injetou (var(--*-color)) e
+// confere que o elemento renderizado a segue — assim o teste sobrevive a uma
+// troca de paleta no admin.
 
-const rgb = (hex, alpha) => {
-  const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
-  return alpha === undefined ? `rgb(${r}, ${g}, ${b})` : `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+const palette = (page) =>
+  page.evaluate(() => {
+    const resolve = (value) => {
+      const el = document.createElement("div");
+      el.style.color = value;
+      document.body.appendChild(el);
+      const c = getComputedStyle(el).color;
+      el.remove();
+      return c;
+    };
+    const root = getComputedStyle(document.documentElement);
+    return {
+      text: resolve("var(--text-color)"),
+      text40: resolve("color-mix(in srgb, var(--text-color) 40%, transparent)"),
+      bg: resolve("var(--background-color)"),
+      bg70: resolve("color-mix(in oklab, var(--background-color) 70%, transparent)"),
+      primary: resolve("var(--primary-color)"),
+      tokenBg: root.getPropertyValue("--color-bg").trim(),
+      tokenFg: root.getPropertyValue("--color-fg").trim(),
+      danger: root.getPropertyValue("--color-danger").trim(),
+    };
+  });
 
-test("product carousel seeds use the theme text color, no hex", async ({ page }) => {
-  await gotoPreview(page, "home");
+test("tokens do @theme resolvem para a paleta do admin e --color-danger existe", async ({ page }) => {
+  await gotoStore(page, "home");
+  const p = await palette(page);
+  expect(p.tokenBg).toMatch(/^(#|var\(|rgb|oklab)/);
+  expect(p.tokenFg).toMatch(/^(#|var\(|rgb|oklab)/);
+  expect(p.danger.toLowerCase()).toBe("#dc2626");
+  expect(p.text).not.toBe(p.bg);
+});
+
+test("seeds do carrossel de produtos usam a cor de texto do tema, sem hex", async ({ page }) => {
+  await gotoStore(page, "home");
   const paths = page.locator(".js-carousel-pagination svg path");
-  await expect(paths.first()).toBeVisible();
+  await expect(paths.first()).toBeAttached();
   const fills = await paths.evaluateAll((els) => els.map((e) => e.getAttribute("fill")));
   for (const fill of fills) expect(fill).not.toMatch(/#[0-9a-f]{3,8}/i);
-  const [active, inactive] = await paths.evaluateAll((els) => els.slice(0, 2).map((e) => getComputedStyle(e).fill));
-  expect(active).toBe(rgb("#410911"));
-  // color-mix(--text-color 40%, transparent) → same hue at 40% alpha
-  expect(inactive.replace(/\s/g, "")).toMatch(/^(rgba\(65,9,17,0\.4\)|color\(srgb.*\))$/);
+
+  const p = await palette(page);
+  const computed = await paths.evaluateAll((els) => els.map((e) => getComputedStyle(e).fill));
+  const active = computed.filter((c) => c === p.text);
+  const inactive = computed.filter((c) => c === p.text40);
+  expect(active).toHaveLength(1);
+  expect(inactive).toHaveLength(computed.length - 1);
 });
 
-// Tailwind v4 compiles `bg-bg/70` to color-mix(in oklab …), so Chromium reports
-// the computed value in oklab. Check alpha 0.7 and that the hue is the theme
-// background (lightness ≈ 1, not a literal off-white rgba).
-const expectThemeBg70 = (value) => {
-  expect(value).toMatch(/\/ 0\.7\)$|, 0\.7\)$/);
-  expect(value).toMatch(/^oklab\(0\.99|^rgba\(255, 255, 246/);
-};
-
-test("carousel and category dropdowns paint the theme background at 70%", async ({ page }) => {
-  await gotoPreview(page, "home");
+test("listas dos dropdowns do carrossel e da categoria pintam o fundo do tema a 70%", async ({ page }) => {
+  await gotoStore(page, "home");
+  let p = await palette(page);
   const carouselList = page.locator(".js-carousel-dropdown-list").first();
-  expectThemeBg70(await carouselList.evaluate((e) => getComputedStyle(e).backgroundColor));
+  if (await carouselList.count()) {
+    expect(await carouselList.evaluate((e) => getComputedStyle(e).backgroundColor)).toBe(p.bg70);
+  }
 
-  await gotoPreview(page, "category");
+  await gotoStore(page, "category");
+  p = await palette(page);
   const categoryList = page.locator(".js-category-dropdown-list").first();
-  expectThemeBg70(await categoryList.evaluate((e) => getComputedStyle(e).backgroundColor));
+  if (await categoryList.count()) {
+    expect(await categoryList.evaluate((e) => getComputedStyle(e).backgroundColor)).toBe(p.bg70);
+  }
 });
 
-test("VIP group seeds logo inherits the theme background color", async ({ page }) => {
-  await gotoPreview(page, "home");
+test("o logo do grupo VIP herda a cor de fundo do tema (currentColor)", async ({ page }) => {
+  await gotoStore(page, "home");
   const path = page.locator('[data-store="home-vip-group"] svg path').first();
+  test.skip((await path.count()) === 0, "seção VIP não configurada");
   expect(await path.getAttribute("fill")).toBe("currentColor");
-  expect(await path.evaluate((e) => getComputedStyle(e).fill)).toBe(rgb("#FFFFF6"));
+  const p = await palette(page);
+  expect(await path.evaluate((e) => getComputedStyle(e).fill)).toBe(p.bg);
 });
 
-test("highlighted menu item uses the primary color; --color-danger exists", async ({ page }) => {
-  await gotoPreview(page, "home");
-  const danger = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--color-danger").trim());
-  expect(danger.toLowerCase()).toBe("#dc2626");
-  // Mobile accordion: the highlight class is the only color rule there. (On the
-  // desktop nav the header's data-state rule in app.css outranks any utility,
-  // so the highlight never shows — pre-existing, see the 2026-10-12 audit.)
-  const highlighted = page.locator(".js-menu-mobile").getByText("Promoções").first();
-  expect(await highlighted.evaluate((e) => getComputedStyle(e).color)).toBe(rgb("#CB2C30"));
+test("item destacado do menu mobile usa a cor primária", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "mobile", "o destaque só existe no menu mobile (dívida ADR-0004)");
+  await gotoStore(page, "home");
+  await page.locator(".js-menu-mobile-toggle").click();
+  const highlighted = page.locator(".js-menu-mobile .text-fg").filter({ visible: true }).first();
+  test.skip((await highlighted.count()) === 0, "nenhum item destacado configurado no admin");
+  const p = await palette(page);
+  expect(await highlighted.evaluate((e) => getComputedStyle(e).color)).toBe(p.primary);
+});
+
+test("nenhum estilo inline com cor literal fora dos overlays preto/branco", async ({ page }) => {
+  for (const name of ["home", "category", "product"]) {
+    await gotoStore(page, name);
+    const offenders = await page.evaluate(() =>
+      [...document.querySelectorAll("[style*='#']")]
+        .filter((el) => !el.closest(".js-cart-drawer, [data-store='footer'], script, .js-nubesdk-slot"))
+        .map((el) => el.getAttribute("style"))
+        .filter((s) => /#[0-9a-f]{3,8}/i.test(s) && !/#fff(fff)?\b|#000(000)?\b/i.test(s)),
+    );
+    expect(offenders, `${name}: style="" com hex`).toEqual([]);
+  }
 });

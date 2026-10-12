@@ -1,0 +1,240 @@
+import { test, expect } from "@playwright/test";
+import { gotoStore, isMobile, visible, lastToast, expectCartCount, PATHS } from "../helpers.mjs";
+
+// templates/category.tpl + __src/js/modules/category/* + system/item-card-quickbuy.js
+
+const cards = (page) => page.locator(".js-category-grid [data-product-id]");
+
+test.describe("grid", () => {
+  test("primeira página tem até 12 cards, cada um com link, nome e preço", async ({ page }) => {
+    await gotoStore(page, "category");
+    const all = cards(page);
+    const n = await all.count();
+    expect(n).toBeGreaterThan(0);
+    expect(n).toBeLessThanOrEqual(12);
+    for (let i = 0; i < Math.min(n, 4); i++) {
+      const card = all.nth(i);
+      await expect(card.locator('a[href*="/produtos/"]').first()).toBeAttached();
+      expect((await card.getAttribute("data-product-name"))?.trim()).not.toBe("");
+      await expect(card).toContainText(/R\$/);
+    }
+  });
+
+  test("o card leva para a PDP do produto", async ({ page }) => {
+    await gotoStore(page, "category");
+    const card = cards(page).first();
+    const name = await card.getAttribute("data-product-name");
+    await card.locator('a[href*="/produtos/"]').first().click();
+    await page.waitForURL(/\/produtos\//);
+    await expect(page.locator("h1.js-product-name")).toContainText(name.slice(0, 15));
+  });
+
+  test("o desconto aparece só quando há preço 'de'", async ({ page }) => {
+    await gotoStore(page, "category");
+    const result = await cards(page).evaluateAll((els) =>
+      els.map((el) => {
+        const badge = [...el.querySelectorAll("span")].find((s) => /^-\d+%$/.test(s.textContent.trim()));
+        const compare = !!el.querySelector(".text-fg-muted");
+        return { badge: !!badge, compare };
+      }),
+    );
+    for (const r of result) expect(r.badge).toBe(r.compare);
+  });
+});
+
+test.describe("ordenação", () => {
+  test("escolher uma opção recarrega com sort_by e marca a opção", async ({ page }) => {
+    await gotoStore(page, "category");
+    const sorting = visible(page.locator(".js-category-sorting")).first();
+    const trigger = sorting.locator(".js-category-sorting-trigger");
+    await trigger.click();
+    await expect(sorting.locator(".js-category-sorting-list")).toBeVisible();
+    await expect(trigger).toHaveAttribute("aria-expanded", "true");
+
+    const option = sorting.locator(".js-category-sorting-option:not(.font-bold)").first();
+    const value = await option.getAttribute("data-sort-value");
+    await option.click();
+    await page.waitForURL((url) => url.searchParams.get("sort_by") === value);
+
+    const current = visible(page.locator(".js-category-sorting")).first().locator(`.js-category-sorting-option[data-sort-value="${value}"]`);
+    await expect(current).toHaveClass(/font-bold/);
+    expect(await cards(page).count()).toBeGreaterThan(0);
+  });
+
+  test("clique fora fecha a lista", async ({ page }) => {
+    await gotoStore(page, "category");
+    const sorting = visible(page.locator(".js-category-sorting")).first();
+    await sorting.locator(".js-category-sorting-trigger").click();
+    await expect(sorting.locator(".js-category-sorting-list")).toBeVisible();
+    await page.locator("h1").click();
+    await expect(sorting.locator(".js-category-sorting-list")).toBeHidden();
+  });
+
+  test("ordenar por preço realmente ordena os cards", async ({ page }) => {
+    await gotoStore(page, "category");
+    const options = visible(page.locator(".js-category-sorting")).first().locator(".js-category-sorting-option");
+    const values = await options.evaluateAll((els) => els.map((e) => e.dataset.sortValue));
+    const asc = values.find((v) => /price.*asc|asc.*price|menor/i.test(v));
+    test.skip(!asc, "sem opção de preço crescente");
+    await page.goto(`${PATHS.category}?sort_by=${asc}`);
+    const prices = await cards(page).evaluateAll((els) =>
+      els.map((el) => parseFloat((el.dataset.productPrice || "").replace(/[^\d,]/g, "").replace(",", "."))).filter((n) => !isNaN(n)),
+    );
+    expect(prices.length).toBeGreaterThan(1);
+    expect(prices).toEqual([...prices].sort((a, b) => a - b));
+  });
+});
+
+test.describe("filtros", () => {
+  test("abrem no modal (drawer no mobile) e fecham com Esc devolvendo o conteúdo", async ({ page }, testInfo) => {
+    await gotoStore(page, "category");
+    const trigger = visible(page.locator(".js-category-filter-trigger")).first();
+    test.skip((await trigger.count()) === 0, "categoria sem filtros");
+    await trigger.click();
+
+    const container = page.locator(".js-gaius-modal-container");
+    await expect(container).toHaveAttribute("data-state", "open");
+    const content = container.locator(".js-gaius-modal-content");
+    if (isMobile(testInfo)) await expect(content).toHaveClass(/js-gaius-modal-drawer/);
+    else await expect(content).not.toHaveClass(/js-gaius-modal-drawer/);
+    expect((await container.locator(".js-gaius-modal-body").innerText()).trim()).not.toBe("");
+
+    await page.keyboard.press("Escape");
+    await expect(container).toHaveAttribute("data-state", "closed");
+    await expect.poll(() => page.locator(".js-category-filter-content").evaluate((el) => el.innerHTML.trim().length)).toBeGreaterThan(0);
+  });
+
+  test("aplicar um filtro de categoria/variação muda a URL", async ({ page }) => {
+    await gotoStore(page, "category");
+    const trigger = visible(page.locator(".js-category-filter-trigger")).first();
+    test.skip((await trigger.count()) === 0, "categoria sem filtros");
+    await trigger.click();
+    const body = page.locator(".js-gaius-modal-container .js-gaius-modal-body");
+    const filter = body.locator(".js-apply-filter").filter({ visible: true }).first();
+    test.skip((await filter.count()) === 0, "sem filtros aplicáveis nesta categoria");
+    await filter.click();
+    await page.waitForURL((url) => url.search.length > 0 || url.pathname !== PATHS.category, { timeout: 20_000 });
+  });
+});
+
+test.describe("subcategorias", () => {
+  test("o dropdown ao lado do título navega para a categoria escolhida", async ({ page }) => {
+    await gotoStore(page, "category");
+    const dropdown = visible(page.locator(".js-category-dropdown")).first();
+    test.skip((await dropdown.count()) === 0, "categoria sem subcategorias");
+    await dropdown.locator(".js-category-dropdown-trigger").click();
+    const list = dropdown.locator(".js-category-dropdown-list");
+    await expect(list).toBeVisible();
+    const link = list.locator("a[href]").first();
+    const href = await link.getAttribute("href");
+    await link.click();
+    await page.waitForURL((url) => url.href.startsWith(new URL(href, page.url()).href));
+    await expect(page.locator("h1")).toBeVisible();
+  });
+});
+
+test.describe("rolagem infinita", () => {
+  test("carrega a próxima página sem duplicar produtos e esconde o botão no fim", async ({ page }) => {
+    await gotoStore(page, "category");
+    const grid = page.locator(".js-category-grid");
+    test.skip((await grid.getAttribute("data-is-last")) === "true", "categoria com uma página só");
+
+    const firstCount = await cards(page).count();
+    await page.locator(".js-category-load-more").scrollIntoViewIfNeeded();
+    await expect.poll(() => cards(page).count(), { timeout: 20_000 }).toBeGreaterThan(firstCount);
+
+    const ids = await cards(page).evaluateAll((els) => els.map((e) => e.dataset.productId));
+    expect(new Set(ids).size).toBe(ids.length);
+    await expect(page.locator(".js-category-scroll-spinner")).toBeHidden();
+
+    // os cards novos também têm quick buy inicializado
+    const lastCard = cards(page).last();
+    await expect(visible(lastCard.locator(".js-quickbuy-add-btn"))).toHaveCount(1);
+  });
+});
+
+test.describe("quick buy", () => {
+  // Devolve o primeiro card cujo JSON de variantes tem pelo menos uma opção esgotada
+  const findCardWithSoldOut = async (page) => {
+    const n = await cards(page).count();
+    for (let i = 0; i < n; i++) {
+      const card = cards(page).nth(i);
+      const variants = await card.locator(".js-quickbuy-variants-data").evaluate((s) => JSON.parse(s.textContent));
+      if (variants.some((v) => !v.available) && variants.some((v) => v.available)) return { card, variants };
+    }
+    return null;
+  };
+
+  test("opções esgotadas ficam desabilitadas e a primeira disponível vem selecionada", async ({ page }, testInfo) => {
+    await gotoStore(page, "category");
+    const found = await findCardWithSoldOut(page);
+    test.skip(!found, "nenhum card com opção esgotada nesta categoria");
+    const { card, variants } = found;
+
+    const qb = visible(card.locator(".js-quickbuy-container")).first();
+    await qb.locator(".js-quickbuy-dropdown-trigger").first().click();
+    const list = qb.locator(".js-quickbuy-dropdown-list").first();
+    await expect(list).toBeVisible();
+
+    const optionSel = isMobile(testInfo) ? ".js-quickbuy-pill" : ".js-quickbuy-dropdown-option";
+    const options = await list.locator(optionSel).evaluateAll((els) =>
+      els.map((el) => ({ name: el.dataset.optionName, selected: el.dataset.selected === "true", disabled: el.classList.contains("pointer-events-none") })),
+    );
+    for (const o of options) {
+      const available = variants.some((v) => v.option0 === o.name && v.available);
+      expect(o.disabled, `${o.name} disabled`).toBe(!available);
+    }
+    const firstAvailable = options.find((o) => !o.disabled);
+    expect(options.filter((o) => o.selected).map((o) => o.name)).toEqual([firstAvailable.name]);
+    await expect(qb.locator(".js-quickbuy-dropdown-label").first()).toHaveText(firstAvailable.name);
+  });
+
+  test("escolher uma opção atualiza o rótulo e fecha a lista", async ({ page }, testInfo) => {
+    await gotoStore(page, "category");
+    const card = cards(page).first();
+    const qb = visible(card.locator(".js-quickbuy-container")).first();
+    test.skip((await qb.locator(".js-quickbuy-dropdown").count()) === 0, "produto sem variações");
+
+    await qb.locator(".js-quickbuy-dropdown-trigger").first().click();
+    const list = qb.locator(".js-quickbuy-dropdown-list").first();
+    const optionSel = isMobile(testInfo) ? ".js-quickbuy-pill" : ".js-quickbuy-dropdown-option";
+    const candidate = list.locator(`${optionSel}:not(.pointer-events-none):not([data-selected])`).first();
+    test.skip((await candidate.count()) === 0, "só uma opção disponível");
+    const name = await candidate.getAttribute("data-option-name");
+    // locator fixo pelo nome: o seletor acima é preguiçoso e deixaria de casar depois do clique
+    const option = list.locator(`${optionSel}[data-option-name="${name}"]`).first();
+    await option.click();
+    await expect(list).toBeHidden();
+    await expect(qb.locator(".js-quickbuy-dropdown-label").first()).toHaveText(name);
+    await expect(option).toHaveAttribute("data-selected", "true");
+  });
+
+  test("+ adiciona ao carrinho com toast e badge, sem navegar", async ({ page }) => {
+    await gotoStore(page, "category");
+    const card = cards(page).first();
+    const name = await card.getAttribute("data-product-name");
+    const qb = visible(card.locator(".js-quickbuy-container")).first();
+    const add = qb.locator(".js-quickbuy-add-btn");
+    await expect(add).toBeVisible();
+    await expect(add).toHaveAttribute("aria-label", /.+/);
+
+    const url = page.url();
+    await add.click();
+    await expect(lastToast(page)).toContainText(name.slice(0, 15), { timeout: 15_000 });
+    await expectCartCount(page, 1);
+    expect(page.url()).toBe(url);
+    await expect(page.locator(".js-cart-drawer")).toHaveAttribute("data-state", "closed");
+  });
+
+  test("abrir um segundo dropdown fecha o primeiro", async ({ page }) => {
+    await gotoStore(page, "category");
+    const first = visible(cards(page).nth(0).locator(".js-quickbuy-container")).first().locator(".js-quickbuy-dropdown").first();
+    const second = visible(cards(page).nth(1).locator(".js-quickbuy-container")).first().locator(".js-quickbuy-dropdown").first();
+    test.skip((await first.count()) === 0 || (await second.count()) === 0, "cards sem variações");
+    await first.locator(".js-quickbuy-dropdown-trigger").click();
+    await expect(first.locator(".js-quickbuy-dropdown-list")).toBeVisible();
+    await second.locator(".js-quickbuy-dropdown-trigger").click();
+    await expect(second.locator(".js-quickbuy-dropdown-list")).toBeVisible();
+    await expect(first.locator(".js-quickbuy-dropdown-list")).toBeHidden();
+  });
+});

@@ -101,10 +101,11 @@ Independente de `__src/` ter mudado:
 2. Subir para a loja de dev (`npm run ftp:deploy`, mesmas regras da skill
    `/ftp-deploy`: build em dia, listar o que vai subir). Dentro de uma spec
    isso é parte da validação, não um pedido à parte (ADR-0015 §5).
-3. `npm test` — Playwright contra a loja de dev (`ROMA_STORE_URL` no `.env`;
-   `--headed` se o Cloudflare barrar headless). Se a spec cria página/seção
-   nova, escreva um teste em `tests/` cobrindo o que ela promete, apontando
-   para a URL real (slug em `ROMA_*_PATH`).
+3. `npm test` — Playwright contra a loja de dev, headed por padrão (ver
+   `tests/README.md`). Escreva o teste da spec ANTES de implementar, em
+   `tests/<contexto>/` a partir dos critérios de aceite, e rode só ele até
+   ficar verde em `desktop` e `mobile`; um bug conhecido fica como
+   `test.fail(true, "Fibery #NNN")`, nunca com o assert afrouxado.
 4. Screenshots das páginas afetadas na loja de dev, mobile e desktop, e
    **olhe para elas** antes de dizer que está pronto — compare com o
    Figma/spec, não só com o CSS gerado.

@@ -1,38 +1,40 @@
 import { defineConfig, devices } from "@playwright/test";
 
-// Two targets, same tests (see tests/preview.helpers.mjs):
-//   preview-*  → local Twig renderer (tools/preview), offline. Default.
-//   real-*     → a Nuvemshop store (the dev store), only when ROMA_STORE_URL is set:
-//                ROMA_STORE_URL=https://democamisetasromadev.lojavirtualnuvem.com.br \
-//                npx playwright test --project=real-desktop --headed
-//                Nuvemshop sits behind a Cloudflare challenge that blocks datacenter
-//                IPs and sometimes headless browsers — run it from a workstation, headed.
+// Alvo único: a loja de dev da Nuvemshop (ADR-0015). O renderer local foi
+// descontinuado, então não existem mais projetos "preview-*" nem webServer.
+//
+//   npm test                                     → desktop + mobile, headed
+//   npx playwright test --project=desktop tests/product
+//   PW_HEADLESS=1 npx playwright test tests/smoke.spec.mjs   (só leitura)
+//
+// A Nuvemshop fica atrás de um challenge do Cloudflare: a partir desta máquina
+// os GETs passam em headless, mas o POST /comprar/ (adicionar ao carrinho)
+// recebe 403 — por isso a suíte roda headed por padrão. Não roda em CI (IP de
+// datacenter é bloqueado).
 
-const PORT = Number(process.env.PREVIEW_PORT || 4321);
-export const STORE_URL = process.env.ROMA_STORE_URL?.replace(/\/$/, "");
+export const STORE_URL = (process.env.ROMA_STORE_URL || "https://democamisetasromadev.lojavirtualnuvem.com.br").replace(/\/$/, "");
 
-const mobile = { ...devices["Pixel 7"] };
 const desktop = { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } };
+const mobile = { ...devices["Pixel 7"] };
 
 export default defineConfig({
   testDir: "tests",
-  outputDir: ".preview/test-results",
+  outputDir: "test-results",
   fullyParallel: true,
-  reporter: [["list"]],
-  use: { screenshot: "only-on-failure" },
-  projects: [
-    { name: "preview-mobile", use: { ...mobile, baseURL: `http://localhost:${PORT}` } },
-    { name: "preview-desktop", use: { ...desktop, baseURL: `http://localhost:${PORT}` } },
-    ...(STORE_URL
-      ? [
-          { name: "real-mobile", use: { ...mobile, baseURL: STORE_URL } },
-          { name: "real-desktop", use: { ...desktop, baseURL: STORE_URL } },
-        ]
-      : []),
-  ],
-  webServer: {
-    command: "node tools/preview/serve.mjs",
-    port: PORT,
-    reuseExistingServer: !process.env.CI,
+  workers: Number(process.env.PW_WORKERS || 3),
+  retries: Number(process.env.PW_RETRIES ?? 1),
+  timeout: 60_000,
+  expect: { timeout: 10_000 },
+  reporter: [["list"], ["html", { open: "never", outputFolder: "playwright-report" }]],
+  use: {
+    baseURL: STORE_URL,
+    headless: process.env.PW_HEADLESS === "1",
+    locale: "pt-BR",
+    screenshot: "only-on-failure",
+    trace: "retain-on-failure",
   },
+  projects: [
+    { name: "desktop", use: desktop },
+    { name: "mobile", use: mobile },
+  ],
 });
