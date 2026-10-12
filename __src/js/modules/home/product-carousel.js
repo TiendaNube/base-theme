@@ -126,6 +126,7 @@ export const productCarousel = () => {
         swipers[`tab-${i}`] = new Swiper(container, {
           slidesPerView: mobilePerView,
           spaceBetween: 12,
+          threshold: 10,
           loop: true,
           loopedSlides: loopSlides,
           loopAdditionalSlides: 2,
