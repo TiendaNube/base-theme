@@ -62,7 +62,7 @@ export const cartDrawerSystem = () => {
       panel.style.height = "";
     }
 
-    refreshCart();
+    refreshCartIfStale();
   };
 
   const closeDrawer = () => {
@@ -196,9 +196,12 @@ export const cartDrawerSystem = () => {
     // Header badge (desktop)
     const remoteWidget = doc.querySelector(".js-cart-widget-amount");
     const localWidget = document.querySelector(".js-cart-widget-amount");
-    if (remoteWidget && localWidget) {
+    if (remoteWidget && localWidget && localWidget.textContent !== remoteWidget.textContent) {
       localWidget.textContent = remoteWidget.textContent;
     }
+    // Our own write is not a platform cart mutation — drop it so the badge
+    // observer below does not mark the cart dirty again.
+    badgeObserver?.takeRecords();
 
     // Header badge (mobile)
     const localBadge = document.querySelector(".js-cart-widget-badge");
@@ -221,9 +224,12 @@ export const cartDrawerSystem = () => {
     if (typeof lucide !== "undefined") lucide.createIcons();
   };
 
-  // Detect items present locally but missing from remote (removed by backend due to stock)
+  // Detect items present locally but missing from remote (removed by backend due to stock).
+  // Items the shopper removed (`data-removing`) are expected to be gone and are skipped,
+  // otherwise a sync landing before the platform drops them from the DOM would announce
+  // them as "out of stock".
   const detectRemovedItems = (localList, remoteDoc) => {
-    const localItems = localList.querySelectorAll(".js-cart-item[data-item-id]");
+    const localItems = localList.querySelectorAll(".js-cart-item[data-item-id]:not([data-removing])");
     const remoteDrawer = remoteDoc.querySelector(".js-cart-drawer");
     const remoteIds = new Set();
     if (remoteDrawer) {
@@ -245,7 +251,7 @@ export const cartDrawerSystem = () => {
     return removed;
   };
 
-  // Animate out removed items (same pattern as manual removal lines 210-227)
+  // Animate out removed items (same pattern as the manual removal below)
   const animateRemovedItems = (items) => {
     return new Promise((resolve) => {
       if (items.length === 0) return resolve();
@@ -274,14 +280,27 @@ export const cartDrawerSystem = () => {
     });
   };
 
+  // Cart freshness. Every known cart mutation bumps `cartVersion`; a refresh
+  // records the version it started from and, on success, promotes it to
+  // `syncedVersion`. Opening the drawer only refetches when they differ, so a
+  // plain open/close does not pay for a 600 KB page fetch.
+  let cartVersion = 0;
+  let syncedVersion = 0;
+  let inflightVersion = 0;
+
+  const markCartDirty = () => {
+    cartVersion++;
+  };
+
   let isRefreshing = false;
   let refreshQueued = false;
 
   // Ends the in-flight refresh. A refresh requested while another was running
   // (two fast add-to-cart clicks) is replayed once here, otherwise the second
   // cart state would never reach the progress bars.
-  const endRefresh = () => {
+  const endRefresh = (ok) => {
     isRefreshing = false;
+    if (ok) syncedVersion = inflightVersion;
     if (refreshQueued) {
       refreshQueued = false;
       refreshCart();
@@ -295,23 +314,15 @@ export const cartDrawerSystem = () => {
       return;
     }
     isRefreshing = true;
+    inflightVersion = cartVersion;
 
     fetchPage()
       .then((doc) => {
-        if (!doc) {
-          endRefresh();
-          return;
-        }
-        const remoteDrawer = doc.querySelector(".js-cart-drawer");
-        if (!remoteDrawer) {
-          endRefresh();
-          return;
-        }
-
-        const remoteList = remoteDrawer.querySelector(".js-ajax-cart-list");
+        const remoteDrawer = doc && doc.querySelector(".js-cart-drawer");
+        const remoteList = remoteDrawer && remoteDrawer.querySelector(".js-ajax-cart-list");
         const localList = drawer.querySelector(".js-ajax-cart-list");
         if (!remoteList || !localList) {
-          endRefresh();
+          endRefresh(false);
           return;
         }
 
@@ -322,7 +333,7 @@ export const cartDrawerSystem = () => {
           animateRemovedItems(removedItems).then(() => {
             localList.innerHTML = remoteList.innerHTML;
             syncMeta(doc);
-            endRefresh();
+            endRefresh(true);
 
             // Toast feedback
             if (removedItems.length === 1) {
@@ -341,13 +352,101 @@ export const cartDrawerSystem = () => {
           // No items removed — direct replacement (current behavior)
           localList.innerHTML = remoteList.innerHTML;
           syncMeta(doc);
-          endRefresh();
+          endRefresh(true);
         }
       })
       .catch(() => {
-        endRefresh();
+        endRefresh(false);
       });
   };
+
+  // Drawer open: skip the refetch when nothing changed since the last sync
+  // (or since the one already in flight started).
+  const refreshCartIfStale = () => {
+    const base = isRefreshing ? inflightVersion : syncedVersion;
+    if (cartVersion !== base) refreshCart();
+  };
+
+  // ---------------------------------------------------------------------------
+  // Sync after platform cart requests (+/−, typed quantity, remove).
+  //
+  // LS.plusQuantity / LS.minusQuantity / LS.changeQuantity / LS.removeItem fire
+  // their own AJAX request and expose no completion hook. Instead of guessing
+  // with a fixed delay, the drawer refetches as soon as that request is over:
+  //   1. PerformanceObserver("resource") reports the end of any same-origin
+  //      fetch/XHR under `/cart/…` (e.g. POST /cart/update/), whatever library
+  //      the platform uses to send it — no LS.* call, no monkey-patching.
+  //   2. The platform rewrites `.js-cart-widget-amount` from that same response
+  //      (badge observer below) — a second signal in case (1) is unavailable.
+  //   3. A fallback timer guarantees a sync even if neither signal arrives.
+  // Signals are coalesced by a short debounce so a burst of clicks ends in one
+  // fetch shortly after the LAST platform request completes.
+  // ---------------------------------------------------------------------------
+  const SYNC_DEBOUNCE_MS = 200;
+  const SYNC_FALLBACK_MS = 2500;
+
+  let syncDebounceTimer = null;
+  let syncFallbackTimer = null;
+  let pendingPlatformRequests = 0;
+
+  const scheduleSync = () => {
+    clearTimeout(syncDebounceTimer);
+    syncDebounceTimer = setTimeout(() => {
+      syncDebounceTimer = null;
+      refreshCart();
+    }, SYNC_DEBOUNCE_MS);
+  };
+
+  // Called right before/after the drawer hands a mutation to the platform.
+  const awaitPlatformRequest = () => {
+    markCartDirty();
+    pendingPlatformRequests++;
+    clearTimeout(syncFallbackTimer);
+    syncFallbackTimer = setTimeout(() => {
+      syncFallbackTimer = null;
+      pendingPlatformRequests = 0;
+      scheduleSync();
+    }, SYNC_FALLBACK_MS);
+  };
+
+  // A platform cart request finished (or its DOM side effects landed).
+  const onPlatformCartChange = (isRequestEnd) => {
+    markCartDirty();
+    if (isRequestEnd && pendingPlatformRequests > 0) pendingPlatformRequests--;
+    if (pendingPlatformRequests === 0) {
+      clearTimeout(syncFallbackTimer);
+      syncFallbackTimer = null;
+    }
+    // Drawer closed and nothing pending: stay dirty, the next open refetches.
+    if (isOpen || syncFallbackTimer) scheduleSync();
+  };
+
+  const isPlatformCartRequest = (entry) => {
+    if (entry.initiatorType !== "xmlhttprequest" && entry.initiatorType !== "fetch") return false;
+    let url;
+    try {
+      url = new URL(entry.name, window.location.href);
+    } catch (e) {
+      return false;
+    }
+    if (url.origin !== window.location.origin) return false;
+    // Our own refresh GETs the current page — never treat it as a mutation.
+    if (url.pathname === window.location.pathname) return false;
+    return /\/cart\/[^/]+/.test(url.pathname);
+  };
+
+  if (typeof PerformanceObserver !== "undefined") {
+    try {
+      const requestObserver = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (isPlatformCartRequest(entry)) onPlatformCartChange(true);
+        });
+      });
+      requestObserver.observe({ type: "resource" });
+    } catch (e) {
+      // Unsupported entry type — badge observer + fallback timer still apply.
+    }
+  }
 
   // Event: backdrop click
   if (backdrop) backdrop.addEventListener("click", closeDrawer);
@@ -368,18 +467,14 @@ export const cartDrawerSystem = () => {
     if (e.key === "Escape" && isOpen) closeDrawer();
   });
 
-  // Track pending removals for batched sync
-  let pendingRemovals = 0;
-  let removeSyncTimer = null;
-
-  const scheduleRemoveSync = () => {
-    clearTimeout(removeSyncTimer);
-    // Wait 1.2s after last removal to let all LS.removeItem AJAX calls complete
-    removeSyncTimer = setTimeout(() => {
-      pendingRemovals = 0;
-      refreshCart();
-    }, 1200);
-  };
+  // The cart may have changed elsewhere (another tab, page restored from the
+  // back/forward cache) — force the next open to refetch.
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") markCartDirty();
+  });
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) markCartDirty();
+  });
 
   // Event: animated item removal
   drawer.addEventListener("click", (e) => {
@@ -391,6 +486,7 @@ export const cartDrawerSystem = () => {
 
     const cartItem = removeBtn.closest(".js-cart-item");
     if (!cartItem) {
+      awaitPlatformRequest();
       LS.removeItem(itemId, true);
       return;
     }
@@ -398,9 +494,9 @@ export const cartDrawerSystem = () => {
     // Prevent double-click
     if (cartItem.dataset.removing) return;
     cartItem.dataset.removing = "true";
-    pendingRemovals++;
 
-    // Fire server removal in background
+    // Fire server removal in background; the sync starts when it completes
+    awaitPlatformRequest();
     LS.removeItem(itemId, true);
 
     // Animate: fade + slide right
@@ -424,8 +520,9 @@ export const cartDrawerSystem = () => {
 
     // After collapse, hide item visually but keep in DOM so platform JS
     // can still reference it during its AJAX callback (avoids null .style errors).
-    // refreshCart() will replace the full list HTML later.
+    // refreshCart() replaces the full list HTML once the platform request ends.
     setTimeout(() => {
+      if (!cartItem.isConnected) return; // list already re-rendered by a sync
       cartItem.style.display = "none";
 
       const remaining = drawer.querySelectorAll(".js-cart-item:not([style*='display: none'])");
@@ -435,53 +532,43 @@ export const cartDrawerSystem = () => {
         const footer = drawer.querySelector(".js-cart-drawer-footer");
         if (footer) footer.style.display = "none";
       }
-
-      // Debounced: wait for all rapid removals to settle, then full sync
-      scheduleRemoveSync();
     }, 450);
   });
-
-  // Refresh progress bars after quantity changes inside drawer.
-  // Waits for the platform AJAX (LS.plusQuantity/LS.minusQuantity/LS.changeQuantity)
-  // to finish before refetching the page.
-  let quantitySyncTimer = null;
-
-  const scheduleQuantitySync = () => {
-    if (pendingRemovals > 0) return;
-    clearTimeout(quantitySyncTimer);
-    quantitySyncTimer = setTimeout(() => {
-      refreshCart();
-    }, 2000);
-  };
 
   // +/- buttons (inline onclick → LS.plusQuantity/LS.minusQuantity)
   drawer.addEventListener("click", (e) => {
     if (!e.target.closest(".js-cart-quantity-btn")) return;
-    scheduleQuantitySync();
+    awaitPlatformRequest();
   });
 
   // Typed quantity: store.js.tpl binds "focusout" on .js-cart-quantity-input and
-  // fires LS.changeQuantity. Value 0 is skipped on purpose — that path opens the
-  // platform's delete confirm and is handled by the removal flow instead.
+  // fires LS.changeQuantity (or LS.removeItem after a confirm when the value is 0).
+  // The request end is what triggers the sync; this only arms the fallback.
   drawer.addEventListener("focusout", (e) => {
     const input = e.target.closest && e.target.closest(".js-cart-quantity-input");
     if (!input) return;
-    if (parseInt(input.value, 10) > 0) scheduleQuantitySync();
+    awaitPlatformRequest();
   });
 
-  // Observe platform updates to desktop badge and mirror to mobile badge
+  // Observe platform updates to desktop badge: mirror to mobile badge and treat
+  // it as a "cart changed" signal (the platform rewrites it from the response of
+  // every cart request). Writes made by syncMeta() are discarded via takeRecords().
   const desktopBadge = document.querySelector(".js-cart-widget-amount");
   const mobileBadge = document.querySelector(".js-cart-widget-badge");
-  if (desktopBadge && mobileBadge) {
-    const badgeObserver = new MutationObserver(() => {
-      const countText = desktopBadge.textContent.replace(/\D/g, "");
-      const count = parseInt(countText, 10) || 0;
-      if (count > 0) {
-        mobileBadge.textContent = count;
-        mobileBadge.hidden = false;
-      } else {
-        mobileBadge.hidden = true;
+  let badgeObserver = null;
+  if (desktopBadge) {
+    badgeObserver = new MutationObserver(() => {
+      if (mobileBadge) {
+        const countText = desktopBadge.textContent.replace(/\D/g, "");
+        const count = parseInt(countText, 10) || 0;
+        if (count > 0) {
+          mobileBadge.textContent = count;
+          mobileBadge.hidden = false;
+        } else {
+          mobileBadge.hidden = true;
+        }
       }
+      onPlatformCartChange(false);
     });
     badgeObserver.observe(desktopBadge, { childList: true, characterData: true, subtree: true });
   }
@@ -489,5 +576,8 @@ export const cartDrawerSystem = () => {
   // Register window globals
   window.openCartDrawer = openDrawer;
   window.closeCartDrawer = closeDrawer;
-  window.onCartUpdate = () => refreshCart();
+  window.onCartUpdate = () => {
+    markCartDirty();
+    refreshCart();
+  };
 };

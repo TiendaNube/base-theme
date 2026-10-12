@@ -41,7 +41,7 @@ export const searchSystem = () => {
     document.documentElement.style.overflow = "hidden";
   }
 
-  function closeSearch() {
+  function closeSearch({ clear = true } = {}) {
     if (!isOpen) return;
 
     isOpen = false;
@@ -55,8 +55,9 @@ export const searchSystem = () => {
       overlay.classList.add("pointer-events-none");
     }, 300);
 
-    // Clear input and hide suggestions
-    input.value = "";
+    // Clear input (unless submitting: the browser still has to serialize it)
+    // and hide suggestions
+    if (clear) input.value = "";
     if (suggestContainer) {
       suggestContainer.style.display = "none";
     }
@@ -159,7 +160,7 @@ export const searchSystem = () => {
   // Form submit - close panel and navigate
   if (form) {
     form.addEventListener("submit", () => {
-      closeSearch();
+      closeSearch({ clear: false });
       // Form submits naturally to store.search_url
     });
   }

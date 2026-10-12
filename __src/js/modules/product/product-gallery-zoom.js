@@ -24,7 +24,7 @@ export const productGalleryZoom = () => {
 
     let html = "";
     slides.forEach((_, index) => {
-      html += `<span class="cursor-pointer js-product-gallery-zoom-seed" data-index="${index}">${seedSVG(index === activeIndex)}</span>`;
+      html += `<span class="inline-flex items-center justify-center w-6 h-6 cursor-pointer js-product-gallery-zoom-seed" data-index="${index}">${seedSVG(index === activeIndex)}</span>`;
     });
     paginationContainer.innerHTML = html;
 
@@ -97,6 +97,31 @@ export const productGalleryZoom = () => {
 
   if (closeBtn) closeBtn.addEventListener("click", closeZoom);
   if (backdrop) backdrop.addEventListener("click", closeZoom);
+
+  // The content layer covers the backdrop, so a click on the dark area lands on
+  // the content / swiper / wrapper / slide instead. Close only when the click
+  // is on that empty area (not the <img>, X, seeds or arrows) and the pointer
+  // did not travel — a Swiper drag that ends on empty area must not close.
+  const content = container.querySelector(".js-product-gallery-zoom-content");
+  const wrapperEl = swiperEl ? swiperEl.querySelector(".swiper-wrapper") : null;
+  const DRAG_THRESHOLD = 10;
+  let downX = 0;
+  let downY = 0;
+
+  if (content) {
+    content.addEventListener("pointerdown", (e) => {
+      downX = e.clientX;
+      downY = e.clientY;
+    });
+
+    content.addEventListener("click", (e) => {
+      const t = e.target;
+      const isEmptyArea = t === content || t === swiperEl || t === wrapperEl || slides.includes(t);
+      if (!isEmptyArea) return;
+      if (Math.hypot(e.clientX - downX, e.clientY - downY) > DRAG_THRESHOLD) return;
+      closeZoom();
+    });
+  }
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isOpen) closeZoom();

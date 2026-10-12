@@ -53,7 +53,6 @@ for (const name of PAGES) {
 
 test("mobile: alvos de toque dos controles principais têm pelo menos 24px (WCAG 2.5.8)", async ({ page }, testInfo) => {
   test.skip(!isMobile(testInfo), "só mobile");
-  test.fail(true, "Fibery #224 — busca e carrinho do header com 20×20 px, seeds do carrossel com 11×8 px");
   const small = [];
   const check = async (selector, label) => {
     const boxes = await page.locator(selector).filter({ visible: true }).evaluateAll((els) =>
