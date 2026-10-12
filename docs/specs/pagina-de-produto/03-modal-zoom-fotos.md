@@ -65,7 +65,8 @@ remover o bind, não editar `store.js.tpl`.
       caso não encontre — sem importar `product-gallery.js` (F9).
       Verificado por leitura de código
       (`__src/js/modules/product/product-gallery-zoom.js`).
-- [x] Botão "X" fecha o overlay; tecla `Escape` fecha; scroll do `body` é
+- [x] Botão "X" fecha o overlay; tecla `Escape` fecha; clicar fora da foto
+      (no fundo escuro) fecha o zoom, sem fechar ao arrastar o Swiper; scroll do `body` é
       travado/restaurado via `lockScroll`/`unlockScroll` reimplementados
       localmente (mesmo padrão de `modal.js`, sem importá-lo). Verificado
       por leitura de código.
