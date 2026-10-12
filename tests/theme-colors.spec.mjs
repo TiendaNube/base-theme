@@ -1,9 +1,11 @@
 import { test, expect } from "@playwright/test";
-import { gotoPreview } from "./preview.helpers.mjs";
+import { gotoPreview, previewOnly } from "./preview.helpers.mjs";
 
 // Regression tests for the hardcoded-color fixes of 2026-10-12 (ADR-0003).
 // Each one asserts that the rendered color *follows the admin palette*
 // (fixture: bg #FFFFF6, text #410911, primary #CB2C30) instead of a literal.
+// Palette values come from the preview fixtures, so these are preview-only.
+test.beforeEach(({}, testInfo) => previewOnly(testInfo, "asserts the fixture palette"));
 
 const rgb = (hex, alpha) => {
   const [r, g, b] = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
