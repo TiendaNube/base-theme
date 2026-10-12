@@ -148,6 +148,28 @@ test.describe("com item", () => {
     }
   });
 
+  test("barras de progresso acompanham o + sem esperar um timer fixo (Fibery #220)", async ({ page }) => {
+    await gotoStore(page, "product");
+    const fill = page.locator(".js-cart-drawer .js-cart-progress-fill").first();
+    test.skip((await fill.count()) === 0, "loja sem barras de progresso configuradas");
+
+    const widthOf = () => fill.evaluate((el) => parseFloat(el.style.width) || 0);
+    await addToCartFromPdp(page);
+    await openCartDrawer(page);
+    const item = items(page).first();
+    await expect(item).toBeVisible({ timeout: 15_000 });
+    // espera o refresh do add-to-cart assentar antes de medir
+    await expect.poll(widthOf, { timeout: 15_000 }).toBeGreaterThan(0);
+    const before = await widthOf();
+    test.skip(before >= 100, "uma unidade já completa a barra; o + não a move");
+
+    // Antes do #220 o drawer esperava 2 s fixos depois do + e só então buscava
+    // a página (~2,8 s no total). Agora a busca sai quando o POST da plataforma
+    // termina: ~0,7 s de request + 0,2 s de debounce + o GET da página.
+    await item.locator('.js-cart-quantity-btn[data-component="quantity.plus"]').click();
+    await expect.poll(widthOf, { timeout: 2_200, intervals: [100] }).toBeGreaterThan(before);
+  });
+
   test("o toast de produto abre o drawer ao ser clicado", async ({ page }) => {
     await gotoStore(page, "product");
     const { toast } = await addToCartFromPdp(page);
