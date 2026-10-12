@@ -1,6 +1,6 @@
 ---
 name: ftp-deploy
-description: Sobe config/, layouts/, snipplets/, static/ e templates/ direto pro FTP de produção via scripts/ftp-deploy.mjs, fora do fluxo git (sem commit, sem PR, sem passar pela master) — pra testar mudanças no preview real da Nuvemshop sem esperar merge. Publica imediatamente pro site ao vivo, incluindo qualquer mudança não commitada que estiver no disco. Roda build antes se __src/ mudou. Use quando o usuário pede pra "subir pro FTP pra testar", "publicar pra ver no site", "mandar pro FTP direto", "testar isso no preview real" — nunca por iniciativa própria, sempre a pedido explícito.
+description: Sobe config/, layouts/, snipplets/, static/ e templates/ direto pro FTP da loja Nuvemshop (hoje a loja de dev democamisetasromadev — não há produção ainda, ver ADR-0012) via scripts/ftp-deploy.mjs, fora do fluxo git (sem commit, sem PR, sem passar pela master) — pra testar mudanças no preview real da Nuvemshop sem esperar merge. Publica imediatamente pro site ao vivo, incluindo qualquer mudança não commitada que estiver no disco. Roda build antes se __src/ mudou. Use quando o usuário pede pra "subir pro FTP pra testar", "publicar pra ver no site", "mandar pro FTP direto", "testar isso no preview real" — nunca por iniciativa própria, sempre a pedido explícito.
 ---
 
 # /ftp-deploy
@@ -12,7 +12,10 @@ tem servidor de dev local nem staging: a única forma de ver uma mudança
 "de verdade" é no preview da loja Nuvemshop, e a loja lê os arquivos direto
 do FTP, sem uma etapa de rascunho/publish separada.
 
-**Isso é publicação imediata em produção, visível pra clientes reais.** Não
+**Isso é publicação imediata na loja que lê esse FTP.** Hoje (2026-10) é a
+loja de dev `democamisetasromadev.lojavirtualnuvem.com.br`, sem clientes; o
+rigor desta skill existe para quando o mesmo FTP (ou um `FTP_*_PROD`) for a
+producao — ver ADR-0012. Não
 é a mesma coisa que a skill `/pr` (que só commita/abre PR e nunca mexe em
 produção) nem que `/main` (que só sincroniza local). Não confunda as três.
 

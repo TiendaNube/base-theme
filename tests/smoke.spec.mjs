@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { gotoPreview } from "./preview.helpers.mjs";
+import { gotoPreview, previewOnly } from "./preview.helpers.mjs";
 
 // One test per fixture page: the page renders, the custom bundle boots without
 // throwing, and the global modules registered their window.* API (ADR-0006).
@@ -24,7 +24,8 @@ for (const name of ["home", "product", "category"]) {
   });
 }
 
-test("theme tokens resolve to the admin colors (ADR-0003)", async ({ page }) => {
+test("theme tokens resolve to the admin colors (ADR-0003)", async ({ page }, testInfo) => {
+  previewOnly(testInfo, "asserts the fixture palette");
   await gotoPreview(page, "home");
   const colors = await page.evaluate(() => {
     const s = getComputedStyle(document.documentElement);

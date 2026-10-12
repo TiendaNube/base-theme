@@ -1,6 +1,6 @@
 # ADR-0014 — Stack de teste local: renderer Twig + fixtures + Playwright + lint de estilos
 
-- **Status:** Aceito
+- **Status:** Substituído em parte por ADR-0015 — o renderer local deixou de ser o alvo de teste no mesmo dia; `lint:styles` e a suíte Playwright (projetos `real-*`) continuam valendo
 - **Data:** 2026-10-12
 - **Decisores:** Caio Marques (owner), implementado por Claude Code
 
@@ -75,6 +75,15 @@ Alternativas consideradas:
    compilado (servido como SCSS cru; regras inválidas são ignoradas pelo
    browser), e templates 100% legados (conta, blog, contato) que não têm
    fixture. Uma feature que depende disso é validada no real.
+
+6. **Segundo alvo: a loja de dev.** `https://democamisetasromadev.lojavirtualnuvem.com.br/`
+   é o ambiente real sem clientes. A suíte é escrita por página lógica e roda
+   também lá (`ROMA_STORE_URL=… npx playwright test --project=real-*`); os
+   testes que dependem das fixtures se auto-pulam. A Nuvemshop está atrás de
+   um challenge do Cloudflare que bloqueia IPs de datacenter — o alvo real só
+   roda de uma estação de trabalho (headed), nunca do Claude Code na nuvem.
+   Isso mantém o preview local como loop de desenvolvimento da IA e o real
+   como validação humana (ou de CI com IP permitido, se um dia existir).
 
 ## Consequências
 

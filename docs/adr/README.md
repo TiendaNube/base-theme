@@ -35,7 +35,8 @@ Se o contrato contradiz um ADR, o contrato está desatualizado — corrija o con
 | [0011](0011-figma-para-tokens.md) | Figma é fonte de intenção, não de valores | Aceito |
 | [0012](0012-deploy-ftp-e-producao.md) | Merge em `master` = deploy em produção via FTPS; `/ftp-deploy` manual | Aceito |
 | [0013](0013-workflow-spec-driven.md) | Desenvolvimento spec-driven com contrato auditável | Aceito |
-| [0014](0014-stack-de-teste-local.md) | Stack de teste local: renderer Twig + fixtures + Playwright + lint de estilos | Aceito |
+| [0014](0014-stack-de-teste-local.md) | Stack de teste local: renderer Twig + fixtures + Playwright + lint de estilos | Substituído em parte por 0015 |
+| [0015](0015-desenvolver-na-maquina-testar-na-loja-de-dev.md) | Desenvolver na máquina, testar na loja de dev | Aceito |
 
 ## Anatomia de um ADR
 

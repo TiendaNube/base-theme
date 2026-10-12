@@ -11,7 +11,8 @@ já foi escrito e validado no preview da Nuvemshop durante a conversa.
 
 **Merge é sempre manual.** `master` tem um workflow (`ftp-deploy.yml`) que
 publica `config/`, `layouts/`, `snipplets/`, `static/` e `templates/` direto
-no FTP de produção a cada push — sem testes automatizados antes. Essa skill
+no FTP da loja Nuvemshop a cada push (hoje a loja de dev; produção ainda não
+existe — ADR-0012) — sem gate automatizado além de lint + testes locais. Essa skill
 nunca chama `gh pr merge`, mesmo que o usuário peça pra "finalizar rápido";
 se pedirem merge automático, avise que essa skill não faz isso e pergunte se
 é pra mergear na mão agora.
@@ -54,10 +55,10 @@ conversa e o build correspondente não rodou depois da última mudança:
 
 ## Fase 1b — Lint e testes
 
-Antes de commitar, rode `npm run lint:styles` e `npm test`. Se qualquer um
-falhar, pare e reporte — não abra PR com lint ou teste vermelho, e não use
-`lint-styles: allow` só para passar. Os dois rodam contra o preview local
-(ADR-0014); não substituem a validação no preview real, mas são o gate mínimo.
+Antes de commitar, rode `npm run lint:styles` e `npm test` (Playwright contra a
+loja de dev — pressupõe que a mudança já foi subida para lá durante a
+implementação, ADR-0015). Se qualquer um falhar, pare e reporte — não abra PR
+com lint ou teste vermelho, e não use `lint-styles: allow` só para passar.
 
 ## Fase 2 — Escopo do commit
 
@@ -104,8 +105,8 @@ falhar, pare e reporte — não abra PR com lint ou teste vermelho, e não use
     - ...
 
     ## Test plan
-    - [x] `npm run lint:styles` e `npm test` verdes (N testes, mobile + desktop)
-    - [ ] Revisar o preview do tema no admin da Nuvemshop (build já commitado em `static/`)
+    - [x] `npm run lint:styles` e `npm test` verdes na loja de dev (N testes, mobile + desktop)
+    - [ ] Revisar na loja de dev após o merge (build já commitado em `static/`)
     - [ ] ...(passos específicos da mudança: página/fluxo a navegar, estado a conferir)
     - [ ] Conferir responsividade mobile/desktop
 

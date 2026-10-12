@@ -55,3 +55,22 @@ fixture. Isso continua sendo validado no preview real da Nuvemshop.
 - **`Swiper is not defined` só numa página** — um `{{ var }}` vazio dentro de
   `store.js.tpl` virou erro de sintaxe no bloco inline e matou o script
   vendorado. Rode `node --check` no script extraído de `.preview/<page>.html`.
+
+## Rodar a mesma suíte contra a loja de dev
+
+A loja de dev (`https://democamisetasromadev.lojavirtualnuvem.com.br/`) é o
+alvo "real". Os testes são escritos por página lógica (`home`, `product`,
+`category`) e rodam nos dois alvos; os que dependem das fixtures (paleta,
+itens do carrinho) se auto-pulam no real.
+
+```bash
+ROMA_STORE_URL=https://democamisetasromadev.lojavirtualnuvem.com.br \
+ROMA_PRODUCT_PATH=/produtos/<slug-de-um-produto>/ \
+ROMA_CATEGORY_PATH=/<slug-de-uma-categoria>/ \
+npx playwright test --project=real-desktop --project=real-mobile --headed
+```
+
+A Nuvemshop fica atrás de um challenge do Cloudflare: **bloqueia IPs de
+datacenter** (o Claude Code na nuvem não consegue) e às vezes headless. Rode
+de uma estação de trabalho, com `--headed`; se aparecer "Just a moment…", o
+helper falha com uma mensagem explícita em vez de um timeout.
