@@ -98,17 +98,20 @@ Independente de `__src/` ter mudado:
 1. `npm run lint:styles` — guard do ADR-0003. Falhou? Corrija a cor para um
    token/variável; só use `lint-styles: allow <motivo>` na linha se for uma
    das exceções do ADR (overlay preto/branco, opção "branco" do admin).
-2. `npm test` — Playwright contra o preview local (`tools/preview/`). Se a
-   spec cria página/seção nova que o preview não cobre, adicione a fixture em
-   `tools/preview/fixtures/pages.mjs` como parte do escopo e um teste em
-   `tests/` cobrindo o que a spec promete.
-3. Screenshots das páginas afetadas, mobile e desktop (a partir de
-   `npm run preview` ou do próprio Playwright), e **olhe para elas** antes de
-   dizer que está pronto — compare com o Figma/spec, não só com o CSS gerado.
+2. Subir para a loja de dev (`npm run ftp:deploy`, mesmas regras da skill
+   `/ftp-deploy`: build em dia, listar o que vai subir). Dentro de uma spec
+   isso é parte da validação, não um pedido à parte (ADR-0015 §5).
+3. `npm test` — Playwright contra a loja de dev (`ROMA_STORE_URL` no `.env`;
+   `--headed` se o Cloudflare barrar headless). Se a spec cria página/seção
+   nova, escreva um teste em `tests/` cobrindo o que ela promete, apontando
+   para a URL real (slug em `ROMA_*_PATH`).
+4. Screenshots das páginas afetadas na loja de dev, mobile e desktop, e
+   **olhe para elas** antes de dizer que está pronto — compare com o
+   Figma/spec, não só com o CSS gerado.
 
-O preview não reproduz `component()`, formatação real da plataforma nem a
-camada jQuery legada (ver ADR-0014). O que depender disso vai para "Pendente
-de validação manual" no relatório, explicitamente.
+Não existe mais "pendente — requer preview real": o teste já é no real. Se um
+critério não dá para verificar na loja de dev, o critério está mal escrito —
+pare e ajuste a spec com o usuário.
 
 ## Fase 4b — Conferência dos critérios de aceite
 
@@ -148,13 +151,14 @@ Confirmação de que nada fora do escopo declarado foi tocado (ou, se algo
 precisou sair do escopo, o que e por quê — deve já ter sido confirmado com
 o usuário na Fase 2, não uma surpresa aqui).
 
-## Lint e testes
-Resultado de `npm run lint:styles` e `npm test` (contagem), screenshots
-gerados (caminhos) e o que foi visto neles.
+## Lint, deploy e testes
+Resultado de `npm run lint:styles`, confirmação do upload para a loja de dev,
+resultado de `npm test` (contagem) e screenshots da loja (caminhos) com o que
+foi visto neles.
 
 ## Pendente de validação manual
-O que só pode ser confirmado no preview real da Nuvemshop (e por quê o
-preview local não cobre).
+O que exige um humano na loja de dev (ex.: fluxo de pagamento, dado que a
+loja de teste não tem) — nunca "não deu para ver".
 ```
 
 ## Regras

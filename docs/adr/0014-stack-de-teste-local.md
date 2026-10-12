@@ -1,6 +1,6 @@
 # ADR-0014 — Stack de teste local: renderer Twig + fixtures + Playwright + lint de estilos
 
-- **Status:** Aceito
+- **Status:** Substituído em parte por ADR-0015 — o renderer local deixou de ser o alvo de teste no mesmo dia; `lint:styles` e a suíte Playwright (projetos `real-*`) continuam valendo
 - **Data:** 2026-10-12
 - **Decisores:** Caio Marques (owner), implementado por Claude Code
 
