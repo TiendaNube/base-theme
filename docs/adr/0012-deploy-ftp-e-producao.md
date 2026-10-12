@@ -23,6 +23,11 @@ criado um deploy manual.
 1. **Push em `master` dispara `ftp-deploy.yml`**: cinco uploads FTPS
    (`config/`, `layouts/`, `snipplets/`, `static/`, `templates/`), sem build
    (ADR-0007 — `static/` commitado), com `concurrency` serializada.
+   `static/` sobe pelo `scripts/ftp-deploy.mjs static` (só adiciona/sobrescreve)
+   e não pela `FTP-Deploy-Action`: a sincronização da action apagava o
+   `gaius-v{epoch}.js` anterior e o FTP recusa o `DELE`, derrubando o job
+   (falha nos merges dos PRs #9 e #10, 2026-10-12). Bundles antigos ficam
+   órfãos no FTP; limpar à mão quando incomodar.
 2. **Não há gate automático antes do merge.** O gate é humano: PR revisado +
    validação. Com ADR-0014, a validação ganha testes locais, mas o merge
    continua sendo decisão de pessoa — a skill `/pr` abre o PR e para.
