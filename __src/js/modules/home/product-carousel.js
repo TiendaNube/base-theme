@@ -65,7 +65,7 @@ export const productCarousel = () => {
 
     let html = "";
     for (let i = 0; i < realCount; i++) {
-      html += `<span class="cursor-pointer js-carousel-seed" data-index="${i}">${seedSVG(i === currentIndex)}</span>`;
+      html += `<span class="inline-flex items-center justify-center w-6 h-6 cursor-pointer js-carousel-seed" data-index="${i}">${seedSVG(i === currentIndex)}</span>`;
     }
     paginationContainer.innerHTML = html;
 

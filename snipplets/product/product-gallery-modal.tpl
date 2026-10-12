@@ -23,7 +23,7 @@
             </div>
 
             {% if product.images_count > 1 %}
-                <div class="js-product-gallery-zoom-pagination absolute bottom-6 left-0 right-0 flex items-center justify-center gap-2"></div>
+                <div class="js-product-gallery-zoom-pagination absolute bottom-6 left-0 right-0 flex items-center justify-center gap-0"></div>
             {% endif %}
         </div>
     </div>
