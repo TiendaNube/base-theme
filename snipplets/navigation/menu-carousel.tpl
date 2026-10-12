@@ -74,7 +74,7 @@
               alt="{{ category.title }}"
               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            <div class="absolute inset-x-0 bottom-0 px-5 py-12 bg-linear-to-t from-black/70 to-transparent text-white flex flex-col items-center">
+            <div class="absolute inset-x-0 bottom-0 px-5 py-12 bg-linear-to-t from-black/70 to-transparent text-white flex flex-col items-center"> {# lint-styles: allow overlay #}
               <span class="text-base font-heading font-semibold">{{ category.title }}</span>
               <span class="text-sm flex items-center">
                 {{ category.button }}

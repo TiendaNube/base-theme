@@ -22,12 +22,12 @@ export const heroBanner2Carousel = () => {
 
   // Color mapping: setting value -> actual color
   const colorMap = {
-    white: "#FFFFFF",
+    white: "#FFFFFF", // lint-styles: allow admin-white
     primary: "var(--primary-color)",
     background: "var(--background-color)",
   };
 
-  const getColor = (colorSetting) => colorMap[colorSetting] || "#FFFFFF";
+  const getColor = (colorSetting) => colorMap[colorSetting] || "#FFFFFF"; // lint-styles: allow admin-white
   const getInactiveColor = (colorSetting) => {
     // Inactive seeds should have 40% opacity
     if (colorSetting === "white") return "rgba(255,255,255,0.4)";

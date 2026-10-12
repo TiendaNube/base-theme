@@ -30,7 +30,7 @@
 
                 {# Specific error message considering if store has multiple languages #}
 
-                <div class="js-ship-calculator-error invalid-zipcode text-red-600 font-sans text-xs mt-2" style="display: none;">
+                <div class="js-ship-calculator-error invalid-zipcode text-danger font-sans text-xs mt-2" style="display: none;">
                     {% for language in languages %}
                         {% if language.active %}
                             {% if languages | length > 1 %}
@@ -48,8 +48,8 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-                <div class="js-ship-calculator-error js-ship-calculator-common-error text-red-600 font-sans text-xs mt-2" style="display: none;">{{ "Ocurrió un error al calcular el envío. Por favor intentá de nuevo en unos segundos." | translate }}</div>
-                <div class="js-ship-calculator-error js-ship-calculator-external-error text-red-600 font-sans text-xs mt-2" style="display: none;">{{ "El calculo falló por un problema con el medio de envío. Por favor intentá de nuevo en unos segundos." | translate }}</div>
+                <div class="js-ship-calculator-error js-ship-calculator-common-error text-danger font-sans text-xs mt-2" style="display: none;">{{ "Ocurrió un error al calcular el envío. Por favor intentá de nuevo en unos segundos." | translate }}</div>
+                <div class="js-ship-calculator-error js-ship-calculator-external-error text-danger font-sans text-xs mt-2" style="display: none;">{{ "El calculo falló por un problema con el medio de envío. Por favor intentá de nuevo en unos segundos." | translate }}</div>
                 {% endblock input_form_alert %}
                 {% block input_append_content %}
                 <button type="button" class="js-calculate-shipping flex items-center justify-center shrink-0 h-8 min-w-8 px-2 py-1 rounded-lg bg-control text-secondary font-sans text-sm font-semibold cursor-pointer" aria-label="{{ 'Calcular envío' | translate }}">

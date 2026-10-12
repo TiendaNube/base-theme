@@ -49,7 +49,7 @@
           class="flex w-full justify-between items-center px-6 py-3 no-underline text-secondary transition-colors duration-200 hover:opacity-70"
           {% if item.url | is_external %}target="_blank" rel="noopener"{% endif %}
         >
-          <span class="{% if level == 1 %}font-heading text-2xl font-extrabold leading-[80%]{% else %}font-heading text-lg font-bold leading-[80%]{% endif %} {% if is_highlighted %}text-red-600{% endif %}">
+          <span class="{% if level == 1 %}font-heading text-2xl font-extrabold leading-[80%]{% else %}font-heading text-lg font-bold leading-[80%]{% endif %} {% if is_highlighted %}text-fg{% endif %}">
             {{ item.name }}
           </span>
           <i data-lucide="arrow-right" class="w-4 h-4 shrink-0"></i>

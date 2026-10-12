@@ -26,15 +26,17 @@
         'accent': 'var(--accent-color)'
     } %}
 
+    {# "white" is an explicit admin choice, not a theme color (ADR-0003 §4) #}
+    {% set admin_white = '#FFFFFF' %} {# lint-styles: allow admin-white #}
     {% set text_color_map = {
-        'white': '#FFFFFF',
+        'white': admin_white,
         'primary': 'var(--primary-color)',
         'secondary': 'var(--text-color)',
         'background': 'var(--background-color)'
     } %}
 
     {% set bg_color = bg_color_map[settings.promo_marquee_bg_color] | default('var(--primary-color)') %}
-    {% set text_color = text_color_map[settings.promo_marquee_text_color] | default('#FFFFFF') %}
+    {% set text_color = text_color_map[settings.promo_marquee_text_color] | default(admin_white) %}
 
     <section class="promo-marquee-section overflow-hidden" data-store="home-promo-marquee">
         <div class="flex h-12 items-center p-2.5" style="background-color: {{ bg_color }};">

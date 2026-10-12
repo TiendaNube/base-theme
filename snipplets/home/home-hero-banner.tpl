@@ -13,7 +13,7 @@
     {% elseif settings.hero_banner_text_color == 'background' %}
         {% set text_color_class = 'text-bg' %}
     {% else %}
-        {% set text_color_class = 'text-white' %}
+        {% set text_color_class = 'text-white' %} {# lint-styles: allow admin-white #}
     {% endif %}
 
     {# Lazy loading logic - don't lazy load if first section #}

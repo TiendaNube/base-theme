@@ -47,7 +47,7 @@
                     <i data-lucide="chevron-down" class="js-carousel-dropdown-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
                 </button>
                 {# Options list #}
-                <ul class="js-carousel-dropdown-list hidden absolute top-full left-0 mt-1 min-w-full [background:rgba(255,255,246,0.7)] backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20">
+                <ul class="js-carousel-dropdown-list hidden absolute top-full left-0 mt-1 min-w-full bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20">
                     {% if has_tab_1 %}
                         <li class="js-carousel-dropdown-option px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5" data-value="tab-1" data-selected="true">
                             {{ settings.product_carousel_tab_1_label }}
