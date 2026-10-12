@@ -120,6 +120,7 @@ export const menuSystem = () => {
       const swiper = new Swiper(carousel, {
         slidesPerView: "auto",
         spaceBetween: 0,
+        threshold: 10,
         loop: true,
         watchOverflow: true,
         on: {
