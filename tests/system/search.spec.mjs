@@ -55,7 +55,6 @@ test("digitar sugere até 3 produtos e o link 'ver todos'", async ({ page }) => 
 });
 
 test("termo sem produto mostra 'Nenhum resultado'", async ({ page }) => {
-  test.fail(true, "Fibery #222 — LS.search esconde o container quando count == 0; a mensagem nunca aparece");
   await gotoStore(page, "home");
   await openSearch(page);
   await page.locator(".js-search-input").pressSequentially("zzqqxxww", { delay: 50 });
