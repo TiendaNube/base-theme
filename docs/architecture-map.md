@@ -86,7 +86,7 @@ A module with multiple independent features (like `header.js` exporting `headerA
 - `window.closeAllToasts()` — defined in `toast.js`
 - `window.openCartDrawer()` — defined in `cart-drawer.js`, consumed by `toast.js` (toast click-through to cart)
 - `window.closeCartDrawer()` — defined in `cart-drawer.js`
-- `window.onCartUpdate()` — defined in `cart-drawer.js`, consumed by `item-card-quickbuy.js` (refreshes cart drawer after quickbuy add-to-cart)
+- `window.onCartUpdate()` — defined in `cart-drawer.js`, consumed by `item-card-quickbuy.js` and `product-add-to-cart.js` (marks the cart dirty and refreshes the drawer after an add-to-cart made outside it; any module that mutates the cart outside the drawer MUST call it, otherwise opening the drawer skips the refetch)
 - `window.initQuickbuyDropdowns()` — defined in `item-card-quickbuy.js`, consumed by `category-infinite-scroll.js` (reinitializes quickbuy stock status after new product cards are injected via infinite scroll)
 - `window.setProductGalleryImage(imagePosition)` — defined in `product-gallery.js`, consumed by `product-variants.js` (slides the PDP gallery to the photo of the newly selected variant; `imagePosition` is the 1-based `variant.image` index coming from `variants_object`)
 
@@ -196,7 +196,7 @@ JS MAY use `fetch()` in exactly two shapes:
 - `category-filters.js`: stateless (delegates to `window.openModal`)
 - `category-sorting.js`: stateless (state is in DOM via `hidden` and `aria-expanded`)
 - `item-card-quickbuy.js`: `currentOpen` (HTMLElement|null)
-- `cart-drawer.js`: `pendingRemovals` (number), `removeSyncTimer` (timeout|null), `badgeObserver` (MutationObserver|null), `quantitySyncTimer` (timeout|null — debounces `refreshCart()` 2s after a `.js-cart-quantity-btn` click, so progress bars re-render with updated cart totals)
+- `cart-drawer.js`: `isOpen` (boolean), `isRefreshing` / `refreshQueued` (boolean — one refresh in flight, at most one replay), `cartVersion` / `syncedVersion` / `inflightVersion` (number — cart freshness: every known mutation bumps `cartVersion`; opening the drawer only refetches when it differs from the synced/in-flight version, Fibery #220), `pendingPlatformRequests` (number — `LS.*` cart requests armed by +/−, typed quantity or remove and not yet seen completing), `syncDebounceTimer` (timeout|null — 200 ms coalescing before `refreshCart()`), `syncFallbackTimer` (timeout|null — 2.5 s safety net if no completion signal arrives), `badgeObserver` (MutationObserver|null — mirrors `.js-cart-widget-amount` to the mobile badge and signals a platform cart change). The end of a platform cart request is detected with a `PerformanceObserver` on `resource` entries (same-origin fetch/XHR under `/cart/…`), never by calling or wrapping `LS.*`.
 - `product-gallery.js`: `swiper` (Swiper|null)
 - `product-gallery-zoom.js`: `swiper` (Swiper|null), `isOpen` (boolean), `savedOverflow` (string)
 - `product-variants.js`: `variants` (Array — parsed once from `.js-product-variants-data`; selection state itself lives in the DOM via `[data-selected]`)
@@ -215,7 +215,7 @@ No module persists state to `localStorage`, `sessionStorage`, or cookies.
 - `window.closeAllToasts()` — defined in `toast.js`
 - `window.openCartDrawer()` — defined in `cart-drawer.js`, consumed by `toast.js`
 - `window.closeCartDrawer()` — defined in `cart-drawer.js`
-- `window.onCartUpdate()` — defined in `cart-drawer.js`, consumed by `item-card-quickbuy.js`
+- `window.onCartUpdate()` — defined in `cart-drawer.js`, consumed by `item-card-quickbuy.js` and `product-add-to-cart.js`
 - `window.initQuickbuyDropdowns()` — defined in `item-card-quickbuy.js`, consumed by `category-infinite-scroll.js`
 - `window.setProductGalleryImage(imagePosition)` — defined in `product-gallery.js`, consumed by `product-variants.js`
 
@@ -281,7 +281,7 @@ Any new cross-module signal MUST: (1) be defined as `window.functionName = funct
 - **Source**: Platform-injected via `{% head_content %}`.
 - **Usage**: `LS.ready.then()` in `layout.tpl:163` wraps legacy script loading. `LS.search()` handles search AJAX (bound in `store.js.tpl`). `LS.removeItem()` handles cart item removal.
 
-**L6** — `LS.*` APIs MUST ONLY be invoked from `store.js.tpl`, template `<script>` blocks, or cart-related custom modules. Custom modules MUST NOT call `LS.*` directly except for cart state-mutation APIs (`LS.removeItem`, `LS.addItem`) which have no delegation alternative via legacy jQuery bindings. Currently `cart-drawer.js` calls `LS.removeItem(itemId, true)` at lines 292 and 302. If new platform API integration is needed beyond cart mutations, it MUST be added to `store.js.tpl` and exposed to custom modules via `window.*` globals.
+**L6** — `LS.*` APIs MUST ONLY be invoked from `store.js.tpl`, template `<script>` blocks, or cart-related custom modules. Custom modules MUST NOT call `LS.*` directly except for cart state-mutation APIs (`LS.removeItem`, `LS.addItem`) which have no delegation alternative via legacy jQuery bindings. Currently `cart-drawer.js` calls `LS.removeItem(itemId, true)` at lines 490 and 500. If new platform API integration is needed beyond cart mutations, it MUST be added to `store.js.tpl` and exposed to custom modules via `window.*` globals.
 
 ---
 
