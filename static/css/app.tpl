@@ -80,6 +80,7 @@
     --color-amber-300: oklch(87.9% .169 91.605);
     --color-green-600: oklch(62.7% .194 149.214);
     --color-green-700: oklch(52.7% .154 150.069);
+    --color-gray-100: oklch(96.7% .003 264.542);
     --color-zinc-500: oklch(55.2% .016 285.938);
     --color-neutral-500: oklch(55.6% 0 0);
     --color-black: #000;
@@ -166,6 +167,7 @@
 
   :root, :host {
     --color-highlight: #2dcc57;
+    --color-danger: #dc2626;
     --font-heading: var(--font-headings);
     --z-40: 40;
     --z-50: 50;
@@ -572,6 +574,10 @@
 
   .left-1\/2 {
     left: 50%;
+  }
+
+  .z-\(--z-modal\) {
+    z-index: var(--z-modal);
   }
 
   .z-0 {
@@ -1042,6 +1048,10 @@
 
   .h-4 {
     height: calc(var(--spacing) * 4);
+  }
+
+  .h-4\.5 {
+    height: calc(var(--spacing) * 4.5);
   }
 
   .h-5 {
@@ -1777,6 +1787,16 @@
     }
   }
 
+  .bg-bg\/80 {
+    background-color: var(--color-bg);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-bg\/80 {
+      background-color: color-mix(in oklab, var(--color-bg) 80%, transparent);
+    }
+  }
+
   .bg-black {
     background-color: var(--color-black);
   }
@@ -1843,6 +1863,10 @@
     background-color: var(--color-fg-muted);
   }
 
+  .bg-gray-100 {
+    background-color: var(--color-gray-100);
+  }
+
   .bg-green-700 {
     background-color: var(--color-green-700);
   }
@@ -1880,6 +1904,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-white\/5 {
       background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+    }
+  }
+
+  .bg-white\/70 {
+    background-color: #ffffffb3;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-white\/70 {
+      background-color: color-mix(in oklab, var(--color-white) 70%, transparent);
     }
   }
 
@@ -2342,6 +2376,11 @@
     line-height: 80%;
   }
 
+  .leading-\[80\%\|100\%\|120\%\] {
+    --tw-leading: 80%| 100%| 120%;
+    line-height: 80%| 100%| 120%;
+  }
+
   .leading-\[100\%\] {
     --tw-leading: 100%;
     line-height: 100%;
@@ -2431,8 +2470,16 @@
     white-space: nowrap;
   }
 
+  .text-\[10px\|13px\|32px\] {
+    color: 10px| 13px| 32px;
+  }
+
   .text-bg {
     color: var(--color-bg);
+  }
+
+  .text-danger {
+    color: var(--color-danger);
   }
 
   .text-fg {

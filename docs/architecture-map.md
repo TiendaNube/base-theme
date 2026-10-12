@@ -100,13 +100,11 @@ Modules MUST NOT import from sibling modules. Any new `window.*` global MUST be 
 
 **Permitted exceptions**: `rgba(0, 0, 0, *)` and `rgba(255, 255, 255, *)` are permitted ONLY as semi-transparent overlays for universal contrast effects (subtle surfaces, backdrop filters, scrollbar tracks). These use absolute black/white intentionally because they MUST provide consistent contrast regardless of theme colors.
 
-**KNOWN BUGS** (hardcoded theme-dependent colors that MUST be fixed):
-1. `product-carousel.js:18` — `"#410911"` fallback → MUST remove fallback or use CSS variable
-2. `product-carousel.js:19` — `"#C4C4C0"` → MUST use `color-mix(in srgb, var(--text-color) 40%, transparent)` or similar
-3. `home-product-carousel.tpl:50` — `rgba(255,255,246,0.7)` → MUST use `color-mix(in srgb, var(--background-color) 70%, transparent)`
-4. `category.tpl:91` — `rgba(255,255,246,0.7)` → MUST use `color-mix(in srgb, var(--background-color) 70%, transparent)`
+**Brand constants** (admin does not control them; the ONLY place they may be literal is the `@theme` block): `--color-highlight` (#2dcc57, installments/pix) and `--color-danger` (#dc2626, form errors). Highlighted menu items use `text-fg`, not a constant. Policy and rationale: `docs/adr/0003-cores-do-tema-e-tokens.md`.
 
-**NOT bugs**: `hero-banner-2-carousel.js:25,30` — `#FFFFFF` in colorMap for "white" setting is an explicit admin-selected color value, not a theme color. The "white" option in settings intentionally maps to white.
+**Enforcement**: `npm run lint:styles` (`scripts/lint-styles.mjs`) fails on hex, non-universal rgb/rgba and Tailwind palette classes outside the exceptions. A line may carry `lint-styles: allow <reason>` ONLY for the two documented exceptions: `admin-white` (an admin dropdown option that explicitly means white: `home-promo-marquee.tpl`, `hero-banner-2-carousel.js`, `hero-banner-2-slide.tpl`, `home-hero-banner.tpl`) and `overlay` (white text over the element's own black overlay: `home-vip-group.tpl`, `menu-carousel.tpl`, `product-gallery-modal.tpl`).
+
+The four hardcoded-color bugs previously listed here (`product-carousel.js:18-19`, `home-product-carousel.tpl:50`, `category.tpl:91`) plus `home-vip-group.tpl:106-109` were fixed on 2026-10-12 (see `docs/architecture-drift-reports/20261012-styling-audit.md`).
 
 **A9** — Interactive overlay state MUST be managed via `data-state` attributes with CSS selectors `[data-state="..."]`. Seven components currently use this pattern:
 1. **Header**: `.js-new-header[data-state="transparent"|"active"]` — controlled by `header.js`, styled in `app.css:69-103`
@@ -333,7 +331,7 @@ Removing or renaming ANY `js-*` class from a template REQUIRES updating the corr
 
 **F3** — NEVER create a `tailwind.config.js` or `tailwind.config.ts`. Tailwind v4 uses `@theme` in `app.css`.
 
-**F4** — NEVER hardcode theme-dependent color hex/rgba values in custom CSS (`app.css`), custom JS (`__src/js/`), or templates. Use CSS custom properties (`var(--primary-color)`) or Tailwind `@theme` tokens. The existing hardcoded values (listed in A8) are BUGS to be fixed — they are NOT precedent for new hardcoded colors. **Permitted exceptions**: `rgba(0,0,0,*)` and `rgba(255,255,255,*)` as semi-transparent overlays for universal contrast, and hex values in `@theme` shadow definitions (e.g., `0 0 #0000`). Values like `rgba(255,255,246,0.7)` are NOT permitted — they are hardcoded off-whites that break on non-white themes.
+**F4** — NEVER hardcode theme-dependent color hex/rgba values in custom CSS (`app.css`), custom JS (`__src/js/`), or templates. Use CSS custom properties (`var(--primary-color)`) or Tailwind `@theme` tokens. Tailwind palette classes (`text-red-600`, `bg-gray-100`, `text-white`…) count as hardcoded. **Permitted exceptions**: `rgba(0,0,0,*)` / `rgba(255,255,255,*)` / `bg-black/N` / `bg-white/N` as semi-transparent overlays for universal contrast, hex values in the `@theme` block (shadows, brand constants), and lines marked `lint-styles: allow admin-white|overlay` (see A8). Values like `rgba(255,255,246,0.7)` are NOT permitted — they are hardcoded off-whites that break on non-white themes. `npm run lint:styles` enforces this.
 
 **F5** — NEVER add new files to `snipplets/svg/`. All icons MUST use Lucide (`<i data-lucide="icon-name">`). The ONLY exception: if a specific icon does NOT exist in the Lucide library, use an existing SVG snipplet. When refactoring any template, replace all SVG snipplet includes with Lucide equivalents where the icon exists.
 
@@ -361,8 +359,8 @@ The toast and modal systems are active and functional:
 - `snipplets/cart/cart-drawer-progress-bars.tpl` — free shipping + progressive discount progress bars, included by `cart-drawer.tpl:123`
 - Z-index tokens `--z-toast: 90` and `--z-modal: 100` in `@theme` are consumed by the modal and toast CSS in `app.css`
 
-### RISK 2: Hardcoded Colors — BUGS Pending Fix (HIGH)
-Four hardcoded theme-dependent color values exist (enumerated in A8). These are implementation errors, not design decisions. The `rgba(255,255,246,0.7)` pattern is used in `home-product-carousel.tpl:50` and `category.tpl:91` for dropdown backgrounds. The `#410911` fallback and `#C4C4C0` hardcoded color in `product-carousel.js` control pagination dot colors. All 4 MUST be replaced with CSS custom property equivalents (see A8 for full list).
+### RISK 2: Hardcoded Colors (RESOLVED — now lint-enforced)
+The hardcoded theme-dependent colors found in the 2026-10-12 audit were fixed and `npm run lint:styles` now guards A8/F4 (see ADR-0003). Remaining *consistency* debt, not violations: 18 `[background:rgba(0,0,0,0.05)]` control fills that should become `bg-control` (plus the mirror in `item-card-quickbuy.js`), and recurring arbitrary sizes (`leading-[120%]`, `text-[10px]`…) that should become `@theme` tokens (ADR-0002).
 
 ### RISK 3: No Existence Guard for Swiper Global (LOW)
 `product-carousel.js`, `menu.js`, `product-gallery.js` and `product-gallery-zoom.js` all call `new Swiper()` without checking `typeof Swiper !== "undefined"`. However, based on the script loading order in `layout.tpl` (Swiper loads inside `LS.ready.then()` which is a sync `<script>` block before the gaius bundle), Swiper WILL be available under normal conditions. Risk is LOW but exists if a CDN or network failure prevents external.js.tpl from loading.
@@ -373,8 +371,8 @@ Four hardcoded theme-dependent color values exist (enumerated in A8). These are 
 ### RISK 5: Search Debounce is a No-Op (LOW — functional)
 `search.js:82-92` implements a debounce that tracks `lastValue` but the tracked value is never used to prevent or trigger any action. The actual search AJAX is fired by `LS.search()` (in `store.js.tpl`) which has its own binding to the input element. The debounce code creates the illusion of rate-limiting but provides zero actual throttling.
 
-### RISK 6: No Test Infrastructure (MEDIUM — operational)
-Zero test coverage. `package.json` `test` script outputs an error. No testing framework installed. All validation is manual browser preview. This means every invariant in this contract can only be enforced by code review — there is no automated check.
+### RISK 6: Tests cover the custom layer only (LOW–MEDIUM — operational)
+Since 2026-10-12 (ADR-0014) `npm test` runs Playwright against a local Twig renderer (`tools/preview/`) with fixtures for `home`, `product` and `category`, in mobile and desktop viewports, and `npm run lint:styles` enforces A8/F4. What the preview does NOT reproduce — `component()` output, real `money`/`translate`, the legacy jQuery layer (`store.js.tpl`), `style-async.scss.tpl` compiled, templates without fixtures (account, blog, contact) — is still validated manually in the Nuvemshop preview. Invariants about the module contract (A2, A3, A5, R3) are exercised indirectly by the smoke tests; there is still no automated check for the registries themselves.
 
 ### RISK 7: setInterval Leak in Advertising Carousel (LOW)
 `header.js:67` creates a `setInterval` for slide rotation but never stores the interval ID. Since `advertisingCarousel()` is called once at page load and the page is never SPA-navigated, this is unlikely to cause issues in practice. However, if the function were ever called twice, two intervals would stack.
@@ -394,7 +392,7 @@ A4  — static/ = build outputs + vendored files. NEVER edit gaius-v*.js or app.
 A5  — Cross-module communication ONLY via window.* (12 globals: setHeaderMenuActive, openModal, closeModal, showToast, showProductToast, closeToast, closeAllToasts, openCartDrawer, closeCartDrawer, onCartUpdate, initQuickbuyDropdowns, setProductGalleryImage)
 A6  — Call lucide.createIcons() after any innerHTML with <i data-lucide="..."> markup
 A7  — Bundle filename: gaius-v{Date.now()}.js, synced by pre-build.js in esbuild.config.mjs + layout.tpl
-A8  — Theme-dependent colors NEVER hardcoded. Platform vars: --background-color, --primary-color, --text-color, --accent-color. rgba(0,0,0,*) and rgba(255,255,255,*) overlays permitted. 4 bugs pending fix
+A8  — Theme-dependent colors NEVER hardcoded. Platform vars: --background-color, --primary-color, --text-color, --accent-color. Brand constants only in @theme (--color-highlight, --color-danger). rgba(0,0,0,*) and rgba(255,255,255,*) overlays permitted. Enforced by `npm run lint:styles` (ADR-0003)
 A9  — data-state pattern: header (transparent|active), search (open|closed), toast (entering|visible|exiting), modal (open|closed), cart-drawer (open|closed), product-gallery-zoom (open|closed), product accordion item (open|closed)
 A10 — Template includes via {% snipplet %} or {% include %}, organized by domain folder. New snipplets MUST NEVER be placed at snipplets/ root
 A11 — Home sections: router in home-section-switch.tpl, keyed by settings.home_order_position_0..12

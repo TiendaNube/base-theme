@@ -3,7 +3,7 @@
         <div class="js-product-gallery-zoom-backdrop absolute inset-0"></div>
 
         <div class="js-product-gallery-zoom-content absolute inset-0">
-            <button type="button" class="js-product-gallery-zoom-close absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 cursor-pointer bg-transparent border-0 text-white" aria-label="{{ 'Fechar' | translate }}">
+            <button type="button" class="js-product-gallery-zoom-close absolute top-4 right-4 z-10 flex items-center justify-center w-10 h-10 cursor-pointer bg-transparent border-0 text-white" aria-label="{{ 'Fechar' | translate }}"> {# lint-styles: allow overlay #}
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
 

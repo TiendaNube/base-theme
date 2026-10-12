@@ -32,7 +32,9 @@ Leia, nesta ordem:
    pra entender por que essa spec existe.
 3. As seções de `docs/architecture-map.md` referenciadas em "Invariantes
    aplicáveis" (não releia o contrato inteiro se a spec já apontou os
-   códigos relevantes).
+   códigos relevantes) e os ADRs que a spec cita (`docs/adr/`). Se a spec
+   não cita ADR nenhum, os que quase sempre se aplicam são 0003 (cores),
+   0004 (CSS custom) e 0006 (módulos JS).
 
 Verificações antes de prosseguir:
 
@@ -89,17 +91,30 @@ Se algum arquivo em `__src/` foi criado/modificado nesta spec:
 
 Se `__src/` não mudou, pule esta fase.
 
-## Fase 4 — Conferência dos critérios de aceite
+## Fase 4 — Lint, testes e screenshots (sempre)
+
+Independente de `__src/` ter mudado:
+
+1. `npm run lint:styles` — guard do ADR-0003. Falhou? Corrija a cor para um
+   token/variável; só use `lint-styles: allow <motivo>` na linha se for uma
+   das exceções do ADR (overlay preto/branco, opção "branco" do admin).
+2. `npm test` — Playwright contra o preview local (`tools/preview/`). Se a
+   spec cria página/seção nova que o preview não cobre, adicione a fixture em
+   `tools/preview/fixtures/pages.mjs` como parte do escopo e um teste em
+   `tests/` cobrindo o que a spec promete.
+3. Screenshots das páginas afetadas, mobile e desktop (a partir de
+   `npm run preview` ou do próprio Playwright), e **olhe para elas** antes de
+   dizer que está pronto — compare com o Figma/spec, não só com o CSS gerado.
+
+O preview não reproduz `component()`, formatação real da plataforma nem a
+camada jQuery legada (ver ADR-0014). O que depender disso vai para "Pendente
+de validação manual" no relatório, explicitamente.
+
+## Fase 4b — Conferência dos critérios de aceite
 
 Percorra cada item de "Critérios de aceite" da spec e confirme, um a um, se
-foi atendido. Não marque um critério como atendido sem justificar como foi
-verificado (leitura de código, build passou, comportamento esperado no
-template).
-
-Este repo não tem servidor de dev local nem testes automatizados — validação
-de UI é sempre manual no preview do admin Nuvemshop. Se algum critério só
-pode ser confirmado visualmente, deixe isso explícito no relatório final em
-vez de assumir que passou.
+foi atendido. Não marque um critério como atendido sem dizer como foi
+verificado (teste que cobre, screenshot, leitura de código).
 
 ## Fase 5 — Atualizar status da spec
 
@@ -133,8 +148,13 @@ Confirmação de que nada fora do escopo declarado foi tocado (ou, se algo
 precisou sair do escopo, o que e por quê — deve já ter sido confirmado com
 o usuário na Fase 2, não uma surpresa aqui).
 
+## Lint e testes
+Resultado de `npm run lint:styles` e `npm test` (contagem), screenshots
+gerados (caminhos) e o que foi visto neles.
+
 ## Pendente de validação manual
-O que só pode ser confirmado no preview da Nuvemshop.
+O que só pode ser confirmado no preview real da Nuvemshop (e por quê o
+preview local não cobre).
 ```
 
 ## Regras

@@ -3,3 +3,6 @@
 .old
 base-theme
 .env
+.preview/
+test-results/
+playwright-report/

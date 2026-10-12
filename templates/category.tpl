@@ -88,7 +88,7 @@
                         </span>
                         <i data-lucide="chevron-down" class="js-category-dropdown-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
                     </button>
-                    <ul class="js-category-dropdown-list absolute top-full left-0 mt-1 min-w-max [background:rgba(255,255,246,0.7)] backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
+                    <ul class="js-category-dropdown-list absolute top-full left-0 mt-1 min-w-max bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
                         <li>
                             <a href="{{ parent_url }}" class="block whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 no-underline">
                                 {{ "Todos" | translate }}

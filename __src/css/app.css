@@ -18,6 +18,11 @@
   /* Verde "limão" do design system — destaque de parcelamento/pix.
      Constante de marca do Figma, não vem das configurações do admin. */
   --color-highlight: #2dcc57;
+
+  /* Vermelho de erro de formulário (calculador de frete). Constante de marca:
+     precisa ser vermelho em qualquer paleta, por isso não deriva do admin.
+     Destaque de menu NÃO usa isto — usa text-fg (primary). Ver ADR-0003. */
+  --color-danger: #dc2626;
   
   /* ===== TYPOGRAPHY ===== */
   /* Font Families */

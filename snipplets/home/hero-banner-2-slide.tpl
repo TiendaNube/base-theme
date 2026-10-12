@@ -6,7 +6,7 @@
 {% elseif text_color == 'background' %}
     {% set text_color_class = 'text-bg' %}
 {% else %}
-    {% set text_color_class = 'text-white' %}
+    {% set text_color_class = 'text-white' %} {# lint-styles: allow admin-white #}
 {% endif %}
 
 {% set slide_link = button_url | setting_url %}

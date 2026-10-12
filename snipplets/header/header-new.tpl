@@ -79,7 +79,7 @@
                   {% if has_subitems %}
                     <button
                       type="button"
-                      class="js-menu-desktop-toggle nav-link flex items-center gap-1 text-sm font-medium transition-colors duration-300 cursor-pointer bg-transparent border-0 {% if is_highlighted %}text-red-600{% endif %}"
+                      class="js-menu-desktop-toggle nav-link flex items-center gap-1 text-sm font-medium transition-colors duration-300 cursor-pointer bg-transparent border-0 {% if is_highlighted %}text-fg{% endif %}"
                       data-menu-index="{{ loop.index0 }}"
                       aria-expanded="false"
                     >
@@ -90,7 +90,7 @@
                   {% else %}
                     <a
                       href="{{ item.url }}"
-                      class="nav-link flex items-center gap-1 text-sm font-medium transition-colors duration-300 {% if is_highlighted %}text-red-600{% endif %}"
+                      class="nav-link flex items-center gap-1 text-sm font-medium transition-colors duration-300 {% if is_highlighted %}text-fg{% endif %}"
                       {% if item.url | is_external %}target="_blank" rel="noopener"{% endif %}
                     >
                       {{ item.name }}

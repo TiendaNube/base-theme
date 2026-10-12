@@ -52,6 +52,13 @@ conversa e o build correspondente não rodou depois da última mudança:
 - Se `__src/` não mudou nesta conversa (ex.: só mudou `templates/`,
   `snipplets/`, `config/`), pule esta fase — não há nada pra rebuildar.
 
+## Fase 1b — Lint e testes
+
+Antes de commitar, rode `npm run lint:styles` e `npm test`. Se qualquer um
+falhar, pare e reporte — não abra PR com lint ou teste vermelho, e não use
+`lint-styles: allow` só para passar. Os dois rodam contra o preview local
+(ADR-0014); não substituem a validação no preview real, mas são o gate mínimo.
+
 ## Fase 2 — Escopo do commit
 
 - **Só as mudanças do contexto atual da conversa** (incluindo o build da
@@ -86,9 +93,10 @@ conversa e o build correspondente não rodou depois da última mudança:
   - **Título e corpo em português** — é o padrão real deste repo (confira o
     PR #1 mergeado: `gh pr view 1 --json body`), diferente da convenção de
     commit em inglês.
-  - Corpo com `## Summary` (bullets do que mudou) e `## Test plan`. Como não
-    há testes automatizados, o test plan é sempre um checklist de validação
-    manual no admin da Nuvemshop — no formato já usado no PR #1:
+  - Corpo com `## Summary` (bullets do que mudou) e `## Test plan`. O test
+    plan começa com o resultado de lint + testes locais e segue com o
+    checklist de validação manual no admin da Nuvemshop (o que o preview
+    local não cobre) — no formato:
 
     ```bash
     gh pr create --base master --title "título curto em português (<70 chars)" --body "$(cat <<'EOF'
@@ -96,6 +104,7 @@ conversa e o build correspondente não rodou depois da última mudança:
     - ...
 
     ## Test plan
+    - [x] `npm run lint:styles` e `npm test` verdes (N testes, mobile + desktop)
     - [ ] Revisar o preview do tema no admin da Nuvemshop (build já commitado em `static/`)
     - [ ] ...(passos específicos da mudança: página/fluxo a navegar, estado a conferir)
     - [ ] Conferir responsividade mobile/desktop
