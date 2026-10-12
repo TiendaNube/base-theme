@@ -448,7 +448,7 @@ DOMContentLoaded.addEventOrExecute(() => {
 
         LS.search(jQueryNuvem(".js-search-input"), function (html, count) {
             $search_suggests = jQueryNuvem(this).closest(".js-search-container").next(".js-search-suggest");
-            if (count > 0) {
+            if (jQueryNuvem.trim(jQueryNuvem(this).val()).length > 0) {
                 $search_suggests.html(html).show();
             } else {
                 $search_suggests.hide();
