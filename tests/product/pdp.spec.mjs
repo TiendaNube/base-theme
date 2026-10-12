@@ -221,7 +221,6 @@ test.describe("galeria e zoom (specs 02, 03)", () => {
   });
 
   test("clicar fora da foto (no fundo escuro) fecha o zoom", async ({ page }) => {
-    test.fail(true, "Fibery #223 — o content cobre o backdrop; o listener de clique no backdrop é inalcançável");
     await gotoStore(page, "product");
     const zoom = page.locator(".js-product-gallery-zoom");
     await visible(page.locator("[data-open-gallery-zoom]")).first().click();
