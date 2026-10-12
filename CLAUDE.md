@@ -41,7 +41,7 @@ gera `gaius-v{epoch}.js` e reescreve `esbuild.config.mjs` + `layouts/layout.tpl`
 | Templates | Snipplet novo em pasta de domínio; home roteada por `home-section-switch.tpl`; customização via `settings.txt` | 0009 |
 | Plataforma | Não chamar `LS.*` do custom, exceto `LS.addItem/removeItem` em módulos de carrinho; PDP é dona das variantes (sem `LS.changeVariant`) | 0010 |
 | Figma | Design → tokens, nunca hex verbatim; breakpoints são decisão nossa; valida com screenshot | 0011 |
-| Deploy | Merge em `master` = produção via FTPS; `/ftp-deploy` só a pedido explícito | 0012 |
+| Deploy | Merge em `master` = deploy via FTPS na loja Nuvemshop (hoje só existe a loja de dev `democamisetasromadev`; produção ainda não subiu); `/ftp-deploy` só a pedido explícito | 0012 |
 | Workflow | plan.md + specs em `docs/specs/<slug>/`; `/implement-spec` uma spec por vez; `/pr` abre PR e para | 0013 |
 | Testes | Preview local (`tools/preview/`) + Playwright + lint; validação no preview real da Nuvemshop continua sendo o passo final humano | 0014 |
 
