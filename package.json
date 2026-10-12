@@ -15,20 +15,27 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "playwright test",
     "watch:css": "npx @tailwindcss/cli -i __src/css/app.css -o static/css/app.tpl --watch --optimize",
     "build:css": "npx @tailwindcss/cli -i __src/css/app.css -o static/css/app.tpl --optimize",
     "watch:js": "node esbuild.config.mjs --watch",
     "build:js": "node pre-build.js && node esbuild.config.mjs",
     "dev": "concurrently \"npm run watch:css\" \"npm run watch:js\"",
     "build": "npm run build:css && npm run build:js",
-    "ftp:deploy": "node --env-file=.env scripts/ftp-deploy.mjs"
+    "ftp:deploy": "node --env-file=.env scripts/ftp-deploy.mjs",
+    "test:ui": "playwright test --ui",
+    "lint:styles": "node scripts/lint-styles.mjs",
+    "preview": "node tools/preview/serve.mjs",
+    "preview:build": "node tools/preview/build.mjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.0",
     "@tailwindcss/cli": "^4.1.18",
     "basic-ftp": "^6.2.0",
     "concurrently": "^9.2.1",
     "esbuild": "0.27.2",
-    "tailwindcss": "^4.1.18"
+    "playwright": "^1.62.0",
+    "tailwindcss": "^4.1.18",
+    "twig": "^3.0.0"
   }
 }
