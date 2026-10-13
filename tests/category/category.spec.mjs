@@ -42,6 +42,59 @@ test.describe("grid", () => {
   });
 });
 
+// Card de produto (Fibery #236, snipplets/grid/item-card.tpl): mesma geometria na
+// categoria, no carrossel e no grid da home. Lê a geometria de cada card visível:
+// caixa da imagem (filho logo após o <script> de variantes), título (1º <a> do bloco
+// de info, que é o último filho) e linha de preço (último filho do bloco de info).
+const cardGeometry = (page, selector) =>
+  page.locator(selector).evaluateAll((els) =>
+    els
+      .filter((el) => el.offsetParent !== null)
+      .slice(0, 12)
+      .map((el) => {
+        const card = el.getBoundingClientRect();
+        const image = el.querySelector(":scope > script + div").getBoundingClientRect();
+        const info = el.lastElementChild;
+        const title = info.querySelector("a").getBoundingClientRect();
+        const price = info.lastElementChild.getBoundingClientRect();
+        return {
+          cardLeft: card.left,
+          cardRight: card.right,
+          cardTop: Math.round(card.top),
+          imageRatio: image.width / image.height,
+          titleInset: title.left - card.left,
+          titleHeight: title.height,
+          priceInset: price.left - card.left,
+          priceTop: Math.round(price.top),
+        };
+      }),
+  );
+
+test.describe("card de produto (#236)", () => {
+  test("imagem 4:5, título e preço com inset de 8px", async ({ page }) => {
+    await gotoStore(page, "category");
+    const geo = await cardGeometry(page, ".js-category-grid [data-product-id]");
+    expect(geo.length).toBeGreaterThan(0);
+    for (const c of geo) {
+      expect(c.imageRatio).toBeCloseTo(0.8, 1);
+      expect(Math.round(c.titleInset)).toBe(8);
+      expect(Math.round(c.priceInset)).toBe(8);
+    }
+  });
+
+  test("título reserva 2 linhas e cards da mesma linha alinham o preço", async ({ page }) => {
+    await gotoStore(page, "category");
+    const geo = await cardGeometry(page, ".js-category-grid [data-product-id]");
+    const rows = new Map();
+    for (const c of geo) rows.set(c.cardTop, [...(rows.get(c.cardTop) || []), c]);
+    for (const row of rows.values()) {
+      expect(new Set(row.map((c) => c.priceTop)).size, "preços da mesma linha em alturas diferentes").toBe(1);
+    }
+    // 2 linhas de 13px × 1.2 ≈ 31px, mesmo para nomes curtos
+    for (const c of geo) expect(c.titleHeight).toBeGreaterThanOrEqual(30);
+  });
+});
+
 test.describe("ordenação", () => {
   test("escolher uma opção recarrega com sort_by e marca a opção", async ({ page }) => {
     await gotoStore(page, "category");
