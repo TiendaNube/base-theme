@@ -172,6 +172,37 @@ test.describe("grid de produtos e grupo VIP", () => {
     await expect(page.locator("h1.js-product-name")).toBeVisible();
   });
 
+  // Fibery #232: mesma linguagem da grade da categoria — mobile 2 colunas de borda a borda,
+  // sem gap; imagem 4:5; cards da mesma linha alinham o preço.
+  test("o grid Mais Vendidos segue o Figma (2 colunas, sem gap no mobile, 4:5)", async ({ page, isMobile }) => {
+    await gotoStore(page, "home");
+    const grid = page.locator('[data-store="home-product-grid"] .grid');
+    test.skip((await grid.count()) === 0, "seção não configurada");
+    await grid.scrollIntoViewIfNeeded();
+    const info = await grid.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      const vw = document.documentElement.clientWidth;
+      const cards = [...el.querySelectorAll(":scope > [data-product-id]")].map((card) => {
+        const r = card.getBoundingClientRect();
+        const image = card.querySelector(":scope > script + div").getBoundingClientRect();
+        const price = card.lastElementChild.lastElementChild.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: Math.round(r.top), ratio: image.width / image.height, priceTop: Math.round(price.top) };
+      });
+      return { columns: cs.gridTemplateColumns.split(" ").length, columnGap: cs.columnGap, rowGap: cs.rowGap, vw, cards };
+    });
+    expect(info.columns).toBe(2);
+    for (const c of info.cards) expect(c.ratio).toBeCloseTo(0.8, 1);
+    const rows = new Map();
+    for (const c of info.cards) rows.set(c.top, [...(rows.get(c.top) || []), c.priceTop]);
+    for (const tops of rows.values()) expect(new Set(tops).size).toBe(1);
+    if (isMobile) {
+      expect(info.columnGap).toMatch(/^0(px)?$/);
+      expect(info.rowGap).toMatch(/^0(px)?$/);
+      expect(Math.round(info.cards[0].left)).toBe(0);
+      expect(Math.round(info.cards[1].right)).toBe(info.vw);
+    }
+  });
+
   test("o grupo VIP tem botão com link", async ({ page }) => {
     await gotoStore(page, "home");
     const vip = page.locator('[data-store="home-vip-group"]');
