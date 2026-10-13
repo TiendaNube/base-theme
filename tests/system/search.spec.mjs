@@ -49,6 +49,11 @@ test("digitar sugere até 3 produtos e o link 'ver todos'", async ({ page }) => 
   expect(await options.count()).toBeLessThanOrEqual(3);
   await expect(suggest.locator(".js-search-suggest-all-link")).toContainText(/\(\d+\)/);
 
+  // card único (resultados sem card próprio) e thumb 4:5 (#239)
+  expect(await suggest.locator(".backdrop-blur-sm").count()).toBe(0);
+  const box = await options.first().locator("img").boundingBox();
+  expect(box.width / box.height).toBeCloseTo(0.8, 1);
+
   // cada sugestão leva a um produto
   const href = await options.first().getAttribute("href");
   expect(href).toMatch(/\/produtos\//);
