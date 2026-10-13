@@ -122,18 +122,30 @@ test.describe("grade da categoria (#238)", () => {
     const btn = page.locator(".js-category-load-more-btn");
     test.skip((await btn.count()) === 0, "categoria com uma página só");
     const before = await cards(page).count();
-    await btn.click();
-    await expect.poll(() => cards(page).count()).toBeGreaterThan(before);
+    // Trazer o "Mostrar mais" para perto da tela já dispara a carga automática (IntersectionObserver
+    // com rootMargin de 400px), que esconde o botão e mostra o spinner no lugar. Clicar no botão
+    // disputa com essa carga (o clique cai no spinner ou num botão já escondido); a rolagem é o
+    // caminho que o usuário percorre e cobre os dois casos.
+    await page.locator(".js-category-load-more").scrollIntoViewIfNeeded();
+    await expect.poll(() => cards(page).count(), { timeout: 20_000 }).toBeGreaterThan(before);
     const lefts = await cards(page).evaluateAll((els) => els.slice(-6).map((el) => Math.round(el.getBoundingClientRect().left)));
     expect(new Set(lefts).size).toBe(isMobile ? 2 : 3);
   });
 });
+
+// O modal abre com transição (scale 0.95 → 1 no desktop, translateX no drawer): medir caixas antes do
+// fim encolhe tudo ~5%. Espera o transform do conteúdo chegar à identidade.
+const modalSettled = (page) =>
+  expect
+    .poll(() => page.locator(".js-gaius-modal-content").evaluate((el) => getComputedStyle(el).transform))
+    .toMatch(/^(none|matrix\(1, 0, 0, 1, 0, 0\))$/);
 
 // Painel de filtros (gaius modal/drawer) aberto pelo gatilho visível; devolve o corpo do modal.
 const openFilterPanel = async (page) => {
   await visible(page.locator(".js-category-filter-trigger")).first().click();
   const container = page.locator(".js-gaius-modal-container");
   await expect(container).toHaveAttribute("data-state", "open");
+  await modalSettled(page);
   return container.locator(".js-gaius-modal-body");
 };
 
@@ -263,8 +275,7 @@ test.describe("filtros", () => {
     await gotoStore(page, "category");
     const trigger = visible(page.locator(".js-category-filter-trigger")).first();
     test.skip((await trigger.count()) === 0, "categoria sem filtros");
-    await trigger.click();
-    const body = page.locator(".js-gaius-modal-container .js-gaius-modal-body");
+    const body = await openFilterPanel(page);
     const filter = body.locator(".js-apply-filter").filter({ visible: true }).first();
     test.skip((await filter.count()) === 0, "sem filtros aplicáveis nesta categoria");
     // chips de variação (#237): área de toque de 40px em volta do chip de 32px
