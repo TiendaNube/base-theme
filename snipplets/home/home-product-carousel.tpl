@@ -4,6 +4,8 @@
 {% set has_tab_2 = sections.carousel_tab_2.products is not empty %}
 {% set has_tab_3 = sections.carousel_tab_3.products is not empty %}
 {% set has_any_tab = has_tab_1 or has_tab_2 or has_tab_3 %}
+{% set carousel_viewall_label = settings.product_carousel_viewall_label | trim %}
+{% set carousel_viewall_url = settings.product_carousel_viewall_url | trim %}
 
 {% set carousel_bg_map = {
     'none': 'transparent',
@@ -72,6 +74,11 @@
                     {% endif %}
                 </ul>
             </div>
+        {% endif %}
+
+        {# Optional "Ver todos" (only when label and URL are both filled) #}
+        {% if carousel_viewall_label and carousel_viewall_url %}
+            <a href="{{ carousel_viewall_url }}" class="js-carousel-viewall ml-auto shrink-0 font-sans text-sm font-medium text-secondary underline">{{ carousel_viewall_label }}</a>
         {% endif %}
     </div>
 
