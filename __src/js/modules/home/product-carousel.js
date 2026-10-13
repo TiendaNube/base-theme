@@ -113,15 +113,14 @@ export const productCarousel = () => {
           wrapper.querySelectorAll(".swiper-slide")
         );
 
-        // Duplicar slides até ter o mínimo necessário
+        // Duplicar o conjunto inteiro até passar do mínimo: uma cópia parcial quebra a
+        // paginação (realIndex % slideCount salta da última cópia incompleta para o seed 1)
         let currentCount = slideCount;
         while (currentCount < minSlidesForLoop) {
           for (const slide of originalSlides) {
-            if (currentCount >= minSlidesForLoop) break;
-            const clone = slide.cloneNode(true);
-            wrapper.appendChild(clone);
-            currentCount++;
+            wrapper.appendChild(slide.cloneNode(true));
           }
+          currentCount += slideCount;
         }
       }
 
