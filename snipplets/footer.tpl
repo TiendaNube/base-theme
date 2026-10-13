@@ -156,14 +156,14 @@
 
         {# Logo de Apoio (Opcional): SVG > Imagem > Nada #}
         {% if settings.logo_support_svg %}
-            <div class="w-full flex justify-center py-4 footer-logo-svg max-h-16">
+            <div class="w-full flex justify-center footer-logo-svg max-h-9">
                 {{ settings.logo_support_svg | raw }}
             </div>
         {% elseif "logo_support.png" | has_custom_image %}
-            <div class="w-full flex justify-center py-4">
+            <div class="w-full flex justify-center">
                 <img src="{{ 'images/empty-placeholder.png' | static_url }}"
                      data-src="{{ "logo_support.png" | static_url }}"
-                     class="lazyload max-h-16"
+                     class="lazyload max-h-9"
                      alt="{{ store.name }} - Logo de Apoio" />
             </div>
         {% endif %}
@@ -236,7 +236,7 @@
         </div>
 
         {# Powered By Nuvemshop (OBRIGATORIO) - Canto inferior #}
-        <div class="w-full flex justify-end pt-2">
+        <div class="w-full flex justify-end">
             <div class="text-fg text-sm powered-by-wrapper">
                 {#
                 La leyenda que aparece debajo de esta linea de codigo debe mantenerse

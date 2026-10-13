@@ -1,3 +1,4 @@
+{# lint-twig: allow div-balance legado do tema base (placeholder do editor), não alterado #}
 {# Main banners that work as examples #}
 
 <section class="section-banners-home position-relative" data-store="{{ data_store }}">

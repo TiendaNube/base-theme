@@ -92,10 +92,20 @@ export const productCarousel = () => {
   // slidesPerView: 'auto'), so how many are visible depends on the viewport:
   //   mobile  (<768)   gap 0, track edge to edge  → ~1.7 visible at 393px (peek of the 2nd)
   //   tablet  (768+)   gap 24px                   → up to ~4.5 visible at 1279px
-  //   desktop (1280+)  gap 9.55% of the track     → exactly 4 at 1440 (1312px track, 125px gap,
-  //                    as in the Figma), ~4.4 at 1920, ~5.2 at 2560
+  //   desktop (1280+)  gap computed in px so exactly 4 cards fill the track (125px at 1440,
+  //                    as in the Figma). Swiper 6 ignores a "%" spaceBetween inside breakpoints
+  //                    (it became 9px), hence fitDesktopGap() on init/resize.
   // The loop needs at least twice the visible count plus one; 6 covers every case above.
   const maxVisibleSlides = 6;
+  const cardWidth = 234;
+  const desktopGap = (trackWidth) => Math.max(24, Math.round((trackWidth - 4 * cardWidth) / 3));
+  function fitDesktopGap(sw) {
+    if (window.innerWidth < 1280) return;
+    const gap = desktopGap(sw.width);
+    if (sw.params.spaceBetween === gap) return;
+    sw.params.spaceBetween = gap;
+    sw.update();
+  }
 
   for (let i = 1; i <= 3; i++) {
     const container = section.querySelector(`.js-swiper-product-carousel-${i}`);
@@ -144,10 +154,20 @@ export const productCarousel = () => {
               spaceBetween: 24,
             },
             1280: {
-              spaceBetween: "9.55%",
+              spaceBetween: 24, // replaced by fitDesktopGap() once the track width is known
             },
           },
           on: {
+            init: function () {
+              fitDesktopGap(this);
+            },
+            resize: function () {
+              fitDesktopGap(this);
+            },
+            // crossing a breakpoint re-applies its spaceBetween; recompute after Swiper settles
+            breakpoint: function () {
+              setTimeout(() => fitDesktopGap(this), 0);
+            },
             slideChange: function () {
               if (`tab-${i}` === activeTab) {
                 // realIndex already handles loop correctly

@@ -963,6 +963,10 @@
     margin-bottom: calc(var(--spacing) * 6);
   }
 
+  .-ml-1 {
+    margin-left: calc(var(--spacing) * -1);
+  }
+
   .-ml-1\.5 {
     margin-left: calc(var(--spacing) * -1.5);
   }
@@ -1170,6 +1174,10 @@
 
   .h-px {
     height: 1px;
+  }
+
+  .max-h-9 {
+    max-height: calc(var(--spacing) * 9);
   }
 
   .max-h-12 {
@@ -2909,10 +2917,10 @@
       margin-right: calc(var(--spacing) * -2.5);
     }
 
-    :where(.max-md\:-space-x-1\.5 > :not(:last-child)) {
+    :where(.max-md\:-space-x-3 > :not(:last-child)) {
       --tw-space-x-reverse: 0;
-      margin-inline-start: calc(calc(var(--spacing) * -1.5) * var(--tw-space-x-reverse));
-      margin-inline-end: calc(calc(var(--spacing) * -1.5) * calc(1 - var(--tw-space-x-reverse)));
+      margin-inline-start: calc(calc(var(--spacing) * -3) * var(--tw-space-x-reverse));
+      margin-inline-end: calc(calc(var(--spacing) * -3) * calc(1 - var(--tw-space-x-reverse)));
     }
   }
 

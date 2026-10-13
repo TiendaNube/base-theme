@@ -102,7 +102,7 @@
         </div>
 
         {# Utilities - Right #}
-        <div class="flex items-center justify-end max-md:-mr-2.5 max-md:-space-x-1.5 md:gap-4 flex-1">
+        <div class="flex items-center justify-end max-md:-mr-2.5 max-md:-space-x-3 md:gap-4 flex-1">
             {# Buscar #}
             <button
               type="button"
