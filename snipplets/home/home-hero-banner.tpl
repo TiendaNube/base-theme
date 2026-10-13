@@ -22,11 +22,12 @@
     {# Mobile image fallback to desktop #}
     {% set mobile_image = has_hero_mobile_image ? 'hero_banner_mobile.jpg' : 'hero_banner_desktop.jpg' %}
 
+    {# Keeps the <h1> of the home; hero 2 only takes it when this hero renders no title #}
     <section class="relative w-full" data-store="home-hero-banner">
 
         {# Wrapper - clickable if has link #}
         {% if hero_link %}
-            <a href="{{ hero_link }}" class="block relative">
+            <a href="{{ hero_link }}" class="block relative focus-visible:outline-2 focus-visible:-outline-offset-4">
         {% else %}
             <div class="relative">
         {% endif %}
@@ -50,7 +51,7 @@
                     sizes="100vw"
                     {% endif %}
                     class="absolute inset-0 w-full h-full object-cover {% if apply_lazy_load %}lazyautosizes lazyload fade-in{% endif %}"
-                    alt="{{ settings.hero_banner_title ?: store.name }}"
+                    alt="{{ settings.hero_banner_alt ?: settings.hero_banner_title ?: store.name }}"
                 />
             </div>
 
@@ -73,7 +74,7 @@
                     sizes="100vw"
                     {% endif %}
                     class="absolute inset-0 w-full h-full object-cover {% if apply_lazy_load %}lazyautosizes lazyload fade-in{% endif %}"
-                    alt="{{ settings.hero_banner_title ?: store.name }}"
+                    alt="{{ settings.hero_banner_alt ?: settings.hero_banner_title ?: store.name }}"
                 />
             </div>
 
@@ -91,7 +92,7 @@
                 {% if settings.hero_banner_button_text %}
                     <span class="inline-flex items-center gap-2 text-base font-semibold">
                         {{ settings.hero_banner_button_text }}
-                        <i data-lucide="arrow-right" class="w-5 h-5 mt-0.5"></i>
+                        <i data-lucide="arrow-right" class="w-5 h-5 mt-0.5" aria-hidden="true"></i>
                     </span>
                 {% endif %}
             </div>

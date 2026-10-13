@@ -23,19 +23,20 @@
 
 {% set has_faq = faq_items | length > 0 %}
 
+{# Section background as a token class (ADR-0003/0004), never an inline style; literal class names so Tailwind sees them. #}
 {% set faq_bg_map = {
-    'none': 'transparent',
-    'primary': 'var(--primary-color)',
-    'secondary': 'var(--text-color)',
-    'background': 'var(--background-color)',
-    'accent': 'var(--accent-color)'
+    'none': 'bg-transparent',
+    'primary': 'bg-fg',
+    'secondary': 'bg-secondary',
+    'background': 'bg-bg',
+    'accent': 'bg-accent'
 } %}
-{% set faq_bg_value = faq_bg_map[settings.faq_bg] | default('transparent') %}
+{% set faq_bg_class = faq_bg_map[settings.faq_bg] | default('bg-transparent') %}
 {# "none" and "background" paint no visible block: the divider supplies the spacing, so drop the padding. #}
 {% set faq_flat = settings.faq_bg == 'none' or settings.faq_bg == 'background' or not settings.faq_bg %}
 
 {% if has_faq %}
-<section class="section-faq px-4 md:px-16 lg:px-32 {{ faq_flat ? 'py-0' : 'py-8 md:py-12' }}" data-store="home-faq" style="background-color: {{ faq_bg_value }}">
+<section class="section-faq px-4 md:px-16 lg:px-32 {{ faq_flat ? 'py-0' : 'py-8 md:py-12' }} {{ faq_bg_class }}" data-store="home-faq">
 
     {# Title #}
     {% if settings.faq_title %}

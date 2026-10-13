@@ -5,6 +5,8 @@
   --color-bg: var(--background-color);
   --color-fg: var(--primary-color);
   --color-secondary: var(--text-color);
+  /* accent_color do admin: fundo "Cor de acento" das seções da home (carrossel, grid, FAQ). */
+  --color-accent: var(--accent-color);
   
   /* Shades derivadas das cores principais */
   --color-bg-subtle: color-mix(in srgb, var(--background-color) 95%, var(--primary-color) 5%);
@@ -402,6 +404,11 @@
     animation: marquee-scroll 30s linear infinite;
     will-change: transform;
 }
+
+/* Velocidade (promo_marquee_speed) e pausa no hover via data-* (ADR-0004); normal = 30s, padrao historico */
+.promo-marquee-section[data-speed="slow"] .promo-marquee-track { animation-duration: 50s; }
+.promo-marquee-section[data-speed="fast"] .promo-marquee-track { animation-duration: 18s; }
+.promo-marquee-section[data-pause-hover="1"]:hover .promo-marquee-track { animation-play-state: paused; }
 
 @keyframes marquee-scroll {
     0% {
