@@ -74,6 +74,7 @@ product_grid_title_en = Best Sellers
 product_grid_title_pt = Mais Vendidos
 product_grid_title_es_mx = Más Vendidos
 product_grid_bg = none
+product_grid_count = 4
 ajax_cart = 1
 cart_open_type = show_notification
 add_to_cart_recommendations = 1

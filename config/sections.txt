@@ -13,3 +13,7 @@ carousel_tab_2
 carousel_tab_3
 	name = Carrossel Tab 3
 	description = Produtos exibidos na terceira aba do carrossel na página de inicio (até 40 produtos).
+
+product_grid
+	name = Grid de produtos (Mais Vendidos)
+	description = Produtos exibidos no grid da página de inicio (até 40 produtos). Se ficar vazio, usa os produtos da seção Destacados.

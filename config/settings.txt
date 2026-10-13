@@ -845,6 +845,14 @@ Página de inicio
 			secondary = Cor de texto
 			background = Cor de fundo
 			accent = Cor de acento
+	subtitle
+		subtitle = Link "Ver todos" (aparece só com texto e link preenchidos)
+	i18n_input
+		name = product_carousel_viewall_label
+		description = Texto do link (ex: Ver todos)
+	i18n_input
+		name = product_carousel_viewall_url
+		description = Link (ex: /camisetas/)
 	collapse
 		title = Grid de produtos
 		backto = home_order_position
@@ -852,10 +860,10 @@ Página de inicio
 		name = product_grid_show
 		description = Mostrar esta seção na página inicial
 	description
-		description = Exibe os 4 primeiros produtos destacados em um grid 2x2 na página de inicio.
+		description = Exibe os produtos da seção "Grid de produtos" em um grid de 2 colunas na página de inicio. Enquanto essa seção estiver vazia, usa os produtos destacados.
 		name = product_grid_description
 	subtitle
-		subtitle = <a target='_blank' href='/admin/themes/settings/product_order/'>Escolha os produtos destacados</a>
+		subtitle = <a target='_blank' href='/admin/themes/settings/product_order/'>Escolha os produtos do grid</a>
 	i18n_input
 		description = Título da seção
 		name = product_grid_title
@@ -870,6 +878,24 @@ Página de inicio
 			secondary = Cor de texto
 			background = Cor de fundo
 			accent = Cor de acento
+	subtitle
+		subtitle = Quantidade e link
+	dropdown
+		name = product_grid_count
+		description = Quantidade de produtos exibidos
+		values
+			2 = 2 produtos
+			4 = 4 produtos
+			6 = 6 produtos
+			8 = 8 produtos
+			10 = 10 produtos
+			12 = 12 produtos
+	i18n_input
+		name = product_grid_viewall_label
+		description = Texto do link "Ver todos" (ex: Ver todos)
+	i18n_input
+		name = product_grid_viewall_url
+		description = Link "Ver todos" (ex: /camisetas/)
 	collapse
 		title = Módulos de imagen y texto
 		backto = home_order_position
