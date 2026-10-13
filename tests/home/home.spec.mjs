@@ -22,6 +22,39 @@ test.describe("carrossel de produtos", () => {
     await expect(card).toContainText(/R\$/);
   });
 
+  // Fibery #231: cards de 234px fixos, imagem 4:5, título com inset de 8px; no mobile a
+  // trilha encosta na borda (sem gutter, sem gap) e o 2º card aparece cortado (peek).
+  test("cards de 234px com imagem 4:5 e peek do próximo", async ({ page, isMobile }) => {
+    await gotoStore(page, "home");
+    const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
+    await page.waitForFunction((s) => !!document.querySelector(s)?.swiper, container);
+    await page.locator(container).scrollIntoViewIfNeeded();
+    await settled(page, container);
+    const geo = await page.locator(container).evaluate((root) => {
+      const vw = document.documentElement.clientWidth;
+      return [...root.querySelectorAll(".swiper-slide")]
+        .map((el) => ({ el, r: el.getBoundingClientRect() }))
+        .filter(({ r }) => r.right > 0 && r.left < vw)
+        .sort((a, b) => a.r.left - b.r.left)
+        .map(({ el, r }) => {
+          const image = el.querySelector(":scope > script + div").getBoundingClientRect();
+          const title = el.lastElementChild.querySelector("a").getBoundingClientRect();
+          return { left: r.left, right: r.right, width: r.width, ratio: image.width / image.height, inset: title.left - r.left, vw };
+        });
+    });
+    expect(geo.length).toBeGreaterThan(1);
+    for (const c of geo) {
+      expect(Math.round(c.width)).toBe(234);
+      expect(c.ratio).toBeCloseTo(0.8, 1);
+      expect(Math.round(c.inset)).toBe(8);
+    }
+    if (isMobile) {
+      expect(Math.round(geo[0].left)).toBe(0);
+      expect(Math.round(geo[1].left)).toBe(Math.round(geo[0].right)); // sem gap
+      expect(geo[1].right).toBeGreaterThan(geo[1].vw); // peek: o 2º card sai da tela
+    }
+  });
+
   test("setas mudam o slide ativo e a seed acompanha", async ({ page }) => {
     await gotoStore(page, "home");
     const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
