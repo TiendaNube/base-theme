@@ -40,14 +40,21 @@ paralelos geram conflito garantido. Há uma única loja de dev (ADR-0015).
    - Precisou de algo fora do escopo: parar e reportar, não improvisar.
 4. **Linhas nunca rodam** `npm run build`, o pre-build, deploy FTP nem
    `npm test`, e nunca commitam `static/`, `esbuild.config.mjs` ou a linha
-   `gaius-v` do `layouts/layout.tpl`. Podem rodar `npm run lint:styles` e
-   compilar Tailwind/esbuild para um caminho temporário só para conferir.
+   `gaius-v` do `layouts/layout.tpl`. Rodam `npm run lint:styles` e
+   `npm run lint:twig` antes de cada commit (não há renderer local: um
+   `endif` órfão só aparece na loja, como 500 em todas as páginas — aconteceu
+   na onda 1) e podem compilar Tailwind/esbuild para um caminho temporário.
+   Antes de mexer, a linha fotografa a área na loja (antes/depois): o Figma
+   não autoriza piorar o que já estava bom (margens, alinhamento, espaçamento,
+   legibilidade) — nesse caso, para e pergunta.
 5. **A integração é da sessão principal**, por onda:
    1. merge das linhas em `wave/N`;
    2. um único `npm run build`;
-   3. deploy na loja de dev;
-   4. bateria: `npm test` completo + screenshots 393/1440 de cada task
-      contra o nó do Figma;
+   3. deploy na loja de dev, repetindo até "concluído" (o FTP cai no meio) e
+      conferindo que as páginas respondem 200;
+   4. bateria: primeiro os screenshots 393/1440 de cada área tocada (contra
+      o antes e o nó do Figma), depois o `npm test` completo — teste verde
+      não substitui olhar a tela;
    5. falhas voltam ao mesmo agente da linha que as originou;
    6. um PR por onda; merge manual; pull;
    7. tasks passam a Done no Fibery; a próxima onda nasce da `master`
