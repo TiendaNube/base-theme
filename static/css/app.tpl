@@ -911,6 +911,14 @@
     margin-top: calc(var(--spacing) * 6);
   }
 
+  .mt-8 {
+    margin-top: calc(var(--spacing) * 8);
+  }
+
+  .mt-\[7px\] {
+    margin-top: 7px;
+  }
+
   .mt-auto {
     margin-top: auto;
   }
@@ -1074,6 +1082,11 @@
   .size-2 {
     width: calc(var(--spacing) * 2);
     height: calc(var(--spacing) * 2);
+  }
+
+  .size-2\.5 {
+    width: calc(var(--spacing) * 2.5);
+    height: calc(var(--spacing) * 2.5);
   }
 
   .size-8 {
@@ -1403,6 +1416,10 @@
 
   .min-w-16 {
     min-width: calc(var(--spacing) * 16);
+  }
+
+  .min-w-34 {
+    min-width: calc(var(--spacing) * 34);
   }
 
   .min-w-48 {
@@ -1922,6 +1939,16 @@
     }
   }
 
+  .bg-black\/15 {
+    background-color: #00000026;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/15 {
+      background-color: color-mix(in oklab, var(--color-black) 15%, transparent);
+    }
+  }
+
   .bg-black\/30 {
     background-color: #0000004d;
   }
@@ -1939,6 +1966,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-black\/35 {
       background-color: color-mix(in oklab, var(--color-black) 35%, transparent);
+    }
+  }
+
+  .bg-black\/50 {
+    background-color: #00000080;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/50 {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
 
@@ -1995,6 +2032,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-white\/5 {
       background-color: color-mix(in oklab, var(--color-white) 5%, transparent);
+    }
+  }
+
+  .bg-white\/30 {
+    background-color: #ffffff4d;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-white\/30 {
+      background-color: color-mix(in oklab, var(--color-white) 30%, transparent);
     }
   }
 
@@ -2199,6 +2246,10 @@
 
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
+  }
+
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
   }
 
   .py-12 {
@@ -2434,6 +2485,11 @@
   .leading-4 {
     --tw-leading: calc(var(--spacing) * 4);
     line-height: calc(var(--spacing) * 4);
+  }
+
+  .leading-6 {
+    --tw-leading: calc(var(--spacing) * 6);
+    line-height: calc(var(--spacing) * 6);
   }
 
   .leading-\[80\%\] {
@@ -2818,10 +2874,6 @@
     background: #fffff6b3;
   }
 
-  .\[background\:rgba\(255\,255\,255\,0\.30\)\] {
-    background: #ffffff4d;
-  }
-
   @media (hover: hover) {
     .group-hover\:scale-110:is(:where(.group):hover *) {
       --tw-scale-x: 110%;
@@ -2903,6 +2955,15 @@
     }
   }
 
+  .focus-visible\:outline-2:focus-visible {
+    outline-style: var(--tw-outline-style);
+    outline-width: 2px;
+  }
+
+  .focus-visible\:-outline-offset-4:focus-visible {
+    outline-offset: calc(4px * -1);
+  }
+
   .disabled\:cursor-not-allowed:disabled {
     cursor: not-allowed;
   }
@@ -2942,6 +3003,14 @@
 
     .md\:top-\[30\%\] {
       top: 30%;
+    }
+
+    .md\:right-0 {
+      right: calc(var(--spacing) * 0);
+    }
+
+    .md\:bottom-0 {
+      bottom: calc(var(--spacing) * 0);
     }
 
     .md\:bottom-6 {
@@ -3008,6 +3077,14 @@
       flex-direction: row;
     }
 
+    .md\:items-center {
+      align-items: center;
+    }
+
+    .md\:justify-center {
+      justify-content: center;
+    }
+
     .md\:gap-4 {
       gap: calc(var(--spacing) * 4);
     }
@@ -3022,6 +3099,10 @@
 
     .md\:gap-y-10 {
       row-gap: calc(var(--spacing) * 10);
+    }
+
+    .md\:self-center {
+      align-self: center;
     }
 
     .md\:px-0 {
@@ -3040,8 +3121,8 @@
       padding-block: calc(var(--spacing) * 12);
     }
 
-    .md\:py-24 {
-      padding-block: calc(var(--spacing) * 24);
+    .md\:py-16 {
+      padding-block: calc(var(--spacing) * 16);
     }
 
     .md\:pb-0 {
@@ -3073,10 +3154,6 @@
 
     .md\:text-\[40px\] {
       font-size: 40px;
-    }
-
-    .md\:text-\[48px\] {
-      font-size: 48px;
     }
   }
 
@@ -3518,6 +3595,18 @@
 .promo-marquee-track {
   will-change: transform;
   animation: 30s linear infinite marquee-scroll;
+}
+
+.promo-marquee-section[data-speed="slow"] .promo-marquee-track {
+  animation-duration: 50s;
+}
+
+.promo-marquee-section[data-speed="fast"] .promo-marquee-track {
+  animation-duration: 18s;
+}
+
+.promo-marquee-section[data-pause-hover="1"]:hover .promo-marquee-track {
+  animation-play-state: paused;
 }
 
 @keyframes marquee-scroll {
