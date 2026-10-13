@@ -95,6 +95,40 @@ test.describe("card de produto (#236)", () => {
   });
 });
 
+// Grade da categoria (Fibery #238): mobile 2 colunas de borda a borda, sem gap;
+// a partir de md 3 colunas (nunca 4), células encostadas.
+test.describe("grade da categoria (#238)", () => {
+  test("colunas e gaps seguem o Figma", async ({ page, isMobile }) => {
+    await gotoStore(page, "category");
+    const info = await page.locator(".js-category-grid").evaluate((el) => {
+      const cs = getComputedStyle(el);
+      const first = el.querySelector("[data-product-id]").getBoundingClientRect();
+      return {
+        columns: cs.gridTemplateColumns.split(" ").length,
+        columnGap: cs.columnGap,
+        rowGap: cs.rowGap,
+        firstLeft: first.left,
+        vw: document.documentElement.clientWidth,
+      };
+    });
+    expect(info.columns).toBe(isMobile ? 2 : 3);
+    expect(info.columnGap).toMatch(/^0(px)?$/);
+    expect(info.rowGap).toMatch(/^0(px)?$/);
+    if (isMobile) expect(Math.round(info.firstLeft)).toBe(0);
+  });
+
+  test("cards carregados pela rolagem infinita entram na mesma grade de 2/3 colunas", async ({ page, isMobile }) => {
+    await gotoStore(page, "category");
+    const btn = page.locator(".js-category-load-more-btn");
+    test.skip((await btn.count()) === 0, "categoria com uma página só");
+    const before = await cards(page).count();
+    await btn.click();
+    await expect.poll(() => cards(page).count()).toBeGreaterThan(before);
+    const lefts = await cards(page).evaluateAll((els) => els.slice(-6).map((el) => Math.round(el.getBoundingClientRect().left)));
+    expect(new Set(lefts).size).toBe(isMobile ? 2 : 3);
+  });
+});
+
 test.describe("ordenação", () => {
   test("escolher uma opção recarrega com sort_by e marca a opção", async ({ page }) => {
     await gotoStore(page, "category");

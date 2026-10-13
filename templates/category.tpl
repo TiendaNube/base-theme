@@ -253,10 +253,12 @@
         {% endif %}
     </section>
 
-    {# Product Grid + Pagination #}
-    <section class="px-4 md:px-16 pb-8" style="background-color: var(--background-color)">
+    {# Product Grid + Pagination - Figma mobile 14:1778 / desktop 131:4362: 2 columns edge to edge
+       on mobile (no gutter, no gap; the card carries the 8px inset), 3 columns from md inside the
+       64px gutter, cells touching. Same grid language as the home "Mais Vendidos" grid. #}
+    <section class="md:px-16 pb-8" style="background-color: var(--background-color)">
         {% if products %}
-            <div class="js-category-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-x-4 md:gap-y-4"
+            <div class="js-category-grid grid grid-cols-2 md:grid-cols-3 gap-0"
                  data-next-url="{{ pages.next }}"
                  data-is-last="{{ pages.is_last ? 'true' : 'false' }}">
                 {% for product in products %}
