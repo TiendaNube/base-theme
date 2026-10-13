@@ -963,6 +963,10 @@
     margin-bottom: calc(var(--spacing) * 6);
   }
 
+  .-ml-1\.5 {
+    margin-left: calc(var(--spacing) * -1.5);
+  }
+
   .-ml-2 {
     margin-left: calc(var(--spacing) * -2);
   }
@@ -973,10 +977,6 @@
 
   .-ml-3 {
     margin-left: calc(var(--spacing) * -3);
-  }
-
-  .-ml-3\.5 {
-    margin-left: calc(var(--spacing) * -3.5);
   }
 
   .-ml-\[3px\] {

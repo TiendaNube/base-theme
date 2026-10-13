@@ -67,8 +67,8 @@ export const productCarousel = () => {
 
     let html = "";
     for (let i = 0; i < realCount; i++) {
-      // 40px hit area (Fibery task 224) around the 11x8 glyph
-      html += `<span class="inline-flex items-center justify-center w-10 h-10 shrink-0 cursor-pointer js-carousel-seed" data-index="${i}">${seedSVG(i === currentIndex)}</span>`;
+      // 24x40 hit area around the 11x8 glyph: 24px pitch keeps the seeds close like Figma (WCAG 2.5.8 minimum); the 40px arrows are the primary control
+      html += `<span class="inline-flex items-center justify-center w-6 h-10 shrink-0 cursor-pointer js-carousel-seed" data-index="${i}">${seedSVG(i === currentIndex)}</span>`;
     }
     paginationContainer.innerHTML = html;
 
