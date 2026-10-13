@@ -22,6 +22,7 @@ npm run build          # produção: Tailwind + pre-build (cache-busting) + esbu
 npm run ftp:deploy     # sobe o disco para o FTP da loja de dev (via /ftp-deploy)
 npm test               # Playwright contra a loja de dev, headed (Cloudflare) — ver tests/README.md
 npm run lint:styles    # guard de cores hardcoded (ADR-0003)
+npm run lint:twig      # if/for/endif e <div> balanceados (sem renderer local, ADR-0016)
 ```
 
 O loop de uma mudança é **máquina → loja de dev** (ADR-0015): editar → build →
@@ -47,18 +48,28 @@ gera `gaius-v{epoch}.js` e reescreve `esbuild.config.mjs` + `layouts/layout.tpl`
 | Plataforma | Não chamar `LS.*` do custom, exceto `LS.addItem/removeItem` em módulos de carrinho; PDP é dona das variantes (sem `LS.changeVariant`) | 0010 |
 | Figma | Design → tokens, nunca hex verbatim; breakpoints são decisão nossa; valida com screenshot | 0011 |
 | Deploy | Merge em `master` = deploy via FTPS na loja Nuvemshop (hoje só existe a loja de dev `democamisetasromadev`; produção ainda não subiu); `/ftp-deploy` só a pedido explícito | 0012 |
-| Workflow | plan.md + specs em `docs/specs/<slug>/`; `/implement-spec` uma spec por vez; `/pr` abre PR e para | 0013 |
+| Workflow | Task do Fibery é a unidade; ondas com linhas (worktree + branch `wave-N/<linha>`); só a integração builda/sobe/testa; `/pr` abre PR e para | 0016 |
 | Testes | Desenvolve na máquina, valida na loja de dev `democamisetasromadev` (Playwright `desktop`/`mobile` em `tests/` + screenshots) + `lint:styles`; o renderer local do 0014 foi descontinuado | 0015 |
 
 ## Fluxo de uma feature
 
-1. Conferir `docs/specs/` por trabalho relacionado; planejar em conversa →
-   `docs/specs/<slug>/plan.md` + specs numeradas (ver `docs/specs/README.md`).
-2. `/implement-spec docs/specs/<slug>/NN-nome.md` — uma por vez. A skill roda
-   build (se `__src/` mudou), `npm run lint:styles`, sobe para a loja de dev,
-   roda `npm test` lá, tira screenshots da loja e fecha com relatório.
-3. Revisar; quando tudo `done`, `/pr`. Merge é manual.
-4. Correção de uma linha não precisa de spec, mas precisa de lint + teste.
+1. O trabalho é uma **Task no Fibery** (workspace `camisetas-roma-dev`, space
+   "Project Tracking", projeto "Roma Theme V2"); a descrição traz contexto,
+   nós do Figma e aceite. Implemente direto dela — as regras são os ADRs e o
+   contrato. Não há plan/specs no repo.
+2. Tasks andam em **ondas**; cada **linha** é um worktree + branch
+   `wave-N/<linha>` (de `wave/N`) dono exclusivo dos seus templates. Fora do
+   escopo: pare e reporte.
+3. Em uma linha: fotografe a área na loja antes (o Figma não autoriza piorar o
+   que estava bom) e rode `npm run lint:styles` + `npm run lint:twig` antes de
+   cada commit. **Nunca** `npm run build`,
+   deploy, `npm test`, nem commite `static/`, `esbuild.config.mjs` ou a linha
+   `gaius-v` do `layout.tpl` (pre-build reescreve: conflito garantido).
+4. A sessão principal integra a onda: merge em `wave/N` → um build → deploy
+   na loja de dev (páginas 200?) → screenshots 393/1440 vs. antes e Figma →
+   `npm test` → um PR por
+   onda (`/pr`). Merge é manual; depois, tasks Done no Fibery.
+5. Correção de uma linha também exige lint + teste.
 
 ## Onde olhar
 

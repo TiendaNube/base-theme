@@ -149,6 +149,13 @@
   -webkit-appearance: none;
 }
 
+/* Termo buscado em negrito no nome (markup do filtro highlight da Nuvemshop) */
+.search-result-name :is(strong, b, mark) {
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+}
+
 /* ===== TOAST NOTIFICATION STYLES ===== */
 
 .js-toast-container [data-state] {
@@ -340,6 +347,17 @@
 .promo-marquee-section {
     width: 100%;
 }
+
+/* Cores vindas de settings.promo_marquee_* via data-bg / data-text (ADR-0004) */
+.promo-marquee-section[data-bg="primary"] { background-color: var(--primary-color); }
+.promo-marquee-section[data-bg="secondary"] { background-color: var(--text-color); }
+.promo-marquee-section[data-bg="background"] { background-color: var(--background-color); }
+.promo-marquee-section[data-bg="accent"] { background-color: var(--accent-color); }
+
+.promo-marquee-section[data-text="white"] { color: #fff; /* lint-styles: allow admin-white */ }
+.promo-marquee-section[data-text="primary"] { color: var(--primary-color); }
+.promo-marquee-section[data-text="secondary"] { color: var(--text-color); }
+.promo-marquee-section[data-text="background"] { color: var(--background-color); }
 
 .promo-marquee-track {
     animation: marquee-scroll 30s linear infinite;

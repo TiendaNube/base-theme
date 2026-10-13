@@ -26,6 +26,13 @@ spec 05 criou `--color-control` derivado de `--text-color` em vez do rgba.
    galeria não cabe entre 768 e 1023).
 4. **Verificar antes de dar "done":** screenshot no viewport certo +
    comportamento no preview (local ADR-0014 ou real), não só o CSS gerado.
+5. **Figma é protótipo: escala e peso se julgam na loja.** O frame tem uma
+   largura fixa (393/1440) e costuma distorcer a noção de escala, pesos e
+   respiro. Medida fixa copiada de um frame é suspeita nas outras larguras —
+   testar em 393, 768, 1024, 1440 e 1920. O que já funciona na loja não piora
+   por "estar diferente do Figma"; na dúvida, mostra antes/depois ao owner.
+   (Onda 1, 2026-10-13: cards fixos de 234px do carrossel deixavam 285px de
+   vão a 1920; grade sem margem desalinhava do header — ambos revertidos.)
 
 ## Consequências
 

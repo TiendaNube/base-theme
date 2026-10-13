@@ -41,7 +41,7 @@ o desenvolvimento acontecendo na máquina do owner, fidelidade ganha.
    suíte Playwright, que já é escrita por página lógica — passa a rodar só nos
    projetos `real-*`, com `ROMA_STORE_URL` apontando para a loja de dev por
    padrão e os slugs de produto/categoria reais em `.env`.
-5. **Subir para a loja de dev dentro do `/implement-spec` faz parte da
+5. **Subir para a loja de dev dentro do fluxo de implementação (hoje, a integração de onda — ver ADR-0016, que fecha este ponto) faz parte da
    validação**, não exige pedido separado a cada upload — a loja não tem
    clientes. A skill mostra o que vai subir e segue. Fora de uma spec, o
    `/ftp-deploy` continua a pedido. *(Ponto a confirmar pelo owner ao listar
@@ -78,7 +78,7 @@ o desenvolvimento acontecendo na máquina do owner, fidelidade ganha.
       dev; `preview-*` e o `webServer` removidos (2026-10-12).
 - [x] `tests/preview.helpers.mjs` → `tests/helpers.mjs` sem o modo offline;
       suíte reorganizada por contexto (`tests/README.md`), 2026-10-12.
-- [ ] `/implement-spec`, `/pr` e `/ftp-deploy`: texto alinhado ao loop deste ADR.
+- [ ] (`/implement-spec` removida pelo ADR-0016) `/pr` e `/ftp-deploy`: texto alinhado ao loop deste ADR.
 - [ ] Remover `tools/preview/`, os scripts `preview*` do `package.json` e o
       `twig` das devDependencies (nada mais depende deles).
 

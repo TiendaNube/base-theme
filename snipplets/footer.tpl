@@ -36,39 +36,39 @@
 
                     {# Social Icons #}
                     {% if has_social_network %}
-                        <div class="flex flex-wrap gap-y-4 gap-x-5">
+                        <div class="flex flex-wrap gap-x-0.5 gap-y-0.5 -ml-[3px] py-[5px]">
                             {% if settings.footer_social_whatsapp_url %}
-                                <a href="{{ settings.footer_social_whatsapp_url | setting_url }}" target="_blank" aria-label="WhatsApp {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_whatsapp_url | setting_url }}" target="_blank" aria-label="WhatsApp {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/whatsapp.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
                             {% if settings.footer_social_instagram_url %}
-                                <a href="{{ settings.footer_social_instagram_url | setting_url }}" target="_blank" aria-label="Instagram {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_instagram_url | setting_url }}" target="_blank" aria-label="Instagram {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/instagram.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
                             {% if settings.footer_social_facebook_url %}
-                                <a href="{{ settings.footer_social_facebook_url | setting_url }}" target="_blank" aria-label="Facebook {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_facebook_url | setting_url }}" target="_blank" aria-label="Facebook {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/facebook.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
                             {% if settings.footer_social_youtube_url %}
-                                <a href="{{ settings.footer_social_youtube_url | setting_url }}" target="_blank" aria-label="YouTube {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_youtube_url | setting_url }}" target="_blank" aria-label="YouTube {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/youtube.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
                             {% if settings.footer_social_pinterest_url %}
-                                <a href="{{ settings.footer_social_pinterest_url | setting_url }}" target="_blank" aria-label="Pinterest {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_pinterest_url | setting_url }}" target="_blank" aria-label="Pinterest {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/pinterest.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
                             {% if settings.footer_social_linkedin_url %}
-                                <a href="{{ settings.footer_social_linkedin_url | setting_url }}" target="_blank" aria-label="LinkedIn {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_linkedin_url | setting_url }}" target="_blank" aria-label="LinkedIn {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/linkedin.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
                             {% if settings.footer_social_tiktok_url %}
-                                <a href="{{ settings.footer_social_tiktok_url | setting_url }}" target="_blank" aria-label="TikTok {{ store.name }}" class="text-fg hover:opacity-70 transition-opacity">
+                                <a href="{{ settings.footer_social_tiktok_url | setting_url }}" target="_blank" aria-label="TikTok {{ store.name }}" class="flex p-2.5 text-fg hover:opacity-70 transition-opacity">
                                     {% include "snipplets/svg/tiktok.tpl" with {svg_custom_class: "w-5 h-5"} %}
                                 </a>
                             {% endif %}
@@ -82,34 +82,34 @@
                         {{ settings.footer_support_title | default("Suporte" | translate) }}
                     </h3>
 
-                    <nav class="flex flex-col gap-2.5">
+                    <nav class="flex flex-col gap-1.75">
                         {% if settings.footer_support_link_1_text and settings.footer_support_link_1_url %}
-                            <a href="{{ settings.footer_support_link_1_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_support_link_1_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_support_link_1_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_support_link_2_text and settings.footer_support_link_2_url %}
-                            <a href="{{ settings.footer_support_link_2_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_support_link_2_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_support_link_2_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_support_link_3_text and settings.footer_support_link_3_url %}
-                            <a href="{{ settings.footer_support_link_3_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_support_link_3_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_support_link_3_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_support_link_4_text and settings.footer_support_link_4_url %}
-                            <a href="{{ settings.footer_support_link_4_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_support_link_4_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_support_link_4_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_support_link_5_text and settings.footer_support_link_5_url %}
-                            <a href="{{ settings.footer_support_link_5_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_support_link_5_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_support_link_5_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_support_link_6_text and settings.footer_support_link_6_url %}
-                            <a href="{{ settings.footer_support_link_6_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_support_link_6_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_support_link_6_text }}
                             </a>
                         {% endif %}
@@ -122,29 +122,29 @@
                         {{ settings.footer_about_title | default("Sobre" | translate) }}
                     </h3>
 
-                    <nav class="flex flex-col gap-2.5">
+                    <nav class="flex flex-col gap-1.75">
                         {% if settings.footer_about_link_1_text and settings.footer_about_link_1_url %}
-                            <a href="{{ settings.footer_about_link_1_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_about_link_1_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_about_link_1_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_about_link_2_text and settings.footer_about_link_2_url %}
-                            <a href="{{ settings.footer_about_link_2_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_about_link_2_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_about_link_2_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_about_link_3_text and settings.footer_about_link_3_url %}
-                            <a href="{{ settings.footer_about_link_3_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_about_link_3_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_about_link_3_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_about_link_4_text and settings.footer_about_link_4_url %}
-                            <a href="{{ settings.footer_about_link_4_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_about_link_4_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_about_link_4_text }}
                             </a>
                         {% endif %}
                         {% if settings.footer_about_link_5_text and settings.footer_about_link_5_url %}
-                            <a href="{{ settings.footer_about_link_5_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm">
+                            <a href="{{ settings.footer_about_link_5_url | setting_url }}" class="text-fg hover:opacity-70 transition-opacity text-sm font-medium">
                                 {{ settings.footer_about_link_5_text }}
                             </a>
                         {% endif %}
@@ -156,14 +156,14 @@
 
         {# Logo de Apoio (Opcional): SVG > Imagem > Nada #}
         {% if settings.logo_support_svg %}
-            <div class="w-full flex justify-center py-4 footer-logo-svg max-h-16">
+            <div class="w-full flex justify-center footer-logo-svg max-h-9">
                 {{ settings.logo_support_svg | raw }}
             </div>
         {% elseif "logo_support.png" | has_custom_image %}
-            <div class="w-full flex justify-center py-4">
+            <div class="w-full flex justify-center">
                 <img src="{{ 'images/empty-placeholder.png' | static_url }}"
                      data-src="{{ "logo_support.png" | static_url }}"
-                     class="lazyload max-h-16"
+                     class="lazyload max-h-9"
                      alt="{{ store.name }} - Logo de Apoio" />
             </div>
         {% endif %}
@@ -220,8 +220,8 @@
         {% endif %}
 
         {# Copyright - Centralizado #}
-        <div class="w-full flex flex-col items-center gap-4 pt-4">
-            <div class="text-fg text-sm text-center">
+        <div class="w-full flex flex-col items-center gap-4 pt-2">
+            <div class="text-fg text-xs font-medium text-center">
                 {{ "Copyright {1} - {2}. Todos los derechos reservados." | translate( (store.business_name ? store.business_name : store.name) ~ (store.business_id ? ' - ' ~ store.business_id : ''), "now" | date('Y') ) }}
                 {{ component('claim-info', {
                     container_classes: "mt-2",
@@ -236,7 +236,7 @@
         </div>
 
         {# Powered By Nuvemshop (OBRIGATORIO) - Canto inferior #}
-        <div class="w-full flex justify-end pt-2">
+        <div class="w-full flex justify-end">
             <div class="text-fg text-sm powered-by-wrapper">
                 {#
                 La leyenda que aparece debajo de esta linea de codigo debe mantenerse

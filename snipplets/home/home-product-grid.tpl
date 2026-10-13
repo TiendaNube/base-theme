@@ -12,7 +12,11 @@
 {% set grid_bg_value = grid_bg_map[settings.product_grid_bg] | default('transparent') %}
 
 {% if has_grid_products %}
-<section class="section-product-grid px-4 md:px-32 py-8" data-store="home-product-grid" style="background-color: {{ grid_bg_value }}">
+{# Layout per Figma bestProducts (mobile 52:188, desktop 82:3191). Same grid language as the
+   category grid: page gutter (24px mobile, 64px from md, aligned with the header) and a gap
+   between cards; wide column gap on desktop (128px at xl = Figma's 592px cells at 1440).
+   Desktop stays 2x2 here (4 products). #}
+<section class="section-product-grid px-6 md:px-16 py-8" data-store="home-product-grid" style="background-color: {{ grid_bg_value }}">
 
     {# Title #}
     {% if settings.product_grid_title %}
@@ -23,8 +27,8 @@
         </div>
     {% endif %}
 
-    {# Product Grid 2x2 - increased horizontal gap on medium+ screens to prevent items from being too large #}
-    <div class="grid grid-cols-2 gap-3 md:gap-x-12 md:gap-y-4 lg:gap-x-16 xl:gap-x-20">
+    {# Product Grid 2x2 #}
+    <div class="grid grid-cols-2 gap-x-3 gap-y-6 md:gap-x-16 md:gap-y-10 xl:gap-x-32">
         {% for product in sections.primary.products | slice(0, 4) %}
             {% include 'snipplets/grid/item-card.tpl' %}
         {% endfor %}

@@ -1057,6 +1057,11 @@ pt "Subtotal"
 en "Subtotal"
 es_mx "Subtotal"
 
+es "Ir para o Checkout"
+pt "Ir para o Checkout"
+en "Go to Checkout"
+es_mx "Ir para o Checkout"
+
 es "eliminar"
 pt "remover"
 en "remove"

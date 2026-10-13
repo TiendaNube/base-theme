@@ -25,6 +25,7 @@
     "ftp:deploy": "node --env-file=.env scripts/ftp-deploy.mjs",
     "test:ui": "playwright test --ui",
     "lint:styles": "node scripts/lint-styles.mjs",
+    "lint:twig": "node scripts/lint-twig.mjs",
     "preview": "node tools/preview/serve.mjs",
     "preview:build": "node tools/preview/build.mjs"
   },

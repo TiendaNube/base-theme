@@ -22,6 +22,41 @@ test.describe("carrossel de produtos", () => {
     await expect(card).toContainText(/R\$/);
   });
 
+  // Fibery #231: imagem 4:5 e título com inset de 8px; no mobile cards de 234px, trilha
+  // encostada na borda (sem gutter, sem gap) e o 2º card cortado (peek). No desktop os cards
+  // são fluidos (4,25 por vista) — 234px fixos deixavam buracos enormes em telas largas.
+  test("cards com imagem 4:5 e peek do próximo", async ({ page, isMobile }) => {
+    await gotoStore(page, "home");
+    const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
+    await page.waitForFunction((s) => !!document.querySelector(s)?.swiper, container);
+    await page.locator(container).scrollIntoViewIfNeeded();
+    await settled(page, container);
+    const geo = await page.locator(container).evaluate((root) => {
+      const vw = document.documentElement.clientWidth;
+      return [...root.querySelectorAll(".swiper-slide")]
+        .map((el) => ({ el, r: el.getBoundingClientRect() }))
+        .filter(({ r }) => r.right > 0 && r.left < vw)
+        .sort((a, b) => a.r.left - b.r.left)
+        .map(({ el, r }) => {
+          const image = el.querySelector(":scope > script + div").getBoundingClientRect();
+          const title = el.lastElementChild.querySelector("a").getBoundingClientRect();
+          return { left: r.left, right: r.right, width: r.width, ratio: image.width / image.height, inset: title.left - r.left, vw };
+        });
+    });
+    expect(geo.length).toBeGreaterThan(1);
+    for (const c of geo) {
+      if (isMobile) expect(Math.round(c.width)).toBe(234);
+      expect(c.ratio).toBeCloseTo(0.8, 1);
+      expect(Math.round(c.inset)).toBe(8);
+    }
+    if (!isMobile) expect(geo[geo.length - 1].right).toBeGreaterThan(geo[0].vw - 64); // peek no desktop
+    if (isMobile) {
+      expect(Math.round(geo[0].left)).toBe(0);
+      expect(Math.round(geo[1].left)).toBe(Math.round(geo[0].right)); // sem gap
+      expect(geo[1].right).toBeGreaterThan(geo[1].vw); // peek: o 2º card sai da tela
+    }
+  });
+
   test("setas mudam o slide ativo e a seed acompanha", async ({ page }) => {
     await gotoStore(page, "home");
     const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
@@ -139,6 +174,37 @@ test.describe("grid de produtos e grupo VIP", () => {
     await expect(page.locator("h1.js-product-name")).toBeVisible();
   });
 
+  // Fibery #232: mesma linguagem da grade da categoria — 2 colunas dentro da margem
+  // da página, com espaço entre os cards; imagem 4:5; cards da mesma linha alinham o preço.
+  test("o grid Mais Vendidos segue o Figma (2 colunas com margem e gap, 4:5)", async ({ page, isMobile }) => {
+    await gotoStore(page, "home");
+    const grid = page.locator('[data-store="home-product-grid"] .grid');
+    test.skip((await grid.count()) === 0, "seção não configurada");
+    await grid.scrollIntoViewIfNeeded();
+    const info = await grid.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      const vw = document.documentElement.clientWidth;
+      const cards = [...el.querySelectorAll(":scope > [data-product-id]")].map((card) => {
+        const r = card.getBoundingClientRect();
+        const image = card.querySelector(":scope > script + div").getBoundingClientRect();
+        const price = card.lastElementChild.lastElementChild.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: Math.round(r.top), ratio: image.width / image.height, priceTop: Math.round(price.top) };
+      });
+      return { columns: cs.gridTemplateColumns.split(" ").length, columnGap: cs.columnGap, rowGap: cs.rowGap, vw, cards };
+    });
+    expect(info.columns).toBe(2);
+    for (const c of info.cards) expect(c.ratio).toBeCloseTo(0.8, 1);
+    const rows = new Map();
+    for (const c of info.cards) rows.set(c.top, [...(rows.get(c.top) || []), c.priceTop]);
+    // tolerância de 2px: subpixel a 412px de largura arredonda diferente em cada coluna
+    for (const tops of rows.values()) expect(Math.max(...tops) - Math.min(...tops)).toBeLessThanOrEqual(2);
+    if (isMobile) {
+      expect(parseFloat(info.columnGap)).toBeGreaterThan(0);
+      expect(Math.round(info.cards[0].left)).toBe(24);
+      expect(Math.round(info.cards[1].right)).toBe(info.vw - 24);
+    }
+  });
+
   test("o grupo VIP tem botão com link", async ({ page }) => {
     await gotoStore(page, "home");
     const vip = page.locator('[data-store="home-vip-group"]');
@@ -155,5 +221,10 @@ test.describe("grid de produtos e grupo VIP", () => {
     test.skip((await marquee.count()) === 0, "seção não configurada");
     await expect(marquee).toBeVisible();
     await expect(marquee).toContainText(/\S/);
+    // ADR-0004: cores vêm de data-bg/data-text mapeados no CSS, sem style="" inline
+    await expect(marquee).toHaveAttribute("data-bg", /^(primary|secondary|background|accent)$/);
+    await expect(marquee).toHaveAttribute("data-text", /^(white|primary|secondary|background)$/);
+    expect(await marquee.locator("[style]").count()).toBe(0);
+    expect(await marquee.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
   });
 });
