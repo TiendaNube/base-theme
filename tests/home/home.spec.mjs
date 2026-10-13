@@ -22,9 +22,10 @@ test.describe("carrossel de produtos", () => {
     await expect(card).toContainText(/R\$/);
   });
 
-  // Fibery #231: cards de 234px fixos, imagem 4:5, título com inset de 8px; no mobile a
-  // trilha encosta na borda (sem gutter, sem gap) e o 2º card aparece cortado (peek).
-  test("cards de 234px com imagem 4:5 e peek do próximo", async ({ page, isMobile }) => {
+  // Fibery #231: imagem 4:5 e título com inset de 8px; no mobile cards de 234px, trilha
+  // encostada na borda (sem gutter, sem gap) e o 2º card cortado (peek). No desktop os cards
+  // são fluidos (4,25 por vista) — 234px fixos deixavam buracos enormes em telas largas.
+  test("cards com imagem 4:5 e peek do próximo", async ({ page, isMobile }) => {
     await gotoStore(page, "home");
     const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
     await page.waitForFunction((s) => !!document.querySelector(s)?.swiper, container);
@@ -44,10 +45,11 @@ test.describe("carrossel de produtos", () => {
     });
     expect(geo.length).toBeGreaterThan(1);
     for (const c of geo) {
-      expect(Math.round(c.width)).toBe(234);
+      if (isMobile) expect(Math.round(c.width)).toBe(234);
       expect(c.ratio).toBeCloseTo(0.8, 1);
       expect(Math.round(c.inset)).toBe(8);
     }
+    if (!isMobile) expect(geo[geo.length - 1].right).toBeGreaterThan(geo[0].vw - 64); // peek no desktop
     if (isMobile) {
       expect(Math.round(geo[0].left)).toBe(0);
       expect(Math.round(geo[1].left)).toBe(Math.round(geo[0].right)); // sem gap

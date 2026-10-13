@@ -1308,10 +1308,6 @@
     width: 196.5px;
   }
 
-  .w-\[234px\]\! {
-    width: 234px !important;
-  }
-
   .w-\[241px\] {
     width: 241px;
   }
@@ -2915,6 +2911,10 @@
   @media not all and (min-width: 48rem) {
     .max-md\:-mr-2\.5 {
       margin-right: calc(var(--spacing) * -2.5);
+    }
+
+    .max-md\:w-\[234px\]\! {
+      width: 234px !important;
     }
 
     :where(.max-md\:-space-x-3 > :not(:last-child)) {

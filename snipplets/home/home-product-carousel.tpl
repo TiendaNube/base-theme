@@ -17,11 +17,13 @@
 {% if has_any_tab %}
 {# Layout per Figma productSlider (mobile 52:194, desktop 82:3006): on mobile the track is edge to
    edge (first card at x=0, no gutter) and the cards are a fixed 234px with a peek of the next one;
-   title sits 24px in, controls 16px in. From md the section gets the 64px gutter. #}
+   title sits 24px in, controls 16px in. From md the section gets the 64px gutter and the cards go
+   fluid (3.25 / 4.25 per view, as before the Figma pass): fixed 234px cards left huge gaps on wide
+   screens. Title and controls align with the first card. #}
 <section class="js-product-carousel section-product-carousel md:px-16 py-8" data-store="home-product-carousel" style="background-color: {{ carousel_bg_value }}">
 
     {# Header: Title + Dropdown #}
-    <div class="flex items-center gap-3 mb-6 px-6">
+    <div class="flex items-center gap-3 mb-6 px-6 md:px-0">
         {% if settings.product_carousel_title %}
             <h2 class="text-secondary font-heading text-[32px] font-extrabold leading-[80%]">
                 {{ settings.product_carousel_title }}
@@ -71,14 +73,14 @@
         {% endif %}
     </div>
 
-    {# Carousel Containers - one per tab. Slides are a fixed 234px (Swiper slidesPerView: 'auto');
+    {# Carousel Containers - one per tab. On mobile slides are a fixed 234px (Swiper slidesPerView: 'auto');
        the "!" is needed because the vendored Swiper CSS (style-critical, unlayered) sets .swiper-slide width: 100%. #}
     {% if has_tab_1 %}
     <div class="js-carousel-tab js-carousel-tab-1" data-tab="tab-1">
         <div class="js-swiper-product-carousel-1 swiper-container">
             <div class="swiper-wrapper">
                 {% for product in sections.carousel_tab_1.products %}
-                    {% include 'snipplets/grid/item-card.tpl' with { 'item_class': 'swiper-slide w-[234px]!' } %}
+                    {% include 'snipplets/grid/item-card.tpl' with { 'item_class': 'swiper-slide max-md:w-[234px]!' } %}
                 {% endfor %}
             </div>
         </div>
@@ -90,7 +92,7 @@
         <div class="js-swiper-product-carousel-2 swiper-container">
             <div class="swiper-wrapper">
                 {% for product in sections.carousel_tab_2.products %}
-                    {% include 'snipplets/grid/item-card.tpl' with { 'item_class': 'swiper-slide w-[234px]!' } %}
+                    {% include 'snipplets/grid/item-card.tpl' with { 'item_class': 'swiper-slide max-md:w-[234px]!' } %}
                 {% endfor %}
             </div>
         </div>
@@ -102,7 +104,7 @@
         <div class="js-swiper-product-carousel-3 swiper-container">
             <div class="swiper-wrapper">
                 {% for product in sections.carousel_tab_3.products %}
-                    {% include 'snipplets/grid/item-card.tpl' with { 'item_class': 'swiper-slide w-[234px]!' } %}
+                    {% include 'snipplets/grid/item-card.tpl' with { 'item_class': 'swiper-slide max-md:w-[234px]!' } %}
                 {% endfor %}
             </div>
         </div>
@@ -110,7 +112,7 @@
     {% endif %}
 
     {# Controls: Seeds (pagination) left + Arrows right #}
-    <div class="js-carousel-controls flex items-center justify-between gap-2 mt-4 px-4">
+    <div class="js-carousel-controls flex items-center justify-between gap-2 mt-4 px-4 md:px-0">
         {# Seed pagination indicators - each seed is a 24x40 hit area around an 11x8 glyph (24px pitch, close like Figma);
            -ml-1.5 puts the first glyph back on the 16px gutter. Wraps instead of overflowing with many products. #}
         <div class="js-carousel-pagination flex flex-wrap items-center gap-0 min-w-0 -ml-1.5">

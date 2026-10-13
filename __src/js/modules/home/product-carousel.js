@@ -88,24 +88,14 @@ export const productCarousel = () => {
   }
 
   // Init swipers for each tab (using setTimeout like the theme's createSwiper)
-  // Figma (Fibery task 231): cards are a fixed 234px (width set on the slide by the template,
-  // slidesPerView: 'auto'), so how many are visible depends on the viewport:
-  //   mobile  (<768)   gap 0, track edge to edge  → ~1.7 visible at 393px (peek of the 2nd)
-  //   tablet  (768+)   gap 24px                   → up to ~4.5 visible at 1279px
-  //   desktop (1280+)  gap computed in px so exactly 4 cards fill the track (125px at 1440,
-  //                    as in the Figma). Swiper 6 ignores a "%" spaceBetween inside breakpoints
-  //                    (it became 9px), hence fitDesktopGap() on init/resize.
+  // Figma (Fibery task 231) on mobile: fixed 234px cards (width set on the slide by the template,
+  // slidesPerView: 'auto'), track edge to edge, gap 0 → ~1.7 visible at 393px (peek of the 2nd).
+  // From md the cards go fluid with a peek, as before the Figma pass — fixed 234px cards left huge
+  // gaps on wide screens:
+  //   tablet  (768+)   3.25 per view, gap 16px
+  //   desktop (1280+)  4.25 per view, gap 16px
   // The loop needs at least twice the visible count plus one; 6 covers every case above.
   const maxVisibleSlides = 6;
-  const cardWidth = 234;
-  const desktopGap = (trackWidth) => Math.max(24, Math.round((trackWidth - 4 * cardWidth) / 3));
-  function fitDesktopGap(sw) {
-    if (window.innerWidth < 1280) return;
-    const gap = desktopGap(sw.width);
-    if (sw.params.spaceBetween === gap) return;
-    sw.params.spaceBetween = gap;
-    sw.update();
-  }
 
   for (let i = 1; i <= 3; i++) {
     const container = section.querySelector(`.js-swiper-product-carousel-${i}`);
@@ -151,23 +141,15 @@ export const productCarousel = () => {
           loopAdditionalSlides: 2,
           breakpoints: {
             768: {
-              spaceBetween: 24,
+              slidesPerView: 3.25,
+              spaceBetween: 16,
             },
             1280: {
-              spaceBetween: 24, // replaced by fitDesktopGap() once the track width is known
+              slidesPerView: 4.25,
+              spaceBetween: 16,
             },
           },
           on: {
-            init: function () {
-              fitDesktopGap(this);
-            },
-            resize: function () {
-              fitDesktopGap(this);
-            },
-            // crossing a breakpoint re-applies its spaceBetween; recompute after Swiper settles
-            breakpoint: function () {
-              setTimeout(() => fitDesktopGap(this), 0);
-            },
             slideChange: function () {
               if (`tab-${i}` === activeTab) {
                 // realIndex already handles loop correctly
