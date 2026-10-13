@@ -1,11 +1,9 @@
 {# Section divider (Figma seedDivider 97:4194 / 82:3296, whiteDivider 52:190 / 82:3108).
    Params:
    - type: 'seed' (4 centered seeds, 64px tall) | 'white' (empty spacer on bg-bg). Default 'white'.
-   - half: true gives 32px instead of 64px (used where the previous block already ends with pb-8,
-     so the total gap stays 64px).
    The white divider is the TOTAL gap between two sections (64px, mobile and desktop; Figma's 40px
    desktop was ignored by owner decision), so the neighbouring sections drop their own padding. #}
-{% set divider_height = half ? 'h-8' : 'h-16' %}
+{% set divider_height = 'h-16' %}
 {% if type == 'seed' %}
 <div class="{{ divider_height }} bg-bg flex items-center justify-center text-secondary" data-store="home-divider-seed" role="presentation">
     <svg class="w-9 h-auto" aria-hidden="true" width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
