@@ -1080,9 +1080,9 @@ Página de inicio
 		name = vip_group_subtitle
 		description = Subtítulo (ex: Mais do que descontos...)
 	subtitle
-		subtitle = Conteúdo HTML customizado
+		subtitle = Conteúdo HTML customizado (legado)
 	description
-		description = Insira código HTML para personalizar o conteúdo (textos, ícones, listas, etc.)
+		description = Usado só quando os 4 benefícios abaixo estiverem vazios. Será removido na próxima versão — prefira a lista de benefícios.
 	textarea
 		name = vip_group_custom_html
 		description = Código HTML personalizado
@@ -1094,6 +1094,56 @@ Página de inicio
 	i18n_input
 		name = vip_group_button_url
 		description = Link do botão
+	checkbox
+		name = vip_group_button_new_tab
+		description = Abrir o link do botão em uma nova aba
+	subtitle
+		subtitle = Lista de benefícios
+	description
+		description = Até 4 benefícios: o destaque aparece em negrito, seguido do texto. Deixe os dois campos vazios para esconder o item.
+	i18n_input
+		name = vip_group_benefit_1_highlight
+		description = Benefício 1 — destaque em negrito (ex: Itens exclusivos)
+	i18n_input
+		name = vip_group_benefit_1_text
+		description = Benefício 1 — texto (ex: só para membros)
+	i18n_input
+		name = vip_group_benefit_2_highlight
+		description = Benefício 2 — destaque em negrito (ex: Itens exclusivos)
+	i18n_input
+		name = vip_group_benefit_2_text
+		description = Benefício 2 — texto (ex: só para membros)
+	i18n_input
+		name = vip_group_benefit_3_highlight
+		description = Benefício 3 — destaque em negrito (ex: Itens exclusivos)
+	i18n_input
+		name = vip_group_benefit_3_text
+		description = Benefício 3 — texto (ex: só para membros)
+	i18n_input
+		name = vip_group_benefit_4_highlight
+		description = Benefício 4 — destaque em negrito (ex: Itens exclusivos)
+	i18n_input
+		name = vip_group_benefit_4_text
+		description = Benefício 4 — texto (ex: só para membros)
+	subtitle
+		subtitle = Aparência
+	dropdown
+		name = vip_group_overlay
+		description = Escurecimento sobre a imagem de fundo
+		values
+			none = Nenhum
+			light = Leve
+			medium = Médio
+			strong = Forte
+	subtitle
+		subtitle = Imagem de fundo para celulares (opcional)
+	description
+		description = Se não subir uma imagem para celular, será usada a imagem do desktop
+	image
+		original = vip_group_bg_mobile.jpg
+		title = Cargar imagen mobile (JPG, PNG)
+		width = 820
+		height = 900
 	collapse
 		title = FAQ - Perguntas Frequentes
 		backto = home_order_position
