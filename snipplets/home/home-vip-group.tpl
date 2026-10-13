@@ -138,7 +138,7 @@
         {% if has_vip_button %}
             <a
                 href="{{ settings.vip_group_button_url }}"
-                {% if settings.vip_group_button_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                {% if settings.vip_group_button_new_tab != '0' %}target="_blank" rel="noopener noreferrer"{% endif %}
                 class="self-center inline-flex items-center justify-center h-10 min-w-34 px-2 mt-8 rounded-lg bg-white/30 font-sans text-base font-medium transition-colors duration-200 hover:bg-white/40"
             >
                 {{ settings.vip_group_button_text }}

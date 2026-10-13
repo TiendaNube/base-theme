@@ -25,7 +25,7 @@
     {% set hero2_interval = settings.hero_banner_2_interval | default('6') %}
 
     {# Single <h1> on the home: hero 1 keeps it when it renders a title; otherwise the first slide here takes it #}
-    {% set hero1_has_h1 = ('hero_banner_desktop.jpg' | has_custom_image) and settings.hero_banner_title %}
+    {% set hero1_has_h1 = ('hero_banner_desktop.jpg' | has_custom_image) and settings.hero_banner_title and settings.hero_banner_show != '0' %}
     {% set slide1_title_tag = hero1_has_h1 ? 'h2' : 'h1' %}
 
     <section
