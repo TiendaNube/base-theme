@@ -259,58 +259,97 @@
   }
 }
 
-/* Price filter override */
-.js-price-filter-wrapper .filter-input-price-container {
+/* Price filter override — filter panel, Figma 52:3056 (Fibery 237): one row
+   "de [ ] até [ ] Aplicar", 32px controls. The markup comes from the platform's
+   price-filter component; style-async.scss.tpl loads after this file, so these
+   selectors carry three classes to win over its `.form-group .form-label` and
+   `.filter-input-price-container .filter-input-price` rules. */
+.js-price-filter-wrapper .js-price-filter-container .form-group {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
   width: auto;
-  margin-right: 0;
-  margin-bottom: 8px;
+  margin: 0;
 }
 
-.js-price-filter-wrapper .filter-input-price-container label {
+.js-price-filter-wrapper .form-group .filter-input-price-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin: 0;
+}
+
+.js-price-filter-wrapper .filter-input-price-container .form-label {
+  float: none;
+  width: auto;
+  margin: 0;
   font-family: var(--font-body);
   font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--text-color);
-  margin-bottom: 4px;
+  font-weight: 400;
+  text-transform: lowercase;
+  color: color-mix(in srgb, var(--text-color) 60%, transparent);
 }
 
-.js-price-filter-wrapper .filter-input-price {
+.js-price-filter-wrapper .filter-input-price-container .filter-input-price {
   width: 80px;
-  padding: 4px 10px;
+  height: 32px;
+  padding: 0 8px;
   border: none;
   border-radius: 8px;
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  /* 16px on mobile: iOS zooms into inputs under 16px on focus */
+  font-size: 1rem;
   font-weight: 500;
   color: var(--text-color);
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--color-control);
   outline: none;
 }
 
-.js-price-filter-wrapper .filter-input-price:focus {
-  background: rgba(0, 0, 0, 0.1);
+.js-price-filter-wrapper .filter-input-price-container .filter-input-price:focus {
+  background: color-mix(in srgb, var(--text-color) 10%, transparent);
 }
 
-.js-price-filter-wrapper .js-price-filter-btn {
+.js-price-filter-wrapper .filter-input-price-container .input-clear-content {
+  display: none !important;
+}
+
+.js-price-filter-wrapper .form-group .js-price-filter-btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  height: 32px;
   gap: 4px;
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--color-control);
   color: var(--text-color);
-  padding: 4px 10px;
+  padding: 0 8px;
   border-radius: 8px;
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
   border: none;
   transition: background 150ms ease;
 }
 
-.js-price-filter-wrapper .js-price-filter-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
+/* 40px tall hit area around the 32px button */
+.js-price-filter-wrapper .form-group .js-price-filter-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+
+.js-price-filter-wrapper .form-group .js-price-filter-btn:hover {
+  background: color-mix(in srgb, var(--text-color) 10%, transparent);
+}
+
+@media (min-width: 768px) {
+  .js-price-filter-wrapper .filter-input-price-container .filter-input-price {
+    font-size: 0.875rem;
+  }
 }
 
 .js-gaius-modal-body .filters-container,
@@ -520,29 +559,10 @@
   -webkit-backdrop-filter: blur(0.5rem);
 }
 
-/* Figma "itensProgressContainer" (52:1636): inside the fixed bar the promo
-   progress bars drop the Lucide icon, center their label in --color-highlight
-   and put the label under the track. Scoped to the mobile bar only — the cart
-   drawer keeps its own left-aligned label + icon, and so does the in-flow
-   desktop bar, which was already signed off in spec 07. */
+/* The promo progress bars (Figma itensProgressContainer 52:1636) are styled
+   with utilities in cart/cart-drawer-progress-bars.tpl, shared by the drawer,
+   the in-flow PDP desktop block and this fixed bar. */
 @media (max-width: 1023px) {
-  .js-product-sticky-buy-bar .js-cart-progress-bar {
-    flex-direction: column-reverse;
-    gap: 0.5rem;
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-bar svg {
-    display: none;
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-label {
-    color: var(--color-highlight);
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-bar > div:first-child {
-    justify-content: center;
-  }
-
   /* Keep the fixed bar from covering the end of the page. Applied to the
      footer (not body) because the footer paints its own bg-secondary — a
      body padding would leave a page-coloured strip below it. */

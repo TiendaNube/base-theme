@@ -26,4 +26,8 @@
 {# Related products #}
 {% include 'snipplets/product/product-related.tpl' %}
 
+{# End of page: white + seed + white before the footer. The related block already has a 70px bottom margin, which acts as the first white. #}
+{% include 'snipplets/home/home-divider.tpl' with {type: 'seed'} %}
+{% include 'snipplets/home/home-divider.tpl' with {type: 'white'} %}
+
 </div>

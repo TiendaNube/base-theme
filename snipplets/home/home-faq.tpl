@@ -31,9 +31,11 @@
     'accent': 'var(--accent-color)'
 } %}
 {% set faq_bg_value = faq_bg_map[settings.faq_bg] | default('transparent') %}
+{# "none" and "background" paint no visible block: the divider supplies the spacing, so drop the padding. #}
+{% set faq_flat = settings.faq_bg == 'none' or settings.faq_bg == 'background' or not settings.faq_bg %}
 
 {% if has_faq %}
-<section class="section-faq px-4 md:px-16 lg:px-32 py-8 md:py-12" data-store="home-faq" style="background-color: {{ faq_bg_value }}">
+<section class="section-faq px-4 md:px-16 lg:px-32 {{ faq_flat ? 'py-0' : 'py-8 md:py-12' }}" data-store="home-faq" style="background-color: {{ faq_bg_value }}">
 
     {# Title #}
     {% if settings.faq_title %}

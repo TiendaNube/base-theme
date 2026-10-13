@@ -783,6 +783,10 @@
     margin: calc(var(--spacing) * 0) !important;
   }
 
+  .-m-1 {
+    margin: calc(var(--spacing) * -1);
+  }
+
   .m-0 {
     margin: calc(var(--spacing) * 0);
   }
@@ -1003,6 +1007,10 @@
     margin-left: calc(var(--spacing) * 4);
   }
 
+  .ml-auto {
+    margin-left: auto;
+  }
+
   .line-clamp-2 {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1061,6 +1069,11 @@
   .size-1 {
     width: calc(var(--spacing) * 1);
     height: calc(var(--spacing) * 1);
+  }
+
+  .size-2 {
+    width: calc(var(--spacing) * 2);
+    height: calc(var(--spacing) * 2);
   }
 
   .size-8 {
@@ -1262,6 +1275,10 @@
 
   .w-8 {
     width: calc(var(--spacing) * 8);
+  }
+
+  .w-9 {
+    width: calc(var(--spacing) * 9);
   }
 
   .w-10 {
@@ -2216,6 +2233,10 @@
     padding-top: calc(var(--spacing) * 4);
   }
 
+  .pt-8 {
+    padding-top: calc(var(--spacing) * 8);
+  }
+
   .pr-0 {
     padding-right: calc(var(--spacing) * 0);
   }
@@ -2789,10 +2810,6 @@
     background: #0000000d;
   }
 
-  .\[background\:rgba\(0\,0\,0\,0\.12\)\] {
-    background: #0000001f;
-  }
-
   .\[background\:rgba\(0\,0\,0\,0\.15\)\] {
     background: #00000026;
   }
@@ -2811,6 +2828,10 @@
       --tw-scale-y: 110%;
       --tw-scale-z: 110%;
       scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+
+    .group-hover\:bg-control:is(:where(.group):hover *) {
+      background-color: var(--color-control);
     }
   }
 
@@ -2850,16 +2871,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       .hover\:bg-black\/10:hover {
         background-color: color-mix(in oklab, var(--color-black) 10%, transparent);
-      }
-    }
-
-    .hover\:bg-black\/20:hover {
-      background-color: #0003;
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-black\/20:hover {
-        background-color: color-mix(in oklab, var(--color-black) 20%, transparent);
       }
     }
 
@@ -3340,57 +3351,108 @@
   }
 }
 
-.js-price-filter-wrapper .filter-input-price-container {
-  flex-direction: column;
+.js-price-filter-wrapper .js-price-filter-container .form-group {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
   width: auto;
-  margin-bottom: 8px;
-  margin-right: 0;
+  margin: 0;
   display: flex;
 }
 
-.js-price-filter-wrapper .filter-input-price-container label {
-  font-family: var(--font-body);
-  color: var(--text-color);
-  margin-bottom: 4px;
-  font-size: .75rem;
-  font-weight: 500;
+.js-price-filter-wrapper .form-group .filter-input-price-container {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  margin: 0;
+  display: flex;
+  position: relative;
 }
 
-.js-price-filter-wrapper .filter-input-price {
+.js-price-filter-wrapper .filter-input-price-container .form-label {
+  float: none;
+  width: auto;
+  font-family: var(--font-body);
+  text-transform: lowercase;
+  color: var(--text-color);
+  margin: 0;
+  font-size: .75rem;
+  font-weight: 400;
+}
+
+@supports (color: color-mix(in lab, red, red)) {
+  .js-price-filter-wrapper .filter-input-price-container .form-label {
+    color: color-mix(in srgb, var(--text-color) 60%, transparent);
+  }
+}
+
+.js-price-filter-wrapper .filter-input-price-container .filter-input-price {
   width: 80px;
+  height: 32px;
   font-family: var(--font-body);
   color: var(--text-color);
-  background: #0000000d;
+  background: var(--color-control);
   border: none;
   border-radius: 8px;
   outline: none;
-  padding: 4px 10px;
-  font-size: .75rem;
+  padding: 0 8px;
+  font-size: 1rem;
   font-weight: 500;
 }
 
-.js-price-filter-wrapper .filter-input-price:focus {
-  background: #0000001a;
+.js-price-filter-wrapper .filter-input-price-container .filter-input-price:focus {
+  background: var(--text-color);
 }
 
-.js-price-filter-wrapper .js-price-filter-btn {
+@supports (color: color-mix(in lab, red, red)) {
+  .js-price-filter-wrapper .filter-input-price-container .filter-input-price:focus {
+    background: color-mix(in srgb, var(--text-color) 10%, transparent);
+  }
+}
+
+.js-price-filter-wrapper .filter-input-price-container .input-clear-content {
+  display: none !important;
+}
+
+.js-price-filter-wrapper .form-group .js-price-filter-btn {
+  background: var(--color-control);
+  height: 32px;
   color: var(--text-color);
   font-family: var(--font-body);
   cursor: pointer;
-  background: #0000000d;
   border: none;
   border-radius: 8px;
   align-items: center;
   gap: 4px;
-  padding: 4px 10px;
-  font-size: .75rem;
+  padding: 0 8px;
+  font-size: .875rem;
   font-weight: 500;
   transition: background .15s;
   display: inline-flex;
+  position: relative;
 }
 
-.js-price-filter-wrapper .js-price-filter-btn:hover {
-  background: #0000001a;
+.js-price-filter-wrapper .form-group .js-price-filter-btn:after {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+
+.js-price-filter-wrapper .form-group .js-price-filter-btn:hover {
+  background: var(--text-color);
+}
+
+@supports (color: color-mix(in lab, red, red)) {
+  .js-price-filter-wrapper .form-group .js-price-filter-btn:hover {
+    background: color-mix(in srgb, var(--text-color) 10%, transparent);
+  }
+}
+
+@media (min-width: 768px) {
+  .js-price-filter-wrapper .filter-input-price-container .filter-input-price {
+    font-size: .875rem;
+  }
 }
 
 .js-gaius-modal-body .filters-container, .js-gaius-modal-body [data-store="filters-group"] {
@@ -3624,23 +3686,6 @@
 }
 
 @media (max-width: 1023px) {
-  .js-product-sticky-buy-bar .js-cart-progress-bar {
-    flex-direction: column-reverse;
-    gap: .5rem;
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-bar svg {
-    display: none;
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-label {
-    color: var(--color-highlight);
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-bar > div:first-child {
-    justify-content: center;
-  }
-
   body.template-product .js-footer {
     padding-bottom: 11rem;
   }

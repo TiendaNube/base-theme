@@ -87,7 +87,8 @@ test("mobile: alvos de toque dos controles principais têm pelo menos 24px (WCAG
   await gotoStore(page, "category");
   await check(".js-quickbuy-add-btn", "quick buy +");
   await check(".js-quickbuy-dropdown-trigger", "quick buy trigger");
-  await check(".js-category-sorting-trigger", "sorting trigger");
+  // #237: no mobile a ordenação saiu da barra e foi para o painel; o gatilho visível é "Filtros"
+  await check(".js-category-filter-trigger", "filter trigger");
 
   await gotoStore(page, "product");
   await check(".js-product-variant-option", "variant option");
