@@ -12,10 +12,10 @@ como `Substituído por ADR-NNNN`.
 | `docs/adr/` | **Decisões** com contexto e rationale | "Por que é assim?" |
 | `docs/architecture-map.md` | **Contrato** — regras MUST/NEVER, registros exaustivos (`js-*`, `window.*`, estado) | "O que é obrigatório hoje?" |
 | `CLAUDE.md` | **Orientação operacional** curta para a IA (build, workflow, onde olhar) | "Por onde começo?" |
-| `docs/specs/` | **Trabalho** em andamento — plano + fatias implementáveis | "O que estamos fazendo?" |
+| Fibery (Tasks, ver ADR-0016) | **Trabalho** em andamento — contexto, Figma e aceite | "O que estamos fazendo?" |
 | `docs/architecture-drift-reports/` | **Auditorias** do contrato vs. código | "Onde o código desviou?" |
 
-Prioridade em conflito: ADR aceito > `architecture-map.md` > spec > pedido avulso.
+Prioridade em conflito: ADR aceito > `architecture-map.md` > Task do Fibery > pedido avulso.
 Se o contrato contradiz um ADR, o contrato está desatualizado — corrija o contrato.
 
 ## Índice
@@ -34,9 +34,10 @@ Se o contrato contradiz um ADR, o contrato está desatualizado — corrija o con
 | [0010](0010-fronteira-com-a-plataforma.md) | Fronteira com `LS.*`: delegar ao legado, exceto carrinho e PDP | Aceito |
 | [0011](0011-figma-para-tokens.md) | Figma é fonte de intenção, não de valores | Aceito |
 | [0012](0012-deploy-ftp-e-producao.md) | Merge em `master` = deploy em produção via FTPS; `/ftp-deploy` manual | Aceito |
-| [0013](0013-workflow-spec-driven.md) | Desenvolvimento spec-driven com contrato auditável | Aceito |
+| [0013](0013-workflow-spec-driven.md) | Desenvolvimento spec-driven com contrato auditável | Substituído por 0016 |
 | [0014](0014-stack-de-teste-local.md) | Stack de teste local: renderer Twig + fixtures + Playwright + lint de estilos | Substituído em parte por 0015 |
 | [0015](0015-desenvolver-na-maquina-testar-na-loja-de-dev.md) | Desenvolver na máquina, testar na loja de dev | Aceito |
+| [0016](0016-tasks-do-fibery-em-ondas.md) | Tasks do Fibery em ondas (substitui o workflow de specs) | Aceito |
 
 ## Anatomia de um ADR
 
@@ -58,7 +59,7 @@ O que fica melhor, o que fica pior, o que passa a ser obrigatório.
 Dívidas conhecidas que a decisão deixa.
 
 ## Referências
-Commits, specs, invariantes do contrato (A1…F10), relatórios de drift.
+Commits, tasks, invariantes do contrato (A1…F10), relatórios de drift.
 ```
 
 Numeração sequencial, slug em kebab-case, texto em português. Um ADR por

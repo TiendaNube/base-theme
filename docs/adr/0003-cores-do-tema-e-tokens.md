@@ -48,7 +48,7 @@ violações reais e 13 casos ambíguos sem política.
 5. **Enforcement automático.** `npm run lint:styles`
    (`scripts/lint-styles.mjs`) falha o build em hex, rgb/rgba não-universal e
    classes de paleta Tailwind (`text-red-600`, `bg-gray-100`, `text-white`…)
-   fora das exceções acima. Roda no `/implement-spec` e no `/pr`.
+   fora das exceções acima. Roda em toda task (ADR-0016) e no `/pr`.
 
 ## Consequências
 

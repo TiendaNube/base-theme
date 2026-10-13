@@ -1,6 +1,9 @@
 # ADR-0013 — Desenvolvimento spec-driven com contrato auditável
 
-- **Status:** Aceito
+- **Status:** Substituído por ADR-0016
+
+> Substituído pelo [ADR-0016](0016-tasks-do-fibery-em-ondas.md): o trabalho passa a ser Tasks do Fibery em ondas; `docs/specs/` e `/implement-spec` foram removidos.
+
 - **Data:** 2026-07-31 (`d9172b1`, contrato versionado) e 2026-08-04 (`b07df34`, specs); formalizado em 2026-10-12
 - **Decisores:** Caio Marques
 
