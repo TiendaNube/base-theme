@@ -453,6 +453,9 @@ Página de inicio
 	collapse
 		title = Barra Promocional
 		backto = home_order_position
+	checkbox
+		name = promo_marquee_show
+		description = Mostrar esta seção na página inicial
 	subtitle
 		subtitle = Configure até 4 textos promocionais
 	i18n_input
@@ -488,6 +491,9 @@ Página de inicio
 	collapse
 		title = Hero Banner
 		backto = home_order_position
+	checkbox
+		name = hero_banner_show
+		description = Mostrar esta seção na página inicial
 	subtitle
 		subtitle = Imagem para computadores (obrigatória)
 	image
@@ -530,6 +536,9 @@ Página de inicio
 	collapse
 		title = Hero Banner 2
 		backto = home_order_position
+	checkbox
+		name = hero_banner_2_show
+		description = Mostrar esta seção na página inicial
 	subtitle
 		subtitle = Imagem para computadores (obrigatória)
 	image
@@ -805,6 +814,9 @@ Página de inicio
 	collapse
 		title = Carrossel de produtos
 		backto = home_order_position
+	checkbox
+		name = product_carousel_show
+		description = Mostrar esta seção na página inicial
 	description
 		description = Configure até 3 abas de produtos para exibir no carrossel da página de inicio.
 		name = product_carousel_description
@@ -836,6 +848,9 @@ Página de inicio
 	collapse
 		title = Grid de produtos
 		backto = home_order_position
+	checkbox
+		name = product_grid_show
+		description = Mostrar esta seção na página inicial
 	description
 		description = Exibe os 4 primeiros produtos destacados em um grid 2x2 na página de inicio.
 		name = product_grid_description
@@ -966,6 +981,9 @@ Página de inicio
 	collapse
 		title = Banner Grupo VIP
 		backto = home_order_position
+	checkbox
+		name = vip_group_show
+		description = Mostrar esta seção na página inicial
 	subtitle
 		subtitle = Imagem de fundo
 	image
@@ -999,6 +1017,9 @@ Página de inicio
 	collapse
 		title = FAQ - Perguntas Frequentes
 		backto = home_order_position
+	checkbox
+		name = faq_show
+		description = Mostrar esta seção na página inicial
 	subtitle
 		subtitle = Título da seção
 	i18n_input
@@ -1066,6 +1087,9 @@ Página de inicio
 	collapse
 		title = Página de inicio
 		backto = _top
+	checkbox
+		name = home_show_dividers
+		description = Mostrar divisores entre as seções
 	section_order
 		name = home_order_position
 		start_index = 0
