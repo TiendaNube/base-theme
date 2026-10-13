@@ -20,9 +20,19 @@
     {% set slide1_color = settings.hero_banner_2_text_color | default('white') %}
     {% set slide2_color = settings.hero_banner_2_slide2_text_color | default('white') %}
 
+    {# Autoplay is on unless the merchant ticks "off": keys never saved on the live store keep today's behaviour (on, 6s) #}
+    {% set hero2_autoplay = (settings.hero_banner_2_autoplay_off and slide_count > 1) ? 'false' : 'true' %}
+    {% set hero2_interval = settings.hero_banner_2_interval | default('6') %}
+
+    {# Single <h1> on the home: hero 1 keeps it when it renders a title; otherwise the first slide here takes it #}
+    {% set hero1_has_h1 = ('hero_banner_desktop.jpg' | has_custom_image) and settings.hero_banner_title %}
+    {% set slide1_title_tag = hero1_has_h1 ? 'h2' : 'h1' %}
+
     <section
         class="js-hero-banner-2 relative w-full"
         data-store="home-hero-banner-2"
+        data-autoplay="{{ hero2_autoplay }}"
+        data-autoplay-interval="{{ hero2_interval }}"
         data-slide-colors='["{{ slide1_color }}"{% if has_hero2_slide2_desktop %},"{{ slide2_color }}"{% endif %}]'
     >
 
@@ -39,6 +49,8 @@
                 'button_url': settings.hero_banner_2_button_url,
                 'text_color': settings.hero_banner_2_text_color,
                 'apply_lazy_load': apply_lazy_load,
+                'image_alt': settings.hero_banner_2_alt,
+                'title_tag': slide1_title_tag,
                 'is_active': true
             } %}
 
@@ -54,6 +66,8 @@
                     'button_url': settings.hero_banner_2_slide2_button_url,
                     'text_color': settings.hero_banner_2_slide2_text_color,
                     'apply_lazy_load': true,
+                    'image_alt': settings.hero_banner_2_slide2_alt,
+                    'title_tag': 'h2',
                     'is_active': false
                 } %}
             {% endif %}
