@@ -31,19 +31,19 @@
         {% if cart.items %}
           {% for item in cart.items %}
             {# .js-cart-item + data-item-id required by platform for LS.removeItem/LS.changeQuantity #}
-            <div class="js-cart-item flex gap-3 py-3 border-b border-secondary/6" data-item-id="{{ item.id }}" data-item-name="{{ item.short_name }}" data-store="cart-item-{{ item.product.id }}" data-component="cart.line-item">
-              {# Item image #}
+            <div class="js-cart-item flex items-start gap-4 py-3" data-item-id="{{ item.id }}" data-item-name="{{ item.short_name }}" data-store="cart-item-{{ item.product.id }}" data-component="cart.line-item">
+              {# Item image - Figma cartItem 52:2058: small thumb, no border/background #}
               <a href="{{ item.url }}" class="shrink-0">
                 <img
                   src="{{ item.featured_image | product_image_url('small') }}"
                   alt="{{ item.short_name }}"
-                  class="w-16 h-16 object-cover rounded-lg"
+                  class="w-10 aspect-[4/5] object-cover"
                 />
               </a>
 
               {# Item details #}
               <div class="flex-1 min-w-0 flex flex-col gap-1">
-                <a href="{{ item.url }}" class="text-[0.8125rem] leading-tight text-secondary no-underline line-clamp-2" data-component="name.short-name">
+                <a href="{{ item.url }}" class="text-base font-normal leading-tight text-secondary no-underline line-clamp-2" data-component="name.short-name">
                   {{ item.short_name }}
                 </a>
                 {% if item.short_variant_name %}
@@ -51,21 +51,29 @@
                     {{ item.short_variant_name }}
                   </small>
                 {% endif %}
-                <div class="flex items-center justify-between mt-auto">
-                  {# Quantity controls - uses LS.minusQuantity/LS.plusQuantity with true for AJAX mode #}
-                  <div class="flex items-center border border-secondary/12 rounded-md overflow-hidden">
+                <div class="flex items-center gap-2">
+                  {# Price - platform auto-updates .js-cart-item-subtotal #}
+                  <span class="js-cart-item-subtotal text-base font-bold text-secondary" data-line-item-id="{{ item.id }}" data-component="subtotal.value" data-component-value="{{ item.subtotal | money }}">
+                    {{ item.subtotal | money }}
+                  </span>
+
+                  {# Quantity controls - uses LS.minusQuantity/LS.plusQuantity with true for AJAX mode.
+                     Each button has a 40px hit area (Fibery 224) around a 32px visual square. #}
+                  <div class="flex items-center">
                     <span
-                      class="js-cart-quantity-btn w-7 h-7 flex items-center justify-center bg-transparent cursor-pointer text-secondary"
+                      class="js-cart-quantity-btn w-10 h-10 flex items-center justify-center cursor-pointer text-secondary"
                       onclick="LS.minusQuantity({{ item.id }}, true)"
                       data-component="quantity.minus"
                     >
-                      <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                      <span class="size-8 flex items-center justify-center rounded-md bg-control">
+                        <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+                      </span>
                     </span>
                     <input
                       type="number"
                       name="quantity[{{ item.id }}]"
                       value="{{ item.quantity }}"
-                      class="js-cart-quantity-input w-8 text-center text-[0.8125rem] font-medium text-secondary bg-transparent border-0 p-0 outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      class="js-cart-quantity-input size-8 mx-1 text-center text-base font-medium text-secondary bg-control rounded-md border-0 p-0 outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                       data-item-id="{{ item.id }}"
                       data-component="quantity.value"
                     />
@@ -73,25 +81,22 @@
                     <span class="js-cart-input-spinner cart-item-spinner" style="display:none">
                     </span>
                     <span
-                      class="js-cart-quantity-btn w-7 h-7 flex items-center justify-center bg-transparent cursor-pointer text-secondary"
+                      class="js-cart-quantity-btn w-10 h-10 flex items-center justify-center cursor-pointer text-secondary"
                       onclick="LS.plusQuantity({{ item.id }}, true)"
                       data-component="quantity.plus"
                     >
-                      <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                      <span class="size-8 flex items-center justify-center rounded-md bg-control">
+                        <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                      </span>
                     </span>
                   </div>
-
-                  {# Price - platform auto-updates .js-cart-item-subtotal #}
-                  <span class="js-cart-item-subtotal text-[0.8125rem] font-bold text-secondary" data-line-item-id="{{ item.id }}" data-component="subtotal.value" data-component-value="{{ item.subtotal | money }}">
-                    {{ item.subtotal | money }}
-                  </span>
                 </div>
               </div>
 
-              {# Delete button - animated removal handled by cart-drawer.js #}
+              {# Delete button - animated removal handled by cart-drawer.js; 40px hit area #}
               <button
                 type="button"
-                class="js-cart-remove-btn shrink-0 self-start cursor-pointer text-secondary opacity-50 bg-transparent border-0 p-0.5"
+                class="js-cart-remove-btn shrink-0 self-start -mt-2 -mr-2 w-10 h-10 flex items-center justify-center cursor-pointer text-secondary opacity-50 bg-transparent border-0 p-0"
                 data-remove-item-id="{{ item.id }}"
                 aria-label="{{ 'Remover item' | translate }}"
                 data-component="line-item.remove"

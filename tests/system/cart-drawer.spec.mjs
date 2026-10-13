@@ -97,6 +97,28 @@ test.describe("com item", () => {
     await expect(page.locator(".js-empty-ajax-cart")).toBeHidden();
   });
 
+  test("stepper e lixeira têm área de toque >= 40px e o item não tem separador (Fibery 224/228)", async ({ page }) => {
+    await gotoStore(page, "product");
+    await addToCartFromPdp(page);
+    await openCartDrawer(page);
+    const item = items(page).first();
+    await expect(item).toBeVisible({ timeout: 15_000 });
+
+    for (const sel of ['.js-cart-quantity-btn[data-component="quantity.minus"]', '.js-cart-quantity-btn[data-component="quantity.plus"]', ".js-cart-remove-btn"]) {
+      const box = await item.locator(sel).boundingBox();
+      expect(box.width, sel).toBeGreaterThanOrEqual(39.5);
+      expect(box.height, sel).toBeGreaterThanOrEqual(39.5);
+    }
+    // número do stepper em bg-control, sem borda; item sem separador
+    const input = await item.locator(".js-cart-quantity-input").evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return { border: cs.borderTopWidth, transparent: cs.backgroundColor === "transparent" || /, 0\)$/.test(cs.backgroundColor) };
+    });
+    expect(input.border).toBe("0px");
+    expect(input.transparent).toBe(false);
+    expect(await item.evaluate((el) => getComputedStyle(el).borderBottomWidth)).toBe("0px");
+  });
+
   test("+ e − atualizam quantidade, subtotal e badge", async ({ page }) => {
     await gotoStore(page, "product");
     const price = money(await page.locator("#price_display").textContent());
