@@ -162,6 +162,12 @@ test.describe("com item", () => {
     const bars = page.locator(".js-cart-drawer .js-cart-progress-bar");
     test.skip((await bars.count()) === 0, "loja sem barras de progresso configuradas");
 
+    // Figma #229: desconto antes do frete, sem ícone, rótulo com trecho em negrito
+    const keys = await bars.evaluateAll((els) => els.map((el) => el.dataset.progressBar));
+    if (keys.includes("discount") && keys.includes("free-shipping")) expect(keys.indexOf("discount")).toBeLessThan(keys.indexOf("free-shipping"));
+    await expect(page.locator(".js-cart-drawer .js-cart-progress-bar svg")).toHaveCount(0);
+    await expect(page.locator(".js-cart-drawer .js-cart-progress-label strong").first()).toBeAttached();
+
     const widthOf = () => page.locator(".js-cart-drawer .js-cart-progress-fill").first().evaluate((el) => parseFloat(el.style.width) || 0);
     const before = await widthOf();
     await addToCartFromPdp(page);
