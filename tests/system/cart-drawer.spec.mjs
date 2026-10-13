@@ -61,6 +61,8 @@ test.describe("abrir e fechar", () => {
     const headerHeight = await page.locator(".js-new-header").evaluate((el) => el.offsetHeight);
     const panelTop = await page.locator(".js-cart-drawer-panel").evaluate((el) => el.getBoundingClientRect().top);
     expect(Math.abs(panelTop - headerHeight)).toBeLessThanOrEqual(2);
+    const panelWidth = await page.locator(".js-cart-drawer-panel").evaluate((el) => el.getBoundingClientRect().width);
+    expect(Math.abs(panelWidth - 383)).toBeLessThanOrEqual(2);
   });
 });
 
@@ -94,7 +96,31 @@ test.describe("com item", () => {
     expect(money(await page.locator(".js-cart-drawer-footer .js-cart-subtotal").textContent())).toBeCloseTo(price, 2);
     await expect(page.locator(".js-cart-drawer-checkout")).toBeVisible();
     await expect(page.locator(".js-cart-drawer-checkout")).toBeEnabled();
+    await expect(page.locator(".js-cart-drawer-checkout")).toHaveValue("Ir para o Checkout");
+    await expect(page.locator(".js-cart-drawer-footer")).toContainText("Subtotal");
     await expect(page.locator(".js-empty-ajax-cart")).toBeHidden();
+  });
+
+  test("stepper e lixeira têm área de toque >= 40px e o item não tem separador (Fibery 224/228)", async ({ page }) => {
+    await gotoStore(page, "product");
+    await addToCartFromPdp(page);
+    await openCartDrawer(page);
+    const item = items(page).first();
+    await expect(item).toBeVisible({ timeout: 15_000 });
+
+    for (const sel of ['.js-cart-quantity-btn[data-component="quantity.minus"]', '.js-cart-quantity-btn[data-component="quantity.plus"]', ".js-cart-remove-btn"]) {
+      const box = await item.locator(sel).boundingBox();
+      expect(box.width, sel).toBeGreaterThanOrEqual(39.5);
+      expect(box.height, sel).toBeGreaterThanOrEqual(39.5);
+    }
+    // número do stepper em bg-control, sem borda; item sem separador
+    const input = await item.locator(".js-cart-quantity-input").evaluate((el) => {
+      const cs = getComputedStyle(el);
+      return { border: cs.borderTopWidth, transparent: cs.backgroundColor === "transparent" || /, 0\)$/.test(cs.backgroundColor) };
+    });
+    expect(input.border).toBe("0px");
+    expect(input.transparent).toBe(false);
+    expect(await item.evaluate((el) => getComputedStyle(el).borderBottomWidth)).toBe("0px");
   });
 
   test("+ e − atualizam quantidade, subtotal e badge", async ({ page }) => {
