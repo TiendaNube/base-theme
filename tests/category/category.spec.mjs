@@ -95,8 +95,8 @@ test.describe("card de produto (#236)", () => {
   });
 });
 
-// Grade da categoria (Fibery #238): mobile 2 colunas de borda a borda, sem gap;
-// a partir de md 3 colunas (nunca 4), células encostadas.
+// Grade da categoria (Fibery #238): mobile 2 colunas, md+ 3 (nunca 4), dentro da margem
+// da página (24px mobile, alinhada ao header) e com espaço entre os cards (decisão 2026-10-13).
 test.describe("grade da categoria (#238)", () => {
   test("colunas e gaps seguem o Figma", async ({ page, isMobile }) => {
     await gotoStore(page, "category");
@@ -112,9 +112,9 @@ test.describe("grade da categoria (#238)", () => {
       };
     });
     expect(info.columns).toBe(isMobile ? 2 : 3);
-    expect(info.columnGap).toMatch(/^0(px)?$/);
-    expect(info.rowGap).toMatch(/^0(px)?$/);
-    if (isMobile) expect(Math.round(info.firstLeft)).toBe(0);
+    expect(parseFloat(info.columnGap)).toBeGreaterThan(0);
+    expect(parseFloat(info.rowGap)).toBeGreaterThan(0);
+    if (isMobile) expect(Math.round(info.firstLeft)).toBe(24);
   });
 
   test("cards carregados pela rolagem infinita entram na mesma grade de 2/3 colunas", async ({ page, isMobile }) => {

@@ -172,9 +172,9 @@ test.describe("grid de produtos e grupo VIP", () => {
     await expect(page.locator("h1.js-product-name")).toBeVisible();
   });
 
-  // Fibery #232: mesma linguagem da grade da categoria — mobile 2 colunas de borda a borda,
-  // sem gap; imagem 4:5; cards da mesma linha alinham o preço.
-  test("o grid Mais Vendidos segue o Figma (2 colunas, sem gap no mobile, 4:5)", async ({ page, isMobile }) => {
+  // Fibery #232: mesma linguagem da grade da categoria — 2 colunas dentro da margem
+  // da página, com espaço entre os cards; imagem 4:5; cards da mesma linha alinham o preço.
+  test("o grid Mais Vendidos segue o Figma (2 colunas com margem e gap, 4:5)", async ({ page, isMobile }) => {
     await gotoStore(page, "home");
     const grid = page.locator('[data-store="home-product-grid"] .grid');
     test.skip((await grid.count()) === 0, "seção não configurada");
@@ -196,10 +196,9 @@ test.describe("grid de produtos e grupo VIP", () => {
     for (const c of info.cards) rows.set(c.top, [...(rows.get(c.top) || []), c.priceTop]);
     for (const tops of rows.values()) expect(new Set(tops).size).toBe(1);
     if (isMobile) {
-      expect(info.columnGap).toMatch(/^0(px)?$/);
-      expect(info.rowGap).toMatch(/^0(px)?$/);
-      expect(Math.round(info.cards[0].left)).toBe(0);
-      expect(Math.round(info.cards[1].right)).toBe(info.vw);
+      expect(parseFloat(info.columnGap)).toBeGreaterThan(0);
+      expect(Math.round(info.cards[0].left)).toBe(24);
+      expect(Math.round(info.cards[1].right)).toBe(info.vw - 24);
     }
   });
 
