@@ -597,6 +597,26 @@ pt "Filtrado por:"
 en "Filtered by:"
 es_mx "Filtrado por:"
 
+es "Ordenar:"
+pt "Ordenar:"
+en "Sort:"
+es_mx "Ordenar:"
+
+es "Categorías:"
+pt "Categorias:"
+en "Categories:"
+es_mx "Categorías:"
+
+es "Colores:"
+pt "Cores:"
+en "Colors:"
+es_mx "Colores:"
+
+es "Precio:"
+pt "Preço:"
+en "Price:"
+es_mx "Precio:"
+
 es "Filtro aplicado:"
 pt "Filtro aplicado:"
 en "Applied filter:"

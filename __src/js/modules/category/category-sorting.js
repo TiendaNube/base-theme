@@ -1,12 +1,28 @@
-export const categorySorting = () => {
-  const dropdowns = document.querySelectorAll(".js-category-sorting");
-  if (!dropdowns.length) return;
+// Ordering of the category grid. Two entry points share one mechanism (sort_by in the URL + reload):
+// - the desktop dropdown in the title row (.js-category-sorting);
+// - the "Ordenar:" chips of the mobile filter panel (snipplets/grid/sort-by.tpl, Fibery 237).
+// The chips live in .js-category-filter-content, which the gaius modal copies by innerHTML, so the
+// option click is delegated on document instead of bound per element.
+const applySort = (sortValue) => {
+  if (!sortValue) return;
+  const url = new URL(window.location.href);
+  url.searchParams.set("sort_by", sortValue);
+  window.location.href = url.toString();
+};
 
-  dropdowns.forEach((dropdown) => {
+export const categorySorting = () => {
+  if (!document.querySelector(".js-category-sorting-option")) return;
+
+  document.addEventListener("click", (e) => {
+    const option = e.target.closest(".js-category-sorting-option");
+    if (!option || option.getAttribute("aria-current") === "true") return;
+    applySort(option.dataset.sortValue);
+  });
+
+  document.querySelectorAll(".js-category-sorting").forEach((dropdown) => {
     const trigger = dropdown.querySelector(".js-category-sorting-trigger");
     const list = dropdown.querySelector(".js-category-sorting-list");
     const icon = dropdown.querySelector(".js-category-sorting-icon");
-    const options = dropdown.querySelectorAll(".js-category-sorting-option");
     if (!trigger || !list) return;
 
     function open() {
@@ -35,17 +51,6 @@ export const categorySorting = () => {
       if (!dropdown.contains(e.target)) {
         close();
       }
-    });
-
-    options.forEach((option) => {
-      option.addEventListener("click", function () {
-        const sortValue = option.dataset.sortValue;
-        if (!sortValue) return;
-
-        const url = new URL(window.location.href);
-        url.searchParams.set("sort_by", sortValue);
-        window.location.href = url.toString();
-      });
     });
   });
 };
