@@ -91,7 +91,7 @@ Lembre o usuário:
 
 - Nunca rode isso por iniciativa própria — só a pedido explícito do
   usuário, em cada ocasião (não é algo pra encadear automaticamente depois
-  de terminar uma spec, por exemplo).
+  de terminar uma task, por exemplo; a integração de onda é autorizada pelo ADR-0016).
 - Nunca invente ou reaproveite credenciais sem confirmação; nunca imprima o
   conteúdo do `.env` na conversa.
 - Nunca edite `scripts/ftp-deploy.mjs` pra adicionar exclusão/mirror

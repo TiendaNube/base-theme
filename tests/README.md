@@ -32,7 +32,7 @@ tests/
   system/                  # header + menus, busca, cart drawer, toast + modal
   home/                    # seções novas da home (carrossel, hero 2, FAQ, grid, VIP)
   category/                # grid, ordenação, filtros, subcategorias, scroll infinito, quick buy
-  product/                 # PDP: specs 01–12 de docs/specs/pagina-de-produto
+  product/                 # PDP (cobre as antigas specs 01–12, no histórico do git)
 ```
 
 O que fica de fora, de propósito: `/cart` legado, página de busca (só smoke),
@@ -59,10 +59,10 @@ bloqueada). Ver seção B do inventário de 2026-10-12 nos drift reports.
   acusa "expected to fail, but passed" e a anotação é removida. Nunca afrouxe o
   assert para passar.
 
-## TDD numa spec nova
+## TDD numa task nova
 
 1. Escreva o teste em `tests/<contexto>/` a partir dos critérios de aceite da
-   spec, usando os `js-*` e `data-*` que o template vai expor.
+   task do Fibery, usando os `js-*` e `data-*` que o template vai expor.
 2. Rode só ele (`-g` ou o caminho). Vermelho pelo motivo certo.
 3. Implemente, `npm run build` se tocou `__src/`, suba para a loja de dev,
    rode de novo até ficar verde em desktop e mobile.
