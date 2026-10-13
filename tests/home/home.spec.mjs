@@ -250,3 +250,24 @@ test.describe("fundo das seções (Fibery #293)", () => {
     });
   }
 });
+
+test.describe("seções legadas removidas (Fibery #293)", () => {
+  // Carrusel, mensaje institucional, destacados, informativos, banners de categorías, módulos e vídeo
+  // saíram do admin e do router: nenhum slot salvo pode renderizá-las. Instafeed continua.
+  test("a home não renderiza nenhuma seção legada", async ({ page }) => {
+    await gotoStore(page, "home");
+    const legacy = [
+      "home-slider",
+      "home-welcome-message",
+      "home-products-featured",
+      "banner-services",
+      "home-banner-categories",
+      "home-image-text-module",
+      "home-video",
+    ];
+    for (const store of legacy) {
+      expect(await page.locator(`[data-store="${store}"]`).count(), store).toBe(0);
+    }
+    await expect(page.locator(".js-home-sections-container > section").first()).toBeVisible();
+  });
+});
