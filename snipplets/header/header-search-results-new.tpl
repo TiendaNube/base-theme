@@ -2,8 +2,8 @@
 {% set search_suggestions = products | take(3) %}
 {% set total_products = products | length %}
 
-{# Container com resultados - mesma largura do input #}
-<div class="flex w-full items-start content-start gap-2 flex-wrap bg-black/30 backdrop-blur-sm p-2 rounded-lg">
+{# Resultados: sem card próprio, vivem no card único do painel #}
+<div class="flex w-full flex-col gap-1">
 
   {% if search_suggestions is not empty %}
 
@@ -11,17 +11,17 @@
     {% for product in search_suggestions %}
       <a
         href="{{ product.url }}"
-        class="flex items-center gap-1.5 self-stretch px-2 py-0 w-full hover:bg-white/10 rounded transition-colors duration-200"
+        class="flex items-center gap-3 px-2 py-1 w-full hover:bg-white/10 rounded transition-colors duration-200"
         role="option"
       >
         {# Imagem do produto (tiny) #}
-        <div class="shrink-0 w-12 h-12 bg-white/5 rounded overflow-hidden">
-          {{ product.featured_image | product_image_url("tiny") | img_tag(product.featured_image.alt, {class: 'w-full h-full object-cover'}) }}
+        <div class="shrink-0 w-12 aspect-4/5 bg-white/5 rounded overflow-hidden">
+          {{ product.featured_image | product_image_url("small") | img_tag(product.featured_image.alt, {class: 'w-full h-full object-cover'}) }}
         </div>
 
         {# Informações do produto #}
         <div class="flex-1 min-w-0">
-          <p class="self-stretch text-bg font-sans text-sm font-medium leading-[120%] truncate">
+          <p class="search-result-name text-bg font-sans text-sm font-medium leading-[120%] truncate">
             {{ product.name | highlight(query) }}
           </p>
           {% if product.display_price %}

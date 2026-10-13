@@ -6,10 +6,11 @@
      aria-label="{{ 'Busca de produtos' | translate }}">
 
   {# Search Panel - Fixed position: mobile closer to header (20%), desktop at 30% #}
-  <div class="js-search-panel fixed top-20 md:top-[30%] left-1/2 -translate-x-1/2 w-[90vw] max-w-125">
+  <div class="js-search-panel fixed top-20 md:top-[30%] left-1/2 -translate-x-1/2 w-[90vw] max-w-125 bg-black/30 backdrop-blur-sm p-2 rounded-lg">
 
+    {# Card único: o painel envolve input + resultados #}
     {# Search Form - Classes obrigatórias para LS.search() #}
-    <form class="js-search-container js-search-form flex items-center gap-2 bg-black/30 backdrop-blur-sm p-2 rounded-lg"
+    <form class="js-search-container js-search-form flex items-center gap-2"
           action="{{ store.search_url }}"
           method="get"
           role="search">
@@ -51,7 +52,7 @@
     </form>
 
     {# Search Suggestions Container - Injetado via LS.search() #}
-    <div id="search-suggestions" class="js-search-suggest mt-2" role="listbox" style="display: none;"></div>
+    <div id="search-suggestions" class="js-search-suggest mt-2 pt-2 border-t border-white/10" role="listbox" style="display: none;"></div>
 
   </div>
 </div>

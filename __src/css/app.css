@@ -149,6 +149,13 @@
   -webkit-appearance: none;
 }
 
+/* Termo buscado em negrito no nome (markup do filtro highlight da Nuvemshop) */
+.search-result-name :is(strong, b, mark) {
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+}
+
 /* ===== TOAST NOTIFICATION STYLES ===== */
 
 .js-toast-container [data-state] {
