@@ -34,19 +34,38 @@
    PHP loose == : 0, "0" and false equal "0"; null, "" and "1" do not. #}
 {% set home_section_toggles = ['promo_marquee', 'hero_banner', 'hero_banner_2', 'product_carousel', 'product_grid', 'vip_group', 'faq'] %}
 
-<div class="js-home-sections-container">
-	{% for i in 0..(home_sections|length - 1) %}
-		{% set section = 'home_order_position_' ~ i %}
-		{% set section_select = attribute(settings, section) %}
+{#  **** Dividers (Fibery task 292, design task 234) ****
+   A divider goes AFTER a section, by type: seed after the product carousel, white (the whole 64px gap)
+   after the product grid and the FAQ. Full-bleed sections (heroes, marquee, VIP) get none. Sections are
+   rendered first and kept only when their HTML is not empty, so a divider is printed only between two
+   visible sections: never first, never last, never doubled. The global checkbox home_show_dividers
+   follows the same rule as the section toggles (only an explicit "0" turns them off). #}
+{% set home_section_dividers = {'product_carousel': 'seed', 'product_grid': 'white', 'faq': 'white'} %}
+{% set home_dividers_on = settings.home_show_dividers != '0' %}
+{% set home_rendered = [] %}
 
-		{% if section_select not in newArray %}
-			{% set section_hidden = section_select in home_section_toggles and attribute(settings, section_select ~ '_show') == '0' %}
-			{% if not section_hidden %}
-				{% include 'snipplets/home/home-section-switch.tpl' %}
+{% for i in 0..(home_sections|length - 1) %}
+	{% set section = 'home_order_position_' ~ i %}
+	{% set section_select = attribute(settings, section) %}
+
+	{% if section_select not in newArray %}
+		{% set newArray = newArray|merge([section_select]) %}
+		{% set section_hidden = section_select in home_section_toggles and attribute(settings, section_select ~ '_show') == '0' %}
+		{% if section_select and not section_hidden %}
+			{% set section_html %}{% include 'snipplets/home/home-section-switch.tpl' %}{% endset %}
+			{% if section_html|trim is not empty %}
+				{% set home_rendered = home_rendered|merge([{'html': section_html, 'divider': section_select in home_section_dividers|keys ? home_section_dividers[section_select] : ''}]) %}
 			{% endif %}
-			{% set newArray = newArray|merge([section_select]) %}
 		{% endif %}
+	{% endif %}
+{% endfor %}
 
+<div class="js-home-sections-container">
+	{% for item in home_rendered %}
+		{{ item.html|raw }}
+		{% if home_dividers_on and item.divider and not loop.last %}
+			{% include 'snipplets/home/home-divider.tpl' with {type: item.divider} %}
+		{% endif %}
 	{% endfor %}
 
 	{#  **** Hidden Sections ****  #}

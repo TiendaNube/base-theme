@@ -1087,6 +1087,9 @@ Página de inicio
 	collapse
 		title = Página de inicio
 		backto = _top
+	checkbox
+		name = home_show_dividers
+		description = Mostrar divisores entre as seções
 	section_order
 		name = home_order_position
 		start_index = 0

@@ -46,6 +46,7 @@ home_order_position_4 = product_grid
 home_order_position_5 = faq
 home_order_position_6 = vip_group
 home_order_position_7 = instafeed
+home_show_dividers = 1
 promo_marquee_show = 1
 hero_banner_show = 1
 hero_banner_2_show = 1

@@ -52,3 +52,54 @@ test.describe("visibilidade das seções da home (#287)", () => {
     }
   });
 });
+
+// Fibery #292: divisores só entre duas seções visíveis (nunca no começo, no fim nem em dupla),
+// seed depois do carrossel e branco de 64px no resto (#234). ROMA_HOME_DIVIDERS=off depois de
+// desmarcar "Mostrar divisores" no admin confere que todos somem.
+const dividersOff = process.env.ROMA_HOME_DIVIDERS === "off";
+
+test.describe("divisores entre seções da home (#292)", () => {
+  test("nenhum divisor sobrando ou duplicado", async ({ page }) => {
+    await gotoStore(page, "home");
+    const stores = (await homeChildren(page)).map((c) => c.store);
+    const isDivider = (s) => s.startsWith("home-divider");
+    expect(stores.length).toBeGreaterThan(0);
+    expect(isDivider(stores[0]), "divisor no começo").toBe(false);
+    expect(isDivider(stores[stores.length - 1]), "divisor no fim").toBe(false);
+    stores.forEach((s, i) => {
+      if (isDivider(s)) expect(isDivider(stores[i + 1]), `divisores em sequência em ${i}`).toBe(false);
+    });
+  });
+
+  test("seed depois do carrossel, branco com 64px", async ({ page }) => {
+    test.skip(dividersOff, "divisores desligados no admin");
+    await gotoStore(page, "home");
+    const children = await homeChildren(page);
+    const stores = children.map((c) => c.store);
+    const carousel = stores.indexOf("home-product-carousel");
+    test.skip(carousel < 0 || carousel === stores.length - 1, "carrossel ausente ou última seção");
+    expect(stores[carousel + 1]).toBe("home-divider-seed");
+    for (const c of children.filter((c) => c.store.startsWith("home-divider"))) {
+      expect(Math.round(c.height)).toBe(64);
+    }
+    const white = page.locator('[data-store="home-divider-white"]').first();
+    if (await white.count()) {
+      const [divider, token] = await Promise.all([
+        white.evaluate((el) => getComputedStyle(el).backgroundColor),
+        page.evaluate(() => {
+          const probe = document.body.appendChild(Object.assign(document.createElement("div"), { className: "bg-bg" }));
+          const color = getComputedStyle(probe).backgroundColor;
+          probe.remove();
+          return color;
+        }),
+      ]);
+      expect(divider).toBe(token); // token bg-bg (some no fundo), nunca cor literal
+    }
+  });
+
+  test("checkbox global desliga todos os divisores", async ({ page }) => {
+    test.skip(!dividersOff, "defina ROMA_HOME_DIVIDERS=off depois de desmarcar no admin");
+    await gotoStore(page, "home");
+    await expect(page.locator('[data-store^="home-divider"]')).toHaveCount(0);
+  });
+});
