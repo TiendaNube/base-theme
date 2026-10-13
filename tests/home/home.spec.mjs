@@ -155,5 +155,10 @@ test.describe("grid de produtos e grupo VIP", () => {
     test.skip((await marquee.count()) === 0, "seção não configurada");
     await expect(marquee).toBeVisible();
     await expect(marquee).toContainText(/\S/);
+    // ADR-0004: cores vêm de data-bg/data-text mapeados no CSS, sem style="" inline
+    await expect(marquee).toHaveAttribute("data-bg", /^(primary|secondary|background|accent)$/);
+    await expect(marquee).toHaveAttribute("data-text", /^(white|primary|secondary|background)$/);
+    expect(await marquee.locator("[style]").count()).toBe(0);
+    expect(await marquee.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
   });
 });
