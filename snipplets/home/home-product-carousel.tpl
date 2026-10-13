@@ -7,14 +7,15 @@
 {% set carousel_viewall_label = settings.product_carousel_viewall_label | trim %}
 {% set carousel_viewall_url = settings.product_carousel_viewall_url | trim %}
 
+{# Section background as a token class (ADR-0003/0004), never an inline style; literal class names so Tailwind sees them. #}
 {% set carousel_bg_map = {
-    'none': 'transparent',
-    'primary': 'var(--primary-color)',
-    'secondary': 'var(--text-color)',
-    'background': 'var(--background-color)',
-    'accent': 'var(--accent-color)'
+    'none': 'bg-transparent',
+    'primary': 'bg-fg',
+    'secondary': 'bg-secondary',
+    'background': 'bg-bg',
+    'accent': 'bg-accent'
 } %}
-{% set carousel_bg_value = carousel_bg_map[settings.product_carousel_bg] | default('transparent') %}
+{% set carousel_bg_class = carousel_bg_map[settings.product_carousel_bg] | default('bg-transparent') %}
 {# "none" and "background" paint no visible block: the divider supplies the spacing, so drop the padding. #}
 {% set carousel_flat = settings.product_carousel_bg == 'none' or settings.product_carousel_bg == 'background' or not settings.product_carousel_bg %}
 
@@ -24,7 +25,7 @@
    title sits 24px in, controls 16px in. From md the section gets the 64px gutter and the cards go
    fluid (3.25 / 4.25 per view, as before the Figma pass): fixed 234px cards left huge gaps on wide
    screens. Title and controls align with the first card. #}
-<section class="js-product-carousel section-product-carousel md:px-16 pt-8 {{ carousel_flat ? 'pb-0' : 'pb-8' }}" data-store="home-product-carousel" style="background-color: {{ carousel_bg_value }}">
+<section class="js-product-carousel section-product-carousel md:px-16 pt-8 {{ carousel_flat ? 'pb-0' : 'pb-8' }} {{ carousel_bg_class }}" data-store="home-product-carousel">
 
     {# Header: Title + Dropdown #}
     <div class="flex items-center gap-3 mb-6 px-6 md:px-0">

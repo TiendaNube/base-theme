@@ -70,7 +70,7 @@
 
 	{#  **** Hidden Sections ****  #}
 	{% if show_component_help %}
-		<div style="display:none">
+		<div class="hidden">
 			{% for section_select in home_sections %}
 				{% if section_select not in newArray %}
 					{% include 'snipplets/home/home-section-switch.tpl' %}

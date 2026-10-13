@@ -228,3 +228,25 @@ test.describe("grid de produtos e grupo VIP", () => {
     expect(await marquee.evaluate((el) => getComputedStyle(el).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
   });
 });
+
+test.describe("fundo das seções (Fibery #293)", () => {
+  // ADR-0003/0004: o dropdown *_bg vira uma classe de token, nunca style="background-color" inline.
+  for (const store of ["home-product-carousel", "home-product-grid", "home-faq"]) {
+    test(`${store} usa classe de token, sem style inline`, async ({ page }) => {
+      await gotoStore(page, "home");
+      const section = page.locator(`[data-store="${store}"]`).first();
+      test.skip((await section.count()) === 0, "seção não configurada");
+      expect(await section.getAttribute("style")).toBeNull();
+      const cls = await section.getAttribute("class");
+      expect(cls).toMatch(/(^|\s)bg-(transparent|fg|secondary|bg|accent)(\s|$)/);
+      if (/(^|\s)bg-bg(\s|$)/.test(cls)) {
+        const [own, theme] = await section.evaluate((el) => [
+          getComputedStyle(el).backgroundColor,
+          getComputedStyle(document.body).getPropertyValue("--background-color").trim(),
+        ]);
+        expect(own).not.toBe("rgba(0, 0, 0, 0)");
+        expect(theme).not.toBe("");
+      }
+    });
+  }
+});
