@@ -73,6 +73,16 @@ test("mobile: alvos de toque dos controles principais têm pelo menos 24px (WCAG
   await check(".js-cart-drawer-toggle", "cart toggle");
   await check(".js-carousel-prev, .js-carousel-next", "carousel arrows");
   await check(".js-carousel-seed", "carousel seeds");
+  // Fibery #224/#231: as seeds do carrossel têm área de toque de 40px (o glifo continua 11x8)
+  const seedBoxes = await page.locator(".js-carousel-seed").filter({ visible: true }).evaluateAll((els) =>
+    els.map((el) => {
+      const r = el.getBoundingClientRect();
+      return { w: Math.round(r.width), h: Math.round(r.height) };
+    }),
+  );
+  for (const b of seedBoxes) {
+    if (b.w < 40 || b.h < 40) small.push(`carousel seed (<40px) ${b.w}x${b.h}`);
+  }
 
   await gotoStore(page, "category");
   await check(".js-quickbuy-add-btn", "quick buy +");

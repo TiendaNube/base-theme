@@ -15,8 +15,10 @@ export const productCarousel = () => {
 
   // SVG for seed pagination dot
   // Theme colors only (ADR-0003): same pattern as product-gallery.js / menu.js
+  // Figma (Fibery task 231): inactive seeds are almost the background colour — the text colour
+  // diluted ~15% into the theme background (opaque, so it reads the same over any section bg).
   const activeColor = "var(--text-color)";
-  const inactiveColor = "color-mix(in srgb, var(--text-color) 40%, transparent)";
+  const inactiveColor = "color-mix(in srgb, var(--text-color) 15%, var(--background-color))";
   const seedSVG = (active) => `
     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="8" viewBox="0 0 11 8" fill="none">
       <path d="M6.93294 6.9178C10.0118 6.33768 11.5457 4.64453 10.8236 2.44759C10.2482 0.697531 8.31108 -0.0463472 6.24753 0.00222694C4.0117 0.0549646 2.34216 1.16245 1.5248 2.83063C1.07947 3.73966 0.564497 5.41477 0.0330304 6.99968C-0.164895 7.58812 0.559 8.12244 1.34154 7.97533C2.63722 7.73523 5.76371 7.13846 6.93294 6.9178Z" fill="${active ? activeColor : inactiveColor}"/>
@@ -65,7 +67,8 @@ export const productCarousel = () => {
 
     let html = "";
     for (let i = 0; i < realCount; i++) {
-      html += `<span class="inline-flex items-center justify-center w-6 h-6 cursor-pointer js-carousel-seed" data-index="${i}">${seedSVG(i === currentIndex)}</span>`;
+      // 40px hit area (Fibery task 224) around the 11x8 glyph
+      html += `<span class="inline-flex items-center justify-center w-10 h-10 shrink-0 cursor-pointer js-carousel-seed" data-index="${i}">${seedSVG(i === currentIndex)}</span>`;
     }
     paginationContainer.innerHTML = html;
 
@@ -85,9 +88,14 @@ export const productCarousel = () => {
   }
 
   // Init swipers for each tab (using setTimeout like the theme's createSwiper)
-  const mobilePerView = 2.25;
-  const tabletPerView = 3.25;
-  const desktopPerView = 4.25;
+  // Figma (Fibery task 231): cards are a fixed 234px (width set on the slide by the template,
+  // slidesPerView: 'auto'), so how many are visible depends on the viewport:
+  //   mobile  (<768)   gap 0, track edge to edge  → ~1.7 visible at 393px (peek of the 2nd)
+  //   tablet  (768+)   gap 24px                   → up to ~4.5 visible at 1279px
+  //   desktop (1280+)  gap 9.55% of the track     → exactly 4 at 1440 (1312px track, 125px gap,
+  //                    as in the Figma), ~4.4 at 1920, ~5.2 at 2560
+  // The loop needs at least twice the visible count plus one; 6 covers every case above.
+  const maxVisibleSlides = 6;
 
   for (let i = 1; i <= 3; i++) {
     const container = section.querySelector(`.js-swiper-product-carousel-${i}`);
@@ -95,9 +103,9 @@ export const productCarousel = () => {
       const slideCount = container.querySelectorAll(".swiper-slide").length;
       realSlideCounts[`tab-${i}`] = slideCount;
 
-      // Garantir slides suficientes para loop em telas grandes
-      // Necessário: Math.ceil(maxSlidesPerView) * 2 + 1 = 10 slides mínimo
-      const minSlidesForLoop = Math.ceil(desktopPerView) * 2 + 1;
+      // Garantir slides suficientes para o loop na tela mais larga
+      // Necessário: maxVisibleSlides * 2 + 1 = 13 slides mínimo
+      const minSlidesForLoop = maxVisibleSlides * 2 + 1;
 
       if (slideCount < minSlidesForLoop && slideCount >= 1) {
         const wrapper = container.querySelector(".swiper-wrapper");
@@ -118,26 +126,25 @@ export const productCarousel = () => {
       }
 
       setTimeout(() => {
-        // For loop to work smoothly, we need enough cloned slides
-        // Considerar o maior slidesPerView (4.25) para cálculo de clones
+        // For loop to work smoothly, we need enough cloned slides. With slidesPerView 'auto'
+        // Swiper 6 cannot infer how many to clone, so loopedSlides is mandatory: clone the
+        // whole (already padded) set, never fewer than the widest visible count + 1.
         const actualSlideCount = container.querySelectorAll(".swiper-slide").length;
-        const loopSlides = Math.max(actualSlideCount, Math.ceil(desktopPerView) + 1);
+        const loopSlides = Math.max(actualSlideCount, maxVisibleSlides + 1);
 
         swipers[`tab-${i}`] = new Swiper(container, {
-          slidesPerView: mobilePerView,
-          spaceBetween: 12,
+          slidesPerView: "auto",
+          spaceBetween: 0,
           threshold: 10,
           loop: true,
           loopedSlides: loopSlides,
           loopAdditionalSlides: 2,
           breakpoints: {
             768: {
-              slidesPerView: tabletPerView,
-              spaceBetween: 16,
+              spaceBetween: 24,
             },
             1280: {
-              slidesPerView: desktopPerView,
-              spaceBetween: 16,
+              spaceBetween: "9.55%",
             },
           },
           on: {

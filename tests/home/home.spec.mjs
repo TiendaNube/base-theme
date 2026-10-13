@@ -22,6 +22,39 @@ test.describe("carrossel de produtos", () => {
     await expect(card).toContainText(/R\$/);
   });
 
+  // Fibery #231: cards de 234px fixos, imagem 4:5, título com inset de 8px; no mobile a
+  // trilha encosta na borda (sem gutter, sem gap) e o 2º card aparece cortado (peek).
+  test("cards de 234px com imagem 4:5 e peek do próximo", async ({ page, isMobile }) => {
+    await gotoStore(page, "home");
+    const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
+    await page.waitForFunction((s) => !!document.querySelector(s)?.swiper, container);
+    await page.locator(container).scrollIntoViewIfNeeded();
+    await settled(page, container);
+    const geo = await page.locator(container).evaluate((root) => {
+      const vw = document.documentElement.clientWidth;
+      return [...root.querySelectorAll(".swiper-slide")]
+        .map((el) => ({ el, r: el.getBoundingClientRect() }))
+        .filter(({ r }) => r.right > 0 && r.left < vw)
+        .sort((a, b) => a.r.left - b.r.left)
+        .map(({ el, r }) => {
+          const image = el.querySelector(":scope > script + div").getBoundingClientRect();
+          const title = el.lastElementChild.querySelector("a").getBoundingClientRect();
+          return { left: r.left, right: r.right, width: r.width, ratio: image.width / image.height, inset: title.left - r.left, vw };
+        });
+    });
+    expect(geo.length).toBeGreaterThan(1);
+    for (const c of geo) {
+      expect(Math.round(c.width)).toBe(234);
+      expect(c.ratio).toBeCloseTo(0.8, 1);
+      expect(Math.round(c.inset)).toBe(8);
+    }
+    if (isMobile) {
+      expect(Math.round(geo[0].left)).toBe(0);
+      expect(Math.round(geo[1].left)).toBe(Math.round(geo[0].right)); // sem gap
+      expect(geo[1].right).toBeGreaterThan(geo[1].vw); // peek: o 2º card sai da tela
+    }
+  });
+
   test("setas mudam o slide ativo e a seed acompanha", async ({ page }) => {
     await gotoStore(page, "home");
     const container = ".js-carousel-tab:not(.hidden) [class*='js-swiper-product-carousel']";
@@ -137,6 +170,37 @@ test.describe("grid de produtos e grupo VIP", () => {
     await link.click();
     await page.waitForURL((url) => url.href.startsWith(new URL(href, page.url()).href));
     await expect(page.locator("h1.js-product-name")).toBeVisible();
+  });
+
+  // Fibery #232: mesma linguagem da grade da categoria — mobile 2 colunas de borda a borda,
+  // sem gap; imagem 4:5; cards da mesma linha alinham o preço.
+  test("o grid Mais Vendidos segue o Figma (2 colunas, sem gap no mobile, 4:5)", async ({ page, isMobile }) => {
+    await gotoStore(page, "home");
+    const grid = page.locator('[data-store="home-product-grid"] .grid');
+    test.skip((await grid.count()) === 0, "seção não configurada");
+    await grid.scrollIntoViewIfNeeded();
+    const info = await grid.evaluate((el) => {
+      const cs = getComputedStyle(el);
+      const vw = document.documentElement.clientWidth;
+      const cards = [...el.querySelectorAll(":scope > [data-product-id]")].map((card) => {
+        const r = card.getBoundingClientRect();
+        const image = card.querySelector(":scope > script + div").getBoundingClientRect();
+        const price = card.lastElementChild.lastElementChild.getBoundingClientRect();
+        return { left: r.left, right: r.right, top: Math.round(r.top), ratio: image.width / image.height, priceTop: Math.round(price.top) };
+      });
+      return { columns: cs.gridTemplateColumns.split(" ").length, columnGap: cs.columnGap, rowGap: cs.rowGap, vw, cards };
+    });
+    expect(info.columns).toBe(2);
+    for (const c of info.cards) expect(c.ratio).toBeCloseTo(0.8, 1);
+    const rows = new Map();
+    for (const c of info.cards) rows.set(c.top, [...(rows.get(c.top) || []), c.priceTop]);
+    for (const tops of rows.values()) expect(new Set(tops).size).toBe(1);
+    if (isMobile) {
+      expect(info.columnGap).toMatch(/^0(px)?$/);
+      expect(info.rowGap).toMatch(/^0(px)?$/);
+      expect(Math.round(info.cards[0].left)).toBe(0);
+      expect(Math.round(info.cards[1].right)).toBe(info.vw);
+    }
   });
 
   test("o grupo VIP tem botão com link", async ({ page }) => {

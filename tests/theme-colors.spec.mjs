@@ -19,7 +19,8 @@ const palette = (page) =>
     const root = getComputedStyle(document.documentElement);
     return {
       text: resolve("var(--text-color)"),
-      text40: resolve("color-mix(in srgb, var(--text-color) 40%, transparent)"),
+      // seed inativa do carrossel (Fibery #231): texto diluído ~15% no fundo do tema
+      text15OnBg: resolve("color-mix(in srgb, var(--text-color) 15%, var(--background-color))"),
       bg: resolve("var(--background-color)"),
       bg70: resolve("color-mix(in oklab, var(--background-color) 70%, transparent)"),
       primary: resolve("var(--primary-color)"),
@@ -48,9 +49,12 @@ test("seeds do carrossel de produtos usam a cor de texto do tema, sem hex", asyn
   const p = await palette(page);
   const computed = await paths.evaluateAll((els) => els.map((e) => getComputedStyle(e).fill));
   const active = computed.filter((c) => c === p.text);
-  const inactive = computed.filter((c) => c === p.text40);
+  const inactive = computed.filter((c) => c === p.text15OnBg);
   expect(active).toHaveLength(1);
   expect(inactive).toHaveLength(computed.length - 1);
+  // opaca e bem mais perto do fundo que do texto (antes era o texto a 40% sobre transparente)
+  expect(p.text15OnBg).not.toBe(p.text);
+  expect(p.text15OnBg).not.toMatch(/rgba|\/ ?0?\.\d/);
 });
 
 test("listas dos dropdowns do carrossel e da categoria pintam o fundo do tema a 70%", async ({ page }) => {
