@@ -132,25 +132,24 @@
             <span>{{ "Subtotal" | translate }}:</span>
             <span class="js-ajax-cart-total js-cart-subtotal" data-priceraw="{{ cart.subtotal }}">{{ cart.subtotal | money }}</span>
           </div>
-          {% set cart_max_installments = settings.cart_max_installments %}
-          {% set has_cart_installments = cart_max_installments and cart_max_installments > 1 %}
-          {# Installments (setting) + payment discount (platform component), 10px highlight labels #}
-          {% if has_cart_installments or settings.payment_discount_price %}
-          <div class="flex items-center gap-3 font-sans text-[10px] font-medium text-highlight">
-            {% if has_cart_installments %}
-              <span>{{ cart_max_installments }}x {{ "Sem Juros" | translate }}</span>
-            {% endif %}
-            {% if has_cart_installments and settings.payment_discount_price %}
-              <span class="size-1 rounded-full bg-highlight shrink-0"></span>
-            {% endif %}
-            {% if settings.payment_discount_price %}
-              {{ component('payment-discount-price', {
+          {# Installments come from the store's payment configuration via the platform "installments"
+             component (cart location, computed on the cart total; renders nothing when there is no
+             interest-free option). Pix discount from the platform component. 10px highlight labels. #}
+          <div class="flex items-center gap-3 font-sans text-[10px] font-medium text-highlight empty:hidden">
+            {{- component('installments', {
+                location: 'cart',
+                container_classes: { installment: 'text-[10px] font-medium text-highlight' },
+              })
+            -}}
+            {%- if settings.payment_discount_price -%}
+              {{- component('payment-discount-price', {
                   visibility_condition: true,
                   location: 'cart',
                   container_classes: 'text-[10px] font-medium text-highlight',
                 })
-              }}
-            {% endif %}
+              -}}
+            {%- endif -%}
+          </div>
           </div>
           {% endif %}
         </div>

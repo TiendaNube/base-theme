@@ -1057,11 +1057,6 @@ pt "Subtotal"
 en "Subtotal"
 es_mx "Subtotal"
 
-es "Sem Juros"
-pt "Sem Juros"
-en "Interest-free"
-es_mx "Sem Juros"
-
 es "Ir para o Checkout"
 pt "Ir para o Checkout"
 en "Go to Checkout"

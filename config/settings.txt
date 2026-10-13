@@ -1273,12 +1273,6 @@ Carrito de compras
 		name = cart_discount_tier_3_pct
 		description = Porcentagem de desconto do 3º nível
 		placeholder = Ex.: 20
-	title
-		title = Rodapé do carrinho
-	text
-		name = cart_max_installments
-		description = Máximo de parcelas sem juros exibido no rodapé do carrinho (vazio ou 1 oculta a linha)
-		placeholder = Ex.: 3
 
 Pie de página
 	meta
