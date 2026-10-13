@@ -23,10 +23,12 @@
 {% endif %}
 
 {#  **** Features Order ****  #}
+{# Every key of the section_order in config/settings.txt: the loop below covers one slot per section #}
+{% set home_sections = ['promo_marquee', 'hero_banner', 'hero_banner_2', 'slider', 'welcome', 'products', 'informatives', 'categories', 'modules', 'video', 'product_carousel', 'product_grid', 'vip_group', 'faq', 'instafeed'] %}
 {% set newArray = [] %}
 
 <div class="js-home-sections-container">
-	{% for i in 0..12 %}
+	{% for i in 0..(home_sections|length - 1) %}
 		{% set section = 'home_order_position_' ~ i %}
 		{% set section_select = attribute(settings, section) %}
 
@@ -40,7 +42,7 @@
 	{#  **** Hidden Sections ****  #}
 	{% if show_component_help %}
 		<div style="display:none">
-			{% for section_select in ['hero_banner', 'hero_banner_2', 'slider', 'products', 'informatives', 'categories', 'welcome', 'video', 'instafeed', 'modules', 'promo_marquee', 'product_carousel', 'product_grid'] %}
+			{% for section_select in home_sections %}
 				{% if section_select not in newArray %}
 					{% include 'snipplets/home/home-section-switch.tpl' %}
 				{% endif %}
