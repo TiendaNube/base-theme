@@ -488,6 +488,32 @@ Página de inicio
 			primary = Cor principal
 			secondary = Cor de texto
 			background = Cor de fundo
+	subtitle
+		subtitle = Links (opcionais)
+	i18n_input
+		name = promo_marquee_link_1
+		description = Link do texto 1 (ex: /promocoes/)
+	i18n_input
+		name = promo_marquee_link_2
+		description = Link do texto 2
+	i18n_input
+		name = promo_marquee_link_3
+		description = Link do texto 3
+	i18n_input
+		name = promo_marquee_link_4
+		description = Link do texto 4
+	subtitle
+		subtitle = Animação
+	dropdown
+		name = promo_marquee_speed
+		description = Velocidade
+		values
+			slow = Lenta
+			normal = Normal
+			fast = Rápida
+	checkbox
+		name = promo_marquee_pause_hover
+		description = Pausar ao passar o mouse
 	collapse
 		title = Hero Banner
 		backto = home_order_position

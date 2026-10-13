@@ -403,6 +403,11 @@
     will-change: transform;
 }
 
+/* Velocidade (promo_marquee_speed) e pausa no hover via data-* (ADR-0004); normal = 30s, padrao historico */
+.promo-marquee-section[data-speed="slow"] .promo-marquee-track { animation-duration: 50s; }
+.promo-marquee-section[data-speed="fast"] .promo-marquee-track { animation-duration: 18s; }
+.promo-marquee-section[data-pause-hover="1"]:hover .promo-marquee-track { animation-play-state: paused; }
+
 @keyframes marquee-scroll {
     0% {
         transform: translateX(0);
