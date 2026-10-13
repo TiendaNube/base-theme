@@ -283,6 +283,12 @@
         {% endif %}
     </section>
 
+    {# End of page: white + seed + white before the footer. The grid section above ends with pb-8
+       (32px), so the first white is half (32px) to total 64px. #}
+    {% include 'snipplets/home/home-divider.tpl' with {type: 'white', half: true} %}
+    {% include 'snipplets/home/home-divider.tpl' with {type: 'seed'} %}
+    {% include 'snipplets/home/home-divider.tpl' with {type: 'white'} %}
+
 {% elseif show_help %}
     {% include 'snipplets/defaults/show_help_category.tpl' %}
 {% endif %}

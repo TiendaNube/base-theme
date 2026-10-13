@@ -33,7 +33,7 @@
 {% set faq_bg_value = faq_bg_map[settings.faq_bg] | default('transparent') %}
 
 {% if has_faq %}
-<section class="section-faq px-4 md:px-16 lg:px-32 py-8 md:py-12" data-store="home-faq" style="background-color: {{ faq_bg_value }}">
+<section class="section-faq px-4 md:px-16 lg:px-32 {{ faq_bg_value == 'transparent' ? 'py-0' : 'py-8 md:py-12' }}" data-store="home-faq" style="background-color: {{ faq_bg_value }}">
 
     {# Title #}
     {% if settings.faq_title %}
