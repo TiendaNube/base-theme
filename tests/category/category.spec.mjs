@@ -129,8 +129,71 @@ test.describe("grade da categoria (#238)", () => {
   });
 });
 
+// Painel de filtros (gaius modal/drawer) aberto pelo gatilho visível; devolve o corpo do modal.
+const openFilterPanel = async (page) => {
+  await visible(page.locator(".js-category-filter-trigger")).first().click();
+  const container = page.locator(".js-gaius-modal-container");
+  await expect(container).toHaveAttribute("data-state", "open");
+  return container.locator(".js-gaius-modal-body");
+};
+
+const centerY = async (locator) => {
+  const b = await locator.boundingBox();
+  return b.y + b.height / 2;
+};
+
+// Barra da categoria no mobile (Fibery #237, Figma 14:1568): uma linha só com título +
+// subcategoria à esquerda e o link "Filtros" à direita; breadcrumb logo abaixo; sem ordenação.
+test.describe("barra da categoria (#237)", () => {
+  test("mobile: título, subcategoria e 'Filtros' numa linha, breadcrumb logo abaixo", async ({ page }, testInfo) => {
+    test.skip(!isMobile(testInfo), "só mobile: o desktop mantém dropdown de ordenação + Filtrar");
+    await gotoStore(page, "category");
+    await expect(visible(page.locator(".js-category-sorting"))).toHaveCount(0);
+
+    const h1 = page.locator("h1").first();
+    const trigger = visible(page.locator(".js-category-filter-trigger")).first();
+    await expect(trigger).toHaveText(/\S/);
+    const titleY = await centerY(h1);
+    expect(Math.abs((await centerY(trigger)) - titleY)).toBeLessThanOrEqual(4);
+    const dropdown = visible(page.locator(".js-category-dropdown-trigger")).first();
+    if (await dropdown.count()) expect(Math.abs((await centerY(dropdown)) - titleY)).toBeLessThanOrEqual(4);
+    // área de toque do link "Filtros"
+    expect((await trigger.boundingBox()).height).toBeGreaterThanOrEqual(40);
+
+    // breadcrumb abaixo do título e a grade logo depois dele (sem a antiga 3ª linha de controles)
+    const h1Box = await h1.boundingBox();
+    const crumb = await visible(page.locator('nav[aria-label="Breadcrumb"]')).first().boundingBox();
+    expect(crumb.y).toBeGreaterThanOrEqual(h1Box.y + h1Box.height - 1);
+    const gridTop = (await page.locator(".js-category-grid").boundingBox()).y;
+    expect(gridTop - (crumb.y + crumb.height)).toBeLessThan(40);
+  });
+});
+
 test.describe("ordenação", () => {
-  test("escolher uma opção recarrega com sort_by e marca a opção", async ({ page }) => {
+  test("mobile: chip de 'Ordenar:' no painel recarrega com sort_by e marca o chip", async ({ page }, testInfo) => {
+    test.skip(!isMobile(testInfo), "no desktop a ordenação é o dropdown da barra (teste abaixo)");
+    await gotoStore(page, "category");
+    const body = await openFilterPanel(page);
+    const chips = visible(body.locator(".js-category-sorting-option"));
+    expect(await chips.count()).toBeGreaterThan(1);
+    await expect(chips.first()).toHaveAttribute("data-sort-value", "best-selling");
+    for (const h of await chips.evaluateAll((els) => els.map((el) => el.getBoundingClientRect().height))) {
+      expect(h, "área de toque do chip").toBeGreaterThanOrEqual(40);
+    }
+
+    const chip = visible(body.locator('.js-category-sorting-option:not([aria-current="true"])')).first();
+    const value = await chip.getAttribute("data-sort-value");
+    await chip.click();
+    await page.waitForURL((url) => url.searchParams.get("sort_by") === value);
+
+    const reopened = await openFilterPanel(page);
+    await expect(reopened.locator('.js-category-sorting-option[aria-current="true"]')).toHaveCount(1);
+    await expect(reopened.locator(`.js-category-sorting-option[data-sort-value="${value}"]`)).toHaveAttribute("aria-current", "true");
+    expect(await cards(page).count()).toBeGreaterThan(0);
+  });
+
+  test("escolher uma opção recarrega com sort_by e marca a opção", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo), "mobile: a ordenação vive nos chips do painel (teste acima)");
     await gotoStore(page, "category");
     const sorting = visible(page.locator(".js-category-sorting")).first();
     const trigger = sorting.locator(".js-category-sorting-trigger");
@@ -148,7 +211,8 @@ test.describe("ordenação", () => {
     expect(await cards(page).count()).toBeGreaterThan(0);
   });
 
-  test("clique fora fecha a lista", async ({ page }) => {
+  test("clique fora fecha a lista", async ({ page }, testInfo) => {
+    test.skip(isMobile(testInfo), "mobile: sem dropdown de ordenação na barra");
     await gotoStore(page, "category");
     const sorting = visible(page.locator(".js-category-sorting")).first();
     await sorting.locator(".js-category-sorting-trigger").click();
@@ -159,8 +223,8 @@ test.describe("ordenação", () => {
 
   test("ordenar por preço realmente ordena os cards", async ({ page }) => {
     await gotoStore(page, "category");
-    const options = visible(page.locator(".js-category-sorting")).first().locator(".js-category-sorting-option");
-    const values = await options.evaluateAll((els) => els.map((e) => e.dataset.sortValue));
+    // o select oculto lista os mesmos métodos do dropdown (desktop) e dos chips (mobile)
+    const values = await page.locator(".js-sort-by option").evaluateAll((els) => els.map((e) => e.value));
     const asc = values.find((v) => /price.*asc|asc.*price|menor/i.test(v));
     test.skip(!asc, "sem opção de preço crescente");
     await page.goto(`${PATHS.category}?sort_by=${asc}`);
@@ -184,7 +248,11 @@ test.describe("filtros", () => {
     const content = container.locator(".js-gaius-modal-content");
     if (isMobile(testInfo)) await expect(content).toHaveClass(/js-gaius-modal-drawer/);
     else await expect(content).not.toHaveClass(/js-gaius-modal-drawer/);
-    expect((await container.locator(".js-gaius-modal-body").innerText()).trim()).not.toBe("");
+    const body = container.locator(".js-gaius-modal-body");
+    expect((await body.innerText()).trim()).not.toBe("");
+    // "Ordenar:" só no painel mobile; no desktop a ordenação segue no dropdown da barra
+    if (isMobile(testInfo)) expect(await visible(body.locator(".js-category-sorting-option")).count()).toBeGreaterThan(0);
+    else await expect(visible(body.locator(".js-category-sorting-option"))).toHaveCount(0);
 
     await page.keyboard.press("Escape");
     await expect(container).toHaveAttribute("data-state", "closed");
@@ -199,6 +267,10 @@ test.describe("filtros", () => {
     const body = page.locator(".js-gaius-modal-container .js-gaius-modal-body");
     const filter = body.locator(".js-apply-filter").filter({ visible: true }).first();
     test.skip((await filter.count()) === 0, "sem filtros aplicáveis nesta categoria");
+    // chips de variação (#237): área de toque de 40px em volta do chip de 32px
+    const box = await filter.boundingBox();
+    expect(box.height).toBeGreaterThanOrEqual(40);
+    expect(box.width).toBeGreaterThanOrEqual(40);
     await filter.click();
     await page.waitForURL((url) => url.search.length > 0 || url.pathname !== PATHS.category, { timeout: 20_000 });
   });
