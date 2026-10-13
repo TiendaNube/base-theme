@@ -137,6 +137,7 @@
     --color-bg: var(--background-color);
     --color-fg: var(--primary-color);
     --color-secondary: var(--text-color);
+    --color-accent: var(--accent-color);
     --color-bg-subtle: var(--background-color);
   }
 
@@ -1877,6 +1878,10 @@
     }
   }
 
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+
   .bg-bg {
     background-color: var(--color-bg);
   }
@@ -2593,6 +2598,10 @@
 
   .text-\[10px\|13px\|32px\] {
     color: 10px| 13px| 32px;
+  }
+
+  .text-accent {
+    color: var(--color-accent);
   }
 
   .text-bg {
