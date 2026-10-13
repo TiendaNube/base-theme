@@ -75,7 +75,8 @@ test("listas dos dropdowns do carrossel e da categoria pintam o fundo do tema a 
 
 test("o logo do grupo VIP herda a cor de fundo do tema (currentColor)", async ({ page }) => {
   await gotoStore(page, "home");
-  const path = page.locator('[data-store="home-vip-group"] svg path').first();
+  // The seed logo is the last svg in the section (the benefit bullets come before it)
+  const path = page.locator('[data-store="home-vip-group"] svg').last().locator("path").first();
   test.skip((await path.count()) === 0, "seção VIP não configurada");
   expect(await path.getAttribute("fill")).toBe("currentColor");
   const p = await palette(page);
