@@ -61,6 +61,8 @@ test.describe("abrir e fechar", () => {
     const headerHeight = await page.locator(".js-new-header").evaluate((el) => el.offsetHeight);
     const panelTop = await page.locator(".js-cart-drawer-panel").evaluate((el) => el.getBoundingClientRect().top);
     expect(Math.abs(panelTop - headerHeight)).toBeLessThanOrEqual(2);
+    const panelWidth = await page.locator(".js-cart-drawer-panel").evaluate((el) => el.getBoundingClientRect().width);
+    expect(Math.abs(panelWidth - 383)).toBeLessThanOrEqual(2);
   });
 });
 
@@ -94,6 +96,8 @@ test.describe("com item", () => {
     expect(money(await page.locator(".js-cart-drawer-footer .js-cart-subtotal").textContent())).toBeCloseTo(price, 2);
     await expect(page.locator(".js-cart-drawer-checkout")).toBeVisible();
     await expect(page.locator(".js-cart-drawer-checkout")).toBeEnabled();
+    await expect(page.locator(".js-cart-drawer-checkout")).toHaveValue("Ir para o Checkout");
+    await expect(page.locator(".js-cart-drawer-footer")).toContainText("Subtotal");
     await expect(page.locator(".js-empty-ajax-cart")).toBeHidden();
   });
 
