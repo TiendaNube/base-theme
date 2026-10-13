@@ -520,29 +520,10 @@
   -webkit-backdrop-filter: blur(0.5rem);
 }
 
-/* Figma "itensProgressContainer" (52:1636): inside the fixed bar the promo
-   progress bars drop the Lucide icon, center their label in --color-highlight
-   and put the label under the track. Scoped to the mobile bar only — the cart
-   drawer keeps its own left-aligned label + icon, and so does the in-flow
-   desktop bar, which was already signed off in spec 07. */
+/* The promo progress bars (Figma itensProgressContainer 52:1636) are styled
+   with utilities in cart/cart-drawer-progress-bars.tpl, shared by the drawer,
+   the in-flow PDP desktop block and this fixed bar. */
 @media (max-width: 1023px) {
-  .js-product-sticky-buy-bar .js-cart-progress-bar {
-    flex-direction: column-reverse;
-    gap: 0.5rem;
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-bar svg {
-    display: none;
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-label {
-    color: var(--color-highlight);
-  }
-
-  .js-product-sticky-buy-bar .js-cart-progress-bar > div:first-child {
-    justify-content: center;
-  }
-
   /* Keep the fixed bar from covering the end of the page. Applied to the
      footer (not body) because the footer paints its own bg-secondary — a
      body padding would leave a page-coloured strip below it. */
