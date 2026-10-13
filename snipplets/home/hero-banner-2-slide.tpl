@@ -11,10 +11,10 @@
 
 {% set slide_link = button_url | setting_url %}
 
-<div class="js-hero2-slide absolute inset-0 transition-opacity duration-700 {% if is_active %}opacity-100 z-10{% else %}opacity-0 z-0{% endif %}" data-slide="{{ slide_index }}">
+<div class="js-hero2-slide absolute inset-0 transition-opacity duration-700 {% if is_active %}opacity-100 z-10{% else %}opacity-0 z-0{% endif %}" data-slide="{{ slide_index }}"{% if not is_active %} aria-hidden="true"{% endif %}>
     {# Wrapper - clickable if has link #}
     {% if slide_link %}
-        <a href="{{ slide_link }}" class="block relative h-full">
+        <a href="{{ slide_link }}" class="js-hero2-link block relative h-full focus-visible:outline-2 focus-visible:-outline-offset-4"{% if not is_active %} tabindex="-1"{% endif %}>
     {% else %}
         <div class="relative h-full">
     {% endif %}
@@ -38,7 +38,7 @@
                 sizes="100vw"
                 {% endif %}
                 class="absolute inset-0 w-full h-full object-cover {% if apply_lazy_load %}lazyautosizes lazyload fade-in{% endif %}"
-                alt="{{ title ?: store.name }}"
+                alt="{{ image_alt ?: title ?: store.name }}"
             />
         </div>
 
@@ -61,7 +61,7 @@
                 sizes="100vw"
                 {% endif %}
                 class="absolute inset-0 w-full h-full object-cover {% if apply_lazy_load %}lazyautosizes lazyload fade-in{% endif %}"
-                alt="{{ title ?: store.name }}"
+                alt="{{ image_alt ?: title ?: store.name }}"
             />
         </div>
 
@@ -74,12 +74,13 @@
                 <span class="text-base font-normal font-sans mb-2">{{ subtitle }}</span>
             {% endif %}
             {% if title %}
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-2">{{ title }}</h2>
+                {% set heading_tag = title_tag | default('h2') %}
+                <{{ heading_tag }} class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-2">{{ title }}</{{ heading_tag }}>
             {% endif %}
             {% if button_text %}
                 <span class="inline-flex items-center gap-2 text-base font-semibold">
                     {{ button_text }}
-                    <i data-lucide="arrow-right" class="w-5 h-5 mt-0.5"></i>
+                    <i data-lucide="arrow-right" class="w-5 h-5 mt-0.5" aria-hidden="true"></i>
                 </span>
             {% endif %}
         </div>

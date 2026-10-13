@@ -37,7 +37,15 @@ export const heroBanner2Carousel = () => {
   };
 
   let currentSlide = 0;
-  const AUTOPLAY_INTERVAL = 6000; // 6 seconds for hero banner
+  // Autoplay comes from the admin via data-autoplay ("false" turns it off) and
+  // data-autoplay-interval (seconds); a missing/invalid value falls back to today's 6s.
+  const DEFAULT_INTERVAL_MS = 6000;
+  const autoplayEnabled = section.dataset.autoplay !== "false";
+  const intervalSeconds = parseFloat(section.dataset.autoplayInterval);
+  const autoplayInterval =
+    Number.isFinite(intervalSeconds) && intervalSeconds >= 2 && intervalSeconds <= 30
+      ? intervalSeconds * 1000
+      : DEFAULT_INTERVAL_MS;
   let autoplayTimer = null;
 
   // SVG for seed pagination dot - dynamic color based on slide
@@ -66,6 +74,13 @@ export const heroBanner2Carousel = () => {
         slide.classList.remove("opacity-100", "z-10");
         slide.classList.add("opacity-0", "z-0");
       }
+    });
+    // Only the visible slide is reachable by keyboard / assistive tech
+    slides.forEach((slide, i) => {
+      slide.setAttribute("aria-hidden", i === index ? "false" : "true");
+      slide.querySelectorAll(".js-hero2-link").forEach((link) => {
+        link.tabIndex = i === index ? 0 : -1;
+      });
     });
     updateControlsColor(index);
     renderPagination(index);
@@ -114,7 +129,8 @@ export const heroBanner2Carousel = () => {
 
   function resetAutoplay() {
     if (autoplayTimer) clearInterval(autoplayTimer);
-    autoplayTimer = setInterval(nextSlide, AUTOPLAY_INTERVAL);
+    if (!autoplayEnabled) return;
+    autoplayTimer = setInterval(nextSlide, autoplayInterval);
   }
 
   // Navigation buttons

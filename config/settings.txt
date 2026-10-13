@@ -533,6 +533,11 @@ Página de inicio
 			white = Branco
 			primary = Cor principal
 			background = Cor de fundo
+	subtitle
+		subtitle = Acessibilidade
+	i18n_input
+		name = hero_banner_alt
+		description = Texto alternativo da imagem (se vazio, usa o título)
 	collapse
 		title = Hero Banner 2
 		backto = home_order_position
@@ -619,6 +624,29 @@ Página de inicio
 			white = Branco
 			primary = Cor principal
 			background = Cor de fundo
+	subtitle
+		subtitle = Acessibilidade
+	i18n_input
+		name = hero_banner_2_alt
+		description = Texto alternativo da imagem do slide 1 (se vazio, usa o título)
+	i18n_input
+		name = hero_banner_2_slide2_alt
+		description = Texto alternativo da imagem do slide 2 (se vazio, usa o título)
+	subtitle
+		subtitle = Rotação automática (só com 2 slides)
+	checkbox
+		name = hero_banner_2_autoplay_off
+		description = Desativar a troca automática de slides
+	dropdown
+		name = hero_banner_2_interval
+		description = Tempo entre os slides
+		values
+			3 = 3 segundos
+			4 = 4 segundos
+			5 = 5 segundos
+			6 = 6 segundos (padrão)
+			8 = 8 segundos
+			10 = 10 segundos
 	collapse
 		title = Carrusel de imágenes
 		backto = home_order_position
