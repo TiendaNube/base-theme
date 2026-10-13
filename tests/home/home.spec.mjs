@@ -196,7 +196,8 @@ test.describe("grid de produtos e grupo VIP", () => {
     for (const c of info.cards) expect(c.ratio).toBeCloseTo(0.8, 1);
     const rows = new Map();
     for (const c of info.cards) rows.set(c.top, [...(rows.get(c.top) || []), c.priceTop]);
-    for (const tops of rows.values()) expect(new Set(tops).size).toBe(1);
+    // tolerância de 2px: subpixel a 412px de largura arredonda diferente em cada coluna
+    for (const tops of rows.values()) expect(Math.max(...tops) - Math.min(...tops)).toBeLessThanOrEqual(2);
     if (isMobile) {
       expect(parseFloat(info.columnGap)).toBeGreaterThan(0);
       expect(Math.round(info.cards[0].left)).toBe(24);
