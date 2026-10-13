@@ -27,13 +27,23 @@
 {% set home_sections = ['promo_marquee', 'hero_banner', 'hero_banner_2', 'slider', 'welcome', 'products', 'informatives', 'categories', 'modules', 'video', 'product_carousel', 'product_grid', 'vip_group', 'faq', 'instafeed'] %}
 {% set newArray = [] %}
 
+{#  **** Section visibility (Fibery task 287) ****
+   Each section below has a "<section>_show" checkbox in config/settings.txt (default 1 in defaults.txt).
+   Only an explicit "0" (unchecked and saved) hides it: a key never saved on a store that already had
+   settings (null) counts as ON, so deploying new checkboxes never hides a live section.
+   PHP loose == : 0, "0" and false equal "0"; null, "" and "1" do not. #}
+{% set home_section_toggles = ['promo_marquee', 'hero_banner', 'hero_banner_2', 'product_carousel', 'product_grid', 'vip_group', 'faq'] %}
+
 <div class="js-home-sections-container">
 	{% for i in 0..(home_sections|length - 1) %}
 		{% set section = 'home_order_position_' ~ i %}
 		{% set section_select = attribute(settings, section) %}
 
 		{% if section_select not in newArray %}
-			{% include 'snipplets/home/home-section-switch.tpl' %}
+			{% set section_hidden = section_select in home_section_toggles and attribute(settings, section_select ~ '_show') == '0' %}
+			{% if not section_hidden %}
+				{% include 'snipplets/home/home-section-switch.tpl' %}
+			{% endif %}
 			{% set newArray = newArray|merge([section_select]) %}
 		{% endif %}
 
