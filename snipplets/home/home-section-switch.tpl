@@ -138,6 +138,7 @@
 		</div>
 	{% else %}
 		{% include 'snipplets/home/home-product-carousel.tpl' %}
+		{% include 'snipplets/home/home-divider.tpl' with {type: 'seed'} %}
 	{% endif %}
 
 {% elseif section_select == 'product_grid' %}
@@ -149,6 +150,7 @@
 		</div>
 	{% else %}
 		{% include 'snipplets/home/home-product-grid.tpl' %}
+		{% include 'snipplets/home/home-divider.tpl' with {type: 'white'} %}
 	{% endif %}
 
 {% elseif section_select == 'vip_group' %}
@@ -178,5 +180,8 @@
 			{% include 'snipplets/home/home-faq.tpl' %}
 		{% endif %}
 	</section>
+	{% if not (show_help or (show_component_help and not has_faq)) %}
+		{% include 'snipplets/home/home-divider.tpl' with {type: 'white'} %}
+	{% endif %}
 
 {% endif %}

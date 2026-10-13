@@ -16,7 +16,7 @@
    category grid: page gutter (24px mobile, 64px from md, aligned with the header) and a gap
    between cards; wide column gap on desktop (128px at xl = Figma's 592px cells at 1440).
    Desktop stays 2x2 here (4 products). #}
-<section class="section-product-grid px-6 md:px-16 py-8" data-store="home-product-grid" style="background-color: {{ grid_bg_value }}">
+<section class="section-product-grid px-6 md:px-16 pt-8 {{ grid_bg_value == 'transparent' ? 'pb-0' : 'pb-8' }}" data-store="home-product-grid" style="background-color: {{ grid_bg_value }}">
 
     {# Title #}
     {% if settings.product_grid_title %}

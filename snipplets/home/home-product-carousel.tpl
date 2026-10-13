@@ -20,7 +20,7 @@
    title sits 24px in, controls 16px in. From md the section gets the 64px gutter and the cards go
    fluid (3.25 / 4.25 per view, as before the Figma pass): fixed 234px cards left huge gaps on wide
    screens. Title and controls align with the first card. #}
-<section class="js-product-carousel section-product-carousel md:px-16 py-8" data-store="home-product-carousel" style="background-color: {{ carousel_bg_value }}">
+<section class="js-product-carousel section-product-carousel md:px-16 pt-8 {{ carousel_bg_value == 'transparent' ? 'pb-0' : 'pb-8' }}" data-store="home-product-carousel" style="background-color: {{ carousel_bg_value }}">
 
     {# Header: Title + Dropdown #}
     <div class="flex items-center gap-3 mb-6 px-6 md:px-0">
