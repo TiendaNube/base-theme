@@ -136,22 +136,11 @@
              component (cart location, computed on the cart total; renders nothing when there is no
              interest-free option). Pix discount from the platform component. 10px highlight labels. #}
           <div class="flex items-center gap-3 font-sans text-[10px] font-medium text-highlight empty:hidden">
-            {{- component('installments', {
-                location: 'cart',
-                container_classes: { installment: 'text-[10px] font-medium text-highlight' },
-              })
-            -}}
+            {{- component('installments', {'location': 'cart', container_classes: { installment: 'text-[10px] font-medium text-highlight' }}) -}}
             {%- if settings.payment_discount_price -%}
-              {{- component('payment-discount-price', {
-                  visibility_condition: true,
-                  location: 'cart',
-                  container_classes: 'text-[10px] font-medium text-highlight',
-                })
-              -}}
+              {{- component('payment-discount-price', {visibility_condition: true, location: 'cart', container_classes: 'text-[10px] font-medium text-highlight'}) -}}
             {%- endif -%}
           </div>
-          </div>
-          {% endif %}
         </div>
         {% if not settings.payment_discount_price %}
           <div class="js-payment-discount-price-cart-container" style="display:none">
