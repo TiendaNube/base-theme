@@ -57,84 +57,75 @@
     <div class="js-category-controls-prev" aria-hidden="true"></div>
     <div class="js-category-controls" aria-hidden="true"></div>
 
-    {# Category Header Bar #}
-    <section class="px-4 md:px-16 py-4" style="background-color: var(--background-color)">
+    {# Category Header Bar - Figma mobile 14:1568 (Fibery 237): one row on mobile (title +
+       subcategory chip on the left, "Filtros" text link on the right) with the breadcrumb right
+       below; sorting lives in the filter panel on mobile. Desktop keeps the sort dropdown and the
+       "Filtrar" button in the title row. Mobile gutter is 24px, aligned with the header and grid. #}
+    {% set has_filter_panel = has_filters_available or sort_methods is not empty %}
+    <section class="px-6 md:px-16 py-4" style="background-color: var(--background-color)">
         <div class="flex items-center gap-3 mb-2">
-            {# Title: if child category, show parent name; otherwise show current category name #}
-            {% if is_child_category %}
-                <h1 class="text-secondary font-heading text-[32px] font-extrabold leading-[80%] m-0">
-                    {{ breadcrumbs[breadcrumbs | length - 2].name }}
-                </h1>
-            {% else %}
-                <h1 class="text-secondary font-heading text-[32px] font-extrabold leading-[80%] m-0">
-                    {{ category.name }}
-                </h1>
-            {% endif %}
+            {# Left group wraps on narrow screens (long titles/subcategories) so the mobile "Filtros" link stays on the right #}
+            <div class="flex min-w-0 flex-wrap items-center gap-3">
+                {# Title: if child category, show parent name; otherwise show current category name #}
+                {% if is_child_category %}
+                    <h1 class="text-secondary font-heading text-[32px] font-extrabold leading-[80%] m-0">
+                        {{ breadcrumbs[breadcrumbs | length - 2].name }}
+                    </h1>
+                {% else %}
+                    <h1 class="text-secondary font-heading text-[32px] font-extrabold leading-[80%] m-0">
+                        {{ category.name }}
+                    </h1>
+                {% endif %}
 
-            {# Category Dropdown - matches home-product-carousel.tpl style #}
-            {% if has_dropdown %}
-                <div class="js-category-dropdown relative">
-                    <button
-                        class="js-category-dropdown-trigger flex h-8 items-center gap-1 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer"
-                        type="button"
-                        aria-expanded="false"
-                    >
-                        <span class="js-category-dropdown-label">
-                            {% if is_child_category %}
-                                {{ category.name }}
-                            {% else %}
-                                {{ "Todos" | translate }}
-                            {% endif %}
-                        </span>
-                        <i data-lucide="chevron-down" class="js-category-dropdown-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
-                    </button>
-                    <ul class="js-category-dropdown-list absolute top-full left-0 mt-1 min-w-max bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
-                        <li>
-                            <a href="{{ parent_url }}" class="block whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 no-underline">
-                                {{ "Todos" | translate }}
-                            </a>
-                        </li>
-                        {% for cat in dropdown_categories %}
+                {# Category Dropdown - matches home-product-carousel.tpl style #}
+                {% if has_dropdown %}
+                    <div class="js-category-dropdown relative shrink-0">
+                        <button
+                            class="js-category-dropdown-trigger flex h-8 items-center gap-1 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer"
+                            type="button"
+                            aria-expanded="false"
+                        >
+                            <span class="js-category-dropdown-label">
+                                {% if is_child_category %}
+                                    {{ category.name }}
+                                {% else %}
+                                    {{ "Todos" | translate }}
+                                {% endif %}
+                            </span>
+                            <i data-lucide="chevron-down" class="js-category-dropdown-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
+                        </button>
+                        <ul class="js-category-dropdown-list absolute top-full left-0 mt-1 min-w-max bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
                             <li>
-                                <a href="{{ cat.url }}" class="block whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 no-underline">
-                                    {{ cat.name }}
+                                <a href="{{ parent_url }}" class="block whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 no-underline">
+                                    {{ "Todos" | translate }}
                                 </a>
                             </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-
-            {# Sorting Dropdown — Desktop #}
-            {% if sort_methods is not empty %}
-                <div class="js-category-sorting relative hidden md:block">
-                    <button
-                        class="js-category-sorting-trigger flex h-8 items-center gap-1 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer"
-                        type="button"
-                        aria-expanded="false"
-                    >
-                        <span class="js-category-sorting-label">{{ current_sort_label }}</span>
-                        <i data-lucide="chevron-down" class="js-category-sorting-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
-                    </button>
-                    <ul class="js-category-sorting-list absolute top-full left-0 mt-1 min-w-max bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
-                        {# Best-selling first #}
-                        {% for sort_method in sort_methods %}
-                            {% if sort_method == 'best-selling' %}
+                            {% for cat in dropdown_categories %}
                                 <li>
-                                    <button
-                                        type="button"
-                                        class="js-category-sorting-option block w-full text-left whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 {% if sort_by == sort_method %}font-bold{% endif %}"
-                                        data-sort-value="{{ sort_method }}"
-                                    >
-                                        {{ sort_text[sort_method] | t }}
-                                    </button>
+                                    <a href="{{ cat.url }}" class="block whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 no-underline">
+                                        {{ cat.name }}
+                                    </a>
                                 </li>
-                            {% endif %}
-                        {% endfor %}
-                        {# Rest of sort methods #}
-                        {% for sort_method in sort_methods %}
-                            {% if sort_method != 'best-selling' %}
-                                {% if sort_method != 'user' or category.sort_method == 'user' %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+
+                {# Sorting Dropdown — Desktop only (mobile sorts from the "Ordenar:" chips in the filter panel) #}
+                {% if sort_methods is not empty %}
+                    <div class="js-category-sorting relative hidden md:block">
+                        <button
+                            class="js-category-sorting-trigger flex h-8 items-center gap-1 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer"
+                            type="button"
+                            aria-expanded="false"
+                        >
+                            <span class="js-category-sorting-label">{{ current_sort_label }}</span>
+                            <i data-lucide="chevron-down" class="js-category-sorting-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
+                        </button>
+                        <ul class="js-category-sorting-list absolute top-full left-0 mt-1 min-w-max bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
+                            {# Best-selling first #}
+                            {% for sort_method in sort_methods %}
+                                {% if sort_method == 'best-selling' %}
                                     <li>
                                         <button
                                             type="button"
@@ -145,49 +136,21 @@
                                         </button>
                                     </li>
                                 {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
-
-            {% if has_filters_available %}
-                <button type="button" class="js-category-filter-trigger hidden md:flex h-8 items-center gap-1.5 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer hover:bg-black/10 transition-colors" data-filter-title="{{ 'Filtros' | translate }}">
-                    <i data-lucide="list-filter" class="w-4 h-4 text-secondary"></i>
-                    {{ 'Filtrar' | translate }}
-                </button>
-            {% endif %}
-        </div>
-
-        {# Breadcrumb #}
-        {% include 'snipplets/breadcrumbs.tpl' %}
-
-        {# Mobile controls row: sorting + filter #}
-        {% if sort_methods is not empty or has_filters_available %}
-            <div class="flex md:hidden items-center gap-2 mt-2">
-                {# Sorting Dropdown — Mobile #}
-                {% if sort_methods is not empty %}
-                    <div class="js-category-sorting relative">
-                        <button
-                            class="js-category-sorting-trigger flex h-8 items-center gap-1 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer"
-                            type="button"
-                            aria-expanded="false"
-                        >
-                            <span class="js-category-sorting-label">{{ current_sort_label }}</span>
-                            <i data-lucide="chevron-down" class="js-category-sorting-icon w-4 h-4 text-secondary transition-transform duration-200"></i>
-                        </button>
-                        <ul class="js-category-sorting-list absolute top-full left-0 mt-1 min-w-max bg-bg/70 backdrop-blur-sm rounded-lg shadow-md overflow-hidden z-20" hidden>
+                            {% endfor %}
+                            {# Rest of sort methods #}
                             {% for sort_method in sort_methods %}
-                                {% if sort_method != 'user' or category.sort_method == 'user' %}
-                                    <li>
-                                        <button
-                                            type="button"
-                                            class="js-category-sorting-option block w-full text-left whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 {{ sort_by == sort_method ? 'font-bold' : '' }}"
-                                            data-sort-value="{{ sort_method }}"
-                                        >
-                                            {{ sort_text[sort_method] | t }}
-                                        </button>
-                                    </li>
+                                {% if sort_method != 'best-selling' %}
+                                    {% if sort_method != 'user' or category.sort_method == 'user' %}
+                                        <li>
+                                            <button
+                                                type="button"
+                                                class="js-category-sorting-option block w-full text-left whitespace-nowrap px-3 py-2 text-secondary font-sans text-base cursor-pointer hover:bg-black/5 {% if sort_by == sort_method %}font-bold{% endif %}"
+                                                data-sort-value="{{ sort_method }}"
+                                            >
+                                                {{ sort_text[sort_method] | t }}
+                                            </button>
+                                        </li>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         </ul>
@@ -195,13 +158,23 @@
                 {% endif %}
 
                 {% if has_filters_available %}
-                    <button type="button" class="js-category-filter-trigger flex h-8 items-center gap-1.5 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer hover:bg-black/10 transition-colors" data-filter-title="{{ 'Filtros' | translate }}">
+                    <button type="button" class="js-category-filter-trigger hidden md:flex h-8 items-center gap-1.5 [background:rgba(0,0,0,0.05)] px-3 py-1 rounded-lg text-secondary font-sans text-sm font-medium cursor-pointer hover:bg-black/10 transition-colors" data-filter-title="{{ 'Filtros' | translate }}">
                         <i data-lucide="list-filter" class="w-4 h-4 text-secondary"></i>
                         {{ 'Filtrar' | translate }}
                     </button>
                 {% endif %}
             </div>
-        {% endif %}
+
+            {# Mobile: "Filtros" text link on the right; 40px tall hit area, text aligned to the gutter #}
+            {% if has_filter_panel %}
+                <button type="button" class="js-category-filter-trigger md:hidden ml-auto -mr-2 flex h-10 shrink-0 items-center px-2 text-secondary font-sans text-sm font-medium cursor-pointer" data-filter-title="{{ 'Filtros' | translate }}">
+                    {{ 'Filtros' | translate }}
+                </button>
+            {% endif %}
+        </div>
+
+        {# Breadcrumb #}
+        {% include 'snipplets/breadcrumbs.tpl' %}
 
         {# Hidden native select for platform compatibility #}
         {% if sort_methods is not empty %}
@@ -214,35 +187,42 @@
             </select>
         {% endif %}
 
-        {% if has_filters_available %}
-
-            {# Applied filters chips #}
-            {% if has_applied_filters %}
-                <div class="flex flex-wrap items-center gap-2 mt-3">
-                    <span class="text-secondary font-sans text-sm">{{ 'Filtrado por:' | translate }}</span>
-                    {% for product_filter in product_filters %}
-                        {% set is_size = product_filter.type == 'size' or product_filter.key == 'Talle' or product_filter.key == 'Tamanho' or product_filter.key == 'Size' %}
-                        {% for value in product_filter.values %}
-                            {% if value.selected %}
-                                <button class="js-remove-filter flex items-center gap-1 [background:rgba(0,0,0,0.05)] px-2.5 py-1 rounded-lg text-secondary font-sans text-xs font-medium cursor-pointer hover:bg-black/10 transition-colors {% if is_size %}uppercase{% endif %}" data-filter-name="{{ product_filter.key }}" data-filter-value="{{ value.name }}">
-                                    {{ value.pill_label }}
-                                    <i data-lucide="x" class="w-3 h-3 text-secondary"></i>
-                                </button>
-                            {% endif %}
-                        {% endfor %}
+        {# Applied filters chips #}
+        {% if has_filters_available and has_applied_filters %}
+            <div class="flex flex-wrap items-center gap-2 mt-3">
+                <span class="text-secondary font-sans text-sm">{{ 'Filtrado por:' | translate }}</span>
+                {% for product_filter in product_filters %}
+                    {% set is_size = product_filter.type == 'size' or product_filter.key == 'Talle' or product_filter.key == 'Tamanho' or product_filter.key == 'Size' %}
+                    {% for value in product_filter.values %}
+                        {% if value.selected %}
+                            <button class="js-remove-filter flex items-center gap-1 [background:rgba(0,0,0,0.05)] px-2.5 py-1 rounded-lg text-secondary font-sans text-xs font-medium cursor-pointer hover:bg-black/10 transition-colors {% if is_size %}uppercase{% endif %}" data-filter-name="{{ product_filter.key }}" data-filter-value="{{ value.name }}">
+                                {{ value.pill_label }}
+                                <i data-lucide="x" class="w-3 h-3 text-secondary"></i>
+                            </button>
+                        {% endif %}
                     {% endfor %}
-                    <a href="#" class="js-remove-all-filters text-secondary font-sans text-xs font-medium underline">{{ 'Borrar filtros' | translate }}</a>
-                </div>
-            {% endif %}
+                {% endfor %}
+                <a href="#" class="js-remove-all-filters text-secondary font-sans text-xs font-medium underline">{{ 'Borrar filtros' | translate }}</a>
+            </div>
+        {% endif %}
 
-            {# Hidden filter content — source for gaius modal/drawer #}
+        {% if has_filter_panel %}
+            {# Hidden filter content — source for gaius modal/drawer (Figma 52:3056). The modal copies
+               this innerHTML, so every handler in here must be delegated. Breadcrumb and "Ordenar:"
+               are mobile-only: desktop keeps them in the title row. #}
             <div class="js-category-filter-content" hidden>
-                {% if filter_categories is not empty %}
-                    {% snipplet "grid/categories.tpl" %}
-                {% endif %}
-                {% if product_filters is not empty %}
-                    {% snipplet "grid/filters.tpl" %}
-                {% endif %}
+                <div class="flex flex-col gap-4">
+                    {% include 'snipplets/breadcrumbs.tpl' with { breadcrumbs_custom_class: 'md:hidden' } %}
+                    {% if sort_methods is not empty %}
+                        {% include 'snipplets/grid/sort-by.tpl' %}
+                    {% endif %}
+                    {% if has_filters_available and filter_categories is not empty %}
+                        {% snipplet "grid/categories.tpl" %}
+                    {% endif %}
+                    {% if has_filters_available and product_filters is not empty %}
+                        {% snipplet "grid/filters.tpl" %}
+                    {% endif %}
+                </div>
                 <div class="js-filters-overlay" style="display:none;position:absolute;inset:0;background:color-mix(in srgb, var(--background-color) 80%, transparent);z-index:10;align-items:center;justify-content:center">
                     <div>
                         <h3 class="js-applying-filter text-secondary font-sans text-sm" style="display:none;">{{ 'Aplicando filtro...' | translate }}</h3>
