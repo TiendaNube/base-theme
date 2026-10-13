@@ -7,14 +7,15 @@
 {% set grid_viewall_label = settings.product_grid_viewall_label | trim %}
 {% set grid_viewall_url = settings.product_grid_viewall_url | trim %}
 
+{# Section background as a token class (ADR-0003/0004), never an inline style; literal class names so Tailwind sees them. #}
 {% set grid_bg_map = {
-    'none': 'transparent',
-    'primary': 'var(--primary-color)',
-    'secondary': 'var(--text-color)',
-    'background': 'var(--background-color)',
-    'accent': 'var(--accent-color)'
+    'none': 'bg-transparent',
+    'primary': 'bg-fg',
+    'secondary': 'bg-secondary',
+    'background': 'bg-bg',
+    'accent': 'bg-accent'
 } %}
-{% set grid_bg_value = grid_bg_map[settings.product_grid_bg] | default('transparent') %}
+{% set grid_bg_class = grid_bg_map[settings.product_grid_bg] | default('bg-transparent') %}
 {# "none" and "background" paint no visible block: the divider supplies the spacing, so drop the padding. #}
 {% set grid_flat = settings.product_grid_bg == 'none' or settings.product_grid_bg == 'background' or not settings.product_grid_bg %}
 
@@ -23,7 +24,7 @@
    category grid: page gutter (24px mobile, 64px from md, aligned with the header) and a gap
    between cards; wide column gap on desktop (128px at xl = Figma's 592px cells at 1440).
    Desktop stays 2 columns here. #}
-<section class="section-product-grid px-6 md:px-16 pt-8 {{ grid_flat ? 'pb-0' : 'pb-8' }}" data-store="home-product-grid" style="background-color: {{ grid_bg_value }}">
+<section class="section-product-grid px-6 md:px-16 pt-8 {{ grid_flat ? 'pb-0' : 'pb-8' }} {{ grid_bg_class }}" data-store="home-product-grid">
 
     {# Title + optional "Ver todos" (only when label and URL are both filled) #}
     {% if settings.product_grid_title or (grid_viewall_label and grid_viewall_url) %}

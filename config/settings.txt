@@ -674,198 +674,6 @@ Página de inicio
 			8 = 8 segundos
 			10 = 10 segundos
 	collapse
-		title = Carrusel de imágenes
-		backto = home_order_position
-	subtitle
-		subtitle = Imágenes para computadoras
-	gallery
-		name = slider
-		gallery_image = Agregar imagen
-		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
-		gallery_width = 1580
-		gallery_more_info = true
-	subtitle
-		subtitle = Imágenes para celulares
-	description
-		description = Mejorá la calidad y velocidad de carga con esta opción
-	checkbox
-		name = toggle_slider_mobile
-		description = Cargar otras imágenes para celulares
-	gallery
-		name = slider_mobile
-		gallery_image = Agregar imagen
-		gallery_link = [Opcional] Página web a la que quieres que te lleve la imagen al hacer click
-		gallery_width = 820
-		gallery_height = 1460
-		gallery_more_info = true
-	subtitle
-		subtitle = <a target='_blank' data-toggle-info='show-on_slider_mobile-inactive' href='https://ayuda.tiendanube.com/es/articles/3297783-como-usar-el-carrusel-de-imagenes-para-las-plantillas-idea-bahia-y-amazonas'>¿Cómo diseñar las imágenes para tu carrusel?</a>
-	collapse
-		title = Información de envíos, pagos y compra
-		backto = home_order_position
-	checkbox
-		name = banner_services
-		description = Mostrar los banners en la página principal
-	subtitle
-		subtitle = BANNER 1
-	dropdown
-		name = banner_services_01_icon
-		description = Ícono
-		values
-			shipping = Envíos
-			card = Tarjetas de crédito
-			security = Seguridad
-			returns = Cambios y devoluciones
-			whatsapp = WhatsApp
-			promotions = Promociones
-			cash = Pago en efectivo
-	i18n_input
-		name = banner_services_01_title
-		description = Título
-	i18n_input
-		name = banner_services_01_description
-		description = Descripción
-	i18n_input
-		name = banner_services_01_url
-		description = Link
-	subtitle
-		subtitle = BANNER 2
-	dropdown
-		name = banner_services_02_icon
-		description = Ícono
-		values
-			shipping = Envíos
-			card = Tarjetas de crédito
-			security = Seguridad
-			returns = Cambios y devoluciones
-			whatsapp = WhatsApp
-			promotions = Promociones
-			cash = Pago en efectivo
-	i18n_input
-		name = banner_services_02_title
-		description = Título
-	i18n_input
-		name = banner_services_02_description
-		description = Descripción
-	i18n_input
-		name = banner_services_02_url
-		description = Link
-	subtitle
-		subtitle = BANNER 3
-	dropdown
-		name = banner_services_03_icon
-		description = Ícono
-		values
-			shipping = Envíos
-			card = Tarjetas de crédito
-			security = Seguridad
-			returns = Cambios y devoluciones
-			whatsapp = WhatsApp
-			promotions = Promociones
-			cash = Pago en efectivo
-	i18n_input
-		name = banner_services_03_title
-		description = Título
-	i18n_input
-		name = banner_services_03_description
-		description = Descripción
-	i18n_input
-		name = banner_services_03_url
-		description = Link
-
-	collapse
-		title = Mensaje institucional
-		backto = home_order_position
-	i18n_input
-		name = welcome_message
-		description = Título
-	i18n_input
-		name = welcome_text
-		description = Descripción
-
-	collapse
-		title = Banners de categorías
-		backto = home_order_position
-	description
-		description = Los banners se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares
-	checkbox
-		name = banners_full
-		description = Mostrar banner a todo el ancho de la pantalla en computadoras
-	subtitle
-		subtitle = CATEGORÍA 1
-	checkbox
-		name = banner_01_show
-		description = Mostrar banner
-	image
-		original = banner_01.jpg
-		title = Cargar imagen (JPG, GIF, PNG)
-		width = 600
-		height = 600
-	i18n_input
-		name = banner_01_title
-		description = Título
-	i18n_input
-		name = banner_01_description
-		description = Descripción
-	i18n_input
-		name = banner_01_button
-		description = Texto del botón
-	i18n_input
-		name = banner_01_url
-		description = Link
-	subtitle
-		subtitle = CATEGORÍA 2
-	checkbox
-		name = banner_02_show
-		description = Mostrar banner
-	image
-		original = banner_02.jpg
-		title = Cargar imagen (JPG, GIF, PNG)
-		width = 600
-		height = 600
-	i18n_input
-		name = banner_02_title
-		description = Título
-	i18n_input
-		name = banner_02_description
-		description = Descripción
-	i18n_input
-		name = banner_02_button
-		description = Texto del botón
-	i18n_input
-		name = banner_02_url
-		description = Link
-	subtitle
-		subtitle = CATEGORÍA 3
-	checkbox
-		name = banner_03_show
-		description = Mostrar banner
-	image
-		original = banner_03.jpg
-		title = Cargar imagen (JPG, GIF, PNG)
-		width = 600
-		height = 600
-	i18n_input
-		name = banner_03_title
-		description = Título
-	i18n_input
-		name = banner_03_description
-		description = Descripción
-	i18n_input
-		name = banner_03_button
-		description = Texto del botón
-	i18n_input
-		name = banner_03_url
-		description = Link
-	collapse
-		title = Productos destacados
-		backto = home_order_position
-	description
-		description = Podés destacar los productos que quieras en la página de inicio.
-		name = featured_products_description
-	subtitle
-		subtitle = <a target='_blank' href='/admin/themes/settings/product_order/'>Elegí cuáles vas a destacar</a>
-	collapse
 		title = Carrossel de produtos
 		backto = home_order_position
 	checkbox
@@ -951,70 +759,6 @@ Página de inicio
 		name = product_grid_viewall_url
 		description = Link "Ver todos" (ex: /camisetas/)
 	collapse
-		title = Módulos de imagen y texto
-		backto = home_order_position
-	description
-		description = Los módulos se mostrarán de izquierda a derecha en computadoras y de arriba hacia abajo en celulares
-	checkbox
-		name = modules_full
-		description = Mostrar módulos a todo el ancho de la pantalla en computadoras
-	subtitle
-		subtitle = MÓDULO 1
-	checkbox
-		name = module_01_show
-		description = Mostrar módulo
-	image
-		original = module_01.jpg
-		title = Cargar imagen (JPG, GIF, PNG)
-		width = 600
-		height = 400
-	dropdown
-		name = module_01_align
-		description = Alineación de la imagen
-		values
-			left = Izquierda
-			right = Derecha
-	i18n_input
-		name = module_01_title
-		description = Título
-	i18n_input
-		name = module_01_description
-		description = Descripción
-	i18n_input
-		name = module_01_button
-		description = Texto del botón
-	i18n_input
-		name = module_01_url
-		description = Link
-	subtitle
-		subtitle = MÓDULO 2
-	checkbox
-		name = module_02_show
-		description = Mostrar módulo
-	image
-		original = module_02.jpg
-		title = Cargar imagen (JPG, GIF, PNG)
-		width = 600
-		height = 400
-	dropdown
-		name = module_02_align
-		description = Alineación de la imagen
-		values
-			left = Izquierda
-			right = Derecha
-	i18n_input
-		name = module_02_title
-		description = Título
-	i18n_input
-		name = module_02_description
-		description = Descripción
-	i18n_input
-		name = module_02_button
-		description = Texto del botón
-	i18n_input
-		name = module_02_url
-		description = Link
-	collapse
 		title = Publicaciones de Instagram
 		backto = home_order_position
 	description
@@ -1024,17 +768,6 @@ Página de inicio
 		description = Mostrar tus publicaciones de Instagram en la página de inicio de tu tienda
 	subtitle
 		subtitle = Para mostrar tus publicaciones necesitás generar un token, <a target='_blank' href='https://ayuda.tiendanube.com/es_ES/como-mostrar-mis-publicaciones-de-instagram-en-mi-tienda'>¿cómo configurarlo?</a>
-	collapse
-		title = Video
-		backto = home_order_position
-	checkbox
-		name = video_full
-		description = Mostrar video a todo el ancho de la pantalla en computadoras
-	i18n_input
-		name = video_embed
-		description = Link (Youtube o Vimeo)
-	description
-		description = Ej: https://www.youtube.com/watch?v=dptrWehSI8c
 	collapse
 		title = Pop-up promocional
 		backto = home_order_position
@@ -1227,13 +960,6 @@ Página de inicio
 			promo_marquee = Barra Promocional
 			hero_banner = Hero Banner
 			hero_banner_2 = Hero Banner 2
-			slider = Carrusel de imágenes
-			welcome = Mensaje institucional
-			products = Productos destacados
-			informatives = Información de envíos, pagos y compra
-			categories = Banners de categorías
-			modules = Módulos de imagen y texto
-			video = Video
 			product_carousel = Carrossel de produtos
 			product_grid = Grid de produtos
 			vip_group = Banner Grupo VIP
@@ -1268,11 +994,6 @@ Listado de productos
 		values
 			1 = 1 en celular y 3 en computadora
 			2 = 2 en celular y 4 en computadora
-	title
-		title = Título para Productos destacados
-	i18n_input
-		description = Título
-		name = featured_products_title
 	title
 		title = Variantes de color
 	checkbox
