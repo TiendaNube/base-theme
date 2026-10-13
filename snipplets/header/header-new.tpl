@@ -14,7 +14,7 @@
     {% endif %}
 
     {# Main Header Container #}
-    <div class="flex items-center justify-between w-full px-4 md:px-16 py-5.5">
+    <div class="flex items-center justify-between w-full h-16 md:h-22 px-6 md:px-16">
 
         {# Mobile: Hamburger | Desktop: Logo #}
         <div class="flex items-center gap-4 flex-1">
@@ -71,7 +71,7 @@
               {% set main_menu = menus[settings.menu_principal] %}
               {% set highlighted_list = settings.menu_highlighted_items | default('') | split(',') | map(item => item | trim | lower) %}
 
-              <nav class="hidden md:flex items-center gap-8" data-menu-desktop>
+              <nav class="hidden md:flex items-center gap-4" data-menu-desktop>
                 {% for item in main_menu %}
                   {% set has_subitems = item.subitems is not empty %}
                   {% set is_highlighted = item.name | lower | trim in highlighted_list %}
@@ -79,7 +79,7 @@
                   {% if has_subitems %}
                     <button
                       type="button"
-                      class="js-menu-desktop-toggle nav-link flex items-center gap-1 text-sm font-medium transition-colors duration-300 cursor-pointer bg-transparent border-0 {% if is_highlighted %}text-fg{% endif %}"
+                      class="js-menu-desktop-toggle nav-link flex items-center gap-1 text-sm font-semibold transition-colors duration-300 cursor-pointer bg-transparent border-0 {% if is_highlighted %}text-fg{% endif %}"
                       data-menu-index="{{ loop.index0 }}"
                       aria-expanded="false"
                     >
@@ -90,11 +90,10 @@
                   {% else %}
                     <a
                       href="{{ item.url }}"
-                      class="nav-link flex items-center gap-1 text-sm font-medium transition-colors duration-300 {% if is_highlighted %}text-fg{% endif %}"
+                      class="nav-link flex items-center gap-1 text-sm font-semibold transition-colors duration-300 {% if is_highlighted %}text-fg{% endif %}"
                       {% if item.url | is_external %}target="_blank" rel="noopener"{% endif %}
                     >
                       {{ item.name }}
-                      <i data-lucide="arrow-right" class="w-3 h-3"></i>
                     </a>
                   {% endif %}
                 {% endfor %}
@@ -103,25 +102,25 @@
         </div>
 
         {# Utilities - Right #}
-        <div class="flex items-center justify-end gap-4 md:gap-6 flex-1">
+        <div class="flex items-center justify-end max-md:-mr-2.5 max-md:-space-x-1.5 md:gap-4 flex-1">
             {# Buscar #}
             <button
               type="button"
-              class="js-search-toggle nav-link text-sm font-medium transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0 cursor-pointer bg-transparent border-0"
+              class="js-search-toggle nav-link text-sm font-semibold transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0 cursor-pointer bg-transparent border-0"
               aria-label="{{ 'Abrir busca' | translate }}"
             >
                 <i data-lucide="search" class="w-5 h-5 md:hidden"></i>
                 <span class="hidden md:inline">Buscar</span>
             </button>
             {# Login #}
-            <a href="{{ store.customer_login_url }}" class="nav-link text-sm font-medium transition-colors duration-300 flex items-center gap-1">
+            <a href="{{ store.customer_login_url }}" class="nav-link text-sm font-semibold transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0">
                 <i data-lucide="user" class="w-5 h-5 md:hidden"></i>
                 <span class="hidden md:inline">Login</span>
             </a>
             {# Carrinho #}
             <button
               type="button"
-              class="js-cart-drawer-toggle nav-link text-sm font-medium transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0 cursor-pointer bg-transparent border-0"
+              class="js-cart-drawer-toggle nav-link text-sm font-semibold transition-colors duration-300 flex items-center justify-center gap-1 min-w-10 min-h-10 md:min-w-0 md:min-h-0 cursor-pointer bg-transparent border-0"
               aria-label="{{ 'Carrinho' | translate }}"
             >
                 <span class="relative md:hidden">
@@ -132,7 +131,7 @@
                 <span class="js-cart-widget-amount hidden md:inline">({{ cart.items_count }})</span>
             </button>
             <noscript>
-              <a href="{{ store.cart_url }}" class="nav-link text-sm font-medium flex items-center gap-1">Carrinho</a>
+              <a href="{{ store.cart_url }}" class="nav-link text-sm font-semibold flex items-center gap-1">Carrinho</a>
             </noscript>
         </div>
     </div>
@@ -162,4 +161,4 @@
 
 {# Spacer para compensar header fixed - oculto quando hero_banner é primeira seção #}
 {% set hero_banner_first = settings.home_order_position_0 == 'hero_banner' and 'hero_banner_desktop.jpg' | has_custom_image %}
-<div class="js-header-spacer h-25 md:h-30 {% if template == 'home' and hero_banner_first %}hidden{% endif %}"></div>
+<div class="js-header-spacer h-22 md:h-28 {% if template == 'home' and hero_banner_first %}hidden{% endif %}"></div>

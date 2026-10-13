@@ -151,3 +151,12 @@ test.describe("menu desktop", () => {
     await page.waitForURL((url) => url.href.startsWith(new URL(href, page.url()).href));
   });
 });
+
+test("altura do header segue o Figma: 88px no mobile e 112px no desktop (Fibery #227)", async ({ page }, testInfo) => {
+  await gotoStore(page, "category");
+  const h = await page.locator(".js-new-header").evaluate((el) => el.getBoundingClientRect().height);
+  // com a barra de anúncio ativa (24px + menuBar); sem ela, desconta 24px
+  const hasAd = (await page.locator(".js-advertising-bar").count()) > 0;
+  const expected = (isMobile(testInfo) ? 88 : 112) - (hasAd ? 0 : 24);
+  expect(Math.round(h)).toBe(expected);
+});
