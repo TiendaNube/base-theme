@@ -263,9 +263,8 @@
         {% endif %}
     </section>
 
-    {# End of page: white + seed + white before the footer. The grid section above ends with pb-8
-       (32px), so the first white is half (32px) to total 64px. #}
-    {% include 'snipplets/home/home-divider.tpl' with {type: 'white', half: true} %}
+    {# End of page: white + seed + white before the footer. The grid section above already ends with
+       ~56px of whitespace (pb-8 + inner spacing), which acts as the first white. #}
     {% include 'snipplets/home/home-divider.tpl' with {type: 'seed'} %}
     {% include 'snipplets/home/home-divider.tpl' with {type: 'white'} %}
 
